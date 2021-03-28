@@ -1,4 +1,4 @@
-/* XMRig
+/* PythonXM
  * Copyright 2010      Jeff Garzik <jgarzik@pobox.com>
  * Copyright 2012-2014 pooler      <pooler@litecoinpool.org>
  * Copyright 2014      Lucas Jones <https://github.com/lucasjones>
@@ -8,7 +8,7 @@
  * Copyright 2018      Lee Clagett <https://github.com/vtnerd>
  * Copyright 2019      Howard Chu  <https://github.com/hyc>
  * Copyright 2018-2020 SChernykh   <https://github.com/SChernykh>
- * Copyright 2016-2020 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright 2016-2020 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -37,14 +37,14 @@
 #include "base/tools/String.h"
 
 
-namespace xmrig {
+namespace pythonxm {
 
 
 class Job
 {
 public:
-    // Max blob size is 84 (75 fixed + 9 variable), aligned to 96. https://github.com/xmrig/xmrig/issues/1 Thanks fireice-uk.
-    // SECOR increase requirements for blob size: https://github.com/xmrig/xmrig/issues/913
+    // Max blob size is 84 (75 fixed + 9 variable), aligned to 96. https://github.com/pythonxm/pythonxm/issues/1 Thanks fireice-uk.
+    // SECOR increase requirements for blob size: https://github.com/pythonxm/pythonxm/issues/913
     // Haven (XHV) offshore increases requirements by adding pricing_record struct (192 bytes) to block_header.
     // Round it up to 408 (136*3) for a convenient keccak calculation in OpenCL
     static constexpr const size_t kMaxBlobSize = 408;
@@ -147,7 +147,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace pythonxm */
 
 
 #endif /* XMRIG_JOB_H */

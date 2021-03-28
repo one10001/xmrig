@@ -1,7 +1,7 @@
-/* XMRig
+/* PythonXM
  * Copyright (c) 2014-2019 heapwolf    <https://github.com/heapwolf>
  * Copyright (c) 2018-2020 SChernykh   <https://github.com/SChernykh>
- * Copyright (c) 2016-2020 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright (c) 2016-2020 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -32,7 +32,7 @@ using X509      = struct x509_st;
 #include "base/tools/String.h"
 
 
-namespace xmrig {
+namespace pythonxm {
 
 
 class HttpsClient : public HttpClient
@@ -66,7 +66,7 @@ private:
 };
 
 
-} // namespace xmrig
+} // namespace pythonxm
 
 
 #endif // XMRIG_HTTPSCLIENT_H

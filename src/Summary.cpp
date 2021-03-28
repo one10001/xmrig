@@ -1,4 +1,4 @@
-/* XMRig
+/* PythonXM
  * Copyright 2010      Jeff Garzik <jgarzik@pobox.com>
  * Copyright 2012-2014 pooler      <pooler@litecoinpool.org>
  * Copyright 2014      Lucas Jones <https://github.com/lucasjones>
@@ -6,7 +6,7 @@
  * Copyright 2016      Jay D Dee   <jayddee246@gmail.com>
  * Copyright 2017-2019 XMR-Stak    <https://github.com/fireice-uk>, <https://github.com/psychocrypt>
  * Copyright 2018-2021 SChernykh   <https://github.com/SChernykh>
- * Copyright 2016-2021 XMRig       <support@xmrig.com>
+ * Copyright 2016-2021 PythonXM       <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -49,7 +49,7 @@
 #endif
 
 
-namespace xmrig {
+namespace pythonxm {
 
 
 #ifdef XMRIG_OS_WIN
@@ -208,10 +208,10 @@ static void print_commands(Config *)
 }
 
 
-} // namespace xmrig
+} // namespace pythonxm
 
 
-void xmrig::Summary::print(Controller *controller)
+void pythonxm::Summary::print(Controller *controller)
 {
     const auto config = controller->config();
 

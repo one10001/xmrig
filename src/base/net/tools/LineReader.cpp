@@ -1,7 +1,7 @@
-/* XMRig
+/* PythonXM
  * Copyright (c) 2020      cohcho      <https://github.com/cohcho>
  * Copyright (c) 2018-2020 SChernykh   <https://github.com/SChernykh>
- * Copyright (c) 2016-2020 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright (c) 2016-2020 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -27,13 +27,13 @@
 #include <cstring>
 
 
-xmrig::LineReader::~LineReader()
+pythonxm::LineReader::~LineReader()
 {
     NetBuffer::release(m_buf);
 }
 
 
-void xmrig::LineReader::parse(char *data, size_t size)
+void pythonxm::LineReader::parse(char *data, size_t size)
 {
     assert(m_listener != nullptr && size > 0);
     if (!m_listener || size == 0) {
@@ -44,7 +44,7 @@ void xmrig::LineReader::parse(char *data, size_t size)
 }
 
 
-void xmrig::LineReader::reset()
+void pythonxm::LineReader::reset()
 {
     if (m_buf) {
         NetBuffer::release(m_buf);
@@ -54,7 +54,7 @@ void xmrig::LineReader::reset()
 }
 
 
-void xmrig::LineReader::add(const char *data, size_t size)
+void pythonxm::LineReader::add(const char *data, size_t size)
 {
     if (size + m_pos > XMRIG_NET_BUFFER_CHUNK_SIZE) {
         // it breaks correctness silently for long lines
@@ -71,7 +71,7 @@ void xmrig::LineReader::add(const char *data, size_t size)
 }
 
 
-void xmrig::LineReader::getline(char *data, size_t size)
+void pythonxm::LineReader::getline(char *data, size_t size)
 {
     char *end        = nullptr;
     char *start      = data;

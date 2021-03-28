@@ -1,7 +1,7 @@
-/* XMRig
+/* PythonXM
  * Copyright (c) 2018-2019 tevador     <tevador@gmail.com>
  * Copyright (c) 2018-2021 SChernykh   <https://github.com/SChernykh>
- * Copyright (c) 2016-2021 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright (c) 2016-2021 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -33,7 +33,7 @@
 #endif
 
 
-namespace xmrig {
+namespace pythonxm {
 
 
 class RxPrivate;
@@ -52,22 +52,22 @@ public:
 };
 
 
-} // namespace xmrig
+} // namespace pythonxm
 
 
-xmrig::HugePagesInfo xmrig::Rx::hugePages()
+pythonxm::HugePagesInfo pythonxm::Rx::hugePages()
 {
     return d_ptr->queue.hugePages();
 }
 
 
-xmrig::RxDataset *xmrig::Rx::dataset(const Job &job, uint32_t nodeId)
+pythonxm::RxDataset *pythonxm::Rx::dataset(const Job &job, uint32_t nodeId)
 {
     return d_ptr->queue.dataset(job, nodeId);
 }
 
 
-void xmrig::Rx::destroy()
+void pythonxm::Rx::destroy()
 {
 #   ifdef XMRIG_FEATURE_MSR
     RxMsr::destroy();
@@ -79,14 +79,14 @@ void xmrig::Rx::destroy()
 }
 
 
-void xmrig::Rx::init(IRxListener *listener)
+void pythonxm::Rx::init(IRxListener *listener)
 {
     d_ptr = new RxPrivate(listener);
 }
 
 
 template<typename T>
-bool xmrig::Rx::init(const T &seed, const RxConfig &config, const CpuConfig &cpu)
+bool pythonxm::Rx::init(const T &seed, const RxConfig &config, const CpuConfig &cpu)
 {
     const Algorithm::Family f = seed.algorithm().family();
     if ((f != Algorithm::RANDOM_X)
@@ -139,21 +139,21 @@ bool xmrig::Rx::init(const T &seed, const RxConfig &config, const CpuConfig &cpu
 
 
 template<typename T>
-bool xmrig::Rx::isReady(const T &seed)
+bool pythonxm::Rx::isReady(const T &seed)
 {
     return d_ptr->queue.isReady(seed);
 }
 
 
 #ifdef XMRIG_FEATURE_MSR
-bool xmrig::Rx::isMSR()
+bool pythonxm::Rx::isMSR()
 {
     return RxMsr::isEnabled();
 }
 #endif
 
 
-namespace xmrig {
+namespace pythonxm {
 
 
 template bool Rx::init(const RxSeed &seed, const RxConfig &config, const CpuConfig &cpu);
@@ -162,4 +162,4 @@ template bool Rx::init(const Job &seed, const RxConfig &config, const CpuConfig 
 template bool Rx::isReady(const Job &seed);
 
 
-} // namespace xmrig
+} // namespace pythonxm

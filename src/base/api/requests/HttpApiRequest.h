@@ -1,6 +1,6 @@
-/* XMRig
+/* PythonXM
  * Copyright (c) 2018-2021 SChernykh   <https://github.com/SChernykh>
- * Copyright (c) 2016-2021 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright (c) 2016-2021 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -26,7 +26,7 @@
 #include "base/tools/String.h"
 
 
-namespace xmrig {
+namespace pythonxm {
 
 
 class HttpData;
@@ -61,7 +61,7 @@ private:
 };
 
 
-} // namespace xmrig
+} // namespace pythonxm
 
 
 #endif // XMRIG_HTTPAPIREQUEST_H

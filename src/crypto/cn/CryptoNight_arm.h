@@ -1,4 +1,4 @@
-/* XMRig
+/* PythonXM
  * Copyright 2010      Jeff Garzik  <jgarzik@pobox.com>
  * Copyright 2012-2014 pooler       <pooler@litecoinpool.org>
  * Copyright 2014      Lucas Jones  <https://github.com/lucasjones>
@@ -8,7 +8,7 @@
  * Copyright 2017-2019 XMR-Stak    <https://github.com/fireice-uk>, <https://github.com/psychocrypt>
  * Copyright 2018      Lee Clagett <https://github.com/vtnerd>
  * Copyright 2018-2020 SChernykh   <https://github.com/SChernykh>
- * Copyright 2016-2020 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright 2016-2020 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -197,7 +197,7 @@ inline void mix_and_propagate(__m128i& x0, __m128i& x1, __m128i& x2, __m128i& x3
 }
 
 
-namespace xmrig {
+namespace pythonxm {
 
 
 template<Algorithm::Id ALGO, bool SOFT_AES>
@@ -359,7 +359,7 @@ static inline void cn_implode_scratchpad(const __m128i *input, __m128i *output)
 }
 
 
-} /* namespace xmrig */
+} /* namespace pythonxm */
 
 
 static inline __m128i aes_round_tweak_div(const __m128i &in, const __m128i &key)
@@ -384,7 +384,7 @@ static inline __m128i aes_round_tweak_div(const __m128i &in, const __m128i &key)
 }
 
 
-namespace xmrig {
+namespace pythonxm {
 
 
 template<Algorithm::Id ALGO>
@@ -841,7 +841,7 @@ inline void cryptonight_penta_hash(const uint8_t *__restrict__ input, size_t siz
 }
 
 
-} /* namespace xmrig */
+} /* namespace pythonxm */
 
 
 #endif /* XMRIG_CRYPTONIGHT_ARM_H */

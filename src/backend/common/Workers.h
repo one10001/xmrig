@@ -1,6 +1,6 @@
-/* XMRig
+/* PythonXM
  * Copyright (c) 2018-2020 SChernykh   <https://github.com/SChernykh>
- * Copyright (c) 2016-2020 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright (c) 2016-2020 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -34,7 +34,7 @@
 #endif
 
 
-namespace xmrig {
+namespace pythonxm {
 
 
 class Benchmark;
@@ -75,7 +75,7 @@ private:
 
 
 template<class T>
-void xmrig::Workers<T>::jobEarlyNotification(const Job &job)
+void pythonxm::Workers<T>::jobEarlyNotification(const Job &job)
 {
     for (Thread<T>* t : m_workers) {
         if (t->worker()) {
@@ -104,7 +104,7 @@ extern template class Workers<CudaLaunchData>;
 #endif
 
 
-} // namespace xmrig
+} // namespace pythonxm
 
 
 #endif /* XMRIG_WORKERS_H */

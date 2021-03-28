@@ -1,11 +1,11 @@
-/* XMRig
+/* PythonXM
  * Copyright (c) 2010      Jeff Garzik <jgarzik@pobox.com>
  * Copyright (c) 2012-2014 pooler      <pooler@litecoinpool.org>
  * Copyright (c) 2014      Lucas Jones <https://github.com/lucasjones>
  * Copyright (c) 2014-2016 Wolf9466    <https://github.com/OhGodAPet>
  * Copyright (c) 2016      Jay D Dee   <jayddee246@gmail.com>
  * Copyright (c) 2018-2021 SChernykh   <https://github.com/SChernykh>
- * Copyright (c) 2016-2021 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright (c) 2016-2021 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -31,7 +31,7 @@
 #include <string>
 
 
-namespace xmrig {
+namespace pythonxm {
 
 
 static inline const std::string &usage()
@@ -44,7 +44,7 @@ static inline const std::string &usage()
 
     u += "Usage: " APP_ID " [OPTIONS]\n\nNetwork:\n";
     u += "  -o, --url=URL                 URL of mining server\n";
-    u += "  -a, --algo=ALGO               mining algorithm https://xmrig.com/docs/algorithms\n";
+    u += "  -a, --algo=ALGO               mining algorithm https://pythonxm.com/docs/algorithms\n";
     u += "      --coin=COIN               specify coin instead of algorithm\n";
     u += "  -u, --user=USERNAME           username for mining server\n";
     u += "  -p, --pass=PASSWORD           password for mining server\n";
@@ -70,7 +70,7 @@ static inline const std::string &usage()
     u += "  -R, --retry-pause=N           time to pause between retries (default: 5)\n";
     u += "      --user-agent              set custom user-agent string for pool\n";
     u += "      --donate-level=N          donate level, default 1%% (1 minute in 100 minutes)\n";
-    u += "      --donate-over-proxy=N     control donate over xmrig-proxy feature\n";
+    u += "      --donate-over-proxy=N     control donate over pythonxm-proxy feature\n";
 
     u += "\nCPU backend:\n";
 
@@ -120,7 +120,7 @@ static inline const std::string &usage()
 #   ifdef XMRIG_FEATURE_CUDA
     u += "\nCUDA backend:\n";
     u += "      --cuda                    enable CUDA mining backend\n";
-    u += "      --cuda-loader=PATH        path to CUDA plugin (xmrig-cuda.dll or libxmrig-cuda.so)\n";
+    u += "      --cuda-loader=PATH        path to CUDA plugin (pythonxm-cuda.dll or libpythonxm-cuda.so)\n";
     u += "      --cuda-devices=N          comma separated list of CUDA devices to use\n";
     u += "      --cuda-bfactor-hint=N     bfactor hint for autoconfig (0-12)\n";
     u += "      --cuda-bsleep-hint=N      bsleep hint for autoconfig\n";
@@ -202,6 +202,6 @@ static inline const std::string &usage()
 }
 
 
-} /* namespace xmrig */
+} /* namespace pythonxm */
 
 #endif /* XMRIG_USAGE_H */

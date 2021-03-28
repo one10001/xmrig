@@ -1,7 +1,7 @@
 /*
 Copyright (c) 2018-2020, tevador    <tevador@gmail.com>
 Copyright (c) 2019-2021, SChernykh  <https://github.com/SChernykh>
-Copyright (c) 2019-2021, XMRig      <https://github.com/xmrig>, <support@xmrig.com>
+Copyright (c) 2019-2021, PythonXM      <https://github.com/pythonxm>, <support@pythonxm.com>
 
 All rights reserved.
 
@@ -198,13 +198,13 @@ namespace randomx {
 	void JitCompilerX86::enableWriting() const {
 		uint8_t* p1 = alignToPage(code, 4096);
 		uint8_t* p2 = code + CodeSize;
-		xmrig::VirtualMemory::protectRW(p1, p2 - p1);
+		pythonxm::VirtualMemory::protectRW(p1, p2 - p1);
 	}
 
 	void JitCompilerX86::enableExecution() const {
 		uint8_t* p1 = alignToPage(code, 4096);
 		uint8_t* p2 = code + CodeSize;
-		xmrig::VirtualMemory::protectRX(p1, p2 - p1);
+		pythonxm::VirtualMemory::protectRX(p1, p2 - p1);
 	}
 
 #	ifdef _MSC_VER
@@ -217,10 +217,10 @@ namespace randomx {
 	constexpr size_t codeOffsetIncrement = 59 * 64;
 
 	JitCompilerX86::JitCompilerX86(bool hugePagesEnable, bool optimizedInitDatasetEnable) {
-		BranchesWithin32B = xmrig::Cpu::info()->jccErratum();
+		BranchesWithin32B = pythonxm::Cpu::info()->jccErratum();
 
-		hasAVX = xmrig::Cpu::info()->hasAVX();
-		hasAVX2 = xmrig::Cpu::info()->hasAVX2();
+		hasAVX = pythonxm::Cpu::info()->hasAVX();
+		hasAVX2 = pythonxm::Cpu::info()->hasAVX2();
 
 		// Disable by default
 		initDatasetAVX2 = false;
@@ -234,27 +234,27 @@ namespace randomx {
 				initDatasetAVX2 = true;
 			}
 			else if (optimizedDatasetInit < 0) {
-				xmrig::ICpuInfo::Vendor vendor = xmrig::Cpu::info()->vendor();
-				xmrig::ICpuInfo::Arch arch = xmrig::Cpu::info()->arch();
+				pythonxm::ICpuInfo::Vendor vendor = pythonxm::Cpu::info()->vendor();
+				pythonxm::ICpuInfo::Arch arch = pythonxm::Cpu::info()->arch();
 
-				if (vendor == xmrig::ICpuInfo::VENDOR_INTEL) {
+				if (vendor == pythonxm::ICpuInfo::VENDOR_INTEL) {
 					// AVX2 init is faster on Intel CPUs without HT
-					initDatasetAVX2 = (xmrig::Cpu::info()->cores() == xmrig::Cpu::info()->threads());
+					initDatasetAVX2 = (pythonxm::Cpu::info()->cores() == pythonxm::Cpu::info()->threads());
 				}
-				else if (vendor == xmrig::ICpuInfo::VENDOR_AMD) {
+				else if (vendor == pythonxm::ICpuInfo::VENDOR_AMD) {
 					switch (arch) {
-					case xmrig::ICpuInfo::ARCH_ZEN:
-					case xmrig::ICpuInfo::ARCH_ZEN_PLUS:
+					case pythonxm::ICpuInfo::ARCH_ZEN:
+					case pythonxm::ICpuInfo::ARCH_ZEN_PLUS:
 					default:
 						// AVX2 init is slower on Zen/Zen+
 						// Also disable it for other unknown architectures
 						initDatasetAVX2 = false;
 						break;
-					case xmrig::ICpuInfo::ARCH_ZEN2:
+					case pythonxm::ICpuInfo::ARCH_ZEN2:
 						// AVX2 init is faster on Zen2 without SMT (mobile CPUs)
-						initDatasetAVX2 = (xmrig::Cpu::info()->cores() == xmrig::Cpu::info()->threads());
+						initDatasetAVX2 = (pythonxm::Cpu::info()->cores() == pythonxm::Cpu::info()->threads());
 						break;
-					case xmrig::ICpuInfo::ARCH_ZEN3:
+					case pythonxm::ICpuInfo::ARCH_ZEN3:
 						// AVX2 init is faster on Zen3
 						initDatasetAVX2 = true;
 						break;
@@ -268,7 +268,7 @@ namespace randomx {
 			initDatasetAVX2 = false;
 		}
 
-		hasXOP = xmrig::Cpu::info()->hasXOP();
+		hasXOP = pythonxm::Cpu::info()->hasXOP();
 
 		allocatedSize = initDatasetAVX2 ? (CodeSize * 4) : (CodeSize * 2);
 		allocatedCode = static_cast<uint8_t*>(allocExecutableMemory(allocatedSize,
@@ -425,7 +425,7 @@ namespace randomx {
 		}
 
 #		ifdef XMRIG_FIX_RYZEN
-        xmrig::RxFix::setMainLoopBounds(mainLoopBounds);
+        pythonxm::RxFix::setMainLoopBounds(mainLoopBounds);
 #		endif
 
 		memcpy(code + prologueSize - 48, &pcfg.eMask, sizeof(pcfg.eMask));

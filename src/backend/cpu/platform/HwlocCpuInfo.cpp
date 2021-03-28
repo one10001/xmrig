@@ -1,6 +1,6 @@
-/* XMRig
+/* PythonXM
  * Copyright (c) 2018-2021 SChernykh   <https://github.com/SChernykh>
- * Copyright (c) 2016-2021 XMRig       <support@xmrig.com>
+ * Copyright (c) 2016-2021 PythonXM       <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -37,7 +37,7 @@
 #include "base/io/log/Log.h"
 
 
-namespace xmrig {
+namespace pythonxm {
 
 
 uint32_t HwlocCpuInfo::m_features = 0;
@@ -120,10 +120,10 @@ static inline bool isCacheExclusive(hwloc_obj_t obj)
 #endif
 
 
-} // namespace xmrig
+} // namespace pythonxm
 
 
-xmrig::HwlocCpuInfo::HwlocCpuInfo()
+pythonxm::HwlocCpuInfo::HwlocCpuInfo()
 {
     hwloc_topology_init(&m_topology);
     hwloc_topology_load(m_topology);
@@ -195,13 +195,13 @@ xmrig::HwlocCpuInfo::HwlocCpuInfo()
 }
 
 
-xmrig::HwlocCpuInfo::~HwlocCpuInfo()
+pythonxm::HwlocCpuInfo::~HwlocCpuInfo()
 {
     hwloc_topology_destroy(m_topology);
 }
 
 
-bool xmrig::HwlocCpuInfo::membind(hwloc_const_bitmap_t nodeset)
+bool pythonxm::HwlocCpuInfo::membind(hwloc_const_bitmap_t nodeset)
 {
     if (!hwloc_topology_get_support(m_topology)->membind->set_thisthread_membind) {
         return false;
@@ -215,7 +215,7 @@ bool xmrig::HwlocCpuInfo::membind(hwloc_const_bitmap_t nodeset)
 }
 
 
-xmrig::CpuThreads xmrig::HwlocCpuInfo::threads(const Algorithm &algorithm, uint32_t limit) const
+pythonxm::CpuThreads pythonxm::HwlocCpuInfo::threads(const Algorithm &algorithm, uint32_t limit) const
 {
 #   ifdef XMRIG_ALGO_ASTROBWT
     if (algorithm == Algorithm::ASTROBWT_DERO) {
@@ -271,7 +271,7 @@ xmrig::CpuThreads xmrig::HwlocCpuInfo::threads(const Algorithm &algorithm, uint3
 }
 
 
-xmrig::CpuThreads xmrig::HwlocCpuInfo::allThreads(const Algorithm &algorithm, uint32_t limit) const
+pythonxm::CpuThreads pythonxm::HwlocCpuInfo::allThreads(const Algorithm &algorithm, uint32_t limit) const
 {
     CpuThreads threads;
     threads.reserve(m_threads);
@@ -289,7 +289,7 @@ xmrig::CpuThreads xmrig::HwlocCpuInfo::allThreads(const Algorithm &algorithm, ui
 
 
 
-void xmrig::HwlocCpuInfo::processTopLevelCache(hwloc_obj_t cache, const Algorithm &algorithm, CpuThreads &threads, size_t limit) const
+void pythonxm::HwlocCpuInfo::processTopLevelCache(hwloc_obj_t cache, const Algorithm &algorithm, CpuThreads &threads, size_t limit) const
 {
 #   ifndef XMRIG_ARM
     constexpr size_t oneMiB = 1024U * 1024U;
@@ -411,7 +411,7 @@ void xmrig::HwlocCpuInfo::processTopLevelCache(hwloc_obj_t cache, const Algorith
 }
 
 
-void xmrig::HwlocCpuInfo::setThreads(size_t threads)
+void pythonxm::HwlocCpuInfo::setThreads(size_t threads)
 {
     if (!threads) {
         return;

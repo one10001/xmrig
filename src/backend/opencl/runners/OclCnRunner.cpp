@@ -1,4 +1,4 @@
-/* XMRig
+/* PythonXM
  * Copyright 2010      Jeff Garzik <jgarzik@pobox.com>
  * Copyright 2012-2014 pooler      <pooler@litecoinpool.org>
  * Copyright 2014      Lucas Jones <https://github.com/lucasjones>
@@ -6,7 +6,7 @@
  * Copyright 2016      Jay D Dee   <jayddee246@gmail.com>
  * Copyright 2017-2018 XMR-Stak    <https://github.com/fireice-uk>, <https://github.com/psychocrypt>
  * Copyright 2018-2020 SChernykh   <https://github.com/SChernykh>
- * Copyright 2016-2020 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright 2016-2020 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -36,7 +36,7 @@
 #include "crypto/cn/CnAlgo.h"
 
 
-xmrig::OclCnRunner::OclCnRunner(size_t index, const OclLaunchData &data) : OclBaseRunner(index, data)
+pythonxm::OclCnRunner::OclCnRunner(size_t index, const OclLaunchData &data) : OclBaseRunner(index, data)
 {
     uint32_t stridedIndex = data.thread.stridedIndex();
     if (data.device.vendorId() == OCL_VENDOR_NVIDIA) {
@@ -59,7 +59,7 @@ xmrig::OclCnRunner::OclCnRunner(size_t index, const OclLaunchData &data) : OclBa
 }
 
 
-xmrig::OclCnRunner::~OclCnRunner()
+pythonxm::OclCnRunner::~OclCnRunner()
 {
     delete m_cn0;
     delete m_cn1;
@@ -80,7 +80,7 @@ xmrig::OclCnRunner::~OclCnRunner()
 }
 
 
-size_t xmrig::OclCnRunner::bufferSize() const
+size_t pythonxm::OclCnRunner::bufferSize() const
 {
     return OclBaseRunner::bufferSize() +
            align(m_algorithm.l3() * m_intensity) +
@@ -89,7 +89,7 @@ size_t xmrig::OclCnRunner::bufferSize() const
 }
 
 
-void xmrig::OclCnRunner::run(uint32_t nonce, uint32_t *hashOutput)
+void pythonxm::OclCnRunner::run(uint32_t nonce, uint32_t *hashOutput)
 {
     static const cl_uint zero = 0;
 
@@ -116,7 +116,7 @@ void xmrig::OclCnRunner::run(uint32_t nonce, uint32_t *hashOutput)
 }
 
 
-void xmrig::OclCnRunner::set(const Job &job, uint8_t *blob)
+void pythonxm::OclCnRunner::set(const Job &job, uint8_t *blob)
 {
     if (job.size() > (Job::kMaxBlobSize - 4)) {
         throw std::length_error("job size too big");
@@ -153,7 +153,7 @@ void xmrig::OclCnRunner::set(const Job &job, uint8_t *blob)
 }
 
 
-void xmrig::OclCnRunner::build()
+void pythonxm::OclCnRunner::build()
 {
     OclBaseRunner::build();
 
@@ -177,7 +177,7 @@ void xmrig::OclCnRunner::build()
 }
 
 
-void xmrig::OclCnRunner::init()
+void pythonxm::OclCnRunner::init()
 {
     OclBaseRunner::init();
 

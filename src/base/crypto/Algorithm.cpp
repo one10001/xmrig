@@ -1,4 +1,4 @@
-/* XMRig
+/* PythonXM
  * Copyright 2010      Jeff Garzik <jgarzik@pobox.com>
  * Copyright 2012-2014 pooler      <pooler@litecoinpool.org>
  * Copyright 2014      Lucas Jones <https://github.com/lucasjones>
@@ -7,7 +7,7 @@
  * Copyright 2017-2018 XMR-Stak    <https://github.com/fireice-uk>, <https://github.com/psychocrypt>
  * Copyright 2018      Lee Clagett <https://github.com/vtnerd>
  * Copyright 2018-2020 SChernykh   <https://github.com/SChernykh>
- * Copyright 2016-2020 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright 2016-2020 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -39,7 +39,7 @@
 #endif
 
 
-namespace xmrig {
+namespace pythonxm {
 
 
 struct AlgoName
@@ -132,16 +132,16 @@ static AlgoName const algorithm_names[] = {
 };
 
 
-} /* namespace xmrig */
+} /* namespace pythonxm */
 
 
-xmrig::Algorithm::Algorithm(const rapidjson::Value &value) :
+pythonxm::Algorithm::Algorithm(const rapidjson::Value &value) :
     m_id(parse(value.GetString()))
 {
 }
 
 
-rapidjson::Value xmrig::Algorithm::toJSON() const
+rapidjson::Value pythonxm::Algorithm::toJSON() const
 {
     using namespace rapidjson;
 
@@ -149,13 +149,13 @@ rapidjson::Value xmrig::Algorithm::toJSON() const
 }
 
 
-rapidjson::Value xmrig::Algorithm::toJSON(rapidjson::Document &) const
+rapidjson::Value pythonxm::Algorithm::toJSON(rapidjson::Document &) const
 {
     return toJSON();
 }
 
 
-size_t xmrig::Algorithm::l2() const
+size_t pythonxm::Algorithm::l2() const
 {
 #   ifdef XMRIG_ALGO_RANDOMX
     switch (m_id) {
@@ -179,7 +179,7 @@ size_t xmrig::Algorithm::l2() const
 }
 
 
-size_t xmrig::Algorithm::l3() const
+size_t pythonxm::Algorithm::l3() const
 {
     constexpr size_t oneMiB = 0x100000;
 
@@ -269,7 +269,7 @@ size_t xmrig::Algorithm::l3() const
 }
 
 
-uint32_t xmrig::Algorithm::maxIntensity() const
+uint32_t pythonxm::Algorithm::maxIntensity() const
 {
 #   ifdef XMRIG_ALGO_RANDOMX
     if (family() == RANDOM_X) {
@@ -293,7 +293,7 @@ uint32_t xmrig::Algorithm::maxIntensity() const
 }
 
 
-xmrig::Algorithm::Family xmrig::Algorithm::family(Id id)
+pythonxm::Algorithm::Family pythonxm::Algorithm::family(Id id)
 {
     switch (id) {
     case CN_0:
@@ -363,7 +363,7 @@ xmrig::Algorithm::Family xmrig::Algorithm::family(Id id)
 }
 
 
-xmrig::Algorithm::Id xmrig::Algorithm::parse(const char *name)
+pythonxm::Algorithm::Id pythonxm::Algorithm::parse(const char *name)
 {
     if (name == nullptr || strlen(name) < 1) {
         return INVALID;
@@ -379,7 +379,7 @@ xmrig::Algorithm::Id xmrig::Algorithm::parse(const char *name)
 }
 
 
-const char *xmrig::Algorithm::name(bool shortName) const
+const char *pythonxm::Algorithm::name(bool shortName) const
 {
     for (const AlgoName &item : algorithm_names) {
         if (item.id == m_id) {

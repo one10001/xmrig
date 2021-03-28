@@ -1,6 +1,6 @@
-/* XMRig
+/* PythonXM
  * Copyright 2018-2020 SChernykh   <https://github.com/SChernykh>
- * Copyright 2016-2020 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright 2016-2020 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -22,14 +22,14 @@
 #include "base/tools/Handle.h"
 
 
-xmrig::Timer::Timer(ITimerListener *listener) :
+pythonxm::Timer::Timer(ITimerListener *listener) :
     m_listener(listener)
 {
     init();
 }
 
 
-xmrig::Timer::Timer(ITimerListener *listener, uint64_t timeout, uint64_t repeat) :
+pythonxm::Timer::Timer(ITimerListener *listener, uint64_t timeout, uint64_t repeat) :
     m_listener(listener)
 {
     init();
@@ -37,25 +37,25 @@ xmrig::Timer::Timer(ITimerListener *listener, uint64_t timeout, uint64_t repeat)
 }
 
 
-xmrig::Timer::~Timer()
+pythonxm::Timer::~Timer()
 {
     Handle::close(m_timer);
 }
 
 
-uint64_t xmrig::Timer::repeat() const
+uint64_t pythonxm::Timer::repeat() const
 {
     return uv_timer_get_repeat(m_timer);
 }
 
 
-void xmrig::Timer::setRepeat(uint64_t repeat)
+void pythonxm::Timer::setRepeat(uint64_t repeat)
 {
     uv_timer_set_repeat(m_timer, repeat);
 }
 
 
-void xmrig::Timer::singleShot(uint64_t timeout, int id)
+void pythonxm::Timer::singleShot(uint64_t timeout, int id)
 {
     m_id = id;
 
@@ -64,20 +64,20 @@ void xmrig::Timer::singleShot(uint64_t timeout, int id)
 }
 
 
-void xmrig::Timer::start(uint64_t timeout, uint64_t repeat)
+void pythonxm::Timer::start(uint64_t timeout, uint64_t repeat)
 {
     uv_timer_start(m_timer, onTimer, timeout, repeat);
 }
 
 
-void xmrig::Timer::stop()
+void pythonxm::Timer::stop()
 {
     setRepeat(0);
     uv_timer_stop(m_timer);
 }
 
 
-void xmrig::Timer::init()
+void pythonxm::Timer::init()
 {
     m_timer = new uv_timer_t;
     m_timer->data = this;
@@ -85,7 +85,7 @@ void xmrig::Timer::init()
 }
 
 
-void xmrig::Timer::onTimer(uv_timer_t *handle)
+void pythonxm::Timer::onTimer(uv_timer_t *handle)
 {
     const auto timer = static_cast<Timer *>(handle->data);
 

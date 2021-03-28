@@ -1,7 +1,7 @@
-/* XMRig
+/* PythonXM
  * Copyright (c) 2014-2019 heapwolf    <https://github.com/heapwolf>
  * Copyright (c) 2018-2021 SChernykh   <https://github.com/SChernykh>
- * Copyright (c) 2016-2021 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright (c) 2016-2021 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -28,19 +28,19 @@
 #include "base/net/tools/NetBuffer.h"
 
 
-xmrig::HttpServer::HttpServer(const std::shared_ptr<IHttpListener> &listener) :
+pythonxm::HttpServer::HttpServer(const std::shared_ptr<IHttpListener> &listener) :
     m_listener(listener)
 {
 }
 
 
-xmrig::HttpServer::~HttpServer()
+pythonxm::HttpServer::~HttpServer()
 {
     HttpContext::closeAll();
 }
 
 
-void xmrig::HttpServer::onConnection(uv_stream_t *stream, uint16_t)
+void pythonxm::HttpServer::onConnection(uv_stream_t *stream, uint16_t)
 {
     auto ctx = new HttpContext(HTTP_REQUEST, m_listener);
     uv_accept(stream, ctx->stream());

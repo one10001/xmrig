@@ -1,6 +1,6 @@
-/* XMRig
+/* PythonXM
  * Copyright (c) 2018-2021 SChernykh   <https://github.com/SChernykh>
- * Copyright (c) 2016-2021 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright (c) 2016-2021 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -42,7 +42,7 @@
 #include <thread>
 
 
-namespace xmrig {
+namespace pythonxm {
 
 
 static rapidjson::Value getResources(rapidjson::Document &doc)
@@ -76,10 +76,10 @@ static rapidjson::Value getResources(rapidjson::Document &doc)
 }
 
 
-} // namespace xmrig
+} // namespace pythonxm
 
 
-xmrig::Api::Api(Base *base) :
+pythonxm::Api::Api(Base *base) :
     m_base(base),
     m_timestamp(Chrono::currentMSecsSinceEpoch())
 {
@@ -89,7 +89,7 @@ xmrig::Api::Api(Base *base) :
 }
 
 
-xmrig::Api::~Api()
+pythonxm::Api::~Api()
 {
 #   ifdef XMRIG_FEATURE_HTTP
     delete m_httpd;
@@ -97,7 +97,7 @@ xmrig::Api::~Api()
 }
 
 
-void xmrig::Api::request(const HttpData &req)
+void pythonxm::Api::request(const HttpData &req)
 {
     HttpApiRequest request(req, m_base->config()->http().isRestricted());
 
@@ -105,7 +105,7 @@ void xmrig::Api::request(const HttpData &req)
 }
 
 
-void xmrig::Api::start()
+void pythonxm::Api::start()
 {
     genWorkerId(m_base->config()->apiWorkerId());
 
@@ -116,7 +116,7 @@ void xmrig::Api::start()
 }
 
 
-void xmrig::Api::stop()
+void pythonxm::Api::stop()
 {
 #   ifdef XMRIG_FEATURE_HTTP
     m_httpd->stop();
@@ -124,7 +124,7 @@ void xmrig::Api::stop()
 }
 
 
-void xmrig::Api::onConfigChanged(Config *config, Config *previousConfig)
+void pythonxm::Api::onConfigChanged(Config *config, Config *previousConfig)
 {
     if (config->apiId() != previousConfig->apiId()) {
         genId(config->apiId());
@@ -136,7 +136,7 @@ void xmrig::Api::onConfigChanged(Config *config, Config *previousConfig)
 }
 
 
-void xmrig::Api::exec(IApiRequest &request)
+void pythonxm::Api::exec(IApiRequest &request)
 {
     using namespace rapidjson;
 
@@ -189,7 +189,7 @@ void xmrig::Api::exec(IApiRequest &request)
 }
 
 
-void xmrig::Api::genId(const String &id)
+void pythonxm::Api::genId(const String &id)
 {
     memset(m_id, 0, sizeof(m_id));
 
@@ -229,7 +229,7 @@ void xmrig::Api::genId(const String &id)
 }
 
 
-void xmrig::Api::genWorkerId(const String &id)
+void pythonxm::Api::genWorkerId(const String &id)
 {
     m_workerId = Env::expand(id);
     if (m_workerId.isEmpty()) {

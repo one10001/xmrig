@@ -1,6 +1,6 @@
-/* XMRig
+/* PythonXM
  * Copyright (c) 2018-2021 SChernykh   <https://github.com/SChernykh>
- * Copyright (c) 2016-2021 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright (c) 2016-2021 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -30,14 +30,14 @@
 #endif
 
 
-namespace xmrig {
+namespace pythonxm {
 
 String Platform::m_userAgent;
 
-} // namespace xmrig
+} // namespace pythonxm
 
 
-void xmrig::Platform::init(const char *userAgent)
+void pythonxm::Platform::init(const char *userAgent)
 {
 #   ifdef XMRIG_FEATURE_TLS
     SSL_library_init();

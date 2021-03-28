@@ -1,6 +1,6 @@
-/* XMRig
+/* PythonXM
  * Copyright (c) 2018-2021 SChernykh   <https://github.com/SChernykh>
- * Copyright (c) 2016-2021 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright (c) 2016-2021 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -31,7 +31,7 @@
 #include "version.h"
 
 
-char *xmrig::Platform::createUserAgent()
+char *pythonxm::Platform::createUserAgent()
 {
     constexpr const size_t max = 256;
 
@@ -55,18 +55,18 @@ char *xmrig::Platform::createUserAgent()
 }
 
 
-bool xmrig::Platform::setThreadAffinity(uint64_t cpu_id)
+bool pythonxm::Platform::setThreadAffinity(uint64_t cpu_id)
 {
     return true;
 }
 
 
-void xmrig::Platform::setProcessPriority(int)
+void pythonxm::Platform::setProcessPriority(int)
 {
 }
 
 
-void xmrig::Platform::setThreadPriority(int priority)
+void pythonxm::Platform::setThreadPriority(int priority)
 {
     if (priority == -1) {
         return;
@@ -103,13 +103,13 @@ void xmrig::Platform::setThreadPriority(int priority)
 }
 
 
-bool xmrig::Platform::isOnBatteryPower()
+bool pythonxm::Platform::isOnBatteryPower()
 {
     return IOPSGetTimeRemainingEstimate() != kIOPSTimeRemainingUnlimited;
 }
 
 
-uint64_t xmrig::Platform::idleTime()
+uint64_t pythonxm::Platform::idleTime()
 {
     uint64_t idle_time  = 0;
     const auto service  = IOServiceGetMatchingService(kIOMasterPortDefault, IOServiceMatching("IOHIDSystem"));

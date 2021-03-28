@@ -1,7 +1,7 @@
-/* XMRig
+/* PythonXM
  * Copyright (c) 2017-2019 XMR-Stak    <https://github.com/fireice-uk>, <https://github.com/psychocrypt>
  * Copyright (c) 2018-2021 SChernykh   <https://github.com/SChernykh>
- * Copyright (c) 2016-2021 XMRig       <support@xmrig.com>
+ * Copyright (c) 2016-2021 PythonXM       <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -49,7 +49,7 @@
 #define EDX_Reg  (3)
 
 
-namespace xmrig {
+namespace pythonxm {
 
 
 constexpr size_t kCpuFlagsSize                                  = 14;
@@ -152,25 +152,25 @@ static inline bool has_cat_l3()     { return has_feature(EXTENDED_FEATURES,     
 static inline bool is_vm()          { return has_feature(PROCESSOR_INFO,        ECX_Reg, 1 << 31); }
 
 
-} // namespace xmrig
+} // namespace pythonxm
 
 
 #ifdef XMRIG_ALGO_ARGON2
 extern "C" {
 
 
-int cpu_flags_has_avx2()    { return xmrig::has_avx2(); }
-int cpu_flags_has_avx512f() { return xmrig::has_avx512f(); }
-int cpu_flags_has_sse2()    { return xmrig::has_sse2(); }
-int cpu_flags_has_ssse3()   { return xmrig::has_ssse3(); }
-int cpu_flags_has_xop()     { return xmrig::has_xop(); }
+int cpu_flags_has_avx2()    { return pythonxm::has_avx2(); }
+int cpu_flags_has_avx512f() { return pythonxm::has_avx512f(); }
+int cpu_flags_has_sse2()    { return pythonxm::has_sse2(); }
+int cpu_flags_has_ssse3()   { return pythonxm::has_ssse3(); }
+int cpu_flags_has_xop()     { return pythonxm::has_xop(); }
 
 
 }
 #endif
 
 
-xmrig::BasicCpuInfo::BasicCpuInfo() :
+pythonxm::BasicCpuInfo::BasicCpuInfo() :
     m_threads(std::thread::hardware_concurrency())
 {
     cpu_brand_string(m_brand);
@@ -295,13 +295,13 @@ xmrig::BasicCpuInfo::BasicCpuInfo() :
 }
 
 
-const char *xmrig::BasicCpuInfo::backend() const
+const char *pythonxm::BasicCpuInfo::backend() const
 {
     return "basic/1";
 }
 
 
-xmrig::CpuThreads xmrig::BasicCpuInfo::threads(const Algorithm &algorithm, uint32_t) const
+pythonxm::CpuThreads pythonxm::BasicCpuInfo::threads(const Algorithm &algorithm, uint32_t) const
 {
     const size_t count = std::thread::hardware_concurrency();
 
@@ -357,7 +357,7 @@ xmrig::CpuThreads xmrig::BasicCpuInfo::threads(const Algorithm &algorithm, uint3
 }
 
 
-rapidjson::Value xmrig::BasicCpuInfo::toJSON(rapidjson::Document &doc) const
+rapidjson::Value pythonxm::BasicCpuInfo::toJSON(rapidjson::Document &doc) const
 {
     using namespace rapidjson;
     auto &allocator = doc.GetAllocator();

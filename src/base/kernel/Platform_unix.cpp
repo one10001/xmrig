@@ -1,6 +1,6 @@
-/* XMRig
+/* PythonXM
  * Copyright (c) 2018-2021 SChernykh   <https://github.com/SChernykh>
- * Copyright (c) 2016-2021 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright (c) 2016-2021 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -46,7 +46,7 @@ typedef cpuset_t cpu_set_t;
 #endif
 
 
-char *xmrig::Platform::createUserAgent()
+char *pythonxm::Platform::createUserAgent()
 {
     constexpr const size_t max = 256;
 
@@ -74,7 +74,7 @@ char *xmrig::Platform::createUserAgent()
 
 
 #ifndef XMRIG_FEATURE_HWLOC
-bool xmrig::Platform::setThreadAffinity(uint64_t cpu_id)
+bool pythonxm::Platform::setThreadAffinity(uint64_t cpu_id)
 {
     cpu_set_t mn;
     CPU_ZERO(&mn);
@@ -92,12 +92,12 @@ bool xmrig::Platform::setThreadAffinity(uint64_t cpu_id)
 #endif
 
 
-void xmrig::Platform::setProcessPriority(int)
+void pythonxm::Platform::setProcessPriority(int)
 {
 }
 
 
-void xmrig::Platform::setThreadPriority(int priority)
+void pythonxm::Platform::setThreadPriority(int priority)
 {
     if (priority == -1) {
         return;
@@ -145,7 +145,7 @@ void xmrig::Platform::setThreadPriority(int priority)
 }
 
 
-bool xmrig::Platform::isOnBatteryPower()
+bool pythonxm::Platform::isOnBatteryPower()
 {
     for (int i = 0; i <= 1; ++i) {
         char buf[64];
@@ -161,7 +161,7 @@ bool xmrig::Platform::isOnBatteryPower()
 }
 
 
-uint64_t xmrig::Platform::idleTime()
+uint64_t pythonxm::Platform::idleTime()
 {
     return std::numeric_limits<uint64_t>::max();
 }

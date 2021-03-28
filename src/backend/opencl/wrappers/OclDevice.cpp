@@ -1,4 +1,4 @@
-/* XMRig
+/* PythonXM
  * Copyright 2010      Jeff Garzik <jgarzik@pobox.com>
  * Copyright 2012-2014 pooler      <pooler@litecoinpool.org>
  * Copyright 2014      Lucas Jones <https://github.com/lucasjones>
@@ -6,7 +6,7 @@
  * Copyright 2016      Jay D Dee   <jayddee246@gmail.com>
  * Copyright 2017-2018 XMR-Stak    <https://github.com/fireice-uk>, <https://github.com/psychocrypt>
  * Copyright 2018-2020 SChernykh   <https://github.com/SChernykh>
- * Copyright 2016-2020 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright 2016-2020 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -46,7 +46,7 @@ typedef union
 } topology_amd;
 
 
-namespace xmrig {
+namespace pythonxm {
 
 
 #ifdef XMRIG_ALGO_RANDOMX
@@ -140,10 +140,10 @@ static OclDevice::Type getType(const String &name)
 }
 
 
-} // namespace xmrig
+} // namespace pythonxm
 
 
-xmrig::OclDevice::OclDevice(uint32_t index, cl_device_id id, cl_platform_id platform) :
+pythonxm::OclDevice::OclDevice(uint32_t index, cl_device_id id, cl_platform_id platform) :
     m_id(id),
     m_platform(platform),
     m_board(OclLib::getString(id, 0x4038 /* CL_DEVICE_BOARD_NAME_AMD */)),
@@ -174,7 +174,7 @@ xmrig::OclDevice::OclDevice(uint32_t index, cl_device_id id, cl_platform_id plat
 }
 
 
-xmrig::String xmrig::OclDevice::printableName() const
+pythonxm::String pythonxm::OclDevice::printableName() const
 {
     const size_t size = m_board.size() + m_name.size() + 64;
     char *buf         = new char[size]();
@@ -190,13 +190,13 @@ xmrig::String xmrig::OclDevice::printableName() const
 }
 
 
-uint32_t xmrig::OclDevice::clock() const
+uint32_t pythonxm::OclDevice::clock() const
 {
     return OclLib::getUint(id(), CL_DEVICE_MAX_CLOCK_FREQUENCY);
 }
 
 
-void xmrig::OclDevice::generate(const Algorithm &algorithm, OclThreads &threads) const
+void pythonxm::OclDevice::generate(const Algorithm &algorithm, OclThreads &threads) const
 {
     for (auto fn : generators) {
         if (fn(*this, algorithm, threads)) {
@@ -207,7 +207,7 @@ void xmrig::OclDevice::generate(const Algorithm &algorithm, OclThreads &threads)
 
 
 #ifdef XMRIG_FEATURE_API
-void xmrig::OclDevice::toJSON(rapidjson::Value &out, rapidjson::Document &doc) const
+void pythonxm::OclDevice::toJSON(rapidjson::Value &out, rapidjson::Document &doc) const
 {
     using namespace rapidjson;
     auto &allocator = doc.GetAllocator();

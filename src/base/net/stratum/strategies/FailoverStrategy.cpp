@@ -1,6 +1,6 @@
-/* XMRig
+/* PythonXM
  * Copyright (c) 2018-2020 SChernykh   <https://github.com/SChernykh>
- * Copyright (c) 2016-2020 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright (c) 2016-2020 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -24,7 +24,7 @@
 #include "base/kernel/Platform.h"
 
 
-xmrig::FailoverStrategy::FailoverStrategy(const std::vector<Pool> &pools, int retryPause, int retries, IStrategyListener *listener, bool quiet) :
+pythonxm::FailoverStrategy::FailoverStrategy(const std::vector<Pool> &pools, int retryPause, int retries, IStrategyListener *listener, bool quiet) :
     m_quiet(quiet),
     m_retries(retries),
     m_retryPause(retryPause),
@@ -36,7 +36,7 @@ xmrig::FailoverStrategy::FailoverStrategy(const std::vector<Pool> &pools, int re
 }
 
 
-xmrig::FailoverStrategy::FailoverStrategy(int retryPause, int retries, IStrategyListener *listener, bool quiet) :
+pythonxm::FailoverStrategy::FailoverStrategy(int retryPause, int retries, IStrategyListener *listener, bool quiet) :
     m_quiet(quiet),
     m_retries(retries),
     m_retryPause(retryPause),
@@ -45,7 +45,7 @@ xmrig::FailoverStrategy::FailoverStrategy(int retryPause, int retries, IStrategy
 }
 
 
-xmrig::FailoverStrategy::~FailoverStrategy()
+pythonxm::FailoverStrategy::~FailoverStrategy()
 {
     for (IClient *client : m_pools) {
         client->deleteLater();
@@ -53,7 +53,7 @@ xmrig::FailoverStrategy::~FailoverStrategy()
 }
 
 
-void xmrig::FailoverStrategy::add(const Pool &pool)
+void pythonxm::FailoverStrategy::add(const Pool &pool)
 {
     IClient *client = pool.createClient(static_cast<int>(m_pools.size()), this);
 
@@ -65,7 +65,7 @@ void xmrig::FailoverStrategy::add(const Pool &pool)
 }
 
 
-int64_t xmrig::FailoverStrategy::submit(const JobResult &result)
+int64_t pythonxm::FailoverStrategy::submit(const JobResult &result)
 {
     if (!isActive()) {
         return -1;
@@ -75,13 +75,13 @@ int64_t xmrig::FailoverStrategy::submit(const JobResult &result)
 }
 
 
-void xmrig::FailoverStrategy::connect()
+void pythonxm::FailoverStrategy::connect()
 {
     m_pools[m_index]->connect();
 }
 
 
-void xmrig::FailoverStrategy::resume()
+void pythonxm::FailoverStrategy::resume()
 {
     if (!isActive()) {
         return;
@@ -91,7 +91,7 @@ void xmrig::FailoverStrategy::resume()
 }
 
 
-void xmrig::FailoverStrategy::setAlgo(const Algorithm &algo)
+void pythonxm::FailoverStrategy::setAlgo(const Algorithm &algo)
 {
     for (IClient *client : m_pools) {
         client->setAlgo(algo);
@@ -99,7 +99,7 @@ void xmrig::FailoverStrategy::setAlgo(const Algorithm &algo)
 }
 
 
-void xmrig::FailoverStrategy::setProxy(const ProxyUrl &proxy)
+void pythonxm::FailoverStrategy::setProxy(const ProxyUrl &proxy)
 {
     for (IClient *client : m_pools) {
         client->setProxy(proxy);
@@ -107,7 +107,7 @@ void xmrig::FailoverStrategy::setProxy(const ProxyUrl &proxy)
 }
 
 
-void xmrig::FailoverStrategy::stop()
+void pythonxm::FailoverStrategy::stop()
 {
     for (auto &pool : m_pools) {
         pool->disconnect();
@@ -120,7 +120,7 @@ void xmrig::FailoverStrategy::stop()
 }
 
 
-void xmrig::FailoverStrategy::tick(uint64_t now)
+void pythonxm::FailoverStrategy::tick(uint64_t now)
 {
     for (IClient *client : m_pools) {
         client->tick(now);
@@ -128,7 +128,7 @@ void xmrig::FailoverStrategy::tick(uint64_t now)
 }
 
 
-void xmrig::FailoverStrategy::onClose(IClient *client, int failures)
+void pythonxm::FailoverStrategy::onClose(IClient *client, int failures)
 {
     if (failures == -1) {
         return;
@@ -149,13 +149,13 @@ void xmrig::FailoverStrategy::onClose(IClient *client, int failures)
 }
 
 
-void xmrig::FailoverStrategy::onLogin(IClient *client, rapidjson::Document &doc, rapidjson::Value &params)
+void pythonxm::FailoverStrategy::onLogin(IClient *client, rapidjson::Document &doc, rapidjson::Value &params)
 {
     m_listener->onLogin(this, client, doc, params);
 }
 
 
-void xmrig::FailoverStrategy::onJobReceived(IClient *client, const Job &job, const rapidjson::Value &params)
+void pythonxm::FailoverStrategy::onJobReceived(IClient *client, const Job &job, const rapidjson::Value &params)
 {
     if (m_active == client->id()) {
         m_listener->onJob(this, client, job, params);
@@ -163,7 +163,7 @@ void xmrig::FailoverStrategy::onJobReceived(IClient *client, const Job &job, con
 }
 
 
-void xmrig::FailoverStrategy::onLoginSuccess(IClient *client)
+void pythonxm::FailoverStrategy::onLoginSuccess(IClient *client)
 {
     int active = m_active;
 
@@ -184,13 +184,13 @@ void xmrig::FailoverStrategy::onLoginSuccess(IClient *client)
 }
 
 
-void xmrig::FailoverStrategy::onResultAccepted(IClient *client, const SubmitResult &result, const char *error)
+void pythonxm::FailoverStrategy::onResultAccepted(IClient *client, const SubmitResult &result, const char *error)
 {
     m_listener->onResultAccepted(this, client, result, error);
 }
 
 
-void xmrig::FailoverStrategy::onVerifyAlgorithm(const IClient *client, const Algorithm &algorithm, bool *ok)
+void pythonxm::FailoverStrategy::onVerifyAlgorithm(const IClient *client, const Algorithm &algorithm, bool *ok)
 {
     m_listener->onVerifyAlgorithm(this, client, algorithm, ok);
 }

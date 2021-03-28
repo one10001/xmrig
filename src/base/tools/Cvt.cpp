@@ -1,7 +1,7 @@
-/* XMRig
+/* PythonXM
  * Copyright (c) 2013-2020 Frank Denis <j at pureftpd dot org>
  * Copyright (c) 2018-2021 SChernykh   <https://github.com/SChernykh>
- * Copyright (c) 2016-2021 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright (c) 2016-2021 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -31,7 +31,7 @@
 #endif
 
 
-namespace xmrig {
+namespace pythonxm {
 
 
 static char *cvt_bin2hex(char *const hex, const size_t hex_maxlen, const unsigned char *const bin, const size_t bin_len)
@@ -158,16 +158,16 @@ inline bool fromHexImpl(T &buf, const char *in, size_t size)
 }
 
 
-} // namespace xmrig
+} // namespace pythonxm
 
 
-bool xmrig::Cvt::fromHex(Buffer &buf, const char *in, size_t size)
+bool pythonxm::Cvt::fromHex(Buffer &buf, const char *in, size_t size)
 {
     return fromHexImpl(buf, in, size);
 }
 
 
-bool xmrig::Cvt::fromHex(Buffer &buf, const rapidjson::Value &value)
+bool pythonxm::Cvt::fromHex(Buffer &buf, const rapidjson::Value &value)
 {
     if (!value.IsString()) {
         return false;
@@ -177,13 +177,13 @@ bool xmrig::Cvt::fromHex(Buffer &buf, const rapidjson::Value &value)
 }
 
 
-bool xmrig::Cvt::fromHex(std::string &buf, const char *in, size_t size)
+bool pythonxm::Cvt::fromHex(std::string &buf, const char *in, size_t size)
 {
     return fromHexImpl(buf, in, size);
 }
 
 
-bool xmrig::Cvt::fromHex(uint8_t *bin, size_t bin_maxlen, const char *hex, size_t hex_len)
+bool pythonxm::Cvt::fromHex(uint8_t *bin, size_t bin_maxlen, const char *hex, size_t hex_len)
 {
     assert(hex != nullptr && hex_len > 0);
     if (hex == nullptr || hex_len == 0) {
@@ -194,7 +194,7 @@ bool xmrig::Cvt::fromHex(uint8_t *bin, size_t bin_maxlen, const char *hex, size_
 }
 
 
-bool xmrig::Cvt::fromHex(uint8_t *bin, size_t max, const rapidjson::Value &value)
+bool pythonxm::Cvt::fromHex(uint8_t *bin, size_t max, const rapidjson::Value &value)
 {
     if (!value.IsString()) {
         return false;
@@ -204,7 +204,7 @@ bool xmrig::Cvt::fromHex(uint8_t *bin, size_t max, const rapidjson::Value &value
 }
 
 
-xmrig::Buffer xmrig::Cvt::fromHex(const char *in, size_t size)
+pythonxm::Buffer pythonxm::Cvt::fromHex(const char *in, size_t size)
 {
     Buffer buf;
     if (!fromHex(buf, in, size)) {
@@ -215,13 +215,13 @@ xmrig::Buffer xmrig::Cvt::fromHex(const char *in, size_t size)
 }
 
 
-bool xmrig::Cvt::toHex(char *hex, size_t hex_maxlen, const uint8_t *bin, size_t bin_len)
+bool pythonxm::Cvt::toHex(char *hex, size_t hex_maxlen, const uint8_t *bin, size_t bin_len)
 {
     return cvt_bin2hex(hex, hex_maxlen, bin, bin_len) != nullptr;
 }
 
 
-xmrig::Buffer xmrig::Cvt::randomBytes(const size_t size)
+pythonxm::Buffer pythonxm::Cvt::randomBytes(const size_t size)
 {
     Buffer buf(size);
 
@@ -239,25 +239,25 @@ xmrig::Buffer xmrig::Cvt::randomBytes(const size_t size)
 }
 
 
-rapidjson::Value xmrig::Cvt::toHex(const Buffer &data, rapidjson::Document &doc)
+rapidjson::Value pythonxm::Cvt::toHex(const Buffer &data, rapidjson::Document &doc)
 {
     return toHex(data.data(), data.size(), doc);
 }
 
 
-rapidjson::Value xmrig::Cvt::toHex(const std::string &data, rapidjson::Document &doc)
+rapidjson::Value pythonxm::Cvt::toHex(const std::string &data, rapidjson::Document &doc)
 {
     return toHex(reinterpret_cast<const uint8_t *>(data.data()), data.size(), doc);
 }
 
 
-rapidjson::Value xmrig::Cvt::toHex(const uint8_t *in, size_t size, rapidjson::Document &doc)
+rapidjson::Value pythonxm::Cvt::toHex(const uint8_t *in, size_t size, rapidjson::Document &doc)
 {
     return toHex(in, size).toJSON(doc);
 }
 
 
-xmrig::String xmrig::Cvt::toHex(const uint8_t *in, size_t size)
+pythonxm::String pythonxm::Cvt::toHex(const uint8_t *in, size_t size)
 {
     assert(in != nullptr && size > 0);
     if (in == nullptr || size == 0) {
@@ -277,7 +277,7 @@ xmrig::String xmrig::Cvt::toHex(const uint8_t *in, size_t size)
 }
 
 
-void xmrig::Cvt::randomBytes(void *buf, size_t size)
+void pythonxm::Cvt::randomBytes(void *buf, size_t size)
 {
 #   ifndef XMRIG_SODIUM
     std::uniform_int_distribution<> dis(0, 255);

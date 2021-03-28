@@ -1,6 +1,6 @@
-/* XMRig
+/* PythonXM
  * Copyright (c) 2018-2020 SChernykh   <https://github.com/SChernykh>
- * Copyright (c) 2016-2020 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright (c) 2016-2020 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -93,7 +93,7 @@ NOINLINE void ProfileScopeData::Init()
 
         if (t2 - t1 > 1000000000) {
             s_tscSpeed = (count2 - count1) * 1e9 / (t2 - t1);
-            LOG_INFO("%s TSC speed = %.3f GHz", xmrig::Tags::profiler(), s_tscSpeed / 1e9);
+            LOG_INFO("%s TSC speed = %.3f GHz", pythonxm::Tags::profiler(), s_tscSpeed / 1e9);
             return;
         }
     }

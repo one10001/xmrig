@@ -1,6 +1,6 @@
-/* XMRig
+/* PythonXM
  * Copyright (c) 2018-2021 SChernykh   <https://github.com/SChernykh>
- * Copyright (c) 2016-2021 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright (c) 2016-2021 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -35,7 +35,7 @@
 #endif
 
 
-namespace xmrig
+namespace pythonxm
 {
 
 
@@ -83,10 +83,10 @@ static inline bool isHwAes(uint64_t av)
 }
 
 
-} // namespace xmrig
+} // namespace pythonxm
 
 
-void xmrig::ConfigTransform::finalize(rapidjson::Document &doc)
+void pythonxm::ConfigTransform::finalize(rapidjson::Document &doc)
 {
     using namespace rapidjson;
     auto &allocator = doc.GetAllocator();
@@ -114,7 +114,7 @@ void xmrig::ConfigTransform::finalize(rapidjson::Document &doc)
 }
 
 
-void xmrig::ConfigTransform::transform(rapidjson::Document &doc, int key, const char *arg)
+void pythonxm::ConfigTransform::transform(rapidjson::Document &doc, int key, const char *arg)
 {
     BaseTransform::transform(doc, key, arg);
 
@@ -271,7 +271,7 @@ void xmrig::ConfigTransform::transform(rapidjson::Document &doc, int key, const 
 }
 
 
-void xmrig::ConfigTransform::transformBoolean(rapidjson::Document &doc, int key, bool enable)
+void pythonxm::ConfigTransform::transformBoolean(rapidjson::Document &doc, int key, bool enable)
 {
     switch (key) {
     case IConfig::HugePagesKey: /* --no-huge-pages */
@@ -286,7 +286,7 @@ void xmrig::ConfigTransform::transformBoolean(rapidjson::Document &doc, int key,
 }
 
 
-void xmrig::ConfigTransform::transformUint64(rapidjson::Document &doc, int key, uint64_t arg)
+void pythonxm::ConfigTransform::transformUint64(rapidjson::Document &doc, int key, uint64_t arg)
 {
     using namespace rapidjson;
 
@@ -317,7 +317,7 @@ void xmrig::ConfigTransform::transformUint64(rapidjson::Document &doc, int key, 
 
 
 #ifdef XMRIG_FEATURE_BENCHMARK
-void xmrig::ConfigTransform::transformBenchmark(rapidjson::Document &doc, int key, const char *arg)
+void pythonxm::ConfigTransform::transformBenchmark(rapidjson::Document &doc, int key, const char *arg)
 {
     set(doc, CpuConfig::kField, CpuConfig::kHugePagesJit, true);
     set(doc, CpuConfig::kField, CpuConfig::kPriority, 2);

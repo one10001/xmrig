@@ -1,4 +1,4 @@
-/* XMRig
+/* PythonXM
  * Copyright 2010      Jeff Garzik <jgarzik@pobox.com>
  * Copyright 2012-2014 pooler      <pooler@litecoinpool.org>
  * Copyright 2014      Lucas Jones <https://github.com/lucasjones>
@@ -6,7 +6,7 @@
  * Copyright 2016      Jay D Dee   <jayddee246@gmail.com>
  * Copyright 2017-2018 XMR-Stak    <https://github.com/fireice-uk>, <https://github.com/psychocrypt>
  * Copyright 2018-2020 SChernykh   <https://github.com/SChernykh>
- * Copyright 2016-2020 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright 2016-2020 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -32,23 +32,23 @@
 #include "base/net/stratum/SubmitResult.h"
 
 
-namespace xmrig {
+namespace pythonxm {
 
 
 int64_t BaseClient::m_sequence = 1;
 
 
-} /* namespace xmrig */
+} /* namespace pythonxm */
 
 
-xmrig::BaseClient::BaseClient(int id, IClientListener *listener) :
+pythonxm::BaseClient::BaseClient(int id, IClientListener *listener) :
     m_listener(listener),
     m_id(id)
 {
 }
 
 
-void xmrig::BaseClient::setPool(const Pool &pool)
+void pythonxm::BaseClient::setPool(const Pool &pool)
 {
     if (!pool.isValid()) {
         return;
@@ -62,7 +62,7 @@ void xmrig::BaseClient::setPool(const Pool &pool)
 }
 
 
-bool xmrig::BaseClient::handleResponse(int64_t id, const rapidjson::Value &result, const rapidjson::Value &error)
+bool pythonxm::BaseClient::handleResponse(int64_t id, const rapidjson::Value &result, const rapidjson::Value &error)
 {
     if (id == 1) {
         return false;
@@ -88,7 +88,7 @@ bool xmrig::BaseClient::handleResponse(int64_t id, const rapidjson::Value &resul
 }
 
 
-bool xmrig::BaseClient::handleSubmitResponse(int64_t id, const char *error)
+bool pythonxm::BaseClient::handleSubmitResponse(int64_t id, const char *error)
 {
     auto it = m_results.find(id);
     if (it != m_results.end()) {

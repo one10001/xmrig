@@ -1,7 +1,7 @@
-/* XMRig
+/* PythonXM
  * Copyright (c) 2014-2019 heapwolf    <https://github.com/heapwolf>
  * Copyright (c) 2018-2021 SChernykh   <https://github.com/SChernykh>
- * Copyright (c) 2016-2021 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright (c) 2016-2021 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -37,7 +37,7 @@ using uv_tcp_t              = struct uv_tcp_s;
 #include <memory>
 
 
-namespace xmrig {
+namespace pythonxm {
 
 
 class IHttpListener;
@@ -91,7 +91,7 @@ private:
 };
 
 
-} // namespace xmrig
+} // namespace pythonxm
 
 
 #endif // XMRIG_HTTPCONTEXT_H

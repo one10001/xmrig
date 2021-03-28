@@ -1,7 +1,7 @@
-/* XMRig
+/* PythonXM
  * Copyright (c) 2018-2019 tevador     <tevador@gmail.com>
  * Copyright (c) 2018-2020 SChernykh   <https://github.com/SChernykh>
- * Copyright (c) 2016-2020 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright (c) 2016-2020 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -30,7 +30,7 @@ extern "C" uint32_t rx_blake2b_use_sse41;
 #endif
 
 
-randomx_vm *xmrig::RxVm::create(RxDataset *dataset, uint8_t *scratchpad, bool softAes, const Assembly &assembly, uint32_t node)
+randomx_vm *pythonxm::RxVm::create(RxDataset *dataset, uint8_t *scratchpad, bool softAes, const Assembly &assembly, uint32_t node)
 {
     int flags = 0;
 
@@ -59,7 +59,7 @@ randomx_vm *xmrig::RxVm::create(RxDataset *dataset, uint8_t *scratchpad, bool so
 }
 
 
-void xmrig::RxVm::destroy(randomx_vm* vm)
+void pythonxm::RxVm::destroy(randomx_vm* vm)
 {
     if (vm) {
         randomx_destroy_vm(vm);

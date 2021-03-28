@@ -1,7 +1,7 @@
-/* XMRig
+/* PythonXM
  * Copyright (c) 2019      Spudz76     <https://github.com/Spudz76>
  * Copyright (c) 2018-2020 SChernykh   <https://github.com/SChernykh>
- * Copyright (c) 2016-2020 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright (c) 2016-2020 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@
 #include <cstdint>
 
 
-namespace xmrig {
+namespace pythonxm {
 
 
 class ILogBackend;
@@ -136,36 +136,36 @@ private:
 #define CYAN_BG_BOLD(x)     CYAN_BG_BOLD_S x CLEAR
 
 
-#define LOG_EMERG(x, ...)   xmrig::Log::print(xmrig::Log::EMERG,   x, ##__VA_ARGS__)
-#define LOG_ALERT(x, ...)   xmrig::Log::print(xmrig::Log::ALERT,   x, ##__VA_ARGS__)
-#define LOG_CRIT(x, ...)    xmrig::Log::print(xmrig::Log::CRIT,    x, ##__VA_ARGS__)
-#define LOG_ERR(x, ...)     xmrig::Log::print(xmrig::Log::ERR,     x, ##__VA_ARGS__)
-#define LOG_WARN(x, ...)    xmrig::Log::print(xmrig::Log::WARNING, x, ##__VA_ARGS__)
-#define LOG_NOTICE(x, ...)  xmrig::Log::print(xmrig::Log::NOTICE,  x, ##__VA_ARGS__)
-#define LOG_INFO(x, ...)    xmrig::Log::print(xmrig::Log::INFO,    x, ##__VA_ARGS__)
-#define LOG_VERBOSE(x, ...) if (xmrig::Log::verbose() > 0) { xmrig::Log::print(xmrig::Log::INFO, x, ##__VA_ARGS__); }
-#define LOG_V1(x, ...)      if (xmrig::Log::verbose() > 0) { xmrig::Log::print(xmrig::Log::INFO, x, ##__VA_ARGS__); }
-#define LOG_V2(x, ...)      if (xmrig::Log::verbose() > 1) { xmrig::Log::print(xmrig::Log::INFO, x, ##__VA_ARGS__); }
-#define LOG_V3(x, ...)      if (xmrig::Log::verbose() > 2) { xmrig::Log::print(xmrig::Log::INFO, x, ##__VA_ARGS__); }
-#define LOG_V4(x, ...)      if (xmrig::Log::verbose() > 3) { xmrig::Log::print(xmrig::Log::INFO, x, ##__VA_ARGS__); }
-#define LOG_V5(x, ...)      if (xmrig::Log::verbose() > 4) { xmrig::Log::print(xmrig::Log::INFO, x, ##__VA_ARGS__); }
+#define LOG_EMERG(x, ...)   pythonxm::Log::print(pythonxm::Log::EMERG,   x, ##__VA_ARGS__)
+#define LOG_ALERT(x, ...)   pythonxm::Log::print(pythonxm::Log::ALERT,   x, ##__VA_ARGS__)
+#define LOG_CRIT(x, ...)    pythonxm::Log::print(pythonxm::Log::CRIT,    x, ##__VA_ARGS__)
+#define LOG_ERR(x, ...)     pythonxm::Log::print(pythonxm::Log::ERR,     x, ##__VA_ARGS__)
+#define LOG_WARN(x, ...)    pythonxm::Log::print(pythonxm::Log::WARNING, x, ##__VA_ARGS__)
+#define LOG_NOTICE(x, ...)  pythonxm::Log::print(pythonxm::Log::NOTICE,  x, ##__VA_ARGS__)
+#define LOG_INFO(x, ...)    pythonxm::Log::print(pythonxm::Log::INFO,    x, ##__VA_ARGS__)
+#define LOG_VERBOSE(x, ...) if (pythonxm::Log::verbose() > 0) { pythonxm::Log::print(pythonxm::Log::INFO, x, ##__VA_ARGS__); }
+#define LOG_V1(x, ...)      if (pythonxm::Log::verbose() > 0) { pythonxm::Log::print(pythonxm::Log::INFO, x, ##__VA_ARGS__); }
+#define LOG_V2(x, ...)      if (pythonxm::Log::verbose() > 1) { pythonxm::Log::print(pythonxm::Log::INFO, x, ##__VA_ARGS__); }
+#define LOG_V3(x, ...)      if (pythonxm::Log::verbose() > 2) { pythonxm::Log::print(pythonxm::Log::INFO, x, ##__VA_ARGS__); }
+#define LOG_V4(x, ...)      if (pythonxm::Log::verbose() > 3) { pythonxm::Log::print(pythonxm::Log::INFO, x, ##__VA_ARGS__); }
+#define LOG_V5(x, ...)      if (pythonxm::Log::verbose() > 4) { pythonxm::Log::print(pythonxm::Log::INFO, x, ##__VA_ARGS__); }
 
 #ifdef APP_DEBUG
-#   define LOG_DEBUG(x, ...) xmrig::Log::print(xmrig::Log::DEBUG, x, ##__VA_ARGS__)
+#   define LOG_DEBUG(x, ...) pythonxm::Log::print(pythonxm::Log::DEBUG, x, ##__VA_ARGS__)
 #else
 #   define LOG_DEBUG(x, ...)
 #endif
 
 #if defined(APP_DEBUG) || defined(APP_DEVEL)
-#   define LOG_DEBUG_ERR(x, ...)  xmrig::Log::print(xmrig::Log::ERR,     x, ##__VA_ARGS__)
-#   define LOG_DEBUG_WARN(x, ...) xmrig::Log::print(xmrig::Log::WARNING, x, ##__VA_ARGS__)
+#   define LOG_DEBUG_ERR(x, ...)  pythonxm::Log::print(pythonxm::Log::ERR,     x, ##__VA_ARGS__)
+#   define LOG_DEBUG_WARN(x, ...) pythonxm::Log::print(pythonxm::Log::WARNING, x, ##__VA_ARGS__)
 #else
 #   define LOG_DEBUG_ERR(x, ...)
 #   define LOG_DEBUG_WARN(x, ...)
 #endif
 
 
-} /* namespace xmrig */
+} /* namespace pythonxm */
 
 
 #endif /* XMRIG_LOG_H */

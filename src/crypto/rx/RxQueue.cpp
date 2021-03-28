@@ -1,4 +1,4 @@
-/* XMRig
+/* PythonXM
  * Copyright 2010      Jeff Garzik <jgarzik@pobox.com>
  * Copyright 2012-2014 pooler      <pooler@litecoinpool.org>
  * Copyright 2014      Lucas Jones <https://github.com/lucasjones>
@@ -8,7 +8,7 @@
  * Copyright 2018      Lee Clagett <https://github.com/vtnerd>
  * Copyright 2018-2019 tevador     <tevador@gmail.com>
  * Copyright 2018-2020 SChernykh   <https://github.com/SChernykh>
- * Copyright 2016-2020 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright 2016-2020 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -39,7 +39,7 @@
 #endif
 
 
-xmrig::RxQueue::RxQueue(IRxListener *listener) :
+pythonxm::RxQueue::RxQueue(IRxListener *listener) :
     m_listener(listener)
 {
     m_async  = std::make_shared<Async>(this);
@@ -47,7 +47,7 @@ xmrig::RxQueue::RxQueue(IRxListener *listener) :
 }
 
 
-xmrig::RxQueue::~RxQueue()
+pythonxm::RxQueue::~RxQueue()
 {
     std::unique_lock<std::mutex> lock(m_mutex);
     m_state = STATE_SHUTDOWN;
@@ -61,7 +61,7 @@ xmrig::RxQueue::~RxQueue()
 }
 
 
-xmrig::RxDataset *xmrig::RxQueue::dataset(const Job &job, uint32_t nodeId)
+pythonxm::RxDataset *pythonxm::RxQueue::dataset(const Job &job, uint32_t nodeId)
 {
     std::lock_guard<std::mutex> lock(m_mutex);
 
@@ -73,7 +73,7 @@ xmrig::RxDataset *xmrig::RxQueue::dataset(const Job &job, uint32_t nodeId)
 }
 
 
-xmrig::HugePagesInfo xmrig::RxQueue::hugePages()
+pythonxm::HugePagesInfo pythonxm::RxQueue::hugePages()
 {
     std::lock_guard<std::mutex> lock(m_mutex);
 
@@ -82,7 +82,7 @@ xmrig::HugePagesInfo xmrig::RxQueue::hugePages()
 
 
 template<typename T>
-bool xmrig::RxQueue::isReady(const T &seed)
+bool pythonxm::RxQueue::isReady(const T &seed)
 {
     std::lock_guard<std::mutex> lock(m_mutex);
 
@@ -90,7 +90,7 @@ bool xmrig::RxQueue::isReady(const T &seed)
 }
 
 
-void xmrig::RxQueue::enqueue(const RxSeed &seed, const std::vector<uint32_t> &nodeset, uint32_t threads, bool hugePages, bool oneGbPages, RxConfig::Mode mode, int priority)
+void pythonxm::RxQueue::enqueue(const RxSeed &seed, const std::vector<uint32_t> &nodeset, uint32_t threads, bool hugePages, bool oneGbPages, RxConfig::Mode mode, int priority)
 {
     std::unique_lock<std::mutex> lock(m_mutex);
 
@@ -121,13 +121,13 @@ void xmrig::RxQueue::enqueue(const RxSeed &seed, const std::vector<uint32_t> &no
 
 
 template<typename T>
-bool xmrig::RxQueue::isReadyUnsafe(const T &seed) const
+bool pythonxm::RxQueue::isReadyUnsafe(const T &seed) const
 {
     return m_storage != nullptr && m_storage->isAllocated() && m_state == STATE_IDLE && m_seed == seed;
 }
 
 
-void xmrig::RxQueue::backgroundInit()
+void pythonxm::RxQueue::backgroundInit()
 {
     while (m_state != STATE_SHUTDOWN) {
         std::unique_lock<std::mutex> lock(m_mutex);
@@ -167,7 +167,7 @@ void xmrig::RxQueue::backgroundInit()
 }
 
 
-void xmrig::RxQueue::onReady()
+void pythonxm::RxQueue::onReady()
 {
     std::unique_lock<std::mutex> lock(m_mutex);
     const bool ready = m_listener && m_state == STATE_IDLE;
@@ -179,11 +179,11 @@ void xmrig::RxQueue::onReady()
 }
 
 
-namespace xmrig {
+namespace pythonxm {
 
 
 template bool RxQueue::isReady(const Job &);
 template bool RxQueue::isReady(const RxSeed &);
 
 
-} // namespace xmrig
+} // namespace pythonxm

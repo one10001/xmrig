@@ -1,4 +1,4 @@
-/* XMRig
+/* PythonXM
  * Copyright 2010      Jeff Garzik <jgarzik@pobox.com>
  * Copyright 2012-2014 pooler      <pooler@litecoinpool.org>
  * Copyright 2014      Lucas Jones <https://github.com/lucasjones>
@@ -6,7 +6,7 @@
  * Copyright 2016      Jay D Dee   <jayddee246@gmail.com>
  * Copyright 2017-2018 XMR-Stak    <https://github.com/fireice-uk>, <https://github.com/psychocrypt>
  * Copyright 2018-2020 SChernykh   <https://github.com/SChernykh>
- * Copyright 2016-2020 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright 2016-2020 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -53,12 +53,12 @@
 #   include "base/api/Api.h"
 #   include "base/api/interfaces/IApiRequest.h"
 
-namespace xmrig {
+namespace pythonxm {
 
 static const char *kConfigPathV1 = "/1/config";
 static const char *kConfigPathV2 = "/2/config";
 
-} // namespace xmrig
+} // namespace pythonxm
 #endif
 
 
@@ -67,7 +67,7 @@ static const char *kConfigPathV2 = "/2/config";
 #endif
 
 
-namespace xmrig {
+namespace pythonxm {
 
 
 class BasePrivate
@@ -165,29 +165,29 @@ private:
 };
 
 
-} // namespace xmrig
+} // namespace pythonxm
 
 
-xmrig::Base::Base(Process *process)
+pythonxm::Base::Base(Process *process)
     : d_ptr(new BasePrivate(process))
 {
 
 }
 
 
-xmrig::Base::~Base()
+pythonxm::Base::~Base()
 {
     delete d_ptr;
 }
 
 
-bool xmrig::Base::isReady() const
+bool pythonxm::Base::isReady() const
 {
     return d_ptr->config != nullptr;
 }
 
 
-int xmrig::Base::init()
+int pythonxm::Base::init()
 {
 #   ifdef XMRIG_FEATURE_API
     d_ptr->api = new Api(this);
@@ -217,7 +217,7 @@ int xmrig::Base::init()
 }
 
 
-void xmrig::Base::start()
+void pythonxm::Base::start()
 {
 #   ifdef XMRIG_FEATURE_API
     api()->start();
@@ -233,7 +233,7 @@ void xmrig::Base::start()
 }
 
 
-void xmrig::Base::stop()
+void pythonxm::Base::stop()
 {
 #   ifdef XMRIG_FEATURE_API
     api()->stop();
@@ -244,7 +244,7 @@ void xmrig::Base::stop()
 }
 
 
-xmrig::Api *xmrig::Base::api() const
+pythonxm::Api *pythonxm::Base::api() const
 {
     assert(d_ptr->api != nullptr);
 
@@ -252,13 +252,13 @@ xmrig::Api *xmrig::Base::api() const
 }
 
 
-bool xmrig::Base::isBackground() const
+bool pythonxm::Base::isBackground() const
 {
     return d_ptr->config && d_ptr->config->isBackground();
 }
 
 
-bool xmrig::Base::reload(const rapidjson::Value &json)
+bool pythonxm::Base::reload(const rapidjson::Value &json)
 {
     JsonReader reader(json);
     if (reader.isEmpty()) {
@@ -286,7 +286,7 @@ bool xmrig::Base::reload(const rapidjson::Value &json)
 }
 
 
-xmrig::Config *xmrig::Base::config() const
+pythonxm::Config *pythonxm::Base::config() const
 {
     assert(d_ptr->config != nullptr);
 
@@ -294,13 +294,13 @@ xmrig::Config *xmrig::Base::config() const
 }
 
 
-void xmrig::Base::addListener(IBaseListener *listener)
+void pythonxm::Base::addListener(IBaseListener *listener)
 {
     d_ptr->listeners.push_back(listener);
 }
 
 
-void xmrig::Base::onFileChanged(const String &fileName)
+void pythonxm::Base::onFileChanged(const String &fileName)
 {
     LOG_WARN("%s " YELLOW("\"%s\" was changed, reloading configuration"), Tags::config(), fileName.data());
 
@@ -321,7 +321,7 @@ void xmrig::Base::onFileChanged(const String &fileName)
 
 
 #ifdef XMRIG_FEATURE_API
-void xmrig::Base::onRequest(IApiRequest &request)
+void pythonxm::Base::onRequest(IApiRequest &request)
 {
     if (request.method() == IApiRequest::METHOD_GET) {
         if (request.url() == kConfigPathV1 || request.url() == kConfigPathV2) {

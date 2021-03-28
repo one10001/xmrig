@@ -1,6 +1,6 @@
-/* XMRig
+/* PythonXM
  * Copyright (c) 2018-2021 SChernykh   <https://github.com/SChernykh>
- * Copyright (c) 2016-2021 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright (c) 2016-2021 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -46,7 +46,7 @@
 #endif
 
 
-namespace xmrig {
+namespace pythonxm {
 
 
 constexpr static uint32_t kIdleTime     = 60U;
@@ -114,38 +114,38 @@ public:
 }
 
 
-xmrig::Config::Config() :
+pythonxm::Config::Config() :
     d_ptr(new ConfigPrivate())
 {
 }
 
 
-xmrig::Config::~Config()
+pythonxm::Config::~Config()
 {
     delete d_ptr;
 }
 
 
-bool xmrig::Config::isPauseOnBattery() const
+bool pythonxm::Config::isPauseOnBattery() const
 {
     return d_ptr->pauseOnBattery;
 }
 
 
-const xmrig::CpuConfig &xmrig::Config::cpu() const
+const pythonxm::CpuConfig &pythonxm::Config::cpu() const
 {
     return d_ptr->cpu;
 }
 
 
-uint32_t xmrig::Config::idleTime() const
+uint32_t pythonxm::Config::idleTime() const
 {
     return d_ptr->idleTime * 1000U;
 }
 
 
 #ifdef XMRIG_FEATURE_OPENCL
-const xmrig::OclConfig &xmrig::Config::cl() const
+const pythonxm::OclConfig &pythonxm::Config::cl() const
 {
     return d_ptr->cl;
 }
@@ -153,7 +153,7 @@ const xmrig::OclConfig &xmrig::Config::cl() const
 
 
 #ifdef XMRIG_FEATURE_CUDA
-const xmrig::CudaConfig &xmrig::Config::cuda() const
+const pythonxm::CudaConfig &pythonxm::Config::cuda() const
 {
     return d_ptr->cuda;
 }
@@ -161,7 +161,7 @@ const xmrig::CudaConfig &xmrig::Config::cuda() const
 
 
 #ifdef XMRIG_ALGO_RANDOMX
-const xmrig::RxConfig &xmrig::Config::rx() const
+const pythonxm::RxConfig &pythonxm::Config::rx() const
 {
     return d_ptr->rx;
 }
@@ -169,7 +169,7 @@ const xmrig::RxConfig &xmrig::Config::rx() const
 
 
 #if defined(XMRIG_FEATURE_NVML) || defined (XMRIG_FEATURE_ADL)
-uint32_t xmrig::Config::healthPrintTime() const
+uint32_t pythonxm::Config::healthPrintTime() const
 {
     return d_ptr->healthPrintTime;
 }
@@ -177,14 +177,14 @@ uint32_t xmrig::Config::healthPrintTime() const
 
 
 #ifdef XMRIG_FEATURE_DMI
-bool xmrig::Config::isDMI() const
+bool pythonxm::Config::isDMI() const
 {
     return d_ptr->dmi;
 }
 #endif
 
 
-bool xmrig::Config::isShouldSave() const
+bool pythonxm::Config::isShouldSave() const
 {
     if (!isAutoSave()) {
         return false;
@@ -206,7 +206,7 @@ bool xmrig::Config::isShouldSave() const
 }
 
 
-bool xmrig::Config::read(const IJsonReader &reader, const char *fileName)
+bool pythonxm::Config::read(const IJsonReader &reader, const char *fileName)
 {
     if (!BaseConfig::read(reader, fileName)) {
         return false;
@@ -243,7 +243,7 @@ bool xmrig::Config::read(const IJsonReader &reader, const char *fileName)
 }
 
 
-void xmrig::Config::getJSON(rapidjson::Document &doc) const
+void pythonxm::Config::getJSON(rapidjson::Document &doc) const
 {
     using namespace rapidjson;
 

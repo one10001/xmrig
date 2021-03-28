@@ -1,4 +1,4 @@
-/* XMRig
+/* PythonXM
  * Copyright 2010      Jeff Garzik <jgarzik@pobox.com>
  * Copyright 2012-2014 pooler      <pooler@litecoinpool.org>
  * Copyright 2014      Lucas Jones <https://github.com/lucasjones>
@@ -8,7 +8,7 @@
  * Copyright 2018      Lee Clagett <https://github.com/vtnerd>
  * Copyright 2018-2019 tevador     <tevador@gmail.com>
  * Copyright 2018-2020 SChernykh   <https://github.com/SChernykh>
- * Copyright 2016-2020 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright 2016-2020 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -32,7 +32,7 @@
 #include "base/tools/Buffer.h"
 
 
-namespace xmrig
+namespace pythonxm
 {
 
 
@@ -63,7 +63,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace pythonxm */
 
 
 #endif /* XMRIG_RX_CACHE_H */

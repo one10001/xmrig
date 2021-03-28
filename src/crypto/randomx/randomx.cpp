@@ -295,7 +295,7 @@ typedef void(randomx::JitCompilerX86::* InstructionGeneratorX86_2)(const randomx
 	INST_HANDLE(IMUL_M, IMUL_R);
 
 #if defined(_M_X64) || defined(__x86_64__)
-	if (xmrig::Cpu::info()->hasBMI2()) {
+	if (pythonxm::Cpu::info()->hasBMI2()) {
 		INST_HANDLE2(IMULH_R, IMULH_R_BMI2, IMUL_M);
 		INST_HANDLE2(IMULH_M, IMULH_M_BMI2, IMULH_R);
 	}
@@ -326,7 +326,7 @@ typedef void(randomx::JitCompilerX86::* InstructionGeneratorX86_2)(const randomx
 	INST_HANDLE(FSQRT_R, FDIV_M);
 
 #if defined(_M_X64) || defined(__x86_64__)
-	if (xmrig::Cpu::info()->jccErratum()) {
+	if (pythonxm::Cpu::info()->jccErratum()) {
 		INST_HANDLE2(CBRANCH, CBRANCH<true>, FSQRT_R);
 	}
 	else {
@@ -337,7 +337,7 @@ typedef void(randomx::JitCompilerX86::* InstructionGeneratorX86_2)(const randomx
 #endif
 
 #if defined(_M_X64) || defined(__x86_64__)
-	if (xmrig::Cpu::info()->hasBMI2()) {
+	if (pythonxm::Cpu::info()->hasBMI2()) {
 		INST_HANDLE2(CFROUND, CFROUND_BMI2, CBRANCH);
 	}
 	else
@@ -464,7 +464,7 @@ extern "C" {
 		}
 
 		if (!vm_pool[node]) {
-			vm_pool[node] = (uint8_t*) xmrig::VirtualMemory::allocateLargePagesMemory(VM_POOL_SIZE);
+			vm_pool[node] = (uint8_t*) pythonxm::VirtualMemory::allocateLargePagesMemory(VM_POOL_SIZE);
 			if (!vm_pool[node]) {
 				vm_pool[node] = (uint8_t*) rx_aligned_alloc(VM_POOL_SIZE, 4096);
 			}

@@ -1,4 +1,4 @@
-/* XMRig
+/* PythonXM
  * Copyright 2010      Jeff Garzik <jgarzik@pobox.com>
  * Copyright 2012-2014 pooler      <pooler@litecoinpool.org>
  * Copyright 2014      Lucas Jones <https://github.com/lucasjones>
@@ -8,7 +8,7 @@
  * Copyright 2018      Lee Clagett <https://github.com/vtnerd>
  * Copyright 2019      Howard Chu  <https://github.com/hyc>
  * Copyright 2018-2020 SChernykh   <https://github.com/SChernykh>
- * Copyright 2016-2020 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright 2016-2020 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -34,7 +34,7 @@
 #include "base/tools/Cvt.h"
 
 
-xmrig::Job::Job(bool nicehash, const Algorithm &algorithm, const String &clientId) :
+pythonxm::Job::Job(bool nicehash, const Algorithm &algorithm, const String &clientId) :
     m_algorithm(algorithm),
     m_nicehash(nicehash),
     m_clientId(clientId)
@@ -42,13 +42,13 @@ xmrig::Job::Job(bool nicehash, const Algorithm &algorithm, const String &clientI
 }
 
 
-bool xmrig::Job::isEqual(const Job &other) const
+bool pythonxm::Job::isEqual(const Job &other) const
 {
     return m_id == other.m_id && m_clientId == other.m_clientId && memcmp(m_blob, other.m_blob, sizeof(m_blob)) == 0;
 }
 
 
-bool xmrig::Job::setBlob(const char *blob)
+bool pythonxm::Job::setBlob(const char *blob)
 {
     if (!blob) {
         return false;
@@ -83,7 +83,7 @@ bool xmrig::Job::setBlob(const char *blob)
 }
 
 
-bool xmrig::Job::setSeedHash(const char *hash)
+bool pythonxm::Job::setSeedHash(const char *hash)
 {
     if (!hash || (strlen(hash) != kMaxSeedSize * 2)) {
         return false;
@@ -99,7 +99,7 @@ bool xmrig::Job::setSeedHash(const char *hash)
 }
 
 
-bool xmrig::Job::setTarget(const char *target)
+bool pythonxm::Job::setTarget(const char *target)
 {
     if (!target) {
         return false;
@@ -130,7 +130,7 @@ bool xmrig::Job::setTarget(const char *target)
 }
 
 
-void xmrig::Job::setDiff(uint64_t diff)
+void pythonxm::Job::setDiff(uint64_t diff)
 {
     m_diff   = diff;
     m_target = toDiff(diff);
@@ -141,7 +141,7 @@ void xmrig::Job::setDiff(uint64_t diff)
 }
 
 
-void xmrig::Job::copy(const Job &other)
+void pythonxm::Job::copy(const Job &other)
 {
     m_algorithm  = other.m_algorithm;
     m_nicehash   = other.m_nicehash;
@@ -172,7 +172,7 @@ void xmrig::Job::copy(const Job &other)
 }
 
 
-void xmrig::Job::move(Job &&other)
+void pythonxm::Job::move(Job &&other)
 {
     m_algorithm  = other.m_algorithm;
     m_nicehash   = other.m_nicehash;

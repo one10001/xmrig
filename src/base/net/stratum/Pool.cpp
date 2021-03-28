@@ -1,7 +1,7 @@
-/* XMRig
+/* PythonXM
  * Copyright (c) 2019      Howard Chu  <https://github.com/hyc>
  * Copyright (c) 2018-2020 SChernykh   <https://github.com/SChernykh>
- * Copyright (c) 2016-2020 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright (c) 2016-2020 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -55,7 +55,7 @@
 #endif
 
 
-namespace xmrig {
+namespace pythonxm {
 
 
 const String Pool::kDefaultPassword       = "x";
@@ -84,7 +84,7 @@ const char *Pool::kNicehashHost           = "nicehash.com";
 }
 
 
-xmrig::Pool::Pool(const char *url) :
+pythonxm::Pool::Pool(const char *url) :
     m_flags(1 << FLAG_ENABLED),
     m_pollInterval(kDefaultPollInterval),
     m_url(url)
@@ -92,7 +92,7 @@ xmrig::Pool::Pool(const char *url) :
 }
 
 
-xmrig::Pool::Pool(const char *host, uint16_t port, const char *user, const char *password, int keepAlive, bool nicehash, bool tls, Mode mode) :
+pythonxm::Pool::Pool(const char *host, uint16_t port, const char *user, const char *password, int keepAlive, bool nicehash, bool tls, Mode mode) :
     m_keepAlive(keepAlive),
     m_mode(mode),
     m_flags(1 << FLAG_ENABLED),
@@ -106,7 +106,7 @@ xmrig::Pool::Pool(const char *host, uint16_t port, const char *user, const char 
 }
 
 
-xmrig::Pool::Pool(const rapidjson::Value &object) :
+pythonxm::Pool::Pool(const rapidjson::Value &object) :
     m_flags(1 << FLAG_ENABLED),
     m_pollInterval(kDefaultPollInterval),
     m_url(Json::getString(object, kUrl))
@@ -142,7 +142,7 @@ xmrig::Pool::Pool(const rapidjson::Value &object) :
 
 
 #ifdef XMRIG_FEATURE_BENCHMARK
-xmrig::Pool::Pool(const std::shared_ptr<BenchConfig> &benchmark) :
+pythonxm::Pool::Pool(const std::shared_ptr<BenchConfig> &benchmark) :
     m_mode(MODE_BENCHMARK),
     m_flags(1 << FLAG_ENABLED),
     m_url(BenchConfig::kBenchmark),
@@ -151,7 +151,7 @@ xmrig::Pool::Pool(const std::shared_ptr<BenchConfig> &benchmark) :
 }
 
 
-xmrig::BenchConfig *xmrig::Pool::benchmark() const
+pythonxm::BenchConfig *pythonxm::Pool::benchmark() const
 {
     assert(m_mode == MODE_BENCHMARK && m_benchmark);
 
@@ -159,14 +159,14 @@ xmrig::BenchConfig *xmrig::Pool::benchmark() const
 }
 
 
-uint32_t xmrig::Pool::benchSize() const
+uint32_t pythonxm::Pool::benchSize() const
 {
     return benchmark()->size();
 }
 #endif
 
 
-bool xmrig::Pool::isEnabled() const
+bool pythonxm::Pool::isEnabled() const
 {
 #   ifndef XMRIG_FEATURE_TLS
     if (isTLS()) {
@@ -194,7 +194,7 @@ bool xmrig::Pool::isEnabled() const
 }
 
 
-bool xmrig::Pool::isEqual(const Pool &other) const
+bool pythonxm::Pool::isEqual(const Pool &other) const
 {
     return (m_flags           == other.m_flags
             && m_keepAlive    == other.m_keepAlive
@@ -213,7 +213,7 @@ bool xmrig::Pool::isEqual(const Pool &other) const
 }
 
 
-xmrig::IClient *xmrig::Pool::createClient(int id, IClientListener *listener) const
+pythonxm::IClient *pythonxm::Pool::createClient(int id, IClientListener *listener) const
 {
     IClient *client = nullptr;
 
@@ -257,7 +257,7 @@ xmrig::IClient *xmrig::Pool::createClient(int id, IClientListener *listener) con
 }
 
 
-rapidjson::Value xmrig::Pool::toJSON(rapidjson::Document &doc) const
+rapidjson::Value pythonxm::Pool::toJSON(rapidjson::Document &doc) const
 {
     using namespace rapidjson;
 
@@ -304,7 +304,7 @@ rapidjson::Value xmrig::Pool::toJSON(rapidjson::Document &doc) const
 }
 
 
-std::string xmrig::Pool::printableName() const
+std::string pythonxm::Pool::printableName() const
 {
     std::string out(CSI "1;" + std::to_string(isEnabled() ? (isTLS() ? 32 : 36) : 31) + "m" + url().data() + CLEAR);
 
@@ -324,7 +324,7 @@ std::string xmrig::Pool::printableName() const
 
 
 #ifdef APP_DEBUG
-void xmrig::Pool::print() const
+void pythonxm::Pool::print() const
 {
     LOG_NOTICE("url:       %s", url().data());
     LOG_DEBUG ("host:      %s", host().data());
@@ -339,7 +339,7 @@ void xmrig::Pool::print() const
 #endif
 
 
-void xmrig::Pool::setKeepAlive(const rapidjson::Value &value)
+void pythonxm::Pool::setKeepAlive(const rapidjson::Value &value)
 {
     if (value.IsInt()) {
         setKeepAlive(value.GetInt());

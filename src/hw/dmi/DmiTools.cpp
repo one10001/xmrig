@@ -1,8 +1,8 @@
-/* XMRig
+/* PythonXM
  * Copyright (c) 2000-2002 Alan Cox     <alan@redhat.com>
  * Copyright (c) 2005-2020 Jean Delvare <jdelvare@suse.de>
  * Copyright (c) 2018-2021 SChernykh    <https://github.com/SChernykh>
- * Copyright (c) 2016-2021 XMRig        <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright (c) 2016-2021 PythonXM        <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@
 #include <cstring>
 
 
-namespace xmrig {
+namespace pythonxm {
 
 
 /* Replace non-ASCII characters with dots */
@@ -72,4 +72,4 @@ const char *dmi_string(dmi_header *dm, size_t offset)
 }
 
 
-} // namespace xmrig
+} // namespace pythonxm

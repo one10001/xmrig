@@ -1,4 +1,4 @@
-/* XMRig
+/* PythonXM
  * Copyright 2010      Jeff Garzik <jgarzik@pobox.com>
  * Copyright 2012-2014 pooler      <pooler@litecoinpool.org>
  * Copyright 2014      Lucas Jones <https://github.com/lucasjones>
@@ -6,7 +6,7 @@
  * Copyright 2016      Jay D Dee   <jayddee246@gmail.com>
  * Copyright 2017-2018 XMR-Stak    <https://github.com/fireice-uk>, <https://github.com/psychocrypt>
  * Copyright 2018-2020 SChernykh   <https://github.com/SChernykh>
- * Copyright 2016-2020 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright 2016-2020 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -44,7 +44,7 @@
 #endif
 
 
-namespace xmrig {
+namespace pythonxm {
 
 const char *RxConfig::kInit                     = "init";
 const char *RxConfig::kInitAVX2                 = "init-avx2";
@@ -84,7 +84,7 @@ static_assert (kMsrArraySize == ICpuInfo::MSR_MOD_MAX, "kMsrArraySize and MSR_MO
 }
 
 
-bool xmrig::RxConfig::read(const rapidjson::Value &value)
+bool pythonxm::RxConfig::read(const rapidjson::Value &value)
 {
     if (value.IsObject()) {
         m_threads         = Json::getInt(value, kInit, m_threads);
@@ -136,7 +136,7 @@ bool xmrig::RxConfig::read(const rapidjson::Value &value)
 }
 
 
-rapidjson::Value xmrig::RxConfig::toJSON(rapidjson::Document &doc) const
+rapidjson::Value pythonxm::RxConfig::toJSON(rapidjson::Document &doc) const
 {
     using namespace rapidjson;
     auto &allocator = doc.GetAllocator();
@@ -190,7 +190,7 @@ rapidjson::Value xmrig::RxConfig::toJSON(rapidjson::Document &doc) const
 
 
 #ifdef XMRIG_FEATURE_HWLOC
-std::vector<uint32_t> xmrig::RxConfig::nodeset() const
+std::vector<uint32_t> pythonxm::RxConfig::nodeset() const
 {
     if (!m_nodeset.empty()) {
         return m_nodeset;
@@ -201,13 +201,13 @@ std::vector<uint32_t> xmrig::RxConfig::nodeset() const
 #endif
 
 
-const char *xmrig::RxConfig::modeName() const
+const char *pythonxm::RxConfig::modeName() const
 {
     return modeNames[m_mode];
 }
 
 
-uint32_t xmrig::RxConfig::threads(uint32_t limit) const
+uint32_t pythonxm::RxConfig::threads(uint32_t limit) const
 {
     if (m_threads > 0) {
         return m_threads;
@@ -222,13 +222,13 @@ uint32_t xmrig::RxConfig::threads(uint32_t limit) const
 
 
 #ifdef XMRIG_FEATURE_MSR
-const char *xmrig::RxConfig::msrPresetName() const
+const char *pythonxm::RxConfig::msrPresetName() const
 {
     return modNames[msrMod()];
 }
 
 
-const xmrig::MsrItems &xmrig::RxConfig::msrPreset() const
+const pythonxm::MsrItems &pythonxm::RxConfig::msrPreset() const
 {
     const auto mod = msrMod();
 
@@ -240,7 +240,7 @@ const xmrig::MsrItems &xmrig::RxConfig::msrPreset() const
 }
 
 
-uint32_t xmrig::RxConfig::msrMod() const
+uint32_t pythonxm::RxConfig::msrMod() const
 {
     if (!wrmsr()) {
         return ICpuInfo::MSR_MOD_NONE;
@@ -254,7 +254,7 @@ uint32_t xmrig::RxConfig::msrMod() const
 }
 
 
-void xmrig::RxConfig::readMSR(const rapidjson::Value &value)
+void pythonxm::RxConfig::readMSR(const rapidjson::Value &value)
 {
     if (value.IsBool()) {
         m_wrmsr = value.GetBool();
@@ -286,7 +286,7 @@ void xmrig::RxConfig::readMSR(const rapidjson::Value &value)
 #endif
 
 
-xmrig::RxConfig::Mode xmrig::RxConfig::readMode(const rapidjson::Value &value) const
+pythonxm::RxConfig::Mode pythonxm::RxConfig::readMode(const rapidjson::Value &value) const
 {
     if (value.IsUint()) {
         return static_cast<Mode>(std::min(value.GetUint(), ModeMax - 1));

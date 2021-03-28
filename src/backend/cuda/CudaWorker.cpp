@@ -1,6 +1,6 @@
-/* XMRig
+/* PythonXM
  * Copyright (c) 2018-2020 SChernykh   <https://github.com/SChernykh>
- * Copyright (c) 2016-2020 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright (c) 2016-2020 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -47,7 +47,7 @@
 #include <thread>
 
 
-namespace xmrig {
+namespace pythonxm {
 
 
 std::atomic<bool> CudaWorker::ready;
@@ -56,11 +56,11 @@ std::atomic<bool> CudaWorker::ready;
 static inline bool isReady()    { return !Nonce::isPaused() && CudaWorker::ready; }
 
 
-} // namespace xmrig
+} // namespace pythonxm
 
 
 
-xmrig::CudaWorker::CudaWorker(size_t id, const CudaLaunchData &data) :
+pythonxm::CudaWorker::CudaWorker(size_t id, const CudaLaunchData &data) :
     GpuWorker(id, data.thread.affinity(), -1, data.device.index()),
     m_algorithm(data.algorithm),
     m_miner(data.miner)
@@ -104,13 +104,13 @@ xmrig::CudaWorker::CudaWorker(size_t id, const CudaLaunchData &data) :
 }
 
 
-xmrig::CudaWorker::~CudaWorker()
+pythonxm::CudaWorker::~CudaWorker()
 {
     delete m_runner;
 }
 
 
-void xmrig::CudaWorker::jobEarlyNotification(const Job &job)
+void pythonxm::CudaWorker::jobEarlyNotification(const Job &job)
 {
     if (m_runner) {
         m_runner->jobEarlyNotification(job);
@@ -118,19 +118,19 @@ void xmrig::CudaWorker::jobEarlyNotification(const Job &job)
 }
 
 
-bool xmrig::CudaWorker::selfTest()
+bool pythonxm::CudaWorker::selfTest()
 {
     return m_runner != nullptr;
 }
 
 
-size_t xmrig::CudaWorker::intensity() const
+size_t pythonxm::CudaWorker::intensity() const
 {
     return m_runner ? m_runner->roundSize() : 0;
 }
 
 
-void xmrig::CudaWorker::start()
+void pythonxm::CudaWorker::start()
 {
     while (Nonce::sequence(Nonce::CUDA) > 0) {
         if (!isReady()) {
@@ -175,7 +175,7 @@ void xmrig::CudaWorker::start()
 }
 
 
-bool xmrig::CudaWorker::consumeJob()
+bool pythonxm::CudaWorker::consumeJob()
 {
     if (Nonce::sequence(Nonce::CUDA) == 0) {
         return false;
@@ -187,7 +187,7 @@ bool xmrig::CudaWorker::consumeJob()
 }
 
 
-void xmrig::CudaWorker::storeStats()
+void pythonxm::CudaWorker::storeStats()
 {
     if (!isReady()) {
         return;

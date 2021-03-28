@@ -1,8 +1,8 @@
-/* XMRig
+/* PythonXM
  * Copyright (c) 2019       jtgrassie       <https://github.com/jtgrassie>
  * Copyright (c) 2021       Hansie Odendaal <https://github.com/hansieodendaal>
  * Copyright (c) 2018-2021  SChernykh       <https://github.com/SChernykh>
- * Copyright (c) 2016-2021  XMRig           <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright (c) 2016-2021  PythonXM           <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -33,7 +33,7 @@
 #include "base/tools/Cvt.h"
 
 
-namespace xmrig {
+namespace pythonxm {
 
 static const char *kBlob                = "blob";
 static const char *kBlockhashingBlob    = "blockhashing_blob";
@@ -48,10 +48,10 @@ static const char *kSeedHash            = "seed_hash";
 
 static const char * const required_fields[] = { kBlocktemplateBlob, kBlockhashingBlob, kHeight, kDifficulty, kPrevHash };
 
-} /* namespace xmrig */
+} /* namespace pythonxm */
 
 
-xmrig::SelfSelectClient::SelfSelectClient(int id, const char *agent, IClientListener *listener, bool submitToOrigin) :
+pythonxm::SelfSelectClient::SelfSelectClient(int id, const char *agent, IClientListener *listener, bool submitToOrigin) :
     m_submitToOrigin(submitToOrigin),
     m_listener(listener)
 {
@@ -60,13 +60,13 @@ xmrig::SelfSelectClient::SelfSelectClient(int id, const char *agent, IClientList
 }
 
 
-xmrig::SelfSelectClient::~SelfSelectClient()
+pythonxm::SelfSelectClient::~SelfSelectClient()
 {
     delete m_client;
 }
 
 
-int64_t xmrig::SelfSelectClient::submit(const JobResult &result)
+int64_t pythonxm::SelfSelectClient::submit(const JobResult &result)
 {
     if (m_submitToOrigin) {
         submitOriginDaemon(result);
@@ -76,7 +76,7 @@ int64_t xmrig::SelfSelectClient::submit(const JobResult &result)
 }
 
 
-void xmrig::SelfSelectClient::tick(uint64_t now)
+void pythonxm::SelfSelectClient::tick(uint64_t now)
 {
     m_client->tick(now);
 
@@ -90,7 +90,7 @@ void xmrig::SelfSelectClient::tick(uint64_t now)
 }
 
 
-void xmrig::SelfSelectClient::onJobReceived(IClient *, const Job &job, const rapidjson::Value &)
+void pythonxm::SelfSelectClient::onJobReceived(IClient *, const Job &job, const rapidjson::Value &)
 {
     m_job = job;
 
@@ -98,7 +98,7 @@ void xmrig::SelfSelectClient::onJobReceived(IClient *, const Job &job, const rap
 }
 
 
-void xmrig::SelfSelectClient::onLogin(IClient *, rapidjson::Document &doc, rapidjson::Value &params)
+void pythonxm::SelfSelectClient::onLogin(IClient *, rapidjson::Document &doc, rapidjson::Value &params)
 {
     params.AddMember("mode", "self-select", doc.GetAllocator());
 
@@ -106,7 +106,7 @@ void xmrig::SelfSelectClient::onLogin(IClient *, rapidjson::Document &doc, rapid
 }
 
 
-bool xmrig::SelfSelectClient::parseResponse(int64_t id, rapidjson::Value &result, const rapidjson::Value &error)
+bool pythonxm::SelfSelectClient::parseResponse(int64_t id, rapidjson::Value &result, const rapidjson::Value &error)
 {
     if (id == -1) {
         return false;
@@ -147,7 +147,7 @@ bool xmrig::SelfSelectClient::parseResponse(int64_t id, rapidjson::Value &result
 }
 
 
-void xmrig::SelfSelectClient::getBlockTemplate()
+void pythonxm::SelfSelectClient::getBlockTemplate()
 {
     setState(WaitState);
 
@@ -166,13 +166,13 @@ void xmrig::SelfSelectClient::getBlockTemplate()
 }
 
 
-void xmrig::SelfSelectClient::retry()
+void pythonxm::SelfSelectClient::retry()
 {
     setState(RetryState);
 }
 
 
-void xmrig::SelfSelectClient::setState(State state)
+void pythonxm::SelfSelectClient::setState(State state)
 {
     if (m_state == state) {
         return;
@@ -203,7 +203,7 @@ void xmrig::SelfSelectClient::setState(State state)
 }
 
 
-void xmrig::SelfSelectClient::submitBlockTemplate(rapidjson::Value &result)
+void pythonxm::SelfSelectClient::submitBlockTemplate(rapidjson::Value &result)
 {
     using namespace rapidjson;
     Document doc(kObjectType);
@@ -247,7 +247,7 @@ void xmrig::SelfSelectClient::submitBlockTemplate(rapidjson::Value &result)
 }
 
 
-void xmrig::SelfSelectClient::submitOriginDaemon(const JobResult& result)
+void pythonxm::SelfSelectClient::submitOriginDaemon(const JobResult& result)
 {
     if (result.diff == 0 || m_blockDiff == 0) {
         return;
@@ -285,7 +285,7 @@ void xmrig::SelfSelectClient::submitOriginDaemon(const JobResult& result)
     getBlockTemplate();
 }
 
-void xmrig::SelfSelectClient::onHttpData(const HttpData &data)
+void pythonxm::SelfSelectClient::onHttpData(const HttpData &data)
 {
     if (data.status != 200) {
         return retry();

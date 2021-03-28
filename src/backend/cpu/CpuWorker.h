@@ -1,6 +1,6 @@
-/* XMRig
+/* PythonXM
  * Copyright (c) 2018-2020 SChernykh   <https://github.com/SChernykh>
- * Copyright (c) 2016-2020 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright (c) 2016-2020 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -32,7 +32,7 @@ class randomx_vm;
 #endif
 
 
-namespace xmrig {
+namespace pythonxm {
 
 
 class RxVm;
@@ -104,7 +104,7 @@ extern template class CpuWorker<4>;
 extern template class CpuWorker<5>;
 
 
-} // namespace xmrig
+} // namespace pythonxm
 
 
 #endif /* XMRIG_CPUWORKER_H */

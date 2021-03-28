@@ -1,7 +1,7 @@
-/* XMRig
+/* PythonXM
  * Copyright (c) 2018-2020 tevador     <tevador@gmail.com>
  * Copyright (c) 2018-2021 SChernykh   <https://github.com/SChernykh>
- * Copyright (c) 2016-2021 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright (c) 2016-2021 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -34,7 +34,7 @@
 #include <mutex>
 
 
-namespace xmrig {
+namespace pythonxm {
 
 
 size_t VirtualMemory::m_hugePageSize    = VirtualMemory::kDefaultHugePageSize;
@@ -42,10 +42,10 @@ static IMemoryPool *pool                = nullptr;
 static std::mutex mutex;
 
 
-} // namespace xmrig
+} // namespace pythonxm
 
 
-xmrig::VirtualMemory::VirtualMemory(size_t size, bool hugePages, bool oneGbPages, bool usePool, uint32_t node, size_t alignSize) :
+pythonxm::VirtualMemory::VirtualMemory(size_t size, bool hugePages, bool oneGbPages, bool usePool, uint32_t node, size_t alignSize) :
     m_size(alignToHugePageSize(size)),
     m_node(node),
     m_capacity(m_size)
@@ -78,7 +78,7 @@ xmrig::VirtualMemory::VirtualMemory(size_t size, bool hugePages, bool oneGbPages
 }
 
 
-xmrig::VirtualMemory::~VirtualMemory()
+pythonxm::VirtualMemory::~VirtualMemory()
 {
     if (!m_scratchpad) {
         return;
@@ -97,27 +97,27 @@ xmrig::VirtualMemory::~VirtualMemory()
 }
 
 
-xmrig::HugePagesInfo xmrig::VirtualMemory::hugePages() const
+pythonxm::HugePagesInfo pythonxm::VirtualMemory::hugePages() const
 {
     return { this };
 }
 
 
 #ifndef XMRIG_FEATURE_HWLOC
-uint32_t xmrig::VirtualMemory::bindToNUMANode(int64_t)
+uint32_t pythonxm::VirtualMemory::bindToNUMANode(int64_t)
 {
     return 0;
 }
 #endif
 
 
-void xmrig::VirtualMemory::destroy()
+void pythonxm::VirtualMemory::destroy()
 {
     delete pool;
 }
 
 
-void xmrig::VirtualMemory::init(size_t poolSize, size_t hugePageSize)
+void pythonxm::VirtualMemory::init(size_t poolSize, size_t hugePageSize)
 {
     if (!pool) {
         osInit(hugePageSize);

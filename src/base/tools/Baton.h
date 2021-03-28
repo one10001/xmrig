@@ -1,6 +1,6 @@
-/* XMRig
+/* PythonXM
  * Copyright (c) 2018-2020 SChernykh   <https://github.com/SChernykh>
- * Copyright (c) 2016-2020 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright (c) 2016-2020 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
 #define XMRIG_BATON_H
 
 
-namespace xmrig {
+namespace pythonxm {
 
 
 template<typename REQ>
@@ -33,7 +33,7 @@ public:
 };
 
 
-} /* namespace xmrig */
+} /* namespace pythonxm */
 
 
 #endif /* XMRIG_BATON_H */

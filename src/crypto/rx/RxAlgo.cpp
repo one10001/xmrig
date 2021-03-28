@@ -1,7 +1,7 @@
-/* XMRig
+/* PythonXM
  * Copyright (c) 2018-2019 tevador     <tevador@gmail.com>
  * Copyright (c) 2018-2020 SChernykh   <https://github.com/SChernykh>
- * Copyright (c) 2016-2020 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright (c) 2016-2020 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -22,7 +22,7 @@
 #include "crypto/rx/RxAlgo.h"
 
 
-xmrig::Algorithm::Id xmrig::RxAlgo::apply(Algorithm::Id algorithm)
+pythonxm::Algorithm::Id pythonxm::RxAlgo::apply(Algorithm::Id algorithm)
 {
     randomx_apply_config(*base(algorithm));
 
@@ -30,7 +30,7 @@ xmrig::Algorithm::Id xmrig::RxAlgo::apply(Algorithm::Id algorithm)
 }
 
 
-const RandomX_ConfigurationBase *xmrig::RxAlgo::base(Algorithm::Id algorithm)
+const RandomX_ConfigurationBase *pythonxm::RxAlgo::base(Algorithm::Id algorithm)
 {
     switch (algorithm) {
     case Algorithm::RX_WOW:
@@ -53,25 +53,25 @@ const RandomX_ConfigurationBase *xmrig::RxAlgo::base(Algorithm::Id algorithm)
 }
 
 
-uint32_t xmrig::RxAlgo::version(Algorithm::Id algorithm)
+uint32_t pythonxm::RxAlgo::version(Algorithm::Id algorithm)
 {
     return algorithm == Algorithm::RX_WOW ? 103 : 104;
 }
 
 
-uint32_t xmrig::RxAlgo::programCount(Algorithm::Id algorithm)
+uint32_t pythonxm::RxAlgo::programCount(Algorithm::Id algorithm)
 {
     return base(algorithm)->ProgramCount;
 }
 
 
-uint32_t xmrig::RxAlgo::programIterations(Algorithm::Id algorithm)
+uint32_t pythonxm::RxAlgo::programIterations(Algorithm::Id algorithm)
 {
     return base(algorithm)->ProgramIterations;
 }
 
 
-uint32_t xmrig::RxAlgo::programSize(Algorithm::Id algorithm)
+uint32_t pythonxm::RxAlgo::programSize(Algorithm::Id algorithm)
 {
     return base(algorithm)->ProgramSize;
 }

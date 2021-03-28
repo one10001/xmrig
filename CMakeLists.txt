@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.12)
-project(xmrig)
+project(pythonxm)
 
 option(WITH_HWLOC           "Enable hwloc support" ON)
 option(WITH_CN_LITE         "Enable CryptoNight-Lite algorithms family" ON)
@@ -107,7 +107,7 @@ set(SOURCES
     src/net/Network.cpp
     src/net/strategies/DonateStrategy.cpp
     src/Summary.cpp
-    src/xmrig.cpp
+    src/pythonxm.cpp
    )
 
 set(SOURCES_CRYPTO

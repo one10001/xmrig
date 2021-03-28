@@ -1,6 +1,6 @@
-/* XMRig
+/* PythonXM
  * Copyright (c) 2018-2020 SChernykh   <https://github.com/SChernykh>
- * Copyright (c) 2016-2020 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright (c) 2016-2020 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -25,13 +25,13 @@
 
 
 #ifdef SIGUSR1
-static const int signums[xmrig::Signals::kSignalsCount] = { SIGHUP, SIGINT, SIGTERM, SIGUSR1 };
+static const int signums[pythonxm::Signals::kSignalsCount] = { SIGHUP, SIGINT, SIGTERM, SIGUSR1 };
 #else
-static const int signums[xmrig::Signals::kSignalsCount] = { SIGHUP, SIGINT, SIGTERM };
+static const int signums[pythonxm::Signals::kSignalsCount] = { SIGHUP, SIGINT, SIGTERM };
 #endif
 
 
-xmrig::Signals::Signals(ISignalListener *listener)
+pythonxm::Signals::Signals(ISignalListener *listener)
     : m_listener(listener)
 {
 #   ifndef XMRIG_OS_WIN
@@ -50,7 +50,7 @@ xmrig::Signals::Signals(ISignalListener *listener)
 }
 
 
-xmrig::Signals::~Signals()
+pythonxm::Signals::~Signals()
 {
     for (auto signal : m_signals) {
         Handle::close(signal);
@@ -58,7 +58,7 @@ xmrig::Signals::~Signals()
 }
 
 
-void xmrig::Signals::onSignal(uv_signal_t *handle, int signum)
+void pythonxm::Signals::onSignal(uv_signal_t *handle, int signum)
 {
     switch (signum)
     {

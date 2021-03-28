@@ -1,4 +1,4 @@
-/* XMRig
+/* PythonXM
  * Copyright 2010      Jeff Garzik <jgarzik@pobox.com>
  * Copyright 2012-2014 pooler      <pooler@litecoinpool.org>
  * Copyright 2014      Lucas Jones <https://github.com/lucasjones>
@@ -6,7 +6,7 @@
  * Copyright 2016      Jay D Dee   <jayddee246@gmail.com>
  * Copyright 2017-2018 XMR-Stak    <https://github.com/fireice-uk>, <https://github.com/psychocrypt>
  * Copyright 2018-2020 SChernykh   <https://github.com/SChernykh>
- * Copyright 2016-2020 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright 2016-2020 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -61,7 +61,7 @@
 #endif
 
 
-namespace xmrig {
+namespace pythonxm {
 
 
 extern template class Threads<CpuThreads>;
@@ -218,10 +218,10 @@ public:
 };
 
 
-} // namespace xmrig
+} // namespace pythonxm
 
 
-const char *xmrig::backend_tag(uint32_t backend)
+const char *pythonxm::backend_tag(uint32_t backend)
 {
 #   ifdef XMRIG_FEATURE_OPENCL
     if (backend == Nonce::OPENCL) {
@@ -239,65 +239,65 @@ const char *xmrig::backend_tag(uint32_t backend)
 }
 
 
-const char *xmrig::cpu_tag()
+const char *pythonxm::cpu_tag()
 {
     return Tags::cpu();
 }
 
 
-xmrig::CpuBackend::CpuBackend(Controller *controller) :
+pythonxm::CpuBackend::CpuBackend(Controller *controller) :
     d_ptr(new CpuBackendPrivate(controller))
 {
     d_ptr->workers.setBackend(this);
 }
 
 
-xmrig::CpuBackend::~CpuBackend()
+pythonxm::CpuBackend::~CpuBackend()
 {
     delete d_ptr;
 }
 
 
-bool xmrig::CpuBackend::isEnabled() const
+bool pythonxm::CpuBackend::isEnabled() const
 {
     return d_ptr->controller->config()->cpu().isEnabled();
 }
 
 
-bool xmrig::CpuBackend::isEnabled(const Algorithm &algorithm) const
+bool pythonxm::CpuBackend::isEnabled(const Algorithm &algorithm) const
 {
     return !d_ptr->controller->config()->cpu().threads().get(algorithm).isEmpty();
 }
 
 
-bool xmrig::CpuBackend::tick(uint64_t ticks)
+bool pythonxm::CpuBackend::tick(uint64_t ticks)
 {
     return d_ptr->workers.tick(ticks);
 }
 
 
-const xmrig::Hashrate *xmrig::CpuBackend::hashrate() const
+const pythonxm::Hashrate *pythonxm::CpuBackend::hashrate() const
 {
     return d_ptr->workers.hashrate();
 }
 
 
-const xmrig::String &xmrig::CpuBackend::profileName() const
+const pythonxm::String &pythonxm::CpuBackend::profileName() const
 {
     return d_ptr->profileName;
 }
 
 
-const xmrig::String &xmrig::CpuBackend::type() const
+const pythonxm::String &pythonxm::CpuBackend::type() const
 {
     return kType;
 }
 
 
-void xmrig::CpuBackend::prepare(const Job &nextJob)
+void pythonxm::CpuBackend::prepare(const Job &nextJob)
 {
 #   ifdef XMRIG_ALGO_ARGON2
-    const xmrig::Algorithm::Family f = nextJob.algorithm().family();
+    const pythonxm::Algorithm::Family f = nextJob.algorithm().family();
     if ((f == Algorithm::ARGON2) || (f == Algorithm::RANDOM_X)) {
         if (argon2::Impl::select(d_ptr->controller->config()->cpu().argon2Impl())) {
             LOG_INFO("%s use " WHITE_BOLD("argon2") " implementation " CSI "1;%dm" "%s",
@@ -311,7 +311,7 @@ void xmrig::CpuBackend::prepare(const Job &nextJob)
 }
 
 
-void xmrig::CpuBackend::printHashrate(bool details)
+void pythonxm::CpuBackend::printHashrate(bool details)
 {
     if (!details || !hashrate()) {
         return;
@@ -344,12 +344,12 @@ void xmrig::CpuBackend::printHashrate(bool details)
 }
 
 
-void xmrig::CpuBackend::printHealth()
+void pythonxm::CpuBackend::printHealth()
 {
 }
 
 
-void xmrig::CpuBackend::setJob(const Job &job)
+void pythonxm::CpuBackend::setJob(const Job &job)
 {
     if (!isEnabled()) {
         return stop();
@@ -384,7 +384,7 @@ void xmrig::CpuBackend::setJob(const Job &job)
 }
 
 
-void xmrig::CpuBackend::start(IWorker *worker, bool ready)
+void pythonxm::CpuBackend::start(IWorker *worker, bool ready)
 {
     mutex.lock();
 
@@ -400,7 +400,7 @@ void xmrig::CpuBackend::start(IWorker *worker, bool ready)
 }
 
 
-void xmrig::CpuBackend::stop()
+void pythonxm::CpuBackend::stop()
 {
     if (d_ptr->threads.empty()) {
         return;
@@ -416,7 +416,7 @@ void xmrig::CpuBackend::stop()
 
 
 #ifdef XMRIG_FEATURE_API
-rapidjson::Value xmrig::CpuBackend::toJSON(rapidjson::Document &doc) const
+rapidjson::Value pythonxm::CpuBackend::toJSON(rapidjson::Document &doc) const
 {
     using namespace rapidjson;
     auto &allocator         = doc.GetAllocator();
@@ -475,7 +475,7 @@ rapidjson::Value xmrig::CpuBackend::toJSON(rapidjson::Document &doc) const
 }
 
 
-void xmrig::CpuBackend::handleRequest(IApiRequest &request)
+void pythonxm::CpuBackend::handleRequest(IApiRequest &request)
 {
     if (request.type() == IApiRequest::REQ_SUMMARY) {
         request.reply().AddMember("hugepages", d_ptr->hugePages(request.version(), request.doc()), request.doc().GetAllocator());
@@ -485,13 +485,13 @@ void xmrig::CpuBackend::handleRequest(IApiRequest &request)
 
 
 #ifdef XMRIG_FEATURE_BENCHMARK
-xmrig::Benchmark *xmrig::CpuBackend::benchmark() const
+pythonxm::Benchmark *pythonxm::CpuBackend::benchmark() const
 {
     return d_ptr->benchmark.get();
 }
 
 
-void xmrig::CpuBackend::printBenchProgress() const
+void pythonxm::CpuBackend::printBenchProgress() const
 {
     if (d_ptr->benchmark) {
         d_ptr->benchmark->printProgress();

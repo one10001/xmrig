@@ -1,6 +1,6 @@
-/* XMRig
+/* PythonXM
  * Copyright (c) 2018-2020 SChernykh   <https://github.com/SChernykh>
- * Copyright (c) 2016-2020 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright (c) 2016-2020 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -26,14 +26,14 @@
 #include <istream>
 
 
-namespace xmrig {
+namespace pythonxm {
 
 static const rapidjson::Value kNullValue;
 
 }
 
 
-bool xmrig::Json::getBool(const rapidjson::Value &obj, const char *key, bool defaultValue)
+bool pythonxm::Json::getBool(const rapidjson::Value &obj, const char *key, bool defaultValue)
 {
     if (isEmpty(obj)) {
         return defaultValue;
@@ -48,13 +48,13 @@ bool xmrig::Json::getBool(const rapidjson::Value &obj, const char *key, bool def
 }
 
 
-bool xmrig::Json::isEmpty(const rapidjson::Value &obj)
+bool pythonxm::Json::isEmpty(const rapidjson::Value &obj)
 {
     return !obj.IsObject() || obj.ObjectEmpty();
 }
 
 
-const char *xmrig::Json::getString(const rapidjson::Value &obj, const char *key, const char *defaultValue)
+const char *pythonxm::Json::getString(const rapidjson::Value &obj, const char *key, const char *defaultValue)
 {
     if (isEmpty(obj)) {
         return defaultValue;
@@ -69,7 +69,7 @@ const char *xmrig::Json::getString(const rapidjson::Value &obj, const char *key,
 }
 
 
-const rapidjson::Value &xmrig::Json::getArray(const rapidjson::Value &obj, const char *key)
+const rapidjson::Value &pythonxm::Json::getArray(const rapidjson::Value &obj, const char *key)
 {
     if (isEmpty(obj)) {
         return kNullValue;
@@ -84,7 +84,7 @@ const rapidjson::Value &xmrig::Json::getArray(const rapidjson::Value &obj, const
 }
 
 
-const rapidjson::Value &xmrig::Json::getObject(const rapidjson::Value &obj, const char *key)
+const rapidjson::Value &pythonxm::Json::getObject(const rapidjson::Value &obj, const char *key)
 {
     if (isEmpty(obj)) {
         return kNullValue;
@@ -99,7 +99,7 @@ const rapidjson::Value &xmrig::Json::getObject(const rapidjson::Value &obj, cons
 }
 
 
-const rapidjson::Value &xmrig::Json::getValue(const rapidjson::Value &obj, const char *key)
+const rapidjson::Value &pythonxm::Json::getValue(const rapidjson::Value &obj, const char *key)
 {
     if (isEmpty(obj)) {
         return kNullValue;
@@ -114,7 +114,7 @@ const rapidjson::Value &xmrig::Json::getValue(const rapidjson::Value &obj, const
 }
 
 
-double xmrig::Json::getDouble(const rapidjson::Value &obj, const char *key, double defaultValue)
+double pythonxm::Json::getDouble(const rapidjson::Value &obj, const char *key, double defaultValue)
 {
     if (isEmpty(obj)) {
         return defaultValue;
@@ -129,7 +129,7 @@ double xmrig::Json::getDouble(const rapidjson::Value &obj, const char *key, doub
 }
 
 
-int xmrig::Json::getInt(const rapidjson::Value &obj, const char *key, int defaultValue)
+int pythonxm::Json::getInt(const rapidjson::Value &obj, const char *key, int defaultValue)
 {
     if (isEmpty(obj)) {
         return defaultValue;
@@ -144,7 +144,7 @@ int xmrig::Json::getInt(const rapidjson::Value &obj, const char *key, int defaul
 }
 
 
-int64_t xmrig::Json::getInt64(const rapidjson::Value &obj, const char *key, int64_t defaultValue)
+int64_t pythonxm::Json::getInt64(const rapidjson::Value &obj, const char *key, int64_t defaultValue)
 {
     if (isEmpty(obj)) {
         return defaultValue;
@@ -159,7 +159,7 @@ int64_t xmrig::Json::getInt64(const rapidjson::Value &obj, const char *key, int6
 }
 
 
-xmrig::String xmrig::Json::getString(const rapidjson::Value &obj, const char *key, size_t maxSize)
+pythonxm::String pythonxm::Json::getString(const rapidjson::Value &obj, const char *key, size_t maxSize)
 {
     if (isEmpty(obj)) {
         return {};
@@ -178,7 +178,7 @@ xmrig::String xmrig::Json::getString(const rapidjson::Value &obj, const char *ke
 }
 
 
-uint64_t xmrig::Json::getUint64(const rapidjson::Value &obj, const char *key, uint64_t defaultValue)
+uint64_t pythonxm::Json::getUint64(const rapidjson::Value &obj, const char *key, uint64_t defaultValue)
 {
     if (isEmpty(obj)) {
         return defaultValue;
@@ -193,7 +193,7 @@ uint64_t xmrig::Json::getUint64(const rapidjson::Value &obj, const char *key, ui
 }
 
 
-unsigned xmrig::Json::getUint(const rapidjson::Value &obj, const char *key, unsigned defaultValue)
+unsigned pythonxm::Json::getUint(const rapidjson::Value &obj, const char *key, unsigned defaultValue)
 {
     if (isEmpty(obj)) {
         return defaultValue;
@@ -208,7 +208,7 @@ unsigned xmrig::Json::getUint(const rapidjson::Value &obj, const char *key, unsi
 }
 
 
-rapidjson::Value xmrig::Json::normalize(double value, bool zero)
+rapidjson::Value pythonxm::Json::normalize(double value, bool zero)
 {
     using namespace rapidjson;
 
@@ -220,7 +220,7 @@ rapidjson::Value xmrig::Json::normalize(double value, bool zero)
 }
 
 
-bool xmrig::Json::convertOffset(std::istream &ifs, size_t offset, size_t &line, size_t &pos, std::vector<std::string> &s)
+bool pythonxm::Json::convertOffset(std::istream &ifs, size_t offset, size_t &line, size_t &pos, std::vector<std::string> &s)
 {
     std::string prev_t;
     std::string t;
@@ -251,12 +251,12 @@ bool xmrig::Json::convertOffset(std::istream &ifs, size_t offset, size_t &line, 
 }
 
 
-xmrig::JsonReader::JsonReader() :
+pythonxm::JsonReader::JsonReader() :
     m_obj(kNullValue)
 {}
 
 
-bool xmrig::JsonReader::isEmpty() const
+bool pythonxm::JsonReader::isEmpty() const
 {
     return Json::isEmpty(m_obj);
 }

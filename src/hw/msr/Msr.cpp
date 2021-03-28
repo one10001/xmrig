@@ -1,6 +1,6 @@
-/* XMRig
+/* PythonXM
  * Copyright (c) 2018-2021 SChernykh   <https://github.com/SChernykh>
- * Copyright (c) 2016-2021 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright (c) 2016-2021 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -21,25 +21,25 @@
 #include "base/io/log/Log.h"
 
 
-namespace xmrig {
+namespace pythonxm {
 
 
 static const char *kTag = YELLOW_BG_BOLD(WHITE_BOLD_S " msr     ");
 static std::weak_ptr<Msr> instance;
 
 
-} // namespace xmrig
+} // namespace pythonxm
 
 
 
-const char *xmrig::Msr::tag()
+const char *pythonxm::Msr::tag()
 {
     return kTag;
 }
 
 
 
-std::shared_ptr<xmrig::Msr> xmrig::Msr::get()
+std::shared_ptr<pythonxm::Msr> pythonxm::Msr::get()
 {
     auto msr = instance.lock();
     if (!msr) {
@@ -55,7 +55,7 @@ std::shared_ptr<xmrig::Msr> xmrig::Msr::get()
 }
 
 
-bool xmrig::Msr::write(uint32_t reg, uint64_t value, int32_t cpu, uint64_t mask, bool verbose)
+bool pythonxm::Msr::write(uint32_t reg, uint64_t value, int32_t cpu, uint64_t mask, bool verbose)
 {
     if (mask != MsrItem::kNoMask) {
         uint64_t old_value;
@@ -73,7 +73,7 @@ bool xmrig::Msr::write(uint32_t reg, uint64_t value, int32_t cpu, uint64_t mask,
 }
 
 
-xmrig::MsrItem xmrig::Msr::read(uint32_t reg, int32_t cpu, bool verbose) const
+pythonxm::MsrItem pythonxm::Msr::read(uint32_t reg, int32_t cpu, bool verbose) const
 {
     uint64_t value = 0;
     if (rdmsr(reg, cpu, value)) {

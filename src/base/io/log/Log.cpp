@@ -1,7 +1,7 @@
-/* XMRig
+/* PythonXM
  * Copyright (c) 2019      Spudz76     <https://github.com/Spudz76>
  * Copyright (c) 2018-2020 SChernykh   <https://github.com/SChernykh>
- * Copyright (c) 2016-2020 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright (c) 2016-2020 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -40,7 +40,7 @@
 #include "base/tools/Object.h"
 
 
-namespace xmrig {
+namespace pythonxm {
 
 
 static const char *colors_map[] = {
@@ -199,11 +199,11 @@ LogPrivate *Log::d          = nullptr;
 uint32_t Log::m_verbose     = 0;
 
 
-} /* namespace xmrig */
+} /* namespace pythonxm */
 
 
 
-void xmrig::Log::add(ILogBackend *backend)
+void pythonxm::Log::add(ILogBackend *backend)
 {
     assert(d != nullptr);
 
@@ -213,20 +213,20 @@ void xmrig::Log::add(ILogBackend *backend)
 }
 
 
-void xmrig::Log::destroy()
+void pythonxm::Log::destroy()
 {
     delete d;
     d = nullptr;
 }
 
 
-void xmrig::Log::init()
+void pythonxm::Log::init()
 {
     d = new LogPrivate();
 }
 
 
-void xmrig::Log::print(const char *fmt, ...)
+void pythonxm::Log::print(const char *fmt, ...)
 {
     if (!d) {
         return;
@@ -241,7 +241,7 @@ void xmrig::Log::print(const char *fmt, ...)
 }
 
 
-void xmrig::Log::print(Level level, const char *fmt, ...)
+void pythonxm::Log::print(Level level, const char *fmt, ...)
 {
     if (!d) {
         return;

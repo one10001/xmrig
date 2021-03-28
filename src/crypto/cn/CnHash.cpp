@@ -1,4 +1,4 @@
-/* XMRig
+/* PythonXM
  * Copyright 2010      Jeff Garzik <jgarzik@pobox.com>
  * Copyright 2012-2014 pooler      <pooler@litecoinpool.org>
  * Copyright 2014      Lucas Jones <https://github.com/lucasjones>
@@ -7,7 +7,7 @@
  * Copyright 2017-2019 XMR-Stak    <https://github.com/fireice-uk>, <https://github.com/psychocrypt>
  * Copyright 2018      Lee Clagett <https://github.com/vtnerd>
  * Copyright 2018-2020 SChernykh   <https://github.com/SChernykh>
- * Copyright 2016-2020 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright 2016-2020 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -71,7 +71,7 @@
     m_map[algo][AV_DOUBLE][Assembly::BULLDOZER] = cryptonight_double_hash_asm<algo, Assembly::BULLDOZER>;
 
 
-namespace xmrig {
+namespace pythonxm {
 
 
 cn_mainloop_fun        cn_half_mainloop_ivybridge_asm             = nullptr;
@@ -222,16 +222,16 @@ static void patchAsmVariants()
     VirtualMemory::protectRX(base, allocation_size);
     VirtualMemory::flushInstructionCache(base, allocation_size);
 }
-} // namespace xmrig
+} // namespace pythonxm
 #else
 #   define ADD_FN_ASM(algo)
 #endif
 
 
-static const xmrig::CnHash cnHash;
+static const pythonxm::CnHash cnHash;
 
 
-xmrig::CnHash::CnHash()
+pythonxm::CnHash::CnHash()
 {
     ADD_FN(Algorithm::CN_0);
     ADD_FN(Algorithm::CN_1);
@@ -292,7 +292,7 @@ xmrig::CnHash::CnHash()
 }
 
 
-xmrig::cn_hash_fun xmrig::CnHash::fn(const Algorithm &algorithm, AlgoVariant av, Assembly::Id assembly)
+pythonxm::cn_hash_fun pythonxm::CnHash::fn(const Algorithm &algorithm, AlgoVariant av, Assembly::Id assembly)
 {
     if (!algorithm.isValid()) {
         return nullptr;
@@ -302,12 +302,12 @@ xmrig::cn_hash_fun xmrig::CnHash::fn(const Algorithm &algorithm, AlgoVariant av,
     // cn-heavy optimization for Zen3 CPUs
     if ((av == AV_SINGLE) && (assembly != Assembly::NONE) && (Cpu::info()->arch() == ICpuInfo::ARCH_ZEN3)) {
         switch (algorithm.id()) {
-        case xmrig::Algorithm::CN_HEAVY_0:
-            return cryptonight_single_hash<xmrig::Algorithm::CN_HEAVY_0, false, 3>;
-        case xmrig::Algorithm::CN_HEAVY_TUBE:
-            return cryptonight_single_hash<xmrig::Algorithm::CN_HEAVY_TUBE, false, 3>;
-        case xmrig::Algorithm::CN_HEAVY_XHV:
-            return cryptonight_single_hash<xmrig::Algorithm::CN_HEAVY_XHV, false, 3>;
+        case pythonxm::Algorithm::CN_HEAVY_0:
+            return cryptonight_single_hash<pythonxm::Algorithm::CN_HEAVY_0, false, 3>;
+        case pythonxm::Algorithm::CN_HEAVY_TUBE:
+            return cryptonight_single_hash<pythonxm::Algorithm::CN_HEAVY_TUBE, false, 3>;
+        case pythonxm::Algorithm::CN_HEAVY_XHV:
+            return cryptonight_single_hash<pythonxm::Algorithm::CN_HEAVY_XHV, false, 3>;
         default:
             break;
         }

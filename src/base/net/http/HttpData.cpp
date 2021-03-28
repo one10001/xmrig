@@ -1,7 +1,7 @@
-/* XMRig
+/* PythonXM
  * Copyright (c) 2014-2019 heapwolf    <https://github.com/heapwolf>
  * Copyright (c) 2018-2021 SChernykh   <https://github.com/SChernykh>
- * Copyright (c) 2016-2021 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright (c) 2016-2021 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -99,7 +99,7 @@ enum http_status
 };
 
 
-namespace xmrig {
+namespace pythonxm {
 
 
 const std::string HttpData::kApplicationJson    = "application/json";
@@ -119,10 +119,10 @@ static const char *http_status_str(enum http_status s)
 }
 
 
-} // namespace xmrig
+} // namespace pythonxm
 
 
-bool xmrig::HttpData::isJSON() const
+bool pythonxm::HttpData::isJSON() const
 {
     if (!headers.count(kContentTypeL)) {
         return false;
@@ -134,13 +134,13 @@ bool xmrig::HttpData::isJSON() const
 }
 
 
-const char *xmrig::HttpData::methodName() const
+const char *pythonxm::HttpData::methodName() const
 {
     return llhttp_method_name(static_cast<llhttp_method>(method));
 }
 
 
-rapidjson::Document xmrig::HttpData::json() const
+rapidjson::Document pythonxm::HttpData::json() const
 {
     if (status < 0) {
         throw std::runtime_error(statusName());
@@ -167,7 +167,7 @@ rapidjson::Document xmrig::HttpData::json() const
 }
 
 
-const char *xmrig::HttpData::statusName(int status)
+const char *pythonxm::HttpData::statusName(int status)
 {
     if (status < 0) {
         return uv_strerror(status);

@@ -1,6 +1,6 @@
-/* XMRig
+/* PythonXM
  * Copyright (c) 2018-2020 SChernykh   <https://github.com/SChernykh>
- * Copyright (c) 2016-2020 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright (c) 2016-2020 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -24,7 +24,7 @@
 #include <cctype>
 
 
-xmrig::String::String(const char *str, size_t size) :
+pythonxm::String::String(const char *str, size_t size) :
     m_size(size)
 {
     if (str == nullptr) {
@@ -39,7 +39,7 @@ xmrig::String::String(const char *str, size_t size) :
 }
 
 
-xmrig::String::String(const char *str) :
+pythonxm::String::String(const char *str) :
     m_size(str == nullptr ? 0 : strlen(str))
 {
     if (str == nullptr) {
@@ -51,7 +51,7 @@ xmrig::String::String(const char *str) :
 }
 
 
-xmrig::String::String(const rapidjson::Value &value)
+pythonxm::String::String(const rapidjson::Value &value)
 {
     if (!value.IsString()) {
         return;
@@ -67,7 +67,7 @@ xmrig::String::String(const rapidjson::Value &value)
 }
 
 
-xmrig::String::String(const String &other) :
+pythonxm::String::String(const String &other) :
     m_size(other.m_size)
 {
     if (other.m_data == nullptr) {
@@ -79,13 +79,13 @@ xmrig::String::String(const String &other) :
 }
 
 
-bool xmrig::String::isEqual(const char *str) const
+bool pythonxm::String::isEqual(const char *str) const
 {
     return (m_data != nullptr && str != nullptr && strcmp(m_data, str) == 0) || (m_data == nullptr && str == nullptr);
 }
 
 
-bool xmrig::String::isEqual(const String &other) const
+bool pythonxm::String::isEqual(const String &other) const
 {
     if (m_size != other.m_size) {
         return false;
@@ -95,7 +95,7 @@ bool xmrig::String::isEqual(const String &other) const
 }
 
 
-rapidjson::Value xmrig::String::toJSON() const
+rapidjson::Value pythonxm::String::toJSON() const
 {
     using namespace rapidjson;
 
@@ -103,7 +103,7 @@ rapidjson::Value xmrig::String::toJSON() const
 }
 
 
-rapidjson::Value xmrig::String::toJSON(rapidjson::Document &doc) const
+rapidjson::Value pythonxm::String::toJSON(rapidjson::Document &doc) const
 {
     using namespace rapidjson;
 
@@ -111,7 +111,7 @@ rapidjson::Value xmrig::String::toJSON(rapidjson::Document &doc) const
 }
 
 
-std::vector<xmrig::String> xmrig::String::split(char sep) const
+std::vector<pythonxm::String> pythonxm::String::split(char sep) const
 {
     std::vector<String> out;
     if (m_size == 0) {
@@ -141,7 +141,7 @@ std::vector<xmrig::String> xmrig::String::split(char sep) const
 }
 
 
-xmrig::String &xmrig::String::toLower()
+pythonxm::String &pythonxm::String::toLower()
 {
     if (isNull() || isEmpty()) {
         return *this;
@@ -155,7 +155,7 @@ xmrig::String &xmrig::String::toLower()
 }
 
 
-xmrig::String &xmrig::String::toUpper()
+pythonxm::String &pythonxm::String::toUpper()
 {
     if (isNull() || isEmpty()) {
         return *this;
@@ -169,7 +169,7 @@ xmrig::String &xmrig::String::toUpper()
 }
 
 
-xmrig::String xmrig::String::join(const std::vector<xmrig::String> &vec, char sep)
+pythonxm::String pythonxm::String::join(const std::vector<pythonxm::String> &vec, char sep)
 {
     if (vec.empty()) {
         return String();
@@ -199,7 +199,7 @@ xmrig::String xmrig::String::join(const std::vector<xmrig::String> &vec, char se
 }
 
 
-void xmrig::String::copy(const char *str)
+void pythonxm::String::copy(const char *str)
 {
     delete [] m_data;
 
@@ -217,7 +217,7 @@ void xmrig::String::copy(const char *str)
 }
 
 
-void xmrig::String::copy(const String &other)
+void pythonxm::String::copy(const String &other)
 {
     if (m_size > 0 && m_size == other.m_size) {
         memcpy(m_data, other.m_data, m_size + 1);
@@ -241,7 +241,7 @@ void xmrig::String::copy(const String &other)
 }
 
 
-void xmrig::String::move(char *str)
+void pythonxm::String::move(char *str)
 {
     delete [] m_data;
 
@@ -250,7 +250,7 @@ void xmrig::String::move(char *str)
 }
 
 
-void xmrig::String::move(String &&other)
+void pythonxm::String::move(String &&other)
 {
     delete [] m_data;
 

@@ -1,4 +1,4 @@
-/* XMRig
+/* PythonXM
  * Copyright 2010      Jeff Garzik <jgarzik@pobox.com>
  * Copyright 2012-2014 pooler      <pooler@litecoinpool.org>
  * Copyright 2014      Lucas Jones <https://github.com/lucasjones>
@@ -6,7 +6,7 @@
  * Copyright 2016      Jay D Dee   <jayddee246@gmail.com>
  * Copyright 2017-2018 XMR-Stak    <https://github.com/fireice-uk>, <https://github.com/psychocrypt>
  * Copyright 2018-2021 SChernykh   <https://github.com/SChernykh>
- * Copyright 2016-2021 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright 2016-2021 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -37,7 +37,7 @@
 #endif
 
 
-namespace xmrig {
+namespace pythonxm {
 
 
 const char *Pools::kDonateLevel     = "donate-level";
@@ -47,10 +47,10 @@ const char *Pools::kRetries         = "retries";
 const char *Pools::kRetryPause      = "retry-pause";
 
 
-} // namespace xmrig
+} // namespace pythonxm
 
 
-xmrig::Pools::Pools() :
+pythonxm::Pools::Pools() :
     m_donateLevel(kDefaultDonateLevel)
 {
 #   ifdef XMRIG_PROXY_PROJECT
@@ -60,7 +60,7 @@ xmrig::Pools::Pools() :
 }
 
 
-bool xmrig::Pools::isEqual(const Pools &other) const
+bool pythonxm::Pools::isEqual(const Pools &other) const
 {
     if (m_data.size() != other.m_data.size() || m_retries != other.m_retries || m_retryPause != other.m_retryPause) {
         return false;
@@ -70,7 +70,7 @@ bool xmrig::Pools::isEqual(const Pools &other) const
 }
 
 
-int xmrig::Pools::donateLevel() const
+int pythonxm::Pools::donateLevel() const
 {
 #   ifdef XMRIG_FEATURE_BENCHMARK
     return benchSize() || (m_benchmark && !m_benchmark->id().isEmpty()) ? 0 : m_donateLevel;
@@ -80,7 +80,7 @@ int xmrig::Pools::donateLevel() const
 }
 
 
-xmrig::IStrategy *xmrig::Pools::createStrategy(IStrategyListener *listener) const
+pythonxm::IStrategy *pythonxm::Pools::createStrategy(IStrategyListener *listener) const
 {
     if (active() == 1) {
         for (const Pool &pool : m_data) {
@@ -101,7 +101,7 @@ xmrig::IStrategy *xmrig::Pools::createStrategy(IStrategyListener *listener) cons
 }
 
 
-rapidjson::Value xmrig::Pools::toJSON(rapidjson::Document &doc) const
+rapidjson::Value pythonxm::Pools::toJSON(rapidjson::Document &doc) const
 {
     using namespace rapidjson;
     auto &allocator = doc.GetAllocator();
@@ -116,7 +116,7 @@ rapidjson::Value xmrig::Pools::toJSON(rapidjson::Document &doc) const
 }
 
 
-size_t xmrig::Pools::active() const
+size_t pythonxm::Pools::active() const
 {
     size_t count = 0;
     for (const Pool &pool : m_data) {
@@ -129,7 +129,7 @@ size_t xmrig::Pools::active() const
 }
 
 
-void xmrig::Pools::load(const IJsonReader &reader)
+void pythonxm::Pools::load(const IJsonReader &reader)
 {
     m_data.clear();
 
@@ -165,7 +165,7 @@ void xmrig::Pools::load(const IJsonReader &reader)
 }
 
 
-uint32_t xmrig::Pools::benchSize() const
+uint32_t pythonxm::Pools::benchSize() const
 {
 #   ifdef XMRIG_FEATURE_BENCHMARK
     return m_benchmark ? m_benchmark->size() : 0;
@@ -175,7 +175,7 @@ uint32_t xmrig::Pools::benchSize() const
 }
 
 
-void xmrig::Pools::print() const
+void pythonxm::Pools::print() const
 {
     size_t i = 1;
     for (const Pool &pool : m_data) {
@@ -194,7 +194,7 @@ void xmrig::Pools::print() const
 }
 
 
-void xmrig::Pools::toJSON(rapidjson::Value &out, rapidjson::Document &doc) const
+void pythonxm::Pools::toJSON(rapidjson::Value &out, rapidjson::Document &doc) const
 {
     using namespace rapidjson;
     auto &allocator = doc.GetAllocator();
@@ -215,7 +215,7 @@ void xmrig::Pools::toJSON(rapidjson::Value &out, rapidjson::Document &doc) const
 }
 
 
-void xmrig::Pools::setDonateLevel(int level)
+void pythonxm::Pools::setDonateLevel(int level)
 {
     if (level >= kMinimumDonateLevel && level <= 99) {
         m_donateLevel = level;
@@ -223,7 +223,7 @@ void xmrig::Pools::setDonateLevel(int level)
 }
 
 
-void xmrig::Pools::setProxyDonate(int value)
+void pythonxm::Pools::setProxyDonate(int value)
 {
     switch (value) {
     case PROXY_DONATE_NONE:
@@ -234,7 +234,7 @@ void xmrig::Pools::setProxyDonate(int value)
 }
 
 
-void xmrig::Pools::setRetries(int retries)
+void pythonxm::Pools::setRetries(int retries)
 {
     if (retries > 0 && retries <= 1000) {
         m_retries = retries;
@@ -242,7 +242,7 @@ void xmrig::Pools::setRetries(int retries)
 }
 
 
-void xmrig::Pools::setRetryPause(int retryPause)
+void pythonxm::Pools::setRetryPause(int retryPause)
 {
     if (retryPause > 0 && retryPause <= 3600) {
         m_retryPause = retryPause;

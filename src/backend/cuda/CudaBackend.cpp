@@ -1,4 +1,4 @@
-/* XMRig
+/* PythonXM
  * Copyright 2010      Jeff Garzik <jgarzik@pobox.com>
  * Copyright 2012-2014 pooler      <pooler@litecoinpool.org>
  * Copyright 2014      Lucas Jones <https://github.com/lucasjones>
@@ -6,7 +6,7 @@
  * Copyright 2016      Jay D Dee   <jayddee246@gmail.com>
  * Copyright 2017-2018 XMR-Stak    <https://github.com/fireice-uk>, <https://github.com/psychocrypt>
  * Copyright 2018-2020 SChernykh   <https://github.com/SChernykh>
- * Copyright 2016-2020 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright 2016-2020 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -66,11 +66,11 @@
 #ifdef XMRIG_FEATURE_NVML
 #include "backend/cuda/wrappers/NvmlLib.h"
 
-namespace xmrig { static const char *kNvmlLabel = "NVML"; }
+namespace pythonxm { static const char *kNvmlLabel = "NVML"; }
 #endif
 
 
-namespace xmrig {
+namespace pythonxm {
 
 
 extern template class Threads<CudaThreads>;
@@ -311,23 +311,23 @@ public:
 };
 
 
-} // namespace xmrig
+} // namespace pythonxm
 
 
-const char *xmrig::cuda_tag()
+const char *pythonxm::cuda_tag()
 {
     return Tags::nvidia();
 }
 
 
-xmrig::CudaBackend::CudaBackend(Controller *controller) :
+pythonxm::CudaBackend::CudaBackend(Controller *controller) :
     d_ptr(new CudaBackendPrivate(controller))
 {
     d_ptr->workers.setBackend(this);
 }
 
 
-xmrig::CudaBackend::~CudaBackend()
+pythonxm::CudaBackend::~CudaBackend()
 {
     delete d_ptr;
 
@@ -339,42 +339,42 @@ xmrig::CudaBackend::~CudaBackend()
 }
 
 
-bool xmrig::CudaBackend::isEnabled() const
+bool pythonxm::CudaBackend::isEnabled() const
 {
     return d_ptr->controller->config()->cuda().isEnabled() && CudaLib::isInitialized() && !d_ptr->devices.empty();;
 }
 
 
-bool xmrig::CudaBackend::isEnabled(const Algorithm &algorithm) const
+bool pythonxm::CudaBackend::isEnabled(const Algorithm &algorithm) const
 {
     return !d_ptr->controller->config()->cuda().threads().get(algorithm).isEmpty();
 }
 
 
-const xmrig::Hashrate *xmrig::CudaBackend::hashrate() const
+const pythonxm::Hashrate *pythonxm::CudaBackend::hashrate() const
 {
     return d_ptr->workers.hashrate();
 }
 
 
-const xmrig::String &xmrig::CudaBackend::profileName() const
+const pythonxm::String &pythonxm::CudaBackend::profileName() const
 {
     return d_ptr->profileName;
 }
 
 
-const xmrig::String &xmrig::CudaBackend::type() const
+const pythonxm::String &pythonxm::CudaBackend::type() const
 {
     return kType;
 }
 
 
-void xmrig::CudaBackend::execCommand(char)
+void pythonxm::CudaBackend::execCommand(char)
 {
 }
 
 
-void xmrig::CudaBackend::prepare(const Job &job)
+void pythonxm::CudaBackend::prepare(const Job &job)
 {
     if (d_ptr) {
         d_ptr->workers.jobEarlyNotification(job);
@@ -382,7 +382,7 @@ void xmrig::CudaBackend::prepare(const Job &job)
 }
 
 
-void xmrig::CudaBackend::printHashrate(bool details)
+void pythonxm::CudaBackend::printHashrate(bool details)
 {
     if (!details || !hashrate()) {
         return;
@@ -428,7 +428,7 @@ void xmrig::CudaBackend::printHashrate(bool details)
 }
 
 
-void xmrig::CudaBackend::printHealth()
+void pythonxm::CudaBackend::printHealth()
 {
 #   ifdef XMRIG_FEATURE_NVML
     d_ptr->printHealth();
@@ -436,7 +436,7 @@ void xmrig::CudaBackend::printHealth()
 }
 
 
-void xmrig::CudaBackend::setJob(const Job &job)
+void pythonxm::CudaBackend::setJob(const Job &job)
 {
     const auto &cuda = d_ptr->controller->config()->cuda();
     if (cuda.isEnabled()) {
@@ -468,7 +468,7 @@ void xmrig::CudaBackend::setJob(const Job &job)
 }
 
 
-void xmrig::CudaBackend::start(IWorker *worker, bool ready)
+void pythonxm::CudaBackend::start(IWorker *worker, bool ready)
 {
     mutex.lock();
 
@@ -486,7 +486,7 @@ void xmrig::CudaBackend::start(IWorker *worker, bool ready)
 }
 
 
-void xmrig::CudaBackend::stop()
+void pythonxm::CudaBackend::stop()
 {
     if (d_ptr->threads.empty()) {
         return;
@@ -501,14 +501,14 @@ void xmrig::CudaBackend::stop()
 }
 
 
-bool xmrig::CudaBackend::tick(uint64_t ticks)
+bool pythonxm::CudaBackend::tick(uint64_t ticks)
 {
     return d_ptr->workers.tick(ticks);
 }
 
 
 #ifdef XMRIG_FEATURE_API
-rapidjson::Value xmrig::CudaBackend::toJSON(rapidjson::Document &doc) const
+rapidjson::Value pythonxm::CudaBackend::toJSON(rapidjson::Document &doc) const
 {
     using namespace rapidjson;
     auto &allocator = doc.GetAllocator();
@@ -560,7 +560,7 @@ rapidjson::Value xmrig::CudaBackend::toJSON(rapidjson::Document &doc) const
 }
 
 
-void xmrig::CudaBackend::handleRequest(IApiRequest &)
+void pythonxm::CudaBackend::handleRequest(IApiRequest &)
 {
 }
 #endif

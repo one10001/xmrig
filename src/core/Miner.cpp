@@ -1,4 +1,4 @@
-/* XMRig
+/* PythonXM
  * Copyright 2010      Jeff Garzik <jgarzik@pobox.com>
  * Copyright 2012-2014 pooler      <pooler@litecoinpool.org>
  * Copyright 2014      Lucas Jones <https://github.com/lucasjones>
@@ -6,7 +6,7 @@
  * Copyright 2016      Jay D Dee   <jayddee246@gmail.com>
  * Copyright 2017-2018 XMR-Stak    <https://github.com/fireice-uk>, <https://github.com/psychocrypt>
  * Copyright 2018-2020 SChernykh   <https://github.com/SChernykh>
- * Copyright 2016-2020 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright 2016-2020 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -73,7 +73,7 @@
 #endif
 
 
-namespace xmrig {
+namespace pythonxm {
 
 
 static std::mutex mutex;
@@ -366,11 +366,11 @@ public:
 };
 
 
-} // namespace xmrig
+} // namespace pythonxm
 
 
 
-xmrig::Miner::Miner(Controller *controller)
+pythonxm::Miner::Miner(Controller *controller)
     : d_ptr(new MinerPrivate(controller))
 {
     const int priority = controller->config()->cpu().priority();
@@ -414,37 +414,37 @@ xmrig::Miner::Miner(Controller *controller)
 }
 
 
-xmrig::Miner::~Miner()
+pythonxm::Miner::~Miner()
 {
     delete d_ptr;
 }
 
 
-bool xmrig::Miner::isEnabled() const
+bool pythonxm::Miner::isEnabled() const
 {
     return d_ptr->enabled;
 }
 
 
-bool xmrig::Miner::isEnabled(const Algorithm &algorithm) const
+bool pythonxm::Miner::isEnabled(const Algorithm &algorithm) const
 {
     return std::find(d_ptr->algorithms.begin(), d_ptr->algorithms.end(), algorithm) != d_ptr->algorithms.end();
 }
 
 
-const xmrig::Algorithms &xmrig::Miner::algorithms() const
+const pythonxm::Algorithms &pythonxm::Miner::algorithms() const
 {
     return d_ptr->algorithms;
 }
 
 
-const std::vector<xmrig::IBackend *> &xmrig::Miner::backends() const
+const std::vector<pythonxm::IBackend *> &pythonxm::Miner::backends() const
 {
     return d_ptr->backends;
 }
 
 
-xmrig::Job xmrig::Miner::job() const
+pythonxm::Job pythonxm::Miner::job() const
 {
     std::lock_guard<std::mutex> lock(mutex);
 
@@ -452,7 +452,7 @@ xmrig::Job xmrig::Miner::job() const
 }
 
 
-void xmrig::Miner::execCommand(char command)
+void pythonxm::Miner::execCommand(char command)
 {
     switch (command) {
     case 'h':
@@ -487,7 +487,7 @@ void xmrig::Miner::execCommand(char command)
 }
 
 
-void xmrig::Miner::pause()
+void pythonxm::Miner::pause()
 {
     d_ptr->active = false;
 
@@ -496,7 +496,7 @@ void xmrig::Miner::pause()
 }
 
 
-void xmrig::Miner::setEnabled(bool enabled)
+void pythonxm::Miner::setEnabled(bool enabled)
 {
     if (d_ptr->enabled == enabled) {
         return;
@@ -531,7 +531,7 @@ void xmrig::Miner::setEnabled(bool enabled)
 }
 
 
-void xmrig::Miner::setJob(const Job &job, bool donate)
+void pythonxm::Miner::setJob(const Job &job, bool donate)
 {
     for (IBackend *backend : d_ptr->backends) {
         backend->prepare(job);
@@ -573,7 +573,7 @@ void xmrig::Miner::setJob(const Job &job, bool donate)
 }
 
 
-void xmrig::Miner::stop()
+void pythonxm::Miner::stop()
 {
     Nonce::stop();
 
@@ -583,7 +583,7 @@ void xmrig::Miner::stop()
 }
 
 
-void xmrig::Miner::onConfigChanged(Config *config, Config *previousConfig)
+void pythonxm::Miner::onConfigChanged(Config *config, Config *previousConfig)
 {
     d_ptr->rebuild();
 
@@ -599,7 +599,7 @@ void xmrig::Miner::onConfigChanged(Config *config, Config *previousConfig)
 }
 
 
-void xmrig::Miner::onTimer(const Timer *)
+void pythonxm::Miner::onTimer(const Timer *)
 {
     double maxHashrate          = 0.0;
     const auto config           = d_ptr->controller->config();
@@ -656,7 +656,7 @@ void xmrig::Miner::onTimer(const Timer *)
 
 
 #ifdef XMRIG_FEATURE_API
-void xmrig::Miner::onRequest(IApiRequest &request)
+void pythonxm::Miner::onRequest(IApiRequest &request)
 {
     if (request.method() == IApiRequest::METHOD_GET) {
         if (request.type() == IApiRequest::REQ_SUMMARY) {
@@ -697,7 +697,7 @@ void xmrig::Miner::onRequest(IApiRequest &request)
 
 
 #ifdef XMRIG_ALGO_RANDOMX
-void xmrig::Miner::onDatasetReady()
+void pythonxm::Miner::onDatasetReady()
 {
     if (!Rx::isReady(job())) {
         return;

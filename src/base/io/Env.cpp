@@ -1,6 +1,6 @@
-/* XMRig
+/* PythonXM
  * Copyright (c) 2018-2021 SChernykh   <https://github.com/SChernykh>
- * Copyright (c) 2016-2021 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright (c) 2016-2021 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -41,7 +41,7 @@
 #endif
 
 
-namespace xmrig {
+namespace pythonxm {
 
 
 #ifdef XMRIG_FEATURE_ENV
@@ -68,10 +68,10 @@ static void createVariables()
 #endif
 
 
-} // namespace xmrig
+} // namespace pythonxm
 
 
-xmrig::String xmrig::Env::expand(const char *in, const std::map<String, String> &extra)
+pythonxm::String pythonxm::Env::expand(const char *in, const std::map<String, String> &extra)
 {
 #   ifdef XMRIG_FEATURE_ENV
     if (in == nullptr) {
@@ -117,7 +117,7 @@ xmrig::String xmrig::Env::expand(const char *in, const std::map<String, String> 
 }
 
 
-xmrig::String xmrig::Env::get(const String &name, const std::map<String, String> &extra)
+pythonxm::String pythonxm::Env::get(const String &name, const std::map<String, String> &extra)
 {
 #   ifdef XMRIG_FEATURE_ENV
     if (variables.empty()) {
@@ -141,7 +141,7 @@ xmrig::String xmrig::Env::get(const String &name, const std::map<String, String>
 }
 
 
-xmrig::String xmrig::Env::hostname()
+pythonxm::String pythonxm::Env::hostname()
 {
     char buf[UV_MAXHOSTNAMESIZE]{};
     size_t size = sizeof(buf);

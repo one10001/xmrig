@@ -1,6 +1,6 @@
-/* XMRig
+/* PythonXM
  * Copyright (c) 2018-2021 SChernykh   <https://github.com/SChernykh>
- * Copyright (c) 2016-2021 XMRig       <support@xmrig.com>
+ * Copyright (c) 2016-2021 PythonXM       <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -29,7 +29,7 @@ using hwloc_obj_t           = struct hwloc_obj *;
 using hwloc_topology_t      = struct hwloc_topology *;
 
 
-namespace xmrig {
+namespace pythonxm {
 
 
 class HwlocCpuInfo : public BasicCpuInfo
@@ -80,7 +80,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace pythonxm */
 
 
 #endif /* XMRIG_HWLOCCPUINFO_H */

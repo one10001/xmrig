@@ -1,4 +1,4 @@
-/* XMRig
+/* PythonXM
  * Copyright 2010      Jeff Garzik <jgarzik@pobox.com>
  * Copyright 2012-2014 pooler      <pooler@litecoinpool.org>
  * Copyright 2014      Lucas Jones <https://github.com/lucasjones>
@@ -6,7 +6,7 @@
  * Copyright 2016      Jay D Dee   <jayddee246@gmail.com>
  * Copyright 2017-2018 XMR-Stak    <https://github.com/fireice-uk>, <https://github.com/psychocrypt>
  * Copyright 2018-2020 SChernykh   <https://github.com/SChernykh>
- * Copyright 2016-2020 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright 2016-2020 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -62,7 +62,7 @@
 #include <uv.h>
 
 
-namespace xmrig {
+namespace pythonxm {
 
 
 #if defined(XMRIG_FEATURE_OPENCL) || defined(XMRIG_FEATURE_CUDA)
@@ -308,16 +308,16 @@ private:
 static JobResultsPrivate *handler = nullptr;
 
 
-} // namespace xmrig
+} // namespace pythonxm
 
 
-void xmrig::JobResults::done(const Job &job)
+void pythonxm::JobResults::done(const Job &job)
 {
     submit(JobResult(job));
 }
 
 
-void xmrig::JobResults::setListener(IJobResultListener *listener, bool hwAES)
+void pythonxm::JobResults::setListener(IJobResultListener *listener, bool hwAES)
 {
     assert(handler == nullptr);
 
@@ -325,7 +325,7 @@ void xmrig::JobResults::setListener(IJobResultListener *listener, bool hwAES)
 }
 
 
-void xmrig::JobResults::stop()
+void pythonxm::JobResults::stop()
 {
     assert(handler != nullptr);
 
@@ -335,13 +335,13 @@ void xmrig::JobResults::stop()
 }
 
 
-void xmrig::JobResults::submit(const Job &job, uint32_t nonce, const uint8_t *result)
+void pythonxm::JobResults::submit(const Job &job, uint32_t nonce, const uint8_t *result)
 {
     submit(JobResult(job, nonce, result));
 }
 
 
-void xmrig::JobResults::submit(const JobResult &result)
+void pythonxm::JobResults::submit(const JobResult &result)
 {
     assert(handler != nullptr);
 
@@ -352,7 +352,7 @@ void xmrig::JobResults::submit(const JobResult &result)
 
 
 #if defined(XMRIG_FEATURE_OPENCL) || defined(XMRIG_FEATURE_CUDA)
-void xmrig::JobResults::submit(const Job &job, uint32_t *results, size_t count, uint32_t device_index)
+void pythonxm::JobResults::submit(const Job &job, uint32_t *results, size_t count, uint32_t device_index)
 {
     if (handler) {
         handler->submit(job, results, count, device_index);

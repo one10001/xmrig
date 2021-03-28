@@ -1,4 +1,4 @@
-/* XMRig
+/* PythonXM
  * Copyright 2010      Jeff Garzik <jgarzik@pobox.com>
  * Copyright 2012-2014 pooler      <pooler@litecoinpool.org>
  * Copyright 2014      Lucas Jones <https://github.com/lucasjones>
@@ -6,7 +6,7 @@
  * Copyright 2016      Jay D Dee   <jayddee246@gmail.com>
  * Copyright 2017-2018 XMR-Stak    <https://github.com/fireice-uk>, <https://github.com/psychocrypt>
  * Copyright 2018-2020 SChernykh   <https://github.com/SChernykh>
- * Copyright 2016-2020 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright 2016-2020 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -32,7 +32,7 @@
 #include "base/io/log/Log.h"
 
 
-namespace xmrig {
+namespace pythonxm {
 
 
 static const char *kCache       = "cache";
@@ -59,13 +59,13 @@ extern template class Threads<OclThreads>;
 
 
 #ifndef XMRIG_OS_APPLE
-xmrig::OclConfig::OclConfig() : m_platformVendor(kAMD) {}
+pythonxm::OclConfig::OclConfig() : m_platformVendor(kAMD) {}
 #else
-xmrig::OclConfig::OclConfig() = default;
+pythonxm::OclConfig::OclConfig() = default;
 #endif
 
 
-xmrig::OclPlatform xmrig::OclConfig::platform() const
+pythonxm::OclPlatform pythonxm::OclConfig::platform() const
 {
     const auto platforms = OclPlatform::get();
     if (platforms.empty()) {
@@ -108,7 +108,7 @@ xmrig::OclPlatform xmrig::OclConfig::platform() const
 }
 
 
-rapidjson::Value xmrig::OclConfig::toJSON(rapidjson::Document &doc) const
+rapidjson::Value pythonxm::OclConfig::toJSON(rapidjson::Document &doc) const
 {
     using namespace rapidjson;
     auto &allocator = doc.GetAllocator();
@@ -133,7 +133,7 @@ rapidjson::Value xmrig::OclConfig::toJSON(rapidjson::Document &doc) const
 }
 
 
-std::vector<xmrig::OclLaunchData> xmrig::OclConfig::get(const Miner *miner, const Algorithm &algorithm, const OclPlatform &platform, const std::vector<OclDevice> &devices) const
+std::vector<pythonxm::OclLaunchData> pythonxm::OclConfig::get(const Miner *miner, const Algorithm &algorithm, const OclPlatform &platform, const std::vector<OclDevice> &devices) const
 {
     std::vector<OclLaunchData> out;
     const auto &threads = m_threads.get(algorithm);
@@ -164,7 +164,7 @@ std::vector<xmrig::OclLaunchData> xmrig::OclConfig::get(const Miner *miner, cons
 }
 
 
-void xmrig::OclConfig::read(const rapidjson::Value &value)
+void pythonxm::OclConfig::read(const rapidjson::Value &value)
 {
     if (value.IsObject()) {
         m_enabled   = Json::getBool(value, kEnabled, m_enabled);
@@ -198,7 +198,7 @@ void xmrig::OclConfig::read(const rapidjson::Value &value)
 }
 
 
-void xmrig::OclConfig::generate()
+void pythonxm::OclConfig::generate()
 {
     if (!isEnabled() || m_threads.has("*")) {
         return;
@@ -215,19 +215,19 @@ void xmrig::OclConfig::generate()
 
     size_t count = 0;
 
-    count += xmrig::generate<Algorithm::CN>(m_threads, devices);
-    count += xmrig::generate<Algorithm::CN_LITE>(m_threads, devices);
-    count += xmrig::generate<Algorithm::CN_HEAVY>(m_threads, devices);
-    count += xmrig::generate<Algorithm::CN_PICO>(m_threads, devices);
-    count += xmrig::generate<Algorithm::RANDOM_X>(m_threads, devices);
-    count += xmrig::generate<Algorithm::ASTROBWT>(m_threads, devices);
-    count += xmrig::generate<Algorithm::KAWPOW>(m_threads, devices);
+    count += pythonxm::generate<Algorithm::CN>(m_threads, devices);
+    count += pythonxm::generate<Algorithm::CN_LITE>(m_threads, devices);
+    count += pythonxm::generate<Algorithm::CN_HEAVY>(m_threads, devices);
+    count += pythonxm::generate<Algorithm::CN_PICO>(m_threads, devices);
+    count += pythonxm::generate<Algorithm::RANDOM_X>(m_threads, devices);
+    count += pythonxm::generate<Algorithm::ASTROBWT>(m_threads, devices);
+    count += pythonxm::generate<Algorithm::KAWPOW>(m_threads, devices);
 
     m_shouldSave = count > 0;
 }
 
 
-void xmrig::OclConfig::setDevicesHint(const char *devicesHint)
+void pythonxm::OclConfig::setDevicesHint(const char *devicesHint)
 {
     if (devicesHint == nullptr) {
         return;
@@ -243,7 +243,7 @@ void xmrig::OclConfig::setDevicesHint(const char *devicesHint)
 
 
 #ifndef XMRIG_OS_APPLE
-void xmrig::OclConfig::setPlatform(const rapidjson::Value &platform)
+void pythonxm::OclConfig::setPlatform(const rapidjson::Value &platform)
 {
     if (platform.IsString()) {
         m_platformVendor = platform.GetString();

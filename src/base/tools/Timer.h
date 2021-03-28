@@ -1,6 +1,6 @@
-/* XMRig
+/* PythonXM
  * Copyright 2018-2020 SChernykh   <https://github.com/SChernykh>
- * Copyright 2016-2020 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright 2016-2020 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -29,7 +29,7 @@ using uv_timer_t = struct uv_timer_s;
 #include <cstdint>
 
 
-namespace xmrig {
+namespace pythonxm {
 
 
 class ITimerListener;
@@ -63,7 +63,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace pythonxm */
 
 
 #endif /* XMRIG_TIMER_H */

@@ -1,6 +1,6 @@
-/* XMRig
+/* PythonXM
  * Copyright (c) 2018-2020 SChernykh   <https://github.com/SChernykh>
- * Copyright (c) 2016-2020 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright (c) 2016-2020 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -40,7 +40,7 @@
 #endif
 
 
-namespace xmrig {
+namespace pythonxm {
 
 
 static char pathBuf[520];
@@ -115,10 +115,10 @@ static void setDataDir(const char *path)
 }
 
 
-} // namespace xmrig
+} // namespace pythonxm
 
 
-xmrig::Process::Process(int argc, char **argv) :
+pythonxm::Process::Process(int argc, char **argv) :
     m_arguments(argc, argv)
 {
     srand(static_cast<unsigned int>(Chrono::currentMSecsSinceEpoch() ^ reinterpret_cast<uintptr_t>(this)));
@@ -127,7 +127,7 @@ xmrig::Process::Process(int argc, char **argv) :
 
 #   ifdef XMRIG_SHARED_DATADIR
     if (dataDir.empty()) {
-        dataDir = fmt::format("{}" XMRIG_DIR_SEPARATOR ".xmrig" XMRIG_DIR_SEPARATOR, location(HomeLocation));
+        dataDir = fmt::format("{}" XMRIG_DIR_SEPARATOR ".pythonxm" XMRIG_DIR_SEPARATOR, location(HomeLocation));
         MKDIR(dataDir);
 
         dataDir += APP_KIND;
@@ -139,7 +139,7 @@ xmrig::Process::Process(int argc, char **argv) :
 }
 
 
-int xmrig::Process::ppid()
+int pythonxm::Process::ppid()
 {
 #   if UV_VERSION_HEX >= 0x011000
     return uv_os_getppid();
@@ -149,7 +149,7 @@ int xmrig::Process::ppid()
 }
 
 
-xmrig::String xmrig::Process::exepath()
+pythonxm::String pythonxm::Process::exepath()
 {
     size_t size = sizeof(pathBuf);
 
@@ -157,7 +157,7 @@ xmrig::String xmrig::Process::exepath()
 }
 
 
-xmrig::String xmrig::Process::location(Location location, const char *fileName)
+pythonxm::String pythonxm::Process::location(Location location, const char *fileName)
 {
     auto path = getPath(location);
     if (path.empty() || fileName == nullptr) {

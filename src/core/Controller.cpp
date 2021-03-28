@@ -1,6 +1,6 @@
-/* XMRig
+/* PythonXM
  * Copyright 2018-2021 SChernykh   <https://github.com/SChernykh>
- * Copyright 2016-2021 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright 2016-2021 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -34,19 +34,19 @@
 #include <cassert>
 
 
-xmrig::Controller::Controller(Process *process) :
+pythonxm::Controller::Controller(Process *process) :
     Base(process)
 {
 }
 
 
-xmrig::Controller::~Controller()
+pythonxm::Controller::~Controller()
 {
     VirtualMemory::destroy();
 }
 
 
-int xmrig::Controller::init()
+int pythonxm::Controller::init()
 {
     Base::init();
 
@@ -63,7 +63,7 @@ int xmrig::Controller::init()
 }
 
 
-void xmrig::Controller::start()
+void pythonxm::Controller::start()
 {
     Base::start();
 
@@ -73,7 +73,7 @@ void xmrig::Controller::start()
 }
 
 
-void xmrig::Controller::stop()
+void pythonxm::Controller::stop()
 {
     Base::stop();
 
@@ -84,7 +84,7 @@ void xmrig::Controller::stop()
 }
 
 
-xmrig::Miner *xmrig::Controller::miner() const
+pythonxm::Miner *pythonxm::Controller::miner() const
 {
     assert(m_miner);
 
@@ -92,7 +92,7 @@ xmrig::Miner *xmrig::Controller::miner() const
 }
 
 
-xmrig::Network *xmrig::Controller::network() const
+pythonxm::Network *pythonxm::Controller::network() const
 {
     assert(m_network);
 
@@ -100,7 +100,7 @@ xmrig::Network *xmrig::Controller::network() const
 }
 
 
-void xmrig::Controller::execCommand(char command)
+void pythonxm::Controller::execCommand(char command)
 {
     miner()->execCommand(command);
     network()->execCommand(command);

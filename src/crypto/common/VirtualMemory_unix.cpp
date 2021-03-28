@@ -1,7 +1,7 @@
-/* XMRig
+/* PythonXM
  * Copyright (c) 2018-2020 tevador     <tevador@gmail.com>
  * Copyright (c) 2018-2021 SChernykh   <https://github.com/SChernykh>
- * Copyright (c) 2016-2021 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright (c) 2016-2021 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -73,7 +73,7 @@ static inline int hugePagesFlag(size_t size)
 #endif
 
 
-bool xmrig::VirtualMemory::isHugepagesAvailable()
+bool pythonxm::VirtualMemory::isHugepagesAvailable()
 {
 #   if defined(XMRIG_OS_MACOS) && defined(XMRIG_ARM)
     return false;
@@ -83,7 +83,7 @@ bool xmrig::VirtualMemory::isHugepagesAvailable()
 }
 
 
-bool xmrig::VirtualMemory::isOneGbPagesAvailable()
+bool pythonxm::VirtualMemory::isOneGbPagesAvailable()
 {
 #   ifdef XMRIG_OS_LINUX
     return Cpu::info()->hasOneGbPages();
@@ -93,7 +93,7 @@ bool xmrig::VirtualMemory::isOneGbPagesAvailable()
 }
 
 
-bool xmrig::VirtualMemory::protectRW(void *p, size_t size)
+bool pythonxm::VirtualMemory::protectRW(void *p, size_t size)
 {
 #   if defined(XMRIG_OS_APPLE) && defined(XMRIG_ARM)
     pthread_jit_write_protect_np(false);
@@ -104,13 +104,13 @@ bool xmrig::VirtualMemory::protectRW(void *p, size_t size)
 }
 
 
-bool xmrig::VirtualMemory::protectRWX(void *p, size_t size)
+bool pythonxm::VirtualMemory::protectRWX(void *p, size_t size)
 {
     return mprotect(p, size, PROT_READ | PROT_WRITE | PROT_EXEC) == 0;
 }
 
 
-bool xmrig::VirtualMemory::protectRX(void *p, size_t size)
+bool pythonxm::VirtualMemory::protectRX(void *p, size_t size)
 {
 #   if defined(XMRIG_OS_APPLE) && defined(XMRIG_ARM)
     pthread_jit_write_protect_np(true);
@@ -122,7 +122,7 @@ bool xmrig::VirtualMemory::protectRX(void *p, size_t size)
 }
 
 
-void *xmrig::VirtualMemory::allocateExecutableMemory(size_t size, bool hugePages)
+void *pythonxm::VirtualMemory::allocateExecutableMemory(size_t size, bool hugePages)
 {
 #   if defined(XMRIG_OS_APPLE)
     void *mem = mmap(0, size, PROT_READ | PROT_WRITE | PROT_EXEC, MAP_PRIVATE | MAP_ANON | MEXTRA, -1, 0);
@@ -158,7 +158,7 @@ void *xmrig::VirtualMemory::allocateExecutableMemory(size_t size, bool hugePages
 }
 
 
-void *xmrig::VirtualMemory::allocateLargePagesMemory(size_t size)
+void *pythonxm::VirtualMemory::allocateLargePagesMemory(size_t size)
 {
 #   if defined(XMRIG_OS_APPLE)
     void *mem = mmap(0, size, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANON, VM_FLAGS_SUPERPAGE_SIZE_2MB, 0);
@@ -172,7 +172,7 @@ void *xmrig::VirtualMemory::allocateLargePagesMemory(size_t size)
 }
 
 
-void *xmrig::VirtualMemory::allocateOneGbPagesMemory(size_t size)
+void *pythonxm::VirtualMemory::allocateOneGbPagesMemory(size_t size)
 {
 #   ifdef XMRIG_OS_LINUX
     if (isOneGbPagesAvailable()) {
@@ -186,7 +186,7 @@ void *xmrig::VirtualMemory::allocateOneGbPagesMemory(size_t size)
 }
 
 
-void xmrig::VirtualMemory::flushInstructionCache(void *p, size_t size)
+void pythonxm::VirtualMemory::flushInstructionCache(void *p, size_t size)
 {
 #   if defined(XMRIG_OS_APPLE)
     sys_icache_invalidate(p, size);
@@ -196,13 +196,13 @@ void xmrig::VirtualMemory::flushInstructionCache(void *p, size_t size)
 }
 
 
-void xmrig::VirtualMemory::freeLargePagesMemory(void *p, size_t size)
+void pythonxm::VirtualMemory::freeLargePagesMemory(void *p, size_t size)
 {
     munmap(p, size);
 }
 
 
-void xmrig::VirtualMemory::osInit(size_t hugePageSize)
+void pythonxm::VirtualMemory::osInit(size_t hugePageSize)
 {
     if (hugePageSize) {
         m_hugePageSize = hugePageSize;
@@ -210,7 +210,7 @@ void xmrig::VirtualMemory::osInit(size_t hugePageSize)
 }
 
 
-bool xmrig::VirtualMemory::allocateLargePagesMemory()
+bool pythonxm::VirtualMemory::allocateLargePagesMemory()
 {
 #   ifdef XMRIG_OS_LINUX
     LinuxMemory::reserve(m_size, m_node, hugePageSize());
@@ -233,7 +233,7 @@ bool xmrig::VirtualMemory::allocateLargePagesMemory()
 }
 
 
-bool xmrig::VirtualMemory::allocateOneGbPagesMemory()
+bool pythonxm::VirtualMemory::allocateOneGbPagesMemory()
 {
 #   ifdef XMRIG_OS_LINUX
     LinuxMemory::reserve(m_size, m_node, kOneGiB);
@@ -256,7 +256,7 @@ bool xmrig::VirtualMemory::allocateOneGbPagesMemory()
 }
 
 
-void xmrig::VirtualMemory::freeLargePagesMemory()
+void pythonxm::VirtualMemory::freeLargePagesMemory()
 {
     if (m_flags.test(FLAG_LOCK)) {
         munlock(m_scratchpad, m_size);

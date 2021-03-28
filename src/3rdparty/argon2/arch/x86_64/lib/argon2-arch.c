@@ -26,11 +26,11 @@ void argon2_get_impl_list(argon2_impl_list *list)
 {
     static const argon2_impl IMPLS[] = {
         { "x86_64",     NULL,                     fill_segment_default },
-        { "SSE2",       xmrig_ar2_check_sse2,     xmrig_ar2_fill_segment_sse2 },
-        { "SSSE3",      xmrig_ar2_check_ssse3,    xmrig_ar2_fill_segment_ssse3 },
-        { "XOP",        xmrig_ar2_check_xop,      xmrig_ar2_fill_segment_xop },
-        { "AVX2",       xmrig_ar2_check_avx2,     xmrig_ar2_fill_segment_avx2 },
-        { "AVX-512F",   xmrig_ar2_check_avx512f,  xmrig_ar2_fill_segment_avx512f },
+        { "SSE2",       pythonxm_ar2_check_sse2,     pythonxm_ar2_fill_segment_sse2 },
+        { "SSSE3",      pythonxm_ar2_check_ssse3,    pythonxm_ar2_fill_segment_ssse3 },
+        { "XOP",        pythonxm_ar2_check_xop,      pythonxm_ar2_fill_segment_xop },
+        { "AVX2",       pythonxm_ar2_check_avx2,     pythonxm_ar2_fill_segment_avx2 },
+        { "AVX-512F",   pythonxm_ar2_check_avx512f,  pythonxm_ar2_fill_segment_avx512f },
     };
 
     list->count = sizeof(IMPLS) / sizeof(IMPLS[0]);

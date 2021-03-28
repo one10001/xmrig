@@ -1,6 +1,6 @@
-/* XMRig
+/* PythonXM
  * Copyright (c) 2018-2021 SChernykh   <https://github.com/SChernykh>
- * Copyright (c) 2016-2021 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright (c) 2016-2021 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -34,7 +34,7 @@
 #endif
 
 
-namespace xmrig {
+namespace pythonxm {
 
 static const char *kAuthorization = "authorization";
 
@@ -43,10 +43,10 @@ static const char *favicon = nullptr;
 static size_t faviconSize  = 0;
 #endif
 
-} // namespace xmrig
+} // namespace pythonxm
 
 
-xmrig::Httpd::Httpd(Base *base) :
+pythonxm::Httpd::Httpd(Base *base) :
     m_base(base)
 {
     m_httpListener = std::make_shared<HttpListener>(this);
@@ -55,10 +55,10 @@ xmrig::Httpd::Httpd(Base *base) :
 }
 
 
-xmrig::Httpd::~Httpd() = default;
+pythonxm::Httpd::~Httpd() = default;
 
 
-bool xmrig::Httpd::start()
+bool pythonxm::Httpd::start()
 {
     const auto &config = m_base->config()->http();
 
@@ -109,7 +109,7 @@ bool xmrig::Httpd::start()
 }
 
 
-void xmrig::Httpd::stop()
+void pythonxm::Httpd::stop()
 {
     delete m_server;
     delete m_http;
@@ -121,7 +121,7 @@ void xmrig::Httpd::stop()
 
 
 
-void xmrig::Httpd::onConfigChanged(Config *config, Config *previousConfig)
+void pythonxm::Httpd::onConfigChanged(Config *config, Config *previousConfig)
 {
     if (config->http() == previousConfig->http()) {
         return;
@@ -132,7 +132,7 @@ void xmrig::Httpd::onConfigChanged(Config *config, Config *previousConfig)
 }
 
 
-void xmrig::Httpd::onHttpData(const HttpData &data)
+void pythonxm::Httpd::onHttpData(const HttpData &data)
 {
     if (data.method == HTTP_OPTIONS) {
         return HttpApiResponse(data.id()).end();
@@ -174,7 +174,7 @@ void xmrig::Httpd::onHttpData(const HttpData &data)
 }
 
 
-int xmrig::Httpd::auth(const HttpData &req) const
+int pythonxm::Httpd::auth(const HttpData &req) const
 {
     const Http &config = m_base->config()->http();
 

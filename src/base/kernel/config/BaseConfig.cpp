@@ -1,6 +1,6 @@
-/* XMRig
+/* PythonXM
  * Copyright (c) 2018-2021 SChernykh   <https://github.com/SChernykh>
- * Copyright (c) 2016-2021 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright (c) 2016-2021 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -43,7 +43,7 @@
 #endif
 
 
-namespace xmrig {
+namespace pythonxm {
 
 
 const char *BaseConfig::kApi            = "api";
@@ -68,10 +68,10 @@ const char *BaseConfig::kTls            = "tls";
 #endif
 
 
-} // namespace xmrig
+} // namespace pythonxm
 
 
-bool xmrig::BaseConfig::read(const IJsonReader &reader, const char *fileName)
+bool pythonxm::BaseConfig::read(const IJsonReader &reader, const char *fileName)
 {
     m_fileName = fileName;
 
@@ -109,7 +109,7 @@ bool xmrig::BaseConfig::read(const IJsonReader &reader, const char *fileName)
 }
 
 
-bool xmrig::BaseConfig::save()
+bool pythonxm::BaseConfig::save()
 {
     if (m_fileName.isNull()) {
         return false;
@@ -127,7 +127,7 @@ bool xmrig::BaseConfig::save()
 }
 
 
-void xmrig::BaseConfig::printVersions()
+void pythonxm::BaseConfig::printVersions()
 {
     char buf[256] = { 0 };
 
@@ -164,7 +164,7 @@ void xmrig::BaseConfig::printVersions()
 }
 
 
-void xmrig::BaseConfig::setVerbose(const rapidjson::Value &value)
+void pythonxm::BaseConfig::setVerbose(const rapidjson::Value &value)
 {
     if (value.IsBool()) {
         Log::setVerbose(value.GetBool() ? 1 : 0);

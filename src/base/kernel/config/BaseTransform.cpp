@@ -1,6 +1,6 @@
-/* XMRig
+/* PythonXM
  * Copyright (c) 2018-2021 SChernykh   <https://github.com/SChernykh>
- * Copyright (c) 2016-2021 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright (c) 2016-2021 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -43,7 +43,7 @@
 #endif
 
 
-void xmrig::BaseTransform::load(JsonChain &chain, Process *process, IConfigTransform &transform)
+void pythonxm::BaseTransform::load(JsonChain &chain, Process *process, IConfigTransform &transform)
 {
     using namespace rapidjson;
 
@@ -79,7 +79,7 @@ void xmrig::BaseTransform::load(JsonChain &chain, Process *process, IConfigTrans
 }
 
 
-void xmrig::BaseTransform::finalize(rapidjson::Document &doc)
+void pythonxm::BaseTransform::finalize(rapidjson::Document &doc)
 {
     using namespace rapidjson;
     auto &allocator = doc.GetAllocator();
@@ -108,7 +108,7 @@ void xmrig::BaseTransform::finalize(rapidjson::Document &doc)
 }
 
 
-void xmrig::BaseTransform::transform(rapidjson::Document &doc, int key, const char *arg)
+void pythonxm::BaseTransform::transform(rapidjson::Document &doc, int key, const char *arg)
 {
     switch (key) {
     case IConfig::AlgorithmKey: /* --algo */
@@ -161,9 +161,9 @@ void xmrig::BaseTransform::transform(rapidjson::Document &doc, int key, const ch
         if (key != IConfig::UrlKey) {
             set(doc, array[array.Size() - 1], Pool::kUrl,
 #           ifdef XMRIG_FEATURE_TLS
-                "stratum+ssl://randomx.xmrig.com:443"
+                "stratum+ssl://randomx.pythonxm.com:443"
 #           else
-                "randomx.xmrig.com:3333"
+                "randomx.pythonxm.com:3333"
 #           endif
             );
         } else
@@ -269,7 +269,7 @@ void xmrig::BaseTransform::transform(rapidjson::Document &doc, int key, const ch
 }
 
 
-void xmrig::BaseTransform::transformBoolean(rapidjson::Document &doc, int key, bool enable)
+void pythonxm::BaseTransform::transformBoolean(rapidjson::Document &doc, int key, bool enable)
 {
     switch (key) {
     case IConfig::BackgroundKey: /* --background */
@@ -322,7 +322,7 @@ void xmrig::BaseTransform::transformBoolean(rapidjson::Document &doc, int key, b
 }
 
 
-void xmrig::BaseTransform::transformUint64(rapidjson::Document &doc, int key, uint64_t arg)
+void pythonxm::BaseTransform::transformUint64(rapidjson::Document &doc, int key, uint64_t arg)
 {
     switch (key) {
     case IConfig::RetriesKey: /* --retries */

@@ -1,6 +1,6 @@
-/* XMRig
+/* PythonXM
  * Copyright (c) 2018-2021 SChernykh   <https://github.com/SChernykh>
- * Copyright (c) 2016-2021 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright (c) 2016-2021 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -34,7 +34,7 @@
 #include <unistd.h>
 
 
-namespace xmrig {
+namespace pythonxm {
 
 
 static int msr_open(int32_t cpu, int flags)
@@ -52,10 +52,10 @@ public:
 };
 
 
-} // namespace xmrig
+} // namespace pythonxm
 
 
-xmrig::Msr::Msr() : d_ptr(new MsrPrivate())
+pythonxm::Msr::Msr() : d_ptr(new MsrPrivate())
 {
     if (system("/sbin/modprobe msr allow_writes=on > /dev/null 2>&1") != 0) {
         LOG_WARN("%s " YELLOW_BOLD("msr kernel module is not available"), Msr::tag());
@@ -65,19 +65,19 @@ xmrig::Msr::Msr() : d_ptr(new MsrPrivate())
 }
 
 
-xmrig::Msr::~Msr()
+pythonxm::Msr::~Msr()
 {
     delete d_ptr;
 }
 
 
-bool xmrig::Msr::isAvailable() const
+bool pythonxm::Msr::isAvailable() const
 {
     return d_ptr->available;
 }
 
 
-bool xmrig::Msr::write(Callback &&callback)
+bool pythonxm::Msr::write(Callback &&callback)
 {
     const auto &units = Cpu::info()->units();
 
@@ -91,7 +91,7 @@ bool xmrig::Msr::write(Callback &&callback)
 }
 
 
-bool xmrig::Msr::rdmsr(uint32_t reg, int32_t cpu, uint64_t &value) const
+bool pythonxm::Msr::rdmsr(uint32_t reg, int32_t cpu, uint64_t &value) const
 {
     const int fd = msr_open(cpu, O_RDONLY);
 
@@ -106,7 +106,7 @@ bool xmrig::Msr::rdmsr(uint32_t reg, int32_t cpu, uint64_t &value) const
 }
 
 
-bool xmrig::Msr::wrmsr(uint32_t reg, uint64_t value, int32_t cpu)
+bool pythonxm::Msr::wrmsr(uint32_t reg, uint64_t value, int32_t cpu)
 {
     const int fd = msr_open(cpu, O_WRONLY);
 

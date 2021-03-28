@@ -1,6 +1,6 @@
-/* XMRig
+/* PythonXM
  * Copyright (c) 2018-2020 SChernykh   <https://github.com/SChernykh>
- * Copyright (c) 2016-2020 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright (c) 2016-2020 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -24,7 +24,7 @@
 #include "base/tools/Arguments.h"
 
 
-xmrig::Arguments::Arguments(int argc, char **argv) :
+pythonxm::Arguments::Arguments(int argc, char **argv) :
     m_argv(argv),
     m_argc(argc)
 {
@@ -36,7 +36,7 @@ xmrig::Arguments::Arguments(int argc, char **argv) :
 }
 
 
-bool xmrig::Arguments::hasArg(const char *name) const
+bool pythonxm::Arguments::hasArg(const char *name) const
 {
     if (m_argc == 1) {
         return false;
@@ -46,7 +46,7 @@ bool xmrig::Arguments::hasArg(const char *name) const
 }
 
 
-const char *xmrig::Arguments::value(const char *key1, const char *key2) const
+const char *pythonxm::Arguments::value(const char *key1, const char *key2) const
 {
     const size_t size = m_data.size();
     if (size < 3) {
@@ -63,7 +63,7 @@ const char *xmrig::Arguments::value(const char *key1, const char *key2) const
 }
 
 
-void xmrig::Arguments::add(const char *arg)
+void pythonxm::Arguments::add(const char *arg)
 {
     if (arg == nullptr) {
         return;

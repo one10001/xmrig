@@ -1,8 +1,8 @@
-/* XMRig
+/* PythonXM
  * Copyright (c) 2019       jtgrassie       <https://github.com/jtgrassie>
  * Copyright (c) 2021       Hansie Odendaal <https://github.com/hansieodendaal>
  * Copyright (c) 2018-2021  SChernykh       <https://github.com/SChernykh>
- * Copyright (c) 2016-2021  XMRig           <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright (c) 2016-2021  PythonXM           <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -32,7 +32,7 @@
 #include <memory>
 
 
-namespace xmrig {
+namespace pythonxm {
 
 
 class SelfSelectClient : public IClient, public IClientListener, public IHttpListener
@@ -123,7 +123,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace pythonxm */
 
 
 #endif /* XMRIG_SELFSELECTCLIENT_H */

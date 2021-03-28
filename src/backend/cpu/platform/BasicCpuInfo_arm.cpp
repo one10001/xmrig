@@ -1,6 +1,6 @@
-/* XMRig
+/* PythonXM
  * Copyright (c) 2018-2021 SChernykh   <https://github.com/SChernykh>
- * Copyright (c) 2016-2021 XMRig       <support@xmrig.com>
+ * Copyright (c) 2016-2021 PythonXM       <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -37,17 +37,17 @@
 
 
 #if defined(XMRIG_OS_UNIX)
-namespace xmrig {
+namespace pythonxm {
 
 extern String cpu_name_arm();
 
-} // namespace xmrig
+} // namespace pythonxm
 #elif defined(XMRIG_OS_MACOS)
 #   include <sys/sysctl.h>
 #endif
 
 
-xmrig::BasicCpuInfo::BasicCpuInfo() :
+pythonxm::BasicCpuInfo::BasicCpuInfo() :
     m_threads(std::thread::hardware_concurrency())
 {
     m_units.resize(m_threads);
@@ -83,19 +83,19 @@ xmrig::BasicCpuInfo::BasicCpuInfo() :
 }
 
 
-const char *xmrig::BasicCpuInfo::backend() const
+const char *pythonxm::BasicCpuInfo::backend() const
 {
     return "basic/1";
 }
 
 
-xmrig::CpuThreads xmrig::BasicCpuInfo::threads(const Algorithm &, uint32_t) const
+pythonxm::CpuThreads pythonxm::BasicCpuInfo::threads(const Algorithm &, uint32_t) const
 {
     return CpuThreads(threads());
 }
 
 
-rapidjson::Value xmrig::BasicCpuInfo::toJSON(rapidjson::Document &doc) const
+rapidjson::Value pythonxm::BasicCpuInfo::toJSON(rapidjson::Document &doc) const
 {
     using namespace rapidjson;
     auto &allocator = doc.GetAllocator();

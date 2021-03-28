@@ -1,6 +1,6 @@
-/* XMRig
+/* PythonXM
  * Copyright (c) 2018-2021 SChernykh   <https://github.com/SChernykh>
- * Copyright (c) 2016-2021 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright (c) 2016-2021 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@
 #include <uv.h>
 
 
-namespace xmrig {
+namespace pythonxm {
 
 
 static void fsWriteCallback(uv_fs_t *req)
@@ -37,10 +37,10 @@ static void fsWriteCallback(uv_fs_t *req)
 }
 
 
-} // namespace xmrig
+} // namespace pythonxm
 
 
-bool xmrig::FileLogWriter::open(const char *fileName)
+bool pythonxm::FileLogWriter::open(const char *fileName)
 {
     assert(fileName != nullptr);
     if (!fileName) {
@@ -68,7 +68,7 @@ bool xmrig::FileLogWriter::open(const char *fileName)
 }
 
 
-bool xmrig::FileLogWriter::write(const char *data, size_t size)
+bool pythonxm::FileLogWriter::write(const char *data, size_t size)
 {
     if (!isOpen()) {
         return false;
@@ -87,7 +87,7 @@ bool xmrig::FileLogWriter::write(const char *data, size_t size)
 }
 
 
-bool xmrig::FileLogWriter::writeLine(const char *data, size_t size)
+bool pythonxm::FileLogWriter::writeLine(const char *data, size_t size)
 {
     const uv_buf_t buf[2] = {
         uv_buf_init(new char[size], size),

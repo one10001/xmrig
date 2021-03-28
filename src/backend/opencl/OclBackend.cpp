@@ -1,4 +1,4 @@
-/* XMRig
+/* PythonXM
  * Copyright 2010      Jeff Garzik <jgarzik@pobox.com>
  * Copyright 2012-2014 pooler      <pooler@litecoinpool.org>
  * Copyright 2014      Lucas Jones <https://github.com/lucasjones>
@@ -6,7 +6,7 @@
  * Copyright 2016      Jay D Dee   <jayddee246@gmail.com>
  * Copyright 2017-2018 XMR-Stak    <https://github.com/fireice-uk>, <https://github.com/psychocrypt>
  * Copyright 2018-2020 SChernykh   <https://github.com/SChernykh>
- * Copyright 2016-2020 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright 2016-2020 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -63,11 +63,11 @@
 #ifdef XMRIG_FEATURE_ADL
 #include "backend/opencl/wrappers/AdlLib.h"
 
-namespace xmrig { static const char *kAdlLabel = "ADL"; }
+namespace pythonxm { static const char *kAdlLabel = "ADL"; }
 #endif
 
 
-namespace xmrig {
+namespace pythonxm {
 
 
 extern template class Threads<OclThreads>;
@@ -287,23 +287,23 @@ public:
 };
 
 
-} // namespace xmrig
+} // namespace pythonxm
 
 
-const char *xmrig::ocl_tag()
+const char *pythonxm::ocl_tag()
 {
     return Tags::opencl();
 }
 
 
-xmrig::OclBackend::OclBackend(Controller *controller) :
+pythonxm::OclBackend::OclBackend(Controller *controller) :
     d_ptr(new OclBackendPrivate(controller))
 {
     d_ptr->workers.setBackend(this);
 }
 
 
-xmrig::OclBackend::~OclBackend()
+pythonxm::OclBackend::~OclBackend()
 {
     delete d_ptr;
 
@@ -315,42 +315,42 @@ xmrig::OclBackend::~OclBackend()
 }
 
 
-bool xmrig::OclBackend::isEnabled() const
+bool pythonxm::OclBackend::isEnabled() const
 {
     return d_ptr->controller->config()->cl().isEnabled() && OclLib::isInitialized() && d_ptr->platform.isValid() && !d_ptr->devices.empty();
 }
 
 
-bool xmrig::OclBackend::isEnabled(const Algorithm &algorithm) const
+bool pythonxm::OclBackend::isEnabled(const Algorithm &algorithm) const
 {
     return !d_ptr->controller->config()->cl().threads().get(algorithm).isEmpty();
 }
 
 
-const xmrig::Hashrate *xmrig::OclBackend::hashrate() const
+const pythonxm::Hashrate *pythonxm::OclBackend::hashrate() const
 {
     return d_ptr->workers.hashrate();
 }
 
 
-const xmrig::String &xmrig::OclBackend::profileName() const
+const pythonxm::String &pythonxm::OclBackend::profileName() const
 {
     return d_ptr->profileName;
 }
 
 
-const xmrig::String &xmrig::OclBackend::type() const
+const pythonxm::String &pythonxm::OclBackend::type() const
 {
     return kType;
 }
 
 
-void xmrig::OclBackend::execCommand(char)
+void pythonxm::OclBackend::execCommand(char)
 {
 }
 
 
-void xmrig::OclBackend::prepare(const Job &job)
+void pythonxm::OclBackend::prepare(const Job &job)
 {
     if (d_ptr) {
         d_ptr->workers.jobEarlyNotification(job);
@@ -358,7 +358,7 @@ void xmrig::OclBackend::prepare(const Job &job)
 }
 
 
-void xmrig::OclBackend::printHashrate(bool details)
+void pythonxm::OclBackend::printHashrate(bool details)
 {
     if (!details || !hashrate()) {
         return;
@@ -404,7 +404,7 @@ void xmrig::OclBackend::printHashrate(bool details)
 }
 
 
-void xmrig::OclBackend::printHealth()
+void pythonxm::OclBackend::printHealth()
 {
 #   ifdef XMRIG_FEATURE_ADL
     d_ptr->printHealth();
@@ -412,7 +412,7 @@ void xmrig::OclBackend::printHealth()
 }
 
 
-void xmrig::OclBackend::setJob(const Job &job)
+void pythonxm::OclBackend::setJob(const Job &job)
 {
     const auto &cl = d_ptr->controller->config()->cl();
     if (cl.isEnabled()) {
@@ -450,7 +450,7 @@ void xmrig::OclBackend::setJob(const Job &job)
 }
 
 
-void xmrig::OclBackend::start(IWorker *worker, bool ready)
+void pythonxm::OclBackend::start(IWorker *worker, bool ready)
 {
     mutex.lock();
 
@@ -468,7 +468,7 @@ void xmrig::OclBackend::start(IWorker *worker, bool ready)
 }
 
 
-void xmrig::OclBackend::stop()
+void pythonxm::OclBackend::stop()
 {
     if (d_ptr->threads.empty()) {
         return;
@@ -485,14 +485,14 @@ void xmrig::OclBackend::stop()
 }
 
 
-bool xmrig::OclBackend::tick(uint64_t ticks)
+bool pythonxm::OclBackend::tick(uint64_t ticks)
 {
     return d_ptr->workers.tick(ticks);
 }
 
 
 #ifdef XMRIG_FEATURE_API
-rapidjson::Value xmrig::OclBackend::toJSON(rapidjson::Document &doc) const
+rapidjson::Value pythonxm::OclBackend::toJSON(rapidjson::Document &doc) const
 {
     using namespace rapidjson;
     auto &allocator = doc.GetAllocator();
@@ -530,7 +530,7 @@ rapidjson::Value xmrig::OclBackend::toJSON(rapidjson::Document &doc) const
 }
 
 
-void xmrig::OclBackend::handleRequest(IApiRequest &)
+void pythonxm::OclBackend::handleRequest(IApiRequest &)
 {
 }
 #endif

@@ -1,4 +1,4 @@
-/* XMRig
+/* PythonXM
  * Copyright 2010      Jeff Garzik <jgarzik@pobox.com>
  * Copyright 2012-2014 pooler      <pooler@litecoinpool.org>
  * Copyright 2014      Lucas Jones <https://github.com/lucasjones>
@@ -6,7 +6,7 @@
  * Copyright 2016      Jay D Dee   <jayddee246@gmail.com>
  * Copyright 2017-2018 XMR-Stak    <https://github.com/fireice-uk>, <https://github.com/psychocrypt>
  * Copyright 2018-2021 SChernykh   <https://github.com/SChernykh>
- * Copyright 2016-2021 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright 2016-2021 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -25,13 +25,13 @@
 #ifndef XMRIG_VERSION_H
 #define XMRIG_VERSION_H
 
-#define APP_ID        "xmrig"
-#define APP_NAME      "XMRig"
-#define APP_DESC      "XMRig miner"
+#define APP_ID        "pythonxm"
+#define APP_NAME      "PythonXM"
+#define APP_DESC      "PythonXM miner"
 #define APP_VERSION   "6.10.0"
-#define APP_DOMAIN    "xmrig.com"
-#define APP_SITE      "www.xmrig.com"
-#define APP_COPYRIGHT "Copyright (C) 2016-2021 xmrig.com"
+#define APP_DOMAIN    "pythonxm.com"
+#define APP_SITE      "www.pythonxm.com"
+#define APP_COPYRIGHT "Copyright (C) 2016-2021 pythonxm.com"
 #define APP_KIND      "miner"
 
 #define APP_VER_MAJOR  6

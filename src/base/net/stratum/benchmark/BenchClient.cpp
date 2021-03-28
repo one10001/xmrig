@@ -1,6 +1,6 @@
-/* XMRig
+/* PythonXM
  * Copyright (c) 2018-2021 SChernykh   <https://github.com/SChernykh>
- * Copyright (c) 2016-2021 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright (c) 2016-2021 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -39,7 +39,7 @@
 #endif
 
 
-xmrig::BenchClient::BenchClient(const std::shared_ptr<BenchConfig> &benchmark, IClientListener* listener) :
+pythonxm::BenchClient::BenchClient(const std::shared_ptr<BenchConfig> &benchmark, IClientListener* listener) :
     m_listener(listener),
     m_benchmark(benchmark),
     m_hash(benchmark->hash())
@@ -85,19 +85,19 @@ xmrig::BenchClient::BenchClient(const std::shared_ptr<BenchConfig> &benchmark, I
 }
 
 
-xmrig::BenchClient::~BenchClient()
+pythonxm::BenchClient::~BenchClient()
 {
     BenchState::destroy();
 }
 
 
-const char *xmrig::BenchClient::tag() const
+const char *pythonxm::BenchClient::tag() const
 {
     return Tags::bench();
 }
 
 
-void xmrig::BenchClient::connect()
+void pythonxm::BenchClient::connect()
 {
 #   ifdef XMRIG_FEATURE_HTTP
     if (m_mode == ONLINE_BENCH || m_mode == ONLINE_VERIFY) {
@@ -109,13 +109,13 @@ void xmrig::BenchClient::connect()
 }
 
 
-void xmrig::BenchClient::setPool(const Pool &pool)
+void pythonxm::BenchClient::setPool(const Pool &pool)
 {
     m_pool = pool;
 }
 
 
-void xmrig::BenchClient::onBenchDone(uint64_t result, uint64_t diff, uint64_t ts)
+void pythonxm::BenchClient::onBenchDone(uint64_t result, uint64_t diff, uint64_t ts)
 {
     m_result    = result;
     m_diff      = diff;
@@ -139,7 +139,7 @@ void xmrig::BenchClient::onBenchDone(uint64_t result, uint64_t diff, uint64_t ts
 }
 
 
-void xmrig::BenchClient::onBenchReady(uint64_t ts, uint32_t threads, const IBackend *backend)
+void pythonxm::BenchClient::onBenchReady(uint64_t ts, uint32_t threads, const IBackend *backend)
 {
     m_readyTime = ts;
     m_threads   = threads;
@@ -153,7 +153,7 @@ void xmrig::BenchClient::onBenchReady(uint64_t ts, uint32_t threads, const IBack
 }
 
 
-void xmrig::BenchClient::onHttpData(const HttpData &data)
+void pythonxm::BenchClient::onHttpData(const HttpData &data)
 {
 #   ifdef XMRIG_FEATURE_HTTP
     rapidjson::Document doc;
@@ -185,7 +185,7 @@ void xmrig::BenchClient::onHttpData(const HttpData &data)
 }
 
 
-void xmrig::BenchClient::onResolved(const Dns &dns, int status)
+void pythonxm::BenchClient::onResolved(const Dns &dns, int status)
 {
 #   ifdef XMRIG_FEATURE_HTTP
     assert(!m_httpListener);
@@ -207,7 +207,7 @@ void xmrig::BenchClient::onResolved(const Dns &dns, int status)
 }
 
 
-bool xmrig::BenchClient::setSeed(const char *seed)
+bool pythonxm::BenchClient::setSeed(const char *seed)
 {
     if (!seed) {
         return false;
@@ -235,7 +235,7 @@ bool xmrig::BenchClient::setSeed(const char *seed)
 }
 
 
-uint64_t xmrig::BenchClient::referenceHash() const
+uint64_t pythonxm::BenchClient::referenceHash() const
 {
     if (m_hash || m_mode == ONLINE_BENCH) {
         return m_hash;
@@ -245,13 +245,13 @@ uint64_t xmrig::BenchClient::referenceHash() const
 }
 
 
-void xmrig::BenchClient::printExit()
+void pythonxm::BenchClient::printExit()
 {
     LOG_INFO("%s " WHITE_BOLD("press ") MAGENTA_BOLD("Ctrl+C") WHITE_BOLD(" to exit"), tag());
 }
 
 
-void xmrig::BenchClient::start()
+void pythonxm::BenchClient::start()
 {
     const uint32_t size = BenchState::size();
 
@@ -268,7 +268,7 @@ void xmrig::BenchClient::start()
 
 
 #ifdef XMRIG_FEATURE_HTTP
-void xmrig::BenchClient::onCreateReply(const rapidjson::Value &value)
+void pythonxm::BenchClient::onCreateReply(const rapidjson::Value &value)
 {
     m_startTime = Chrono::steadyMSecs();
     m_token     = Json::getString(value, BenchConfig::kToken);
@@ -282,14 +282,14 @@ void xmrig::BenchClient::onCreateReply(const rapidjson::Value &value)
 }
 
 
-void xmrig::BenchClient::onDoneReply(const rapidjson::Value &)
+void pythonxm::BenchClient::onDoneReply(const rapidjson::Value &)
 {
-    LOG_NOTICE("%s " WHITE_BOLD("benchmark submitted ") CYAN_BOLD("https://xmrig.com/benchmark/%s"), tag(), m_job.id().data());
+    LOG_NOTICE("%s " WHITE_BOLD("benchmark submitted ") CYAN_BOLD("https://pythonxm.com/benchmark/%s"), tag(), m_job.id().data());
     printExit();
 }
 
 
-void xmrig::BenchClient::onGetReply(const rapidjson::Value &value)
+void pythonxm::BenchClient::onGetReply(const rapidjson::Value &value)
 {
     const char *hash = Json::getString(value, BenchConfig::kHash);
     if (hash) {
@@ -305,7 +305,7 @@ void xmrig::BenchClient::onGetReply(const rapidjson::Value &value)
 }
 
 
-void xmrig::BenchClient::resolve()
+void pythonxm::BenchClient::resolve()
 {
     m_dns = std::make_shared<Dns>(this);
 
@@ -315,7 +315,7 @@ void xmrig::BenchClient::resolve()
 }
 
 
-void xmrig::BenchClient::send(Request request)
+void pythonxm::BenchClient::send(Request request)
 {
     using namespace rapidjson;
 
@@ -373,7 +373,7 @@ void xmrig::BenchClient::send(Request request)
 }
 
 
-void xmrig::BenchClient::setError(const char *message, const char *label)
+void pythonxm::BenchClient::setError(const char *message, const char *label)
 {
     LOG_ERR("%s " RED("%s: ") RED_BOLD("\"%s\""), tag(), label ? label : "benchmark failed", message);
     printExit();
@@ -382,7 +382,7 @@ void xmrig::BenchClient::setError(const char *message, const char *label)
 }
 
 
-void xmrig::BenchClient::update(const rapidjson::Value &body)
+void pythonxm::BenchClient::update(const rapidjson::Value &body)
 {
     assert(!m_token.isEmpty());
 

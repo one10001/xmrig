@@ -1,6 +1,6 @@
-/* XMRig
+/* PythonXM
  * Copyright (c) 2018-2021 SChernykh   <https://github.com/SChernykh>
- * Copyright (c) 2016-2021 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright (c) 2016-2021 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -23,7 +23,7 @@
 #include "3rdparty/rapidjson/fwd.h"
 
 
-namespace xmrig {
+namespace pythonxm {
 
 
 class IJsonReader;
@@ -83,12 +83,12 @@ public:
         PauseOnActiveKey     = 1051,
         SubmitToOriginKey    = 1052,
 
-        // xmrig common
+        // pythonxm common
         CPUPriorityKey       = 1021,
         NicehashKey          = 1006,
         PrintTimeKey         = 1007,
 
-        // xmrig cpu
+        // pythonxm cpu
         CPUKey               = 1024,
         AVKey                = 'v',
         CPUAffinityKey       = 1020,
@@ -110,7 +110,7 @@ public:
         Argon2ImplKey        = 1039,
         RandomXCacheQoSKey   = 1040,
 
-        // xmrig amd
+        // pythonxm amd
         OclPlatformKey       = 1400,
         OclAffinityKey       = 1401,
         OclDevicesKey        = 1402,
@@ -124,7 +124,7 @@ public:
         OclCompModeKey       = 1410,
         OclKey               = 1411,
 
-        // xmrig-proxy
+        // pythonxm-proxy
         AccessLogFileKey     = 'A',
         BindKey              = 'b',
         CustomDiffKey        = 1102,
@@ -147,7 +147,7 @@ public:
         ProxyPasswordKey     = 1116,
         LoginFileKey         = 'L',
 
-        // xmrig nvidia
+        // pythonxm nvidia
         CudaMaxThreadsKey    = 1200,
         CudaBFactorKey       = 1201,
         CudaBSleepKey        = 1202,
@@ -172,7 +172,7 @@ public:
 };
 
 
-} /* namespace xmrig */
+} /* namespace pythonxm */
 
 
 #endif // XMRIG_ICONFIG_H

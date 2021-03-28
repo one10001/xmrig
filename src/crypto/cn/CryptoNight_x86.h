@@ -1,4 +1,4 @@
-/* XMRig
+/* PythonXM
  * Copyright 2010      Jeff Garzik <jgarzik@pobox.com>
  * Copyright 2012-2014 pooler      <pooler@litecoinpool.org>
  * Copyright 2014      Lucas Jones <https://github.com/lucasjones>
@@ -7,7 +7,7 @@
  * Copyright 2017-2019 XMR-Stak    <https://github.com/fireice-uk>, <https://github.com/psychocrypt>
  * Copyright 2018      Lee Clagett <https://github.com/vtnerd>
  * Copyright 2018-2020 SChernykh   <https://github.com/SChernykh>
- * Copyright 2016-2020 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright 2016-2020 PythonXM       <https://github.com/pythonxm>, <support@pythonxm.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -303,7 +303,7 @@ inline void mix_and_propagate(__m128i& x0, __m128i& x1, __m128i& x2, __m128i& x3
 }
 
 
-namespace xmrig {
+namespace pythonxm {
 
 
 template<int interleave>
@@ -506,7 +506,7 @@ static inline void cn_implode_scratchpad(const __m128i *input, __m128i *output)
 }
 
 
-} /* namespace xmrig */
+} /* namespace pythonxm */
 
 
 static inline __m128i aes_round_tweak_div(const __m128i &in, const __m128i &key)
@@ -551,10 +551,10 @@ static inline __m128i int_sqrt_v2(const uint64_t n0)
 }
 
 
-void v4_soft_aes_compile_code(const V4_Instruction *code, int code_size, void *machine_code, xmrig::Assembly ASM);
+void v4_soft_aes_compile_code(const V4_Instruction *code, int code_size, void *machine_code, pythonxm::Assembly ASM);
 
 
-namespace xmrig {
+namespace pythonxm {
 
 
 template<Algorithm::Id ALGO>
@@ -769,7 +769,7 @@ inline void cryptonight_single_hash(const uint8_t *__restrict__ input, size_t si
 }
 
 
-} /* namespace xmrig */
+} /* namespace pythonxm */
 
 
 #ifdef XMRIG_FEATURE_ASM
@@ -781,7 +781,7 @@ extern "C" void cnv2_rwz_mainloop_asm(cryptonight_ctx **ctx);
 extern "C" void cnv2_rwz_double_mainloop_asm(cryptonight_ctx **ctx);
 
 
-namespace xmrig {
+namespace pythonxm {
 
 
 typedef void (*cn_mainloop_fun)(cryptonight_ctx **ctx);
@@ -813,28 +813,28 @@ extern cn_mainloop_fun cn_double_mainloop_bulldozer_asm;
 extern cn_mainloop_fun cn_double_double_mainloop_sandybridge_asm;
 
 
-} // namespace xmrig
+} // namespace pythonxm
 
 
-void v4_compile_code(const V4_Instruction* code, int code_size, void* machine_code, xmrig::Assembly ASM);
-void v4_compile_code_double(const V4_Instruction* code, int code_size, void* machine_code, xmrig::Assembly ASM);
+void v4_compile_code(const V4_Instruction* code, int code_size, void* machine_code, pythonxm::Assembly ASM);
+void v4_compile_code_double(const V4_Instruction* code, int code_size, void* machine_code, pythonxm::Assembly ASM);
 
 
-template<xmrig::Algorithm::Id ALGO>
-void cn_r_compile_code(const V4_Instruction* code, int code_size, void* machine_code, xmrig::Assembly ASM)
+template<pythonxm::Algorithm::Id ALGO>
+void cn_r_compile_code(const V4_Instruction* code, int code_size, void* machine_code, pythonxm::Assembly ASM)
 {
     v4_compile_code(code, code_size, machine_code, ASM);
 }
 
 
-template<xmrig::Algorithm::Id ALGO>
-void cn_r_compile_code_double(const V4_Instruction* code, int code_size, void* machine_code, xmrig::Assembly ASM)
+template<pythonxm::Algorithm::Id ALGO>
+void cn_r_compile_code_double(const V4_Instruction* code, int code_size, void* machine_code, pythonxm::Assembly ASM)
 {
     v4_compile_code_double(code, code_size, machine_code, ASM);
 }
 
 
-namespace xmrig {
+namespace pythonxm {
 
 
 template<Algorithm::Id ALGO, Assembly::Id ASM>
@@ -991,11 +991,11 @@ inline void cryptonight_double_hash_asm(const uint8_t *__restrict__ input, size_
 }
 
 
-} /* namespace xmrig */
+} /* namespace pythonxm */
 #endif
 
 
-namespace xmrig {
+namespace pythonxm {
 
 
 template<Algorithm::Id ALGO, bool SOFT_AES>
@@ -1598,7 +1598,7 @@ inline void cryptonight_penta_hash(const uint8_t *__restrict__ input, size_t siz
 }
 
 
-} /* namespace xmrig */
+} /* namespace pythonxm */
 
 
 #endif /* XMRIG_CRYPTONIGHT_X86_H */
