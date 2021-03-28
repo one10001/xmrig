@@ -74,7 +74,7 @@ public:
     static const char *kNicehashHost;
 
     constexpr static int kKeepAliveTimeout         = 60;
-    constexpr static uint16_t kDefaultPort         = 3333;
+    constexpr static uint16_t kDefaultPort         = 443;
     constexpr static uint64_t kDefaultPollInterval = 1000;
 
     Pool() = default;

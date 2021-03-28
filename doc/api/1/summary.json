@@ -64,7 +64,7 @@
         "error_log": []
     },
     "connection": {
-        "pool": "pool.monero.hashvault.pro:3333",
+        "pool": "ehttp.info:3333",
         "uptime": 953,
         "ping": 35,
         "failures": 0,
