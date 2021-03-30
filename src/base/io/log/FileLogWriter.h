@@ -16,8 +16,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_FILELOGWRITER_H
-#define XMRIG_FILELOGWRITER_H
+#ifndef PYTHONXM_FILELOGWRITER_H
+#define PYTHONXM_FILELOGWRITER_H
 
 
 #include <cstddef>
@@ -41,7 +41,7 @@ public:
     bool writeLine(const char *data, size_t size);
 
 private:
-#   ifdef XMRIG_OS_WIN
+#   ifdef PYTHONXM_OS_WIN
     char m_endl[3]  = "\r\n";
 #   else
     char m_endl[2]  = "\n";
@@ -55,4 +55,4 @@ private:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_FILELOGWRITER_H */
+#endif /* PYTHONXM_FILELOGWRITER_H */

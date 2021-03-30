@@ -70,7 +70,7 @@ static AlgoName const algorithm_names[] = {
     { "cryptonight/rwz",           "cn/rwz",           Algorithm::CN_RWZ          },
     { "cryptonight/zls",           "cn/zls",           Algorithm::CN_ZLS          },
     { "cryptonight/double",        "cn/double",        Algorithm::CN_DOUBLE       },
-#   ifdef XMRIG_ALGO_CN_LITE
+#   ifdef PYTHONXM_ALGO_CN_LITE
     { "cryptonight-lite/0",        "cn-lite/0",        Algorithm::CN_LITE_0       },
     { "cryptonight-lite/1",        "cn-lite/1",        Algorithm::CN_LITE_1       },
     { "cryptonight-lite",          "cn-lite",          Algorithm::CN_LITE_1       },
@@ -79,7 +79,7 @@ static AlgoName const algorithm_names[] = {
     { "cryptonight-aeonv7",        nullptr,            Algorithm::CN_LITE_1       },
     { "cryptonight_lite_v7",       nullptr,            Algorithm::CN_LITE_1       },
 #   endif
-#   ifdef XMRIG_ALGO_CN_HEAVY
+#   ifdef PYTHONXM_ALGO_CN_HEAVY
     { "cryptonight-heavy/0",       "cn-heavy/0",       Algorithm::CN_HEAVY_0      },
     { "cryptonight-heavy",         "cn-heavy",         Algorithm::CN_HEAVY_0      },
     { "cryptonight_heavy",         nullptr,            Algorithm::CN_HEAVY_0      },
@@ -88,7 +88,7 @@ static AlgoName const algorithm_names[] = {
     { "cryptonight-heavy/tube",    "cn-heavy/tube",    Algorithm::CN_HEAVY_TUBE   },
     { "cryptonight-bittube2",      nullptr,            Algorithm::CN_HEAVY_TUBE   },
 #   endif
-#   ifdef XMRIG_ALGO_CN_PICO
+#   ifdef PYTHONXM_ALGO_CN_PICO
     { "cryptonight-pico",          "cn-pico",          Algorithm::CN_PICO_0       },
     { "cryptonight-pico/trtl",     "cn-pico/trtl",     Algorithm::CN_PICO_0       },
     { "cryptonight-turtle",        "cn-trtl",          Algorithm::CN_PICO_0       },
@@ -99,7 +99,7 @@ static AlgoName const algorithm_names[] = {
     { "cryptonight-talleo",        "cn-talleo",        Algorithm::CN_PICO_TLO     },
     { "cryptonight_talleo",        "cn_talleo",        Algorithm::CN_PICO_TLO     },
 #   endif
-#   ifdef XMRIG_ALGO_RANDOMX
+#   ifdef PYTHONXM_ALGO_RANDOMX
     { "randomx/0",                 "rx/0",             Algorithm::RX_0            },
     { "randomx/test",              "rx/test",          Algorithm::RX_0            },
     { "RandomX",                   "rx",               Algorithm::RX_0            },
@@ -112,18 +112,18 @@ static AlgoName const algorithm_names[] = {
     { "randomx/keva",              "rx/keva",          Algorithm::RX_KEVA         },
     { "RandomKEVA",                nullptr,            Algorithm::RX_KEVA         },
 #   endif
-#   ifdef XMRIG_ALGO_ARGON2
+#   ifdef PYTHONXM_ALGO_ARGON2
     { "argon2/chukwa",             nullptr,            Algorithm::AR2_CHUKWA      },
     { "chukwa",                    nullptr,            Algorithm::AR2_CHUKWA      },
     { "argon2/chukwav2",           nullptr,            Algorithm::AR2_CHUKWA_V2   },
     { "chukwav2",                  nullptr,            Algorithm::AR2_CHUKWA_V2   },
     { "argon2/wrkz",               nullptr,            Algorithm::AR2_WRKZ        },
 #   endif
-#   ifdef XMRIG_ALGO_ASTROBWT
+#   ifdef PYTHONXM_ALGO_ASTROBWT
     { "astrobwt",                  nullptr,            Algorithm::ASTROBWT_DERO   },
     { "astrobwt/dero",             nullptr,            Algorithm::ASTROBWT_DERO   },
 #   endif
-#   ifdef XMRIG_ALGO_KAWPOW
+#   ifdef PYTHONXM_ALGO_KAWPOW
     { "kawpow",                    nullptr,            Algorithm::KAWPOW_RVN      },
     { "kawpow/rvn",                nullptr,            Algorithm::KAWPOW_RVN      },
 #   endif
@@ -157,7 +157,7 @@ rapidjson::Value pythonxm::Algorithm::toJSON(rapidjson::Document &) const
 
 size_t pythonxm::Algorithm::l2() const
 {
-#   ifdef XMRIG_ALGO_RANDOMX
+#   ifdef PYTHONXM_ALGO_RANDOMX
     switch (m_id) {
     case RX_0:
     case RX_SFX:
@@ -203,7 +203,7 @@ size_t pythonxm::Algorithm::l3() const
         break;
     }
 
-#   ifdef XMRIG_ALGO_RANDOMX
+#   ifdef PYTHONXM_ALGO_RANDOMX
     if (f == RANDOM_X) {
         switch (m_id) {
         case RX_0:
@@ -223,7 +223,7 @@ size_t pythonxm::Algorithm::l3() const
     }
 #   endif
 
-#   ifdef XMRIG_ALGO_ARGON2
+#   ifdef PYTHONXM_ALGO_ARGON2
     if (f == ARGON2) {
         switch (m_id) {
         case AR2_CHUKWA:
@@ -241,7 +241,7 @@ size_t pythonxm::Algorithm::l3() const
     }
 #   endif
 
-#   ifdef XMRIG_ALGO_ASTROBWT
+#   ifdef PYTHONXM_ALGO_ASTROBWT
     if (f == ASTROBWT) {
         switch (m_id) {
         case ASTROBWT_DERO:
@@ -253,7 +253,7 @@ size_t pythonxm::Algorithm::l3() const
     }
 #   endif
 
-#   ifdef XMRIG_ALGO_KAWPOW
+#   ifdef PYTHONXM_ALGO_KAWPOW
     if (f == KAWPOW) {
         switch (m_id) {
         case KAWPOW_RVN:
@@ -271,19 +271,19 @@ size_t pythonxm::Algorithm::l3() const
 
 uint32_t pythonxm::Algorithm::maxIntensity() const
 {
-#   ifdef XMRIG_ALGO_RANDOMX
+#   ifdef PYTHONXM_ALGO_RANDOMX
     if (family() == RANDOM_X) {
         return 1;
     }
 #   endif
 
-#   ifdef XMRIG_ALGO_ARGON2
+#   ifdef PYTHONXM_ALGO_ARGON2
     if (family() == ARGON2) {
         return 1;
     }
 #   endif
 
-#   ifdef XMRIG_ALGO_ASTROBWT
+#   ifdef PYTHONXM_ALGO_ASTROBWT
     if (family() == ASTROBWT) {
         return 1;
     }
@@ -310,26 +310,26 @@ pythonxm::Algorithm::Family pythonxm::Algorithm::family(Id id)
     case CN_CCX:
         return CN;
 
-#   ifdef XMRIG_ALGO_CN_LITE
+#   ifdef PYTHONXM_ALGO_CN_LITE
     case CN_LITE_0:
     case CN_LITE_1:
         return CN_LITE;
 #   endif
 
-#   ifdef XMRIG_ALGO_CN_HEAVY
+#   ifdef PYTHONXM_ALGO_CN_HEAVY
     case CN_HEAVY_0:
     case CN_HEAVY_TUBE:
     case CN_HEAVY_XHV:
         return CN_HEAVY;
 #   endif
 
-#   ifdef XMRIG_ALGO_CN_PICO
+#   ifdef PYTHONXM_ALGO_CN_PICO
     case CN_PICO_0:
     case CN_PICO_TLO:
         return CN_PICO;
 #   endif
 
-#   ifdef XMRIG_ALGO_RANDOMX
+#   ifdef PYTHONXM_ALGO_RANDOMX
     case RX_0:
     case RX_WOW:
     case RX_ARQ:
@@ -338,19 +338,19 @@ pythonxm::Algorithm::Family pythonxm::Algorithm::family(Id id)
         return RANDOM_X;
 #   endif
 
-#   ifdef XMRIG_ALGO_ARGON2
+#   ifdef PYTHONXM_ALGO_ARGON2
     case AR2_CHUKWA:
     case AR2_CHUKWA_V2:
     case AR2_WRKZ:
         return ARGON2;
 #   endif
 
-#   ifdef XMRIG_ALGO_ASTROBWT
+#   ifdef PYTHONXM_ALGO_ASTROBWT
     case ASTROBWT_DERO:
         return ASTROBWT;
 #   endif
 
-#   ifdef XMRIG_ALGO_KAWPOW
+#   ifdef PYTHONXM_ALGO_KAWPOW
     case KAWPOW_RVN:
         return KAWPOW;
 #   endif

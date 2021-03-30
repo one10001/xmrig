@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_DONATE_H
-#define XMRIG_DONATE_H
+#ifndef PYTHONXM_DONATE_H
+#define PYTHONXM_DONATE_H
 
 
 /*
@@ -48,4 +48,4 @@ constexpr const int kDefaultDonateLevel = 0;
 constexpr const int kMinimumDonateLevel = 1;
 
 
-#endif /* XMRIG_DONATE_H */
+#endif /* PYTHONXM_DONATE_H */

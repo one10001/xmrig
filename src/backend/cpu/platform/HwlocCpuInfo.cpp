@@ -17,7 +17,7 @@
  */
 
 
-#ifdef XMRIG_HWLOC_DEBUG
+#ifdef PYTHONXM_HWLOC_DEBUG
 #   include <uv.h>
 #endif
 
@@ -93,7 +93,7 @@ static inline size_t countByType(hwloc_topology_t topology, hwloc_obj_type_t typ
 }
 
 
-#ifndef XMRIG_ARM
+#ifndef PYTHONXM_ARM
 static inline std::vector<hwloc_obj_t> findByType(hwloc_obj_t obj, hwloc_obj_type_t type)
 {
     std::vector<hwloc_obj_t> out;
@@ -128,7 +128,7 @@ pythonxm::HwlocCpuInfo::HwlocCpuInfo()
     hwloc_topology_init(&m_topology);
     hwloc_topology_load(m_topology);
 
-#   ifdef XMRIG_HWLOC_DEBUG
+#   ifdef PYTHONXM_HWLOC_DEBUG
 #   if defined(UV_VERSION_HEX) && UV_VERSION_HEX >= 0x010c00
     {
         char env[520] = { 0 };
@@ -187,7 +187,7 @@ pythonxm::HwlocCpuInfo::HwlocCpuInfo()
         }
     }
 
-#   if defined(XMRIG_OS_MACOS) && defined(XMRIG_ARM)
+#   if defined(PYTHONXM_OS_MACOS) && defined(PYTHONXM_ARM)
     if (L2() == 33554432U && m_cores == 8 && m_cores == m_threads) {
         m_cache[2] = 16777216U;
     }
@@ -217,13 +217,13 @@ bool pythonxm::HwlocCpuInfo::membind(hwloc_const_bitmap_t nodeset)
 
 pythonxm::CpuThreads pythonxm::HwlocCpuInfo::threads(const Algorithm &algorithm, uint32_t limit) const
 {
-#   ifdef XMRIG_ALGO_ASTROBWT
+#   ifdef PYTHONXM_ALGO_ASTROBWT
     if (algorithm == Algorithm::ASTROBWT_DERO) {
         return allThreads(algorithm, limit);
     }
 #   endif
 
-#   ifndef XMRIG_ARM
+#   ifndef PYTHONXM_ARM
     if (L2() == 0 && L3() == 0) {
         return BasicCpuInfo::threads(algorithm, limit);
     }
@@ -291,7 +291,7 @@ pythonxm::CpuThreads pythonxm::HwlocCpuInfo::allThreads(const Algorithm &algorit
 
 void pythonxm::HwlocCpuInfo::processTopLevelCache(hwloc_obj_t cache, const Algorithm &algorithm, CpuThreads &threads, size_t limit) const
 {
-#   ifndef XMRIG_ARM
+#   ifndef PYTHONXM_ARM
     constexpr size_t oneMiB = 1024U * 1024U;
 
     size_t PUs = countByType(cache, HWLOC_OBJ_PU);
@@ -336,13 +336,13 @@ void pythonxm::HwlocCpuInfo::processTopLevelCache(hwloc_obj_t cache, const Algor
 
     size_t cacheHashes = ((L3 + extra) + (scratchpad / 2)) / scratchpad;
 
-#   ifdef XMRIG_ALGO_CN_PICO
+#   ifdef PYTHONXM_ALGO_CN_PICO
     if (intensity && algorithm == Algorithm::CN_PICO_0 && (cacheHashes / PUs) >= 2) {
         intensity = 2;
     }
 #   endif
 
-#   ifdef XMRIG_ALGO_RANDOMX
+#   ifdef PYTHONXM_ALGO_RANDOMX
     if (extra == 0 && algorithm.l2() > 0) {
         cacheHashes = std::min<size_t>(std::max<size_t>(L2 / algorithm.l2(), cores.size()), cacheHashes);
     }

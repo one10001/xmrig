@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_ARGON2_IMPL_H
-#define XMRIG_ARGON2_IMPL_H
+#ifndef PYTHONXM_ARGON2_IMPL_H
+#define PYTHONXM_ARGON2_IMPL_H
 
 
 namespace pythonxm {
@@ -46,4 +46,4 @@ public:
 }} // namespace pythonxm::argon2
 
 
-#endif /* XMRIG_ARGON2_IMPL_H */
+#endif /* PYTHONXM_ARGON2_IMPL_H */

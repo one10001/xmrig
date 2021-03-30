@@ -24,8 +24,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_CRYPTONIGHT_ARM_H
-#define XMRIG_CRYPTONIGHT_ARM_H
+#ifndef PYTHONXM_CRYPTONIGHT_ARM_H
+#define PYTHONXM_CRYPTONIGHT_ARM_H
 
 
 #include "base/crypto/keccak.h"
@@ -438,7 +438,7 @@ inline void cryptonight_single_hash(const uint8_t *__restrict__ input, size_t si
     constexpr size_t MASK        = props.mask();
     constexpr Algorithm::Id BASE = props.base();
 
-#   ifdef XMRIG_ALGO_CN_HEAVY
+#   ifdef PYTHONXM_ALGO_CN_HEAVY
     constexpr bool IS_CN_HEAVY_TUBE = ALGO == Algorithm::CN_HEAVY_TUBE;
 #   else
     constexpr bool IS_CN_HEAVY_TUBE = false;
@@ -549,7 +549,7 @@ inline void cryptonight_single_hash(const uint8_t *__restrict__ input, size_t si
         ah0 ^= ch;
         idx0 = al0;
 
-#       ifdef XMRIG_ALGO_CN_HEAVY
+#       ifdef PYTHONXM_ALGO_CN_HEAVY
         if (props.isHeavy()) {
             const int64x2_t x = vld1q_s64(reinterpret_cast<const int64_t *>(&l0[idx0 & MASK]));
             const int64_t n   = vgetq_lane_s64(x, 0);
@@ -587,7 +587,7 @@ inline void cryptonight_double_hash(const uint8_t *__restrict__ input, size_t si
     constexpr size_t MASK        = props.mask();
     constexpr Algorithm::Id BASE = props.base();
 
-#   ifdef XMRIG_ALGO_CN_HEAVY
+#   ifdef PYTHONXM_ALGO_CN_HEAVY
     constexpr bool IS_CN_HEAVY_TUBE = ALGO == Algorithm::CN_HEAVY_TUBE;
 #   else
     constexpr bool IS_CN_HEAVY_TUBE = false;
@@ -725,7 +725,7 @@ inline void cryptonight_double_hash(const uint8_t *__restrict__ input, size_t si
         ah0 ^= ch;
         idx0 = al0;
 
-#       ifdef XMRIG_ALGO_CN_HEAVY
+#       ifdef PYTHONXM_ALGO_CN_HEAVY
         if (props.isHeavy()) {
             const int64x2_t x = vld1q_s64(reinterpret_cast<const int64_t *>(&l0[idx0 & MASK]));
             const int64_t n   = vgetq_lane_s64(x, 0);
@@ -785,7 +785,7 @@ inline void cryptonight_double_hash(const uint8_t *__restrict__ input, size_t si
         ah1 ^= ch;
         idx1 = al1;
 
-#       ifdef XMRIG_ALGO_CN_HEAVY
+#       ifdef PYTHONXM_ALGO_CN_HEAVY
         if (props.isHeavy()) {
             const int64x2_t x = vld1q_s64(reinterpret_cast<const int64_t *>(&l1[idx1 & MASK]));
             const int64_t n   = vgetq_lane_s64(x, 0);
@@ -844,4 +844,4 @@ inline void cryptonight_penta_hash(const uint8_t *__restrict__ input, size_t siz
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_CRYPTONIGHT_ARM_H */
+#endif /* PYTHONXM_CRYPTONIGHT_ARM_H */

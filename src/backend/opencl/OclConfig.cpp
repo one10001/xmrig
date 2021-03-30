@@ -40,14 +40,14 @@ static const char *kDevicesHint = "devices-hint";
 static const char *kEnabled     = "enabled";
 static const char *kLoader      = "loader";
 
-#ifndef XMRIG_OS_APPLE
+#ifndef PYTHONXM_OS_APPLE
 static const char *kAMD         = "AMD";
 static const char *kINTEL       = "INTEL";
 static const char *kNVIDIA      = "NVIDIA";
 static const char *kPlatform    = "platform";
 #endif
 
-#ifdef XMRIG_FEATURE_ADL
+#ifdef PYTHONXM_FEATURE_ADL
 static const char *kAdl         = "adl";
 #endif
 
@@ -58,7 +58,7 @@ extern template class Threads<OclThreads>;
 }
 
 
-#ifndef XMRIG_OS_APPLE
+#ifndef PYTHONXM_OS_APPLE
 pythonxm::OclConfig::OclConfig() : m_platformVendor(kAMD) {}
 #else
 pythonxm::OclConfig::OclConfig() = default;
@@ -72,7 +72,7 @@ pythonxm::OclPlatform pythonxm::OclConfig::platform() const
         return {};
     }
 
-#   ifndef XMRIG_OS_APPLE
+#   ifndef PYTHONXM_OS_APPLE
     if (!m_platformVendor.isEmpty()) {
         String search;
         String vendor = m_platformVendor;
@@ -119,11 +119,11 @@ rapidjson::Value pythonxm::OclConfig::toJSON(rapidjson::Document &doc) const
     obj.AddMember(StringRef(kCache),    m_cache, allocator);
     obj.AddMember(StringRef(kLoader),   m_loader.toJSON(), allocator);
 
-#   ifndef XMRIG_OS_APPLE
+#   ifndef PYTHONXM_OS_APPLE
     obj.AddMember(StringRef(kPlatform), m_platformVendor.isEmpty() ? Value(m_platformIndex) : m_platformVendor.toJSON(), allocator);
 #   endif
 
-#   ifdef XMRIG_FEATURE_ADL
+#   ifdef PYTHONXM_FEATURE_ADL
     obj.AddMember(StringRef(kAdl),      m_adl, allocator);
 #   endif
 
@@ -171,13 +171,13 @@ void pythonxm::OclConfig::read(const rapidjson::Value &value)
         m_cache     = Json::getBool(value, kCache, m_cache);
         m_loader    = Json::getString(value, kLoader);
 
-#       ifndef XMRIG_OS_APPLE
+#       ifndef PYTHONXM_OS_APPLE
         setPlatform(Json::getValue(value, kPlatform));
 #       endif
 
         setDevicesHint(Json::getString(value, kDevicesHint));
 
-#       ifdef XMRIG_FEATURE_ADL
+#       ifdef PYTHONXM_FEATURE_ADL
         m_adl = Json::getBool(value, kAdl, m_adl);
 #       endif
 
@@ -242,7 +242,7 @@ void pythonxm::OclConfig::setDevicesHint(const char *devicesHint)
 }
 
 
-#ifndef XMRIG_OS_APPLE
+#ifndef PYTHONXM_OS_APPLE
 void pythonxm::OclConfig::setPlatform(const rapidjson::Value &platform)
 {
     if (platform.IsString()) {

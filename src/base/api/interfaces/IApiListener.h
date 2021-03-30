@@ -16,8 +16,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_IAPILISTENER_H
-#define XMRIG_IAPILISTENER_H
+#ifndef PYTHONXM_IAPILISTENER_H
+#define PYTHONXM_IAPILISTENER_H
 
 
 #include "base/tools/Object.h"
@@ -32,12 +32,12 @@ class IApiRequest;
 class IApiListener
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE(IApiListener)
+    PYTHONXM_DISABLE_COPY_MOVE(IApiListener)
 
     IApiListener()          = default;
     virtual ~IApiListener() = default;
 
-#   ifdef XMRIG_FEATURE_API
+#   ifdef PYTHONXM_FEATURE_API
     virtual void onRequest(IApiRequest &request) = 0;
 #   endif
 };
@@ -46,4 +46,4 @@ public:
 } /* namespace pythonxm */
 
 
-#endif // XMRIG_IAPILISTENER_H
+#endif // PYTHONXM_IAPILISTENER_H

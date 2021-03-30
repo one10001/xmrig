@@ -23,8 +23,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_URL_H
-#define XMRIG_URL_H
+#ifndef PYTHONXM_URL_H
+#define PYTHONXM_URL_H
 
 
 #include "base/tools/String.h"
@@ -74,4 +74,4 @@ protected:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_URL_H */
+#endif /* PYTHONXM_URL_H */

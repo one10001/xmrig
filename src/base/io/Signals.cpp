@@ -34,7 +34,7 @@ static const int signums[pythonxm::Signals::kSignalsCount] = { SIGHUP, SIGINT, S
 pythonxm::Signals::Signals(ISignalListener *listener)
     : m_listener(listener)
 {
-#   ifndef XMRIG_OS_WIN
+#   ifndef PYTHONXM_OS_WIN
     signal(SIGPIPE, SIG_IGN);
 #   endif
 

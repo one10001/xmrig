@@ -16,8 +16,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_SIGNALS_H
-#define XMRIG_SIGNALS_H
+#ifndef PYTHONXM_SIGNALS_H
+#define PYTHONXM_SIGNALS_H
 
 
 #include "base/tools/Object.h"
@@ -39,7 +39,7 @@ class ISignalListener;
 class Signals
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE_DEFAULT(Signals)
+    PYTHONXM_DISABLE_COPY_MOVE_DEFAULT(Signals)
 
 #   ifdef SIGUSR1
     constexpr static const size_t kSignalsCount = 4;
@@ -63,4 +63,4 @@ private:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_SIGNALS_H */
+#endif /* PYTHONXM_SIGNALS_H */

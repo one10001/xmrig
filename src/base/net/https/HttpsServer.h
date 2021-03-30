@@ -17,8 +17,8 @@
  */
 
 
-#ifndef XMRIG_HTTPSSERVER_H
-#define XMRIG_HTTPSSERVER_H
+#ifndef PYTHONXM_HTTPSSERVER_H
+#define PYTHONXM_HTTPSSERVER_H
 
 
 using uv_tcp_t  = struct uv_tcp_s;
@@ -46,7 +46,7 @@ class TlsConfig;
 class HttpsServer : public ITcpServerListener
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE_DEFAULT(HttpsServer)
+    PYTHONXM_DISABLE_COPY_MOVE_DEFAULT(HttpsServer)
 
     HttpsServer(const std::shared_ptr<IHttpListener> &listener);
     ~HttpsServer() override;
@@ -67,5 +67,5 @@ private:
 } // namespace pythonxm
 
 
-#endif // XMRIG_HTTPSSERVER_H
+#endif // PYTHONXM_HTTPSSERVER_H
 

@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_NVMLLIB_H
-#define XMRIG_NVMLLIB_H
+#ifndef PYTHONXM_NVMLLIB_H
+#define PYTHONXM_NVMLLIB_H
 
 
 #include "backend/cuda/wrappers/CudaDevice.h"
@@ -63,4 +63,4 @@ private:
 } // namespace pythonxm
 
 
-#endif /* XMRIG_NVMLLIB_H */
+#endif /* PYTHONXM_NVMLLIB_H */

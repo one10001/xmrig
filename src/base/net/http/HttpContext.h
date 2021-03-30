@@ -18,8 +18,8 @@
  */
 
 
-#ifndef XMRIG_HTTPCONTEXT_H
-#define XMRIG_HTTPCONTEXT_H
+#ifndef PYTHONXM_HTTPCONTEXT_H
+#define PYTHONXM_HTTPCONTEXT_H
 
 
 using llhttp_settings_t     = struct llhttp_settings_s;
@@ -46,7 +46,7 @@ class IHttpListener;
 class HttpContext : public HttpData
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE_DEFAULT(HttpContext)
+    PYTHONXM_DISABLE_COPY_MOVE_DEFAULT(HttpContext)
 
     HttpContext(int parser_type, const std::weak_ptr<IHttpListener> &listener);
     ~HttpContext() override;
@@ -94,5 +94,5 @@ private:
 } // namespace pythonxm
 
 
-#endif // XMRIG_HTTPCONTEXT_H
+#endif // PYTHONXM_HTTPCONTEXT_H
 

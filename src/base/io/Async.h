@@ -18,8 +18,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_ASYNC_H
-#define XMRIG_ASYNC_H
+#ifndef PYTHONXM_ASYNC_H
+#define PYTHONXM_ASYNC_H
 
 
 #include "base/tools/Object.h"
@@ -38,7 +38,7 @@ class IAsyncListener;
 class Async
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE_DEFAULT(Async)
+    PYTHONXM_DISABLE_COPY_MOVE_DEFAULT(Async)
 
     using Callback = std::function<void()>;
 
@@ -56,4 +56,4 @@ private:
 } // namespace pythonxm
 
 
-#endif /* XMRIG_ASYNC_H */
+#endif /* PYTHONXM_ASYNC_H */

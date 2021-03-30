@@ -31,7 +31,7 @@
 #include <utility>
 
 
-#ifdef XMRIG_FEATURE_TLS
+#ifdef PYTHONXM_FEATURE_TLS
 #   include <openssl/ssl.h>
 #   include <openssl/err.h>
 #   include "base/net/stratum/Tls.h"
@@ -109,7 +109,7 @@ bool pythonxm::Client::disconnect()
 
 bool pythonxm::Client::isTLS() const
 {
-#   ifdef XMRIG_FEATURE_TLS
+#   ifdef PYTHONXM_FEATURE_TLS
     return m_pool.isTLS() && m_tls;
 #   else
     return false;
@@ -119,7 +119,7 @@ bool pythonxm::Client::isTLS() const
 
 const char *pythonxm::Client::tlsFingerprint() const
 {
-#   ifdef XMRIG_FEATURE_TLS
+#   ifdef PYTHONXM_FEATURE_TLS
     if (isTLS() && m_pool.fingerprint() == nullptr) {
         return m_tls->fingerprint();
     }
@@ -131,7 +131,7 @@ const char *pythonxm::Client::tlsFingerprint() const
 
 const char *pythonxm::Client::tlsVersion() const
 {
-#   ifdef XMRIG_FEATURE_TLS
+#   ifdef PYTHONXM_FEATURE_TLS
     if (isTLS()) {
         return m_tls->version();
     }
@@ -181,7 +181,7 @@ int64_t pythonxm::Client::send(const rapidjson::Value &obj)
 
 int64_t pythonxm::Client::submit(const JobResult &result)
 {
-#   ifndef XMRIG_PROXY_PROJECT
+#   ifndef PYTHONXM_PROXY_PROJECT
     if (result.clientId != m_rpcId || m_rpcId.isNull() || m_state != ConnectedState) {
         return -1;
     }
@@ -195,7 +195,7 @@ int64_t pythonxm::Client::submit(const JobResult &result)
 
     using namespace rapidjson;
 
-#   ifdef XMRIG_PROXY_PROJECT
+#   ifdef PYTHONXM_PROXY_PROJECT
     const char *nonce = result.nonce;
     const char *data  = result.result;
 #   else
@@ -221,7 +221,7 @@ int64_t pythonxm::Client::submit(const JobResult &result)
 
     JsonRequest::create(doc, m_sequence, "submit", params);
 
-#   ifdef XMRIG_PROXY_PROJECT
+#   ifdef PYTHONXM_PROXY_PROJECT
     m_results[m_sequence] = SubmitResult(m_sequence, result.diff, result.actualDiff(), result.id, 0);
 #   else
     m_results[m_sequence] = SubmitResult(m_sequence, result.diff, result.actualDiff(), 0, result.backend);
@@ -240,7 +240,7 @@ void pythonxm::Client::connect()
         return;
     }
 
-#   ifdef XMRIG_FEATURE_TLS
+#   ifdef PYTHONXM_FEATURE_TLS
     if (m_pool.isTLS()) {
         m_tls = new Tls(this);
     }
@@ -377,7 +377,7 @@ bool pythonxm::Client::parseJob(const rapidjson::Value &params, int *code)
         return false;
     }
 
-#   ifdef XMRIG_FEATURE_HTTP
+#   ifdef PYTHONXM_FEATURE_HTTP
     if (m_pool.mode() == Pool::MODE_SELF_SELECT) {
         job.setExtraNonce(Json::getString(params, "extra_nonce"));
         job.setPoolWallet(Json::getString(params, "pool_wallet"));
@@ -444,7 +444,7 @@ bool pythonxm::Client::parseJob(const rapidjson::Value &params, int *code)
 
 bool pythonxm::Client::send(BIO *bio)
 {
-#   ifdef XMRIG_FEATURE_TLS
+#   ifdef PYTHONXM_FEATURE_TLS
     uv_buf_t buf;
     buf.len = BIO_get_mem_data(bio, &buf.base);
 
@@ -540,7 +540,7 @@ int64_t pythonxm::Client::send(size_t size)
 {
     LOG_DEBUG("[%s] send (%d bytes): \"%.*s\"", url(), size, static_cast<int>(size) - 1, m_sendBuf.data());
 
-#   ifdef XMRIG_FEATURE_TLS
+#   ifdef PYTHONXM_FEATURE_TLS
     if (isTLS()) {
         if (!m_tls->send(m_sendBuf.data(), size)) {
             return -1;
@@ -595,7 +595,7 @@ void pythonxm::Client::handshake()
         return m_socks5->handshake();
     }
 
-#   ifdef XMRIG_FEATURE_TLS
+#   ifdef PYTHONXM_FEATURE_TLS
     if (isTLS()) {
         m_expire = Chrono::steadyMSecs() + kResponseTimeout;
 
@@ -658,7 +658,7 @@ void pythonxm::Client::onClose()
     m_socket = nullptr;
     setState(UnconnectedState);
 
-#   ifdef XMRIG_FEATURE_TLS
+#   ifdef PYTHONXM_FEATURE_TLS
     if (m_tls) {
         delete m_tls;
         m_tls = nullptr;
@@ -754,7 +754,7 @@ void pythonxm::Client::parseExtensions(const rapidjson::Value &result)
             setExtension(EXT_KEEPALIVE, true);
             startTimeout();
         }
-#       ifdef XMRIG_FEATURE_TLS
+#       ifdef PYTHONXM_FEATURE_TLS
         else if (strcmp(name, "tls") == 0) {
             setExtension(EXT_TLS, true);
         }
@@ -860,7 +860,7 @@ void pythonxm::Client::read(ssize_t nread, const uv_buf_t *buf)
             delete m_socks5;
             m_socks5 = nullptr;
 
-#           ifdef XMRIG_FEATURE_TLS
+#           ifdef PYTHONXM_FEATURE_TLS
             if (m_pool.isTLS() && !m_tls) {
                 m_tls = new Tls(this);
             }
@@ -872,7 +872,7 @@ void pythonxm::Client::read(ssize_t nread, const uv_buf_t *buf)
         return;
     }
 
-#   ifdef XMRIG_FEATURE_TLS
+#   ifdef PYTHONXM_FEATURE_TLS
     if (isTLS()) {
         LOG_DEBUG("[%s] TLS received (%d bytes)", url(), static_cast<int>(nread));
 

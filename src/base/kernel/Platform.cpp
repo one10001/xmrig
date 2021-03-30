@@ -24,7 +24,7 @@
 #include <uv.h>
 
 
-#ifdef XMRIG_FEATURE_TLS
+#ifdef PYTHONXM_FEATURE_TLS
 #   include <openssl/ssl.h>
 #   include <openssl/err.h>
 #endif
@@ -39,7 +39,7 @@ String Platform::m_userAgent;
 
 void pythonxm::Platform::init(const char *userAgent)
 {
-#   ifdef XMRIG_FEATURE_TLS
+#   ifdef PYTHONXM_FEATURE_TLS
     SSL_library_init();
     SSL_load_error_strings();
     ERR_load_BIO_strings();

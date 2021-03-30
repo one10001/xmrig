@@ -34,7 +34,7 @@
 #include "version.h"
 
 
-#ifdef XMRIG_FEATURE_HTTP
+#ifdef PYTHONXM_FEATURE_HTTP
 #   include "base/api/Httpd.h"
 #endif
 
@@ -91,7 +91,7 @@ pythonxm::Api::Api(Base *base) :
 
 pythonxm::Api::~Api()
 {
-#   ifdef XMRIG_FEATURE_HTTP
+#   ifdef PYTHONXM_FEATURE_HTTP
     delete m_httpd;
 #   endif
 }
@@ -109,7 +109,7 @@ void pythonxm::Api::start()
 {
     genWorkerId(m_base->config()->apiWorkerId());
 
-#   ifdef XMRIG_FEATURE_HTTP
+#   ifdef PYTHONXM_FEATURE_HTTP
     m_httpd = new Httpd(m_base);
     m_httpd->start();
 #   endif
@@ -118,7 +118,7 @@ void pythonxm::Api::start()
 
 void pythonxm::Api::stop()
 {
-#   ifdef XMRIG_FEATURE_HTTP
+#   ifdef PYTHONXM_FEATURE_HTTP
     m_httpd->stop();
 #   endif
 }
@@ -153,25 +153,25 @@ void pythonxm::Api::exec(IApiRequest &request)
         reply.AddMember("resources",  getResources(request.doc()), allocator);
 
         Value features(kArrayType);
-#       ifdef XMRIG_FEATURE_API
+#       ifdef PYTHONXM_FEATURE_API
         features.PushBack("api", allocator);
 #       endif
-#       ifdef XMRIG_FEATURE_ASM
+#       ifdef PYTHONXM_FEATURE_ASM
         features.PushBack("asm", allocator);
 #       endif
-#       ifdef XMRIG_FEATURE_HTTP
+#       ifdef PYTHONXM_FEATURE_HTTP
         features.PushBack("http", allocator);
 #       endif
-#       ifdef XMRIG_FEATURE_HWLOC
+#       ifdef PYTHONXM_FEATURE_HWLOC
         features.PushBack("hwloc", allocator);
 #       endif
-#       ifdef XMRIG_FEATURE_TLS
+#       ifdef PYTHONXM_FEATURE_TLS
         features.PushBack("tls", allocator);
 #       endif
-#       ifdef XMRIG_FEATURE_OPENCL
+#       ifdef PYTHONXM_FEATURE_OPENCL
         features.PushBack("opencl", allocator);
 #       endif
-#       ifdef XMRIG_FEATURE_CUDA
+#       ifdef PYTHONXM_FEATURE_CUDA
         features.PushBack("cuda", allocator);
 #       endif
         reply.AddMember("features", features, allocator);

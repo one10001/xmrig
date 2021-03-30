@@ -65,7 +65,7 @@ void pythonxm::OclSharedState::start(const std::vector<OclLaunchData> &threads, 
 
         ++sharedData;
 
-#       ifdef XMRIG_ALGO_RANDOMX
+#       ifdef PYTHONXM_ALGO_RANDOMX
         if (data.algorithm.family() == Algorithm::RANDOM_X) {
             sharedData.createDataset(data.ctx, job, data.thread.isDatasetHost());
         }

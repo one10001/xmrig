@@ -45,30 +45,30 @@
 #include "version.h"
 
 
-#ifdef XMRIG_FEATURE_API
+#ifdef PYTHONXM_FEATURE_API
 #   include "base/api/Api.h"
 #   include "base/api/interfaces/IApiRequest.h"
 #endif
 
 
-#ifdef XMRIG_FEATURE_OPENCL
+#ifdef PYTHONXM_FEATURE_OPENCL
 #   include "backend/opencl/OclBackend.h"
 #endif
 
 
-#ifdef XMRIG_FEATURE_CUDA
+#ifdef PYTHONXM_FEATURE_CUDA
 #   include "backend/cuda/CudaBackend.h"
 #endif
 
 
-#ifdef XMRIG_ALGO_RANDOMX
+#ifdef PYTHONXM_ALGO_RANDOMX
 #   include "crypto/rx/Profiler.h"
 #   include "crypto/rx/Rx.h"
 #   include "crypto/rx/RxConfig.h"
 #endif
 
 
-#ifdef XMRIG_ALGO_ASTROBWT
+#ifdef PYTHONXM_ALGO_ASTROBWT
 #   include "crypto/astrobwt/AstroBWT.h"
 #endif
 
@@ -82,7 +82,7 @@ static std::mutex mutex;
 class MinerPrivate
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE_DEFAULT(MinerPrivate)
+    PYTHONXM_DISABLE_COPY_MOVE_DEFAULT(MinerPrivate)
 
 
     inline MinerPrivate(Controller *controller) : controller(controller) {}
@@ -96,7 +96,7 @@ public:
             delete backend;
         }
 
-#       ifdef XMRIG_ALGO_RANDOMX
+#       ifdef PYTHONXM_ALGO_RANDOMX
         Rx::destroy();
 #       endif
     }
@@ -155,7 +155,7 @@ public:
     }
 
 
-#   ifdef XMRIG_FEATURE_API
+#   ifdef PYTHONXM_FEATURE_API
     void getMiner(rapidjson::Value &reply, rapidjson::Document &doc, int) const
     {
         using namespace rapidjson;
@@ -244,7 +244,7 @@ public:
 
     static inline void printProfile()
     {
-#       ifdef XMRIG_FEATURE_PROFILING
+#       ifdef PYTHONXM_FEATURE_PROFILING
         ProfileScopeData* data[ProfileScopeData::MAX_DATA_COUNT];
 
         const uint32_t n = std::min<uint32_t>(ProfileScopeData::s_dataCount, ProfileScopeData::MAX_DATA_COUNT);
@@ -335,7 +335,7 @@ public:
                  Hashrate::format(maxHashrate[algorithm] * scale,   num + 16 * 3, sizeof(num) / 4), h
                  );
 
-#       ifdef XMRIG_FEATURE_BENCHMARK
+#       ifdef PYTHONXM_FEATURE_BENCHMARK
         for (auto backend : backends) {
             backend->printBenchProgress();
         }
@@ -343,7 +343,7 @@ public:
     }
 
 
-#   ifdef XMRIG_ALGO_RANDOMX
+#   ifdef PYTHONXM_ALGO_RANDOMX
     inline bool initRX() { return Rx::init(job, controller->config()->rx(), controller->config()->cpu()); }
 #   endif
 
@@ -379,21 +379,21 @@ pythonxm::Miner::Miner(Controller *controller)
         Platform::setThreadPriority(std::min(priority + 1, 5));
     }
 
-#   ifdef XMRIG_FEATURE_PROFILING
+#   ifdef PYTHONXM_FEATURE_PROFILING
     ProfileScopeData::Init();
 #   endif
 
-#   ifdef XMRIG_ALGO_RANDOMX
+#   ifdef PYTHONXM_ALGO_RANDOMX
     Rx::init(this);
 #   endif
 
-#   ifdef XMRIG_ALGO_ASTROBWT
+#   ifdef PYTHONXM_ALGO_ASTROBWT
     astrobwt::init();
 #   endif
 
     controller->addListener(this);
 
-#   ifdef XMRIG_FEATURE_API
+#   ifdef PYTHONXM_FEATURE_API
     controller->api()->addListener(this);
 #   endif
 
@@ -402,11 +402,11 @@ pythonxm::Miner::Miner(Controller *controller)
     d_ptr->backends.reserve(3);
     d_ptr->backends.push_back(new CpuBackend(controller));
 
-#   ifdef XMRIG_FEATURE_OPENCL
+#   ifdef PYTHONXM_FEATURE_OPENCL
     d_ptr->backends.push_back(new OclBackend(controller));
 #   endif
 
-#   ifdef XMRIG_FEATURE_CUDA
+#   ifdef PYTHONXM_FEATURE_CUDA
     d_ptr->backends.push_back(new CudaBackend(controller));
 #   endif
 
@@ -537,7 +537,7 @@ void pythonxm::Miner::setJob(const Job &job, bool donate)
         backend->prepare(job);
     }
 
-#   ifdef XMRIG_ALGO_RANDOMX
+#   ifdef PYTHONXM_ALGO_RANDOMX
     if (job.algorithm().family() == Algorithm::RANDOM_X && !Rx::isReady(job)) {
         stop();
     }
@@ -557,7 +557,7 @@ void pythonxm::Miner::setJob(const Job &job, bool donate)
         d_ptr->userJobId = job.id();
     }
 
-#   ifdef XMRIG_ALGO_RANDOMX
+#   ifdef PYTHONXM_ALGO_RANDOMX
     const bool ready = d_ptr->initRX();
 #   else
     constexpr const bool ready = true;
@@ -655,7 +655,7 @@ void pythonxm::Miner::onTimer(const Timer *)
 }
 
 
-#ifdef XMRIG_FEATURE_API
+#ifdef PYTHONXM_FEATURE_API
 void pythonxm::Miner::onRequest(IApiRequest &request)
 {
     if (request.method() == IApiRequest::METHOD_GET) {
@@ -696,7 +696,7 @@ void pythonxm::Miner::onRequest(IApiRequest &request)
 #endif
 
 
-#ifdef XMRIG_ALGO_RANDOMX
+#ifdef PYTHONXM_ALGO_RANDOMX
 void pythonxm::Miner::onDatasetReady()
 {
     if (!Rx::isReady(job())) {

@@ -42,7 +42,7 @@ static const char *kDevicesHint = "devices-hint";
 static const char *kEnabled     = "enabled";
 static const char *kLoader      = "loader";
 
-#ifdef XMRIG_FEATURE_NVML
+#ifdef PYTHONXM_FEATURE_NVML
 static const char *kNvml        = "nvml";
 #endif
 
@@ -63,7 +63,7 @@ rapidjson::Value pythonxm::CudaConfig::toJSON(rapidjson::Document &doc) const
     obj.AddMember(StringRef(kEnabled),  m_enabled, allocator);
     obj.AddMember(StringRef(kLoader),   m_loader.toJSON(), allocator);
 
-#   ifdef XMRIG_FEATURE_NVML
+#   ifdef PYTHONXM_FEATURE_NVML
     if (m_nvmlLoader.isNull()) {
         obj.AddMember(StringRef(kNvml), m_nvml, allocator);
     }
@@ -123,7 +123,7 @@ void pythonxm::CudaConfig::read(const rapidjson::Value &value)
 
         setDevicesHint(Json::getString(value, kDevicesHint));
 
-#       ifdef XMRIG_FEATURE_NVML
+#       ifdef PYTHONXM_FEATURE_NVML
         auto &nvml = Json::getValue(value, kNvml);
         if (nvml.IsString()) {
             m_nvmlLoader = nvml.GetString();

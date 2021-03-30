@@ -16,8 +16,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_MSR_H
-#define XMRIG_MSR_H
+#ifndef PYTHONXM_MSR_H
+#define PYTHONXM_MSR_H
 
 
 #include "base/tools/Object.h"
@@ -38,7 +38,7 @@ class MsrPrivate;
 class Msr
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE(Msr)
+    PYTHONXM_DISABLE_COPY_MOVE(Msr)
 
     using Callback = std::function<bool(int32_t cpu)>;
 
@@ -66,4 +66,4 @@ private:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_MSR_H */
+#endif /* PYTHONXM_MSR_H */

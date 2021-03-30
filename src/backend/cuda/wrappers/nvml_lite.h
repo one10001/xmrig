@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_NVML_LITE_H
-#define XMRIG_NVML_LITE_H
+#ifndef PYTHONXM_NVML_LITE_H
+#define PYTHONXM_NVML_LITE_H
 
 
 #include <cstdint>
@@ -52,4 +52,4 @@ struct nvmlPciInfo_t
 };
 
 
-#endif /* XMRIG_NVML_LITE_H */
+#endif /* PYTHONXM_NVML_LITE_H */

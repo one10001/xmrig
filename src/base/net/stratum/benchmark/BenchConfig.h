@@ -16,8 +16,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_BENCHCONFIG_H
-#define XMRIG_BENCHCONFIG_H
+#ifndef PYTHONXM_BENCHCONFIG_H
+#define PYTHONXM_BENCHCONFIG_H
 
 
 #include "base/crypto/Algorithm.h"
@@ -41,7 +41,7 @@ public:
     static const char *kToken;
     static const char *kVerify;
 
-#   ifndef XMRIG_DEBUG_BENCHMARK_API
+#   ifndef PYTHONXM_DEBUG_BENCHMARK_API
     static constexpr bool kApiTLS               = true;
     static constexpr const uint16_t kApiPort    = 443;
 #   else
@@ -81,4 +81,4 @@ private:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_BENCHCONFIG_H */
+#endif /* PYTHONXM_BENCHCONFIG_H */

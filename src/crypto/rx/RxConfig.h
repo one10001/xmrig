@@ -22,14 +22,14 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_RXCONFIG_H
-#define XMRIG_RXCONFIG_H
+#ifndef PYTHONXM_RXCONFIG_H
+#define PYTHONXM_RXCONFIG_H
 
 
 #include "3rdparty/rapidjson/fwd.h"
 
 
-#ifdef XMRIG_FEATURE_MSR
+#ifdef PYTHONXM_FEATURE_MSR
 #   include "hw/msr/MsrItem.h"
 #endif
 
@@ -68,14 +68,14 @@ public:
     static const char *kScratchpadPrefetchMode;
     static const char *kWrmsr;
 
-#   ifdef XMRIG_FEATURE_HWLOC
+#   ifdef PYTHONXM_FEATURE_HWLOC
     static const char *kNUMA;
 #   endif
 
     bool read(const rapidjson::Value &value);
     rapidjson::Value toJSON(rapidjson::Document &doc) const;
 
-#   ifdef XMRIG_FEATURE_HWLOC
+#   ifdef PYTHONXM_FEATURE_HWLOC
     std::vector<uint32_t> nodeset() const;
 #   else
     inline std::vector<uint32_t> nodeset() const { return std::vector<uint32_t>(); }
@@ -93,13 +93,13 @@ public:
 
     inline ScratchpadPrefetchMode scratchpadPrefetchMode() const { return m_scratchpadPrefetchMode; }
 
-#   ifdef XMRIG_FEATURE_MSR
+#   ifdef PYTHONXM_FEATURE_MSR
     const char *msrPresetName() const;
     const MsrItems &msrPreset() const;
 #   endif
 
 private:
-#   ifdef XMRIG_FEATURE_MSR
+#   ifdef PYTHONXM_FEATURE_MSR
     uint32_t msrMod() const;
     void readMSR(const rapidjson::Value &value);
 
@@ -121,7 +121,7 @@ private:
 
     ScratchpadPrefetchMode m_scratchpadPrefetchMode = ScratchpadPrefetchT0;
 
-#   ifdef XMRIG_FEATURE_HWLOC
+#   ifdef PYTHONXM_FEATURE_HWLOC
     bool m_numa           = true;
     std::vector<uint32_t> m_nodeset;
 #   endif
@@ -132,4 +132,4 @@ private:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_RXCONFIG_H */
+#endif /* PYTHONXM_RXCONFIG_H */

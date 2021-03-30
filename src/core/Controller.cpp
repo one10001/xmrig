@@ -25,7 +25,7 @@
 #include "net/Network.h"
 
 
-#ifdef XMRIG_FEATURE_API
+#ifdef PYTHONXM_FEATURE_API
 #   include "base/api/Api.h"
 #   include "hw/api/HwApi.h"
 #endif
@@ -54,7 +54,7 @@ int pythonxm::Controller::init()
 
     m_network = std::make_shared<Network>(this);
 
-#   ifdef XMRIG_FEATURE_API
+#   ifdef PYTHONXM_FEATURE_API
     m_hwApi = std::make_shared<HwApi>();
     api()->addListener(m_hwApi.get());
 #   endif

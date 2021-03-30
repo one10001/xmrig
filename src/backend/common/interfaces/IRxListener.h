@@ -17,8 +17,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_IRXLISTENER_H
-#define XMRIG_IRXLISTENER_H
+#ifndef PYTHONXM_IRXLISTENER_H
+#define PYTHONXM_IRXLISTENER_H
 
 
 #include "base/tools/Object.h"
@@ -30,12 +30,12 @@ namespace pythonxm {
 class IRxListener
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE(IRxListener)
+    PYTHONXM_DISABLE_COPY_MOVE(IRxListener)
 
     IRxListener()           = default;
     virtual ~IRxListener()  = default;
 
-#   ifdef XMRIG_ALGO_RANDOMX
+#   ifdef PYTHONXM_ALGO_RANDOMX
     virtual void onDatasetReady() = 0;
 #   endif
 };
@@ -44,4 +44,4 @@ public:
 } /* namespace pythonxm */
 
 
-#endif // XMRIG_IRXLISTENER_H
+#endif // PYTHONXM_IRXLISTENER_H

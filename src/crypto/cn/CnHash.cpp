@@ -31,19 +31,19 @@
 #include "crypto/common/VirtualMemory.h"
 
 
-#if defined(XMRIG_ARM)
+#if defined(PYTHONXM_ARM)
 #   include "crypto/cn/CryptoNight_arm.h"
 #else
 #   include "crypto/cn/CryptoNight_x86.h"
 #endif
 
 
-#ifdef XMRIG_ALGO_ARGON2
+#ifdef PYTHONXM_ALGO_ARGON2
 #   include "crypto/argon2/Hash.h"
 #endif
 
 
-#ifdef XMRIG_ALGO_ASTROBWT
+#ifdef PYTHONXM_ALGO_ASTROBWT
 #   include "crypto/astrobwt/AstroBWT.h"
 #endif
 
@@ -61,7 +61,7 @@
     m_map[algo][AV_PENTA_SOFT][Assembly::NONE]  = cryptonight_penta_hash<algo,  true>;
 
 
-#ifdef XMRIG_FEATURE_ASM
+#ifdef PYTHONXM_FEATURE_ASM
 #   define ADD_FN_ASM(algo) \
     m_map[algo][AV_SINGLE][Assembly::INTEL]     = cryptonight_single_hash_asm<algo, Assembly::INTEL>;     \
     m_map[algo][AV_SINGLE][Assembly::RYZEN]     = cryptonight_single_hash_asm<algo, Assembly::RYZEN>;     \
@@ -146,7 +146,7 @@ static void patchAsmVariants()
     cn_half_mainloop_bulldozer_asm              = reinterpret_cast<cn_mainloop_fun>         (base + 0x2000);
     cn_half_double_mainloop_sandybridge_asm     = reinterpret_cast<cn_mainloop_fun>         (base + 0x3000);
 
-#   ifdef XMRIG_ALGO_CN_PICO
+#   ifdef PYTHONXM_ALGO_CN_PICO
     cn_trtl_mainloop_ivybridge_asm              = reinterpret_cast<cn_mainloop_fun>         (base + 0x4000);
     cn_trtl_mainloop_ryzen_asm                  = reinterpret_cast<cn_mainloop_fun>         (base + 0x5000);
     cn_trtl_mainloop_bulldozer_asm              = reinterpret_cast<cn_mainloop_fun>         (base + 0x6000);
@@ -163,7 +163,7 @@ static void patchAsmVariants()
     cn_double_mainloop_bulldozer_asm            = reinterpret_cast<cn_mainloop_fun>         (base + 0xE000);
     cn_double_double_mainloop_sandybridge_asm   = reinterpret_cast<cn_mainloop_fun>         (base + 0xF000);
 
-#   ifdef XMRIG_ALGO_CN_PICO
+#   ifdef PYTHONXM_ALGO_CN_PICO
     cn_tlo_mainloop_ivybridge_asm               = reinterpret_cast<cn_mainloop_fun>         (base + 0x10000);
     cn_tlo_mainloop_ryzen_asm                   = reinterpret_cast<cn_mainloop_fun>         (base + 0x11000);
     cn_tlo_mainloop_bulldozer_asm               = reinterpret_cast<cn_mainloop_fun>         (base + 0x12000);
@@ -179,7 +179,7 @@ static void patchAsmVariants()
         patchCode(cn_half_double_mainloop_sandybridge_asm,   cnv2_double_mainloop_sandybridge_asm,  ITER);
     }
 
-#   ifdef XMRIG_ALGO_CN_PICO
+#   ifdef PYTHONXM_ALGO_CN_PICO
     {
         constexpr uint32_t ITER = CnAlgo<Algorithm::CN_PICO_0>().iterations();
         constexpr uint32_t MASK = CnAlgo<Algorithm::CN_PICO_0>().mask();
@@ -252,18 +252,18 @@ pythonxm::CnHash::CnHash()
     ADD_FN_ASM(Algorithm::CN_ZLS);
     ADD_FN_ASM(Algorithm::CN_DOUBLE);
 
-#   ifdef XMRIG_ALGO_CN_LITE
+#   ifdef PYTHONXM_ALGO_CN_LITE
     ADD_FN(Algorithm::CN_LITE_0);
     ADD_FN(Algorithm::CN_LITE_1);
 #   endif
 
-#   ifdef XMRIG_ALGO_CN_HEAVY
+#   ifdef PYTHONXM_ALGO_CN_HEAVY
     ADD_FN(Algorithm::CN_HEAVY_0);
     ADD_FN(Algorithm::CN_HEAVY_TUBE);
     ADD_FN(Algorithm::CN_HEAVY_XHV);
 #   endif
 
-#   ifdef XMRIG_ALGO_CN_PICO
+#   ifdef PYTHONXM_ALGO_CN_PICO
     ADD_FN(Algorithm::CN_PICO_0);
     ADD_FN_ASM(Algorithm::CN_PICO_0);
     ADD_FN(Algorithm::CN_PICO_TLO);
@@ -272,7 +272,7 @@ pythonxm::CnHash::CnHash()
 
     ADD_FN(Algorithm::CN_CCX);
 
-#   ifdef XMRIG_ALGO_ARGON2
+#   ifdef PYTHONXM_ALGO_ARGON2
     m_map[Algorithm::AR2_CHUKWA][AV_SINGLE][Assembly::NONE]         = argon2::single_hash<Algorithm::AR2_CHUKWA>;
     m_map[Algorithm::AR2_CHUKWA][AV_SINGLE_SOFT][Assembly::NONE]    = argon2::single_hash<Algorithm::AR2_CHUKWA>;
     m_map[Algorithm::AR2_CHUKWA_V2][AV_SINGLE][Assembly::NONE]      = argon2::single_hash<Algorithm::AR2_CHUKWA_V2>;
@@ -281,12 +281,12 @@ pythonxm::CnHash::CnHash()
     m_map[Algorithm::AR2_WRKZ][AV_SINGLE_SOFT][Assembly::NONE]      = argon2::single_hash<Algorithm::AR2_WRKZ>;
 #   endif
 
-#   ifdef XMRIG_ALGO_ASTROBWT
+#   ifdef PYTHONXM_ALGO_ASTROBWT
     m_map[Algorithm::ASTROBWT_DERO][AV_SINGLE][Assembly::NONE]      = astrobwt::single_hash<Algorithm::ASTROBWT_DERO>;
     m_map[Algorithm::ASTROBWT_DERO][AV_SINGLE_SOFT][Assembly::NONE] = astrobwt::single_hash<Algorithm::ASTROBWT_DERO>;
 #   endif
 
-#   ifdef XMRIG_FEATURE_ASM
+#   ifdef PYTHONXM_FEATURE_ASM
     patchAsmVariants();
 #   endif
 }
@@ -298,7 +298,7 @@ pythonxm::cn_hash_fun pythonxm::CnHash::fn(const Algorithm &algorithm, AlgoVaria
         return nullptr;
     }
 
-#   ifdef XMRIG_ALGO_CN_HEAVY
+#   ifdef PYTHONXM_ALGO_CN_HEAVY
     // cn-heavy optimization for Zen3 CPUs
     if ((av == AV_SINGLE) && (assembly != Assembly::NONE) && (Cpu::info()->arch() == ICpuInfo::ARCH_ZEN3)) {
         switch (algorithm.id()) {
@@ -314,7 +314,7 @@ pythonxm::cn_hash_fun pythonxm::CnHash::fn(const Algorithm &algorithm, AlgoVaria
     }
 #   endif
 
-#   ifdef XMRIG_FEATURE_ASM
+#   ifdef PYTHONXM_FEATURE_ASM
     cn_hash_fun fun = cnHash.m_map[algorithm][av][Cpu::assembly(assembly)];
     if (fun) {
         return fun;

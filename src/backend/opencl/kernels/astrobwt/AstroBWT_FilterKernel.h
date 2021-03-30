@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_ASTROBWT_FILTERKERNEL_H
-#define XMRIG_ASTROBWT_FILTERKERNEL_H
+#ifndef PYTHONXM_ASTROBWT_FILTERKERNEL_H
+#define PYTHONXM_ASTROBWT_FILTERKERNEL_H
 
 
 #include "backend/opencl/wrappers/OclKernel.h"
@@ -45,4 +45,4 @@ public:
 } // namespace pythonxm
 
 
-#endif /* XMRIG_ASTROBWT_FILTERKERNEL_H */
+#endif /* PYTHONXM_ASTROBWT_FILTERKERNEL_H */

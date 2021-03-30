@@ -38,7 +38,7 @@ char *pythonxm::Platform::createUserAgent()
     char *buf = new char[max]();
     int length = snprintf(buf, max,
                           "%s/%s (Macintosh; macOS"
-#                         ifdef XMRIG_ARM
+#                         ifdef PYTHONXM_ARM
                           "; arm64"
 #                         else
                           "; x86_64"

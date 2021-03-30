@@ -16,8 +16,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_BUFFER_H
-#define XMRIG_BUFFER_H
+#ifndef PYTHONXM_BUFFER_H
+#define PYTHONXM_BUFFER_H
 
 
 #include <cstdint>
@@ -33,4 +33,4 @@ using Buffer = std::vector<uint8_t>;
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_BUFFER_H */
+#endif /* PYTHONXM_BUFFER_H */

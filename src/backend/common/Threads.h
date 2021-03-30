@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_THREADS_H
-#define XMRIG_THREADS_H
+#ifndef PYTHONXM_THREADS_H
+#define PYTHONXM_THREADS_H
 
 
 #include <map>
@@ -80,4 +80,4 @@ private:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_THREADS_H */
+#endif /* PYTHONXM_THREADS_H */

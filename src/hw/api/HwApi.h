@@ -16,8 +16,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_HWAPI_H
-#define XMRIG_HWAPI_H
+#ifndef PYTHONXM_HWAPI_H
+#define PYTHONXM_HWAPI_H
 
 
 #include "base/api/interfaces/IApiListener.h"
@@ -41,7 +41,7 @@ protected:
     void onRequest(IApiRequest &request) override;
 
 private:
-#   ifdef XMRIG_FEATURE_DMI
+#   ifdef PYTHONXM_FEATURE_DMI
     std::shared_ptr<DmiReader> m_dmi;
 #   endif
 };
@@ -50,4 +50,4 @@ private:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_HWAPI_H */
+#endif /* PYTHONXM_HWAPI_H */

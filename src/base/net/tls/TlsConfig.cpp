@@ -86,7 +86,7 @@ pythonxm::TlsConfig::TlsConfig(const rapidjson::Value &value)
             generate();
         }
     }
-#   ifdef XMRIG_FORCE_TLS
+#   ifdef PYTHONXM_FORCE_TLS
     else if (value.IsNull()) {
         generate();
     }

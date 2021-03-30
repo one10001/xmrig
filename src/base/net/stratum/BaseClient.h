@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_BASECLIENT_H
-#define XMRIG_BASECLIENT_H
+#ifndef PYTHONXM_BASECLIENT_H
+#define PYTHONXM_BASECLIENT_H
 
 
 #include <map>
@@ -114,4 +114,4 @@ private:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_BASECLIENT_H */
+#endif /* PYTHONXM_BASECLIENT_H */

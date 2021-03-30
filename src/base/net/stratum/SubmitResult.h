@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_SUBMITRESULT_H
-#define XMRIG_SUBMITRESULT_H
+#ifndef PYTHONXM_SUBMITRESULT_H
+#define PYTHONXM_SUBMITRESULT_H
 
 
 #include "base/tools/Chrono.h"
@@ -63,4 +63,4 @@ private:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_SUBMITRESULT_H */
+#endif /* PYTHONXM_SUBMITRESULT_H */

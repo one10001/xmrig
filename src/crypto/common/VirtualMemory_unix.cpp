@@ -28,12 +28,12 @@
 #include <sys/mman.h>
 
 
-#ifdef XMRIG_OS_APPLE
+#ifdef PYTHONXM_OS_APPLE
 #   include <libkern/OSCacheControl.h>
 #   include <mach/vm_statistics.h>
 #   include <pthread.h>
 #   include <TargetConditionals.h>
-#   ifdef XMRIG_ARM
+#   ifdef PYTHONXM_ARM
 #       define MEXTRA MAP_JIT
 #   else
 #       define MEXTRA 0
@@ -43,7 +43,7 @@
 #endif
 
 
-#ifdef XMRIG_OS_LINUX
+#ifdef PYTHONXM_OS_LINUX
 #   include "crypto/common/LinuxMemory.h"
 #endif
 
@@ -58,14 +58,14 @@
 #endif
 
 
-#ifdef XMRIG_SECURE_JIT
+#ifdef PYTHONXM_SECURE_JIT
 #   define SECURE_PROT_EXEC 0
 #else
 #   define SECURE_PROT_EXEC PROT_EXEC
 #endif
 
 
-#if defined(XMRIG_OS_LINUX) || (!defined(XMRIG_OS_APPLE) && !defined(__FreeBSD__))
+#if defined(PYTHONXM_OS_LINUX) || (!defined(PYTHONXM_OS_APPLE) && !defined(__FreeBSD__))
 static inline int hugePagesFlag(size_t size)
 {
     return (static_cast<int>(log2(size)) & MAP_HUGE_MASK) << MAP_HUGE_SHIFT;
@@ -75,7 +75,7 @@ static inline int hugePagesFlag(size_t size)
 
 bool pythonxm::VirtualMemory::isHugepagesAvailable()
 {
-#   if defined(XMRIG_OS_MACOS) && defined(XMRIG_ARM)
+#   if defined(PYTHONXM_OS_MACOS) && defined(PYTHONXM_ARM)
     return false;
 #   else
     return true;
@@ -85,7 +85,7 @@ bool pythonxm::VirtualMemory::isHugepagesAvailable()
 
 bool pythonxm::VirtualMemory::isOneGbPagesAvailable()
 {
-#   ifdef XMRIG_OS_LINUX
+#   ifdef PYTHONXM_OS_LINUX
     return Cpu::info()->hasOneGbPages();
 #   else
     return false;
@@ -95,7 +95,7 @@ bool pythonxm::VirtualMemory::isOneGbPagesAvailable()
 
 bool pythonxm::VirtualMemory::protectRW(void *p, size_t size)
 {
-#   if defined(XMRIG_OS_APPLE) && defined(XMRIG_ARM)
+#   if defined(PYTHONXM_OS_APPLE) && defined(PYTHONXM_ARM)
     pthread_jit_write_protect_np(false);
     return true;
 #   else
@@ -112,7 +112,7 @@ bool pythonxm::VirtualMemory::protectRWX(void *p, size_t size)
 
 bool pythonxm::VirtualMemory::protectRX(void *p, size_t size)
 {
-#   if defined(XMRIG_OS_APPLE) && defined(XMRIG_ARM)
+#   if defined(PYTHONXM_OS_APPLE) && defined(PYTHONXM_ARM)
     pthread_jit_write_protect_np(true);
     flushInstructionCache(p, size);
     return true;
@@ -124,9 +124,9 @@ bool pythonxm::VirtualMemory::protectRX(void *p, size_t size)
 
 void *pythonxm::VirtualMemory::allocateExecutableMemory(size_t size, bool hugePages)
 {
-#   if defined(XMRIG_OS_APPLE)
+#   if defined(PYTHONXM_OS_APPLE)
     void *mem = mmap(0, size, PROT_READ | PROT_WRITE | PROT_EXEC, MAP_PRIVATE | MAP_ANON | MEXTRA, -1, 0);
-#   ifdef XMRIG_ARM
+#   ifdef PYTHONXM_ARM
     pthread_jit_write_protect_np(false);
 #   endif
 #   elif defined(__FreeBSD__)
@@ -160,7 +160,7 @@ void *pythonxm::VirtualMemory::allocateExecutableMemory(size_t size, bool hugePa
 
 void *pythonxm::VirtualMemory::allocateLargePagesMemory(size_t size)
 {
-#   if defined(XMRIG_OS_APPLE)
+#   if defined(PYTHONXM_OS_APPLE)
     void *mem = mmap(0, size, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANON, VM_FLAGS_SUPERPAGE_SIZE_2MB, 0);
 #   elif defined(__FreeBSD__)
     void *mem = mmap(0, size, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS | MAP_ALIGNED_SUPER | MAP_PREFAULT_READ, -1, 0);
@@ -174,7 +174,7 @@ void *pythonxm::VirtualMemory::allocateLargePagesMemory(size_t size)
 
 void *pythonxm::VirtualMemory::allocateOneGbPagesMemory(size_t size)
 {
-#   ifdef XMRIG_OS_LINUX
+#   ifdef PYTHONXM_OS_LINUX
     if (isOneGbPagesAvailable()) {
         void *mem = mmap(0, size, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS | MAP_HUGETLB | MAP_POPULATE | hugePagesFlag(kOneGiB), 0, 0);
 
@@ -188,7 +188,7 @@ void *pythonxm::VirtualMemory::allocateOneGbPagesMemory(size_t size)
 
 void pythonxm::VirtualMemory::flushInstructionCache(void *p, size_t size)
 {
-#   if defined(XMRIG_OS_APPLE)
+#   if defined(PYTHONXM_OS_APPLE)
     sys_icache_invalidate(p, size);
 #   elif defined (HAVE_BUILTIN_CLEAR_CACHE) || defined (__GNUC__)
     __builtin___clear_cache(reinterpret_cast<char*>(p), reinterpret_cast<char*>(p) + size);
@@ -212,7 +212,7 @@ void pythonxm::VirtualMemory::osInit(size_t hugePageSize)
 
 bool pythonxm::VirtualMemory::allocateLargePagesMemory()
 {
-#   ifdef XMRIG_OS_LINUX
+#   ifdef PYTHONXM_OS_LINUX
     LinuxMemory::reserve(m_size, m_node, hugePageSize());
 #   endif
 
@@ -235,7 +235,7 @@ bool pythonxm::VirtualMemory::allocateLargePagesMemory()
 
 bool pythonxm::VirtualMemory::allocateOneGbPagesMemory()
 {
-#   ifdef XMRIG_OS_LINUX
+#   ifdef PYTHONXM_OS_LINUX
     LinuxMemory::reserve(m_size, m_node, kOneGiB);
 #   endif
 

@@ -199,7 +199,7 @@ const char *pythonxm::DmiMemory::type() const
 }
 
 
-#ifdef XMRIG_FEATURE_API
+#ifdef PYTHONXM_FEATURE_API
 rapidjson::Value pythonxm::DmiMemory::toJSON(rapidjson::Document &doc) const
 {
     using namespace rapidjson;

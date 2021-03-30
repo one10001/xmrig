@@ -21,8 +21,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_USAGE_H
-#define XMRIG_USAGE_H
+#ifndef PYTHONXM_USAGE_H
+#define PYTHONXM_USAGE_H
 
 
 #include "version.h"
@@ -54,12 +54,12 @@ static inline const std::string &usage()
     u += "      --nicehash                enable nicehash.com support\n";
     u += "      --rig-id=ID               rig identifier for pool-side statistics (needs pool support)\n";
 
-#   ifdef XMRIG_FEATURE_TLS
+#   ifdef PYTHONXM_FEATURE_TLS
     u += "      --tls                     enable SSL/TLS support (needs pool support)\n";
     u += "      --tls-fingerprint=HEX     pool TLS certificate fingerprint for strict certificate pinning\n";
 #   endif
 
-#   ifdef XMRIG_FEATURE_HTTP
+#   ifdef PYTHONXM_FEATURE_HTTP
     u += "      --daemon                  use daemon RPC instead of pool for solo mining\n";
     u += "      --daemon-poll-interval=N  daemon poll interval in milliseconds (default: 1000)\n";
     u += "      --self-select=URL         self-select block templates from URL\n";
@@ -83,7 +83,7 @@ static inline const std::string &usage()
     u += "      --cpu-memory-pool=N       number of 2 MB pages for persistent memory pool, -1 (auto), 0 (disable)\n";
     u += "      --cpu-no-yield            prefer maximum hashrate rather than system response/stability\n";
     u += "      --no-huge-pages           disable huge pages support\n";
-#   ifdef XMRIG_OS_LINUX
+#   ifdef PYTHONXM_OS_LINUX
     u += "      --hugepage-size=N         custom hugepage size in kB\n";
 #   endif
     u += "      --asm=ASM                 ASM optimizations, possible values: auto, none, intel, ryzen, bulldozer\n";
@@ -92,7 +92,7 @@ static inline const std::string &usage()
     u += "      --argon2-impl=IMPL        argon2 implementation: x86_64, SSE2, SSSE3, XOP, AVX2, AVX-512F\n";
 #   endif
 
-#   ifdef XMRIG_ALGO_RANDOMX
+#   ifdef PYTHONXM_ALGO_RANDOMX
     u += "      --randomx-init=N          threads count to initialize RandomX dataset\n";
     u += "      --randomx-no-numa         disable NUMA support for RandomX\n";
     u += "      --randomx-mode=MODE       RandomX mode: auto, fast, light\n";
@@ -102,12 +102,12 @@ static inline const std::string &usage()
     u += "      --randomx-cache-qos       enable Cache QoS\n";
 #   endif
 
-#   ifdef XMRIG_ALGO_ASTROBWT
+#   ifdef PYTHONXM_ALGO_ASTROBWT
     u += "      --astrobwt-max-size=N     skip hashes with large stage 2 size, default: 550, min: 400, max: 1200\n";
     u += "      --astrobwt-avx2           enable AVX2 optimizations for AstroBWT algorithm";
 #   endif
 
-#   ifdef XMRIG_FEATURE_OPENCL
+#   ifdef PYTHONXM_FEATURE_OPENCL
     u += "\nOpenCL backend:\n";
     u += "      --opencl                  enable OpenCL mining backend\n";
     u += "      --opencl-devices=N        comma separated list of OpenCL devices to use\n";
@@ -117,7 +117,7 @@ static inline const std::string &usage()
     u += "      --print-platforms         print available OpenCL platforms and exit\n";
 #   endif
 
-#   ifdef XMRIG_FEATURE_CUDA
+#   ifdef PYTHONXM_FEATURE_CUDA
     u += "\nCUDA backend:\n";
     u += "      --cuda                    enable CUDA mining backend\n";
     u += "      --cuda-loader=PATH        path to CUDA plugin (pythonxm-cuda.dll or libpythonxm-cuda.so)\n";
@@ -125,11 +125,11 @@ static inline const std::string &usage()
     u += "      --cuda-bfactor-hint=N     bfactor hint for autoconfig (0-12)\n";
     u += "      --cuda-bsleep-hint=N      bsleep hint for autoconfig\n";
 #   endif
-#   ifdef XMRIG_FEATURE_NVML
+#   ifdef PYTHONXM_FEATURE_NVML
     u += "      --no-nvml                 disable NVML (NVIDIA Management Library) support\n";
 #   endif
 
-#   ifdef XMRIG_FEATURE_HTTP
+#   ifdef PYTHONXM_FEATURE_HTTP
     u += "\nAPI:\n";
     u += "      --api-worker-id=ID        custom worker-id for API\n";
     u += "      --api-id=ID               custom instance ID for API\n";
@@ -139,7 +139,7 @@ static inline const std::string &usage()
     u += "      --http-no-restricted      enable full remote access to HTTP API (only if access token set)\n";
 #   endif
 
-#   ifdef XMRIG_FEATURE_TLS
+#   ifdef PYTHONXM_FEATURE_TLS
     u += "\nTLS:\n";
     u += "      --tls-gen=HOSTNAME        generate TLS certificate for specific hostname\n";
     u += "      --tls-cert=FILE           load TLS certificate chain from a file in the PEM format\n";
@@ -158,7 +158,7 @@ static inline const std::string &usage()
 
     u += "  -l, --log-file=FILE           log all output to a file\n";
     u += "      --print-time=N            print hashrate report every N seconds\n";
-#   if defined(XMRIG_FEATURE_NVML) || defined(XMRIG_FEATURE_ADL)
+#   if defined(PYTHONXM_FEATURE_NVML) || defined(PYTHONXM_FEATURE_ADL)
     u += "      --health-print-time=N     print health report every N seconds\n";
 #   endif
     u += "      --no-color                disable colored output\n";
@@ -172,21 +172,21 @@ static inline const std::string &usage()
     u += "  -h, --help                    display this help and exit\n";
     u += "      --dry-run                 test configuration and exit\n";
 
-#   ifdef XMRIG_FEATURE_HWLOC
+#   ifdef PYTHONXM_FEATURE_HWLOC
     u += "      --export-topology         export hwloc topology to a XML file and exit\n";
 #   endif
 
-#   ifdef XMRIG_OS_WIN
+#   ifdef PYTHONXM_OS_WIN
     u += "      --title                   set custom console window title\n";
     u += "      --no-title                disable setting console window title\n";
 #   endif
     u += "      --pause-on-battery        pause mine on battery power\n";
     u += "      --pause-on-active=N       pause mine when the user is active (resume after N seconds of last activity)\n";
 
-#   ifdef XMRIG_FEATURE_BENCHMARK
+#   ifdef PYTHONXM_FEATURE_BENCHMARK
     u += "      --stress                  run continuous stress test to check system stability\n";
     u += "      --bench=N                 run benchmark, N can be between 1M and 10M\n";
-#   ifdef XMRIG_FEATURE_HTTP
+#   ifdef PYTHONXM_FEATURE_HTTP
     u += "      --submit                  perform an online benchmark and submit result for sharing\n";
     u += "      --verify=ID               verify submitted benchmark by ID\n";
 #   endif
@@ -194,7 +194,7 @@ static inline const std::string &usage()
     u += "      --hash=HASH               compare benchmark result with specified hash\n";
 #   endif
 
-#   ifdef XMRIG_FEATURE_DMI
+#   ifdef PYTHONXM_FEATURE_DMI
     u += "      --no-dmi                  disable DMI/SMBIOS reader\n";
 #   endif
 
@@ -204,4 +204,4 @@ static inline const std::string &usage()
 
 } /* namespace pythonxm */
 
-#endif /* XMRIG_USAGE_H */
+#endif /* PYTHONXM_USAGE_H */

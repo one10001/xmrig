@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_CUDABASERUNNER_H
-#define XMRIG_CUDABASERUNNER_H
+#ifndef PYTHONXM_CUDABASERUNNER_H
+#define PYTHONXM_CUDABASERUNNER_H
 
 
 #include "backend/cuda/interfaces/ICudaRunner.h"
@@ -41,7 +41,7 @@ class CudaLaunchData;
 class CudaBaseRunner : public ICudaRunner
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE_DEFAULT(CudaBaseRunner)
+    PYTHONXM_DISABLE_COPY_MOVE_DEFAULT(CudaBaseRunner)
 
     CudaBaseRunner(size_t id, const CudaLaunchData &data);
     ~CudaBaseRunner() override;
@@ -68,4 +68,4 @@ protected:
 } /* namespace pythonxm */
 
 
-#endif // XMRIG_CUDABASERUNNER_H
+#endif // PYTHONXM_CUDABASERUNNER_H

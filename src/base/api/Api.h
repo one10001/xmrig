@@ -16,8 +16,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_API_H
-#define XMRIG_API_H
+#ifndef PYTHONXM_API_H
+#define PYTHONXM_API_H
 
 
 #include <vector>
@@ -42,7 +42,7 @@ class String;
 class Api : public IBaseListener
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE_DEFAULT(Api)
+    PYTHONXM_DISABLE_COPY_MOVE_DEFAULT(Api)
 
     Api(Base *base);
     ~Api() override;
@@ -75,4 +75,4 @@ private:
 } // namespace pythonxm
 
 
-#endif /* XMRIG_API_H */
+#endif /* PYTHONXM_API_H */

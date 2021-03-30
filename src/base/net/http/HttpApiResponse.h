@@ -17,8 +17,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_HTTPAPIRESPONSE_H
-#define XMRIG_HTTPAPIRESPONSE_H
+#ifndef PYTHONXM_HTTPAPIRESPONSE_H
+#define PYTHONXM_HTTPAPIRESPONSE_H
 
 
 #include "3rdparty/rapidjson/document.h"
@@ -46,5 +46,5 @@ private:
 } // namespace pythonxm
 
 
-#endif // XMRIG_HTTPAPIRESPONSE_H
+#endif // PYTHONXM_HTTPAPIRESPONSE_H
 

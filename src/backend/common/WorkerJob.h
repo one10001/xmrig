@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_WORKERJOB_H
-#define XMRIG_WORKERJOB_H
+#ifndef PYTHONXM_WORKERJOB_H
+#define PYTHONXM_WORKERJOB_H
 
 
 #include <cstring>
@@ -164,4 +164,4 @@ inline void pythonxm::WorkerJob<1>::save(const Job &job, uint32_t reserveCount, 
 } // namespace pythonxm
 
 
-#endif /* XMRIG_WORKERJOB_H */
+#endif /* PYTHONXM_WORKERJOB_H */

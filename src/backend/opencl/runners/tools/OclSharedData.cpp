@@ -95,7 +95,7 @@ uint64_t pythonxm::OclSharedData::adjustDelay(size_t id)
 
     std::this_thread::sleep_for(std::chrono::milliseconds(delay));
 
-#   ifdef XMRIG_INTERLEAVE_DEBUG
+#   ifdef PYTHONXM_INTERLEAVE_DEBUG
     LOG_WARN("Thread #%zu was paused for %" PRIu64 " ms to adjust interleaving", id, delay);
 #   endif
 
@@ -127,7 +127,7 @@ uint64_t pythonxm::OclSharedData::resumeDelay(size_t id)
         delay = 1000;
     }
 
-#   ifdef XMRIG_INTERLEAVE_DEBUG
+#   ifdef PYTHONXM_INTERLEAVE_DEBUG
     LOG_WARN("Thread #%zu will be paused for %" PRIu64 " ms to before resuming", id, delay);
 #   endif
 
@@ -141,7 +141,7 @@ void pythonxm::OclSharedData::release()
 {
     OclLib::release(m_buffer);
 
-#   ifdef XMRIG_ALGO_RANDOMX
+#   ifdef PYTHONXM_ALGO_RANDOMX
     OclLib::release(m_dataset);
 #   endif
 }
@@ -170,7 +170,7 @@ void pythonxm::OclSharedData::setRunTime(uint64_t time)
 }
 
 
-#ifdef XMRIG_ALGO_RANDOMX
+#ifdef PYTHONXM_ALGO_RANDOMX
 cl_mem pythonxm::OclSharedData::dataset() const
 {
     if (!m_dataset) {

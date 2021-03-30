@@ -16,8 +16,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_MEMPOOL_H
-#define XMRIG_MEMPOOL_H
+#ifndef PYTHONXM_MEMPOOL_H
+#define PYTHONXM_MEMPOOL_H
 
 
 #include <array>
@@ -94,4 +94,4 @@ private:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_MEMPOOL_H */
+#endif /* PYTHONXM_MEMPOOL_H */

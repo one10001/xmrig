@@ -29,7 +29,7 @@
 #include "crypto/common/portable/mm_malloc.h"
 
 
-#ifdef XMRIG_SECURE_JIT
+#ifdef PYTHONXM_SECURE_JIT
 #   define SECURE_PAGE_EXECUTE_READWRITE PAGE_READWRITE
 #else
 #   define SECURE_PAGE_EXECUTE_READWRITE PAGE_EXECUTE_READWRITE

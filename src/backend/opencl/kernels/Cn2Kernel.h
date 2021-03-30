@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_CN2KERNEL_H
-#define XMRIG_CN2KERNEL_H
+#ifndef PYTHONXM_CN2KERNEL_H
+#define PYTHONXM_CN2KERNEL_H
 
 
 #include "backend/opencl/wrappers/OclKernel.h"
@@ -45,4 +45,4 @@ public:
 } // namespace pythonxm
 
 
-#endif /* XMRIG_CN2KERNEL_H */
+#endif /* PYTHONXM_CN2KERNEL_H */

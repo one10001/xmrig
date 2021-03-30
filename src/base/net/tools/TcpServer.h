@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_TCPSERVER_H
-#define XMRIG_TCPSERVER_H
+#ifndef PYTHONXM_TCPSERVER_H
+#define PYTHONXM_TCPSERVER_H
 
 
 #include <uv.h>
@@ -42,7 +42,7 @@ class String;
 class TcpServer
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE_DEFAULT(TcpServer)
+    PYTHONXM_DISABLE_COPY_MOVE_DEFAULT(TcpServer)
 
     TcpServer(const String &host, uint16_t port, ITcpServerListener *listener);
     ~TcpServer();
@@ -66,4 +66,4 @@ private:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_TCPSERVER_H */
+#endif /* PYTHONXM_TCPSERVER_H */

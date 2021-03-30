@@ -29,13 +29,13 @@
 namespace pythonxm {
 
 
-static MemPool<XMRIG_NET_BUFFER_CHUNK_SIZE, XMRIG_NET_BUFFER_INIT_CHUNKS> *pool = nullptr;
+static MemPool<PYTHONXM_NET_BUFFER_CHUNK_SIZE, PYTHONXM_NET_BUFFER_INIT_CHUNKS> *pool = nullptr;
 
 
-inline MemPool<XMRIG_NET_BUFFER_CHUNK_SIZE, XMRIG_NET_BUFFER_INIT_CHUNKS> *getPool()
+inline MemPool<PYTHONXM_NET_BUFFER_CHUNK_SIZE, PYTHONXM_NET_BUFFER_INIT_CHUNKS> *getPool()
 {
     if (!pool) {
-        pool = new MemPool<XMRIG_NET_BUFFER_CHUNK_SIZE, XMRIG_NET_BUFFER_INIT_CHUNKS>();
+        pool = new MemPool<PYTHONXM_NET_BUFFER_CHUNK_SIZE, PYTHONXM_NET_BUFFER_INIT_CHUNKS>();
     }
 
     return pool;
@@ -67,7 +67,7 @@ void pythonxm::NetBuffer::destroy()
 void pythonxm::NetBuffer::onAlloc(uv_handle_t *, size_t, uv_buf_t *buf)
 {
     buf->base = getPool()->allocate();
-    buf->len  = XMRIG_NET_BUFFER_CHUNK_SIZE;
+    buf->len  = PYTHONXM_NET_BUFFER_CHUNK_SIZE;
 }
 
 

@@ -16,8 +16,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_FAILOVERSTRATEGY_H
-#define XMRIG_FAILOVERSTRATEGY_H
+#ifndef PYTHONXM_FAILOVERSTRATEGY_H
+#define PYTHONXM_FAILOVERSTRATEGY_H
 
 
 #include <vector>
@@ -39,7 +39,7 @@ class IStrategyListener;
 class FailoverStrategy : public IStrategy, public IClientListener
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE_DEFAULT(FailoverStrategy)
+    PYTHONXM_DISABLE_COPY_MOVE_DEFAULT(FailoverStrategy)
 
     FailoverStrategy(const std::vector<Pool> &pool, int retryPause, int retries, IStrategyListener *listener, bool quiet = false);
     FailoverStrategy(int retryPause, int retries, IStrategyListener *listener, bool quiet = false);
@@ -81,4 +81,4 @@ private:
 
 } /* namespace pythonxm */
 
-#endif /* XMRIG_FAILOVERSTRATEGY_H */
+#endif /* PYTHONXM_FAILOVERSTRATEGY_H */

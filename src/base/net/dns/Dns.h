@@ -16,8 +16,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_DNS_H
-#define XMRIG_DNS_H
+#ifndef PYTHONXM_DNS_H
+#define PYTHONXM_DNS_H
 
 
 #include <vector>
@@ -39,7 +39,7 @@ class IDnsListener;
 class Dns
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE_DEFAULT(Dns)
+    PYTHONXM_DISABLE_COPY_MOVE_DEFAULT(Dns)
 
     Dns(IDnsListener *listener);
     ~Dns();
@@ -75,4 +75,4 @@ private:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_DNS_H */
+#endif /* PYTHONXM_DNS_H */

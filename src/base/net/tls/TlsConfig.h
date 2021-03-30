@@ -23,8 +23,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_TLSCONFIG_H
-#define XMRIG_TLSCONFIG_H
+#ifndef PYTHONXM_TLSCONFIG_H
+#define PYTHONXM_TLSCONFIG_H
 
 
 #include "3rdparty/rapidjson/fwd.h"
@@ -89,4 +89,4 @@ private:
 
 } /* namespace pythonxm */
 
-#endif /* XMRIG_TLSCONFIG_H */
+#endif /* PYTHONXM_TLSCONFIG_H */

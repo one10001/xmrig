@@ -16,8 +16,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_CPUCONFIG_H
-#define XMRIG_CPUCONFIG_H
+#ifndef PYTHONXM_CPUCONFIG_H
+#define PYTHONXM_CPUCONFIG_H
 
 
 #include "backend/common/Threads.h"
@@ -48,15 +48,15 @@ public:
     static const char *kPriority;
     static const char *kYield;
 
-#   ifdef XMRIG_FEATURE_ASM
+#   ifdef PYTHONXM_FEATURE_ASM
     static const char *kAsm;
 #   endif
 
-#   ifdef XMRIG_ALGO_ARGON2
+#   ifdef PYTHONXM_ALGO_ARGON2
     static const char *kArgon2Impl;
 #   endif
 
-#   ifdef XMRIG_ALGO_ASTROBWT
+#   ifdef PYTHONXM_ALGO_ASTROBWT
     static const char *kAstroBWTMaxSize;
     static const char *kAstroBWTAVX2;
 #   endif
@@ -114,4 +114,4 @@ private:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_CPUCONFIG_H */
+#endif /* PYTHONXM_CPUCONFIG_H */

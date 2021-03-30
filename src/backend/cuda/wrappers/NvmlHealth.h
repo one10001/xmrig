@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_NVMLHEALTH_H
-#define XMRIG_NVMLHEALTH_H
+#ifndef PYTHONXM_NVMLHEALTH_H
+#define PYTHONXM_NVMLHEALTH_H
 
 
 #include <cstdint>
@@ -40,4 +40,4 @@ struct NvmlHealth
 };
 
 
-#endif /* XMRIG_NVMLHEALTH_H */
+#endif /* PYTHONXM_NVMLHEALTH_H */

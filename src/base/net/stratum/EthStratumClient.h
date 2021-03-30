@@ -16,8 +16,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_ETHSTRATUMCLIENT_H
-#define XMRIG_ETHSTRATUMCLIENT_H
+#ifndef PYTHONXM_ETHSTRATUMCLIENT_H
+#define PYTHONXM_ETHSTRATUMCLIENT_H
 
 
 #include "base/net/stratum/Client.h"
@@ -32,7 +32,7 @@ namespace pythonxm {
 class EthStratumClient : public Client
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE_DEFAULT(EthStratumClient)
+    PYTHONXM_DISABLE_COPY_MOVE_DEFAULT(EthStratumClient)
 
     EthStratumClient(int id, const char *agent, IClientListener *listener);
     ~EthStratumClient() override = default;
@@ -62,4 +62,4 @@ private:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_ETHSTRATUMCLIENT_H */
+#endif /* PYTHONXM_ETHSTRATUMCLIENT_H */

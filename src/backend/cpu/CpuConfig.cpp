@@ -38,15 +38,15 @@ const char *CpuConfig::kMemoryPool          = "memory-pool";
 const char *CpuConfig::kPriority            = "priority";
 const char *CpuConfig::kYield               = "yield";
 
-#ifdef XMRIG_FEATURE_ASM
+#ifdef PYTHONXM_FEATURE_ASM
 const char *CpuConfig::kAsm                 = "asm";
 #endif
 
-#ifdef XMRIG_ALGO_ARGON2
+#ifdef PYTHONXM_ALGO_ARGON2
 const char *CpuConfig::kArgon2Impl          = "argon2-impl";
 #endif
 
-#ifdef XMRIG_ALGO_ASTROBWT
+#ifdef PYTHONXM_ALGO_ASTROBWT
 const char *CpuConfig::kAstroBWTMaxSize     = "astrobwt-max-size";
 const char *CpuConfig::kAstroBWTAVX2        = "astrobwt-avx2";
 #endif
@@ -82,15 +82,15 @@ rapidjson::Value pythonxm::CpuConfig::toJSON(rapidjson::Document &doc) const
         obj.AddMember(StringRef(kMaxThreadsHint), m_limit, allocator);
     }
 
-#   ifdef XMRIG_FEATURE_ASM
+#   ifdef PYTHONXM_FEATURE_ASM
     obj.AddMember(StringRef(kAsm), m_assembly.toJSON(), allocator);
 #   endif
 
-#   ifdef XMRIG_ALGO_ARGON2
+#   ifdef PYTHONXM_ALGO_ARGON2
     obj.AddMember(StringRef(kArgon2Impl), m_argon2Impl.toJSON(), allocator);
 #   endif
 
-#   ifdef XMRIG_ALGO_ASTROBWT
+#   ifdef PYTHONXM_ALGO_ASTROBWT
     obj.AddMember(StringRef(kAstroBWTMaxSize),  m_astrobwtMaxSize, allocator);
     obj.AddMember(StringRef(kAstroBWTAVX2),     m_astrobwtAVX2, allocator);
 #   endif
@@ -144,15 +144,15 @@ void pythonxm::CpuConfig::read(const rapidjson::Value &value)
         setMemoryPool(Json::getValue(value, kMemoryPool));
         setPriority(Json::getInt(value,  kPriority, -1));
 
-#       ifdef XMRIG_FEATURE_ASM
+#       ifdef PYTHONXM_FEATURE_ASM
         m_assembly = Json::getValue(value, kAsm);
 #       endif
 
-#       ifdef XMRIG_ALGO_ARGON2
+#       ifdef PYTHONXM_ALGO_ARGON2
         m_argon2Impl = Json::getString(value, kArgon2Impl);
 #       endif
 
-#       ifdef XMRIG_ALGO_ASTROBWT
+#       ifdef PYTHONXM_ALGO_ASTROBWT
         const auto& astroBWTMaxSize = Json::getValue(value, kAstroBWTMaxSize);
         if (astroBWTMaxSize.IsNull() || !astroBWTMaxSize.IsInt()) {
             m_shouldSave = true;

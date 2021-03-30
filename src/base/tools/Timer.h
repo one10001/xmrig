@@ -16,8 +16,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_TIMER_H
-#define XMRIG_TIMER_H
+#ifndef PYTHONXM_TIMER_H
+#define PYTHONXM_TIMER_H
 
 
 using uv_timer_t = struct uv_timer_s;
@@ -38,7 +38,7 @@ class ITimerListener;
 class Timer
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE_DEFAULT(Timer);
+    PYTHONXM_DISABLE_COPY_MOVE_DEFAULT(Timer);
 
     Timer(ITimerListener *listener);
     Timer(ITimerListener *listener, uint64_t timeout, uint64_t repeat);
@@ -66,4 +66,4 @@ private:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_TIMER_H */
+#endif /* PYTHONXM_TIMER_H */

@@ -16,8 +16,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_BENCHSTATE_H
-#define XMRIG_BENCHSTATE_H
+#ifndef PYTHONXM_BENCHSTATE_H
+#define PYTHONXM_BENCHSTATE_H
 
 
 #include <atomic>
@@ -56,4 +56,4 @@ private:
 } // namespace pythonxm
 
 
-#endif /* XMRIG_BENCHSTATE_H */
+#endif /* PYTHONXM_BENCHSTATE_H */

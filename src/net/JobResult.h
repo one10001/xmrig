@@ -23,8 +23,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_JOBRESULT_H
-#define XMRIG_JOBRESULT_H
+#ifndef PYTHONXM_JOBRESULT_H
+#define PYTHONXM_JOBRESULT_H
 
 
 #include <memory.h>
@@ -98,4 +98,4 @@ private:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_JOBRESULT_H */
+#endif /* PYTHONXM_JOBRESULT_H */

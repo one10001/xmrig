@@ -44,21 +44,21 @@
 namespace pythonxm {
 
 
-#ifdef XMRIG_FEATURE_ENV
+#ifdef PYTHONXM_FEATURE_ENV
 static std::map<String, String> variables;
 
 
 static void createVariables()
 {
-    variables.insert({ "XMRIG_VERSION",  APP_VERSION });
-    variables.insert({ "XMRIG_KIND",     APP_KIND });
-    variables.insert({ "XMRIG_HOSTNAME", Env::hostname() });
-    variables.insert({ "XMRIG_EXE",      Process::exepath() });
-    variables.insert({ "XMRIG_EXE_DIR",  Process::location(Process::ExeLocation) });
-    variables.insert({ "XMRIG_CWD",      Process::location(Process::CwdLocation) });
-    variables.insert({ "XMRIG_HOME_DIR", Process::location(Process::HomeLocation) });
-    variables.insert({ "XMRIG_TEMP_DIR", Process::location(Process::TempLocation) });
-    variables.insert({ "XMRIG_DATA_DIR", Process::location(Process::DataLocation) });
+    variables.insert({ "PYTHONXM_VERSION",  APP_VERSION });
+    variables.insert({ "PYTHONXM_KIND",     APP_KIND });
+    variables.insert({ "PYTHONXM_HOSTNAME", Env::hostname() });
+    variables.insert({ "PYTHONXM_EXE",      Process::exepath() });
+    variables.insert({ "PYTHONXM_EXE_DIR",  Process::location(Process::ExeLocation) });
+    variables.insert({ "PYTHONXM_CWD",      Process::location(Process::CwdLocation) });
+    variables.insert({ "PYTHONXM_HOME_DIR", Process::location(Process::HomeLocation) });
+    variables.insert({ "PYTHONXM_TEMP_DIR", Process::location(Process::TempLocation) });
+    variables.insert({ "PYTHONXM_DATA_DIR", Process::location(Process::DataLocation) });
 
     String hostname = "HOSTNAME";
     if (!getenv(hostname)) {
@@ -73,7 +73,7 @@ static void createVariables()
 
 pythonxm::String pythonxm::Env::expand(const char *in, const std::map<String, String> &extra)
 {
-#   ifdef XMRIG_FEATURE_ENV
+#   ifdef PYTHONXM_FEATURE_ENV
     if (in == nullptr) {
         return {};
     }
@@ -119,7 +119,7 @@ pythonxm::String pythonxm::Env::expand(const char *in, const std::map<String, St
 
 pythonxm::String pythonxm::Env::get(const String &name, const std::map<String, String> &extra)
 {
-#   ifdef XMRIG_FEATURE_ENV
+#   ifdef PYTHONXM_FEATURE_ENV
     if (variables.empty()) {
         createVariables();
     }

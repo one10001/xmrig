@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_KAWPOW_CALCULATEDAGKERNEL_H
-#define XMRIG_KAWPOW_CALCULATEDAGKERNEL_H
+#ifndef PYTHONXM_KAWPOW_CALCULATEDAGKERNEL_H
+#define PYTHONXM_KAWPOW_CALCULATEDAGKERNEL_H
 
 
 #include "backend/opencl/wrappers/OclKernel.h"
@@ -45,4 +45,4 @@ public:
 } // namespace pythonxm
 
 
-#endif /* XMRIG_KAWPOW_CALCULATEDAGKERNEL_H */
+#endif /* PYTHONXM_KAWPOW_CALCULATEDAGKERNEL_H */

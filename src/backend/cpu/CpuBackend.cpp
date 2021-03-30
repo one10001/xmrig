@@ -45,17 +45,17 @@
 #include "crypto/rx/RxDataset.h"
 
 
-#ifdef XMRIG_FEATURE_API
+#ifdef PYTHONXM_FEATURE_API
 #   include "base/api/interfaces/IApiRequest.h"
 #endif
 
 
-#ifdef XMRIG_ALGO_ARGON2
+#ifdef PYTHONXM_ALGO_ARGON2
 #   include "crypto/argon2/Impl.h"
 #endif
 
 
-#ifdef XMRIG_FEATURE_BENCHMARK
+#ifdef PYTHONXM_FEATURE_BENCHMARK
 #   include "backend/common/benchmark/Benchmark.h"
 #   include "backend/common/benchmark/BenchState.h"
 #endif
@@ -158,7 +158,7 @@ public:
 
         status.start(threads, algo.l3());
 
-#       ifdef XMRIG_FEATURE_BENCHMARK
+#       ifdef PYTHONXM_FEATURE_BENCHMARK
         workers.start(threads, benchmark);
 #       else
         workers.start(threads);
@@ -178,7 +178,7 @@ public:
     {
         HugePagesInfo pages;
 
-    #   ifdef XMRIG_ALGO_RANDOMX
+    #   ifdef PYTHONXM_ALGO_RANDOMX
         if (algo.family() == Algorithm::RANDOM_X) {
             pages += Rx::hugePages();
         }
@@ -212,7 +212,7 @@ public:
     String profileName;
     Workers<CpuLaunchData> workers;
 
-#   ifdef XMRIG_FEATURE_BENCHMARK
+#   ifdef PYTHONXM_FEATURE_BENCHMARK
     std::shared_ptr<Benchmark> benchmark;
 #   endif
 };
@@ -223,13 +223,13 @@ public:
 
 const char *pythonxm::backend_tag(uint32_t backend)
 {
-#   ifdef XMRIG_FEATURE_OPENCL
+#   ifdef PYTHONXM_FEATURE_OPENCL
     if (backend == Nonce::OPENCL) {
         return ocl_tag();
     }
 #   endif
 
-#   ifdef XMRIG_FEATURE_CUDA
+#   ifdef PYTHONXM_FEATURE_CUDA
     if (backend == Nonce::CUDA) {
         return cuda_tag();
     }
@@ -296,7 +296,7 @@ const pythonxm::String &pythonxm::CpuBackend::type() const
 
 void pythonxm::CpuBackend::prepare(const Job &nextJob)
 {
-#   ifdef XMRIG_ALGO_ARGON2
+#   ifdef PYTHONXM_ALGO_ARGON2
     const pythonxm::Algorithm::Family f = nextJob.algorithm().family();
     if ((f == Algorithm::ARGON2) || (f == Algorithm::RANDOM_X)) {
         if (argon2::Impl::select(d_ptr->controller->config()->cpu().argon2Impl())) {
@@ -334,7 +334,7 @@ void pythonxm::CpuBackend::printHashrate(bool details)
          i++;
     }
 
-#   ifdef XMRIG_FEATURE_OPENCL
+#   ifdef PYTHONXM_FEATURE_OPENCL
     Log::print(WHITE_BOLD_S "|        - |        - | %7s | %7s | %7s |",
                Hashrate::format(hashrate()->calc(Hashrate::ShortInterval),  num,         sizeof num / 3),
                Hashrate::format(hashrate()->calc(Hashrate::MediumInterval), num + 8,     sizeof num / 3),
@@ -373,7 +373,7 @@ void pythonxm::CpuBackend::setJob(const Job &job)
 
     stop();
 
-#   ifdef XMRIG_FEATURE_BENCHMARK
+#   ifdef PYTHONXM_FEATURE_BENCHMARK
     if (BenchState::size()) {
         d_ptr->benchmark = std::make_shared<Benchmark>(threads.size(), this);
     }
@@ -415,7 +415,7 @@ void pythonxm::CpuBackend::stop()
 }
 
 
-#ifdef XMRIG_FEATURE_API
+#ifdef PYTHONXM_FEATURE_API
 rapidjson::Value pythonxm::CpuBackend::toJSON(rapidjson::Document &doc) const
 {
     using namespace rapidjson;
@@ -431,18 +431,18 @@ rapidjson::Value pythonxm::CpuBackend::toJSON(rapidjson::Document &doc) const
     out.AddMember("priority",   cpu.priority(), allocator);
     out.AddMember("msr",        Rx::isMSR(), allocator);
 
-#   ifdef XMRIG_FEATURE_ASM
+#   ifdef PYTHONXM_FEATURE_ASM
     const Assembly assembly = Cpu::assembly(cpu.assembly());
     out.AddMember("asm", assembly.toJSON(), allocator);
 #   else
     out.AddMember("asm", false, allocator);
 #   endif
 
-#   ifdef XMRIG_ALGO_ARGON2
+#   ifdef PYTHONXM_ALGO_ARGON2
     out.AddMember("argon2-impl", argon2::Impl::name().toJSON(), allocator);
 #   endif
 
-#   ifdef XMRIG_ALGO_ASTROBWT
+#   ifdef PYTHONXM_ALGO_ASTROBWT
     out.AddMember("astrobwt-max-size", cpu.astrobwtMaxSize(), allocator);
 #   endif
 
@@ -484,7 +484,7 @@ void pythonxm::CpuBackend::handleRequest(IApiRequest &request)
 #endif
 
 
-#ifdef XMRIG_FEATURE_BENCHMARK
+#ifdef PYTHONXM_FEATURE_BENCHMARK
 pythonxm::Benchmark *pythonxm::CpuBackend::benchmark() const
 {
     return d_ptr->benchmark.get();

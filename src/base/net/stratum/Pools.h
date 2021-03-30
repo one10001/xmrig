@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_POOLS_H
-#define XMRIG_POOLS_H
+#ifndef PYTHONXM_POOLS_H
+#define PYTHONXM_POOLS_H
 
 
 #include <vector>
@@ -87,7 +87,7 @@ private:
     ProxyDonate m_proxyDonate   = PROXY_DONATE_AUTO;
     std::vector<Pool> m_data;
 
-#   ifdef XMRIG_FEATURE_BENCHMARK
+#   ifdef PYTHONXM_FEATURE_BENCHMARK
     std::shared_ptr<BenchConfig> m_benchmark;
 #   endif
 };
@@ -96,4 +96,4 @@ private:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_POOLS_H */
+#endif /* PYTHONXM_POOLS_H */

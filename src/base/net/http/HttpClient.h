@@ -18,8 +18,8 @@
  */
 
 
-#ifndef XMRIG_HTTPCLIENT_H
-#define XMRIG_HTTPCLIENT_H
+#ifndef PYTHONXM_HTTPCLIENT_H
+#define PYTHONXM_HTTPCLIENT_H
 
 
 #include "base/kernel/interfaces/IDnsListener.h"
@@ -38,7 +38,7 @@ class String;
 class HttpClient : public HttpContext, public IDnsListener, public ITimerListener
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE_DEFAULT(HttpClient);
+    PYTHONXM_DISABLE_COPY_MOVE_DEFAULT(HttpClient);
 
     HttpClient(const char *tag, FetchRequest &&req, const std::weak_ptr<IHttpListener> &listener);
     ~HttpClient() override = default;
@@ -73,5 +73,5 @@ private:
 } // namespace pythonxm
 
 
-#endif // XMRIG_HTTPCLIENT_H
+#endif // PYTHONXM_HTTPCLIENT_H
 

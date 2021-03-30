@@ -28,17 +28,17 @@
 #include "net/JobResults.h"
 
 
-#ifdef XMRIG_ALGO_RANDOMX
+#ifdef PYTHONXM_ALGO_RANDOMX
 #   include "backend/cuda/runners/CudaRxRunner.h"
 #endif
 
 
-#ifdef XMRIG_ALGO_ASTROBWT
+#ifdef PYTHONXM_ALGO_ASTROBWT
 #   include "backend/cuda/runners/CudaAstroBWTRunner.h"
 #endif
 
 
-#ifdef XMRIG_ALGO_KAWPOW
+#ifdef PYTHONXM_ALGO_KAWPOW
 #   include "backend/cuda/runners/CudaKawPowRunner.h"
 #endif
 
@@ -67,7 +67,7 @@ pythonxm::CudaWorker::CudaWorker(size_t id, const CudaLaunchData &data) :
 {
     switch (m_algorithm.family()) {
     case Algorithm::RANDOM_X:
-#       ifdef XMRIG_ALGO_RANDOMX
+#       ifdef PYTHONXM_ALGO_RANDOMX
         m_runner = new CudaRxRunner(id, data);
 #       endif
         break;
@@ -76,13 +76,13 @@ pythonxm::CudaWorker::CudaWorker(size_t id, const CudaLaunchData &data) :
         break;
 
     case Algorithm::ASTROBWT:
-#       ifdef XMRIG_ALGO_ASTROBWT
+#       ifdef PYTHONXM_ALGO_ASTROBWT
         m_runner = new CudaAstroBWTRunner(id, data);
 #       endif
         break;
 
     case Algorithm::KAWPOW:
-#       ifdef XMRIG_ALGO_KAWPOW
+#       ifdef PYTHONXM_ALGO_KAWPOW
         m_runner = new CudaKawPowRunner(id, data);
 #       endif
         break;

@@ -49,7 +49,7 @@ pythonxm::OclBaseRunner::OclBaseRunner(size_t id, const OclLaunchData &data) :
 {
     m_deviceKey = data.device.name();
 
-#   ifdef XMRIG_STRICT_OPENCL_CACHE
+#   ifdef PYTHONXM_STRICT_OPENCL_CACHE
     m_deviceKey += ":";
     m_deviceKey += data.platform.version();
 

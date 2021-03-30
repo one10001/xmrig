@@ -16,8 +16,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_PROXYURL_H
-#define XMRIG_PROXYURL_H
+#ifndef PYTHONXM_PROXYURL_H
+#define PYTHONXM_PROXYURL_H
 
 
 #include "base/net/stratum/Url.h"
@@ -43,4 +43,4 @@ public:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_PROXYURL_H */
+#endif /* PYTHONXM_PROXYURL_H */

@@ -16,8 +16,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_IJSONREADER_H
-#define XMRIG_IJSONREADER_H
+#ifndef PYTHONXM_IJSONREADER_H
+#define PYTHONXM_IJSONREADER_H
 
 
 #include "3rdparty/rapidjson/fwd.h"
@@ -31,7 +31,7 @@ namespace pythonxm {
 class IJsonReader
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE(IJsonReader)
+    PYTHONXM_DISABLE_COPY_MOVE(IJsonReader)
 
     IJsonReader()           = default;
     virtual ~IJsonReader()  = default;
@@ -55,4 +55,4 @@ public:
 } /* namespace pythonxm */
 
 
-#endif // XMRIG_IJSONREADER_H
+#endif // PYTHONXM_IJSONREADER_H

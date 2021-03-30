@@ -16,8 +16,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_ILOGBACKEND_H
-#define XMRIG_ILOGBACKEND_H
+#ifndef PYTHONXM_ILOGBACKEND_H
+#define PYTHONXM_ILOGBACKEND_H
 
 
 #include "base/tools/Object.h"
@@ -33,7 +33,7 @@ namespace pythonxm {
 class ILogBackend
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE(ILogBackend)
+    PYTHONXM_DISABLE_COPY_MOVE(ILogBackend)
 
     ILogBackend()           = default;
     virtual ~ILogBackend()  = default;
@@ -45,4 +45,4 @@ public:
 } /* namespace pythonxm */
 
 
-#endif // XMRIG_ILOGBACKEND_H
+#endif // PYTHONXM_ILOGBACKEND_H

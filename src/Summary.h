@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_SUMMARY_H
-#define XMRIG_SUMMARY_H
+#ifndef PYTHONXM_SUMMARY_H
+#define PYTHONXM_SUMMARY_H
 
 
 namespace pythonxm {
@@ -42,4 +42,4 @@ public:
 } // namespace pythonxm
 
 
-#endif /* XMRIG_SUMMARY_H */
+#endif /* PYTHONXM_SUMMARY_H */

@@ -40,7 +40,7 @@ static void dmi_get_header(dmi_header *h, uint8_t *data)
 } // namespace pythonxm
 
 
-#ifdef XMRIG_FEATURE_API
+#ifdef PYTHONXM_FEATURE_API
 rapidjson::Value pythonxm::DmiReader::toJSON(rapidjson::Document &doc) const
 {
     rapidjson::Value obj;
@@ -105,7 +105,7 @@ bool pythonxm::DmiReader::decode(uint8_t *buf)
             next++;
         }
 
-#       ifdef XMRIG_OS_APPLE
+#       ifdef PYTHONXM_OS_APPLE
         while ((unsigned long)(next - buf + 1) < m_size && (next[0] == 0 && next[1] == 0))
 #       endif
         next += 2;

@@ -120,7 +120,7 @@ pythonxm::NetworkState::NetworkState(IStrategyListener *listener) : StrategyProx
 }
 
 
-#ifdef XMRIG_FEATURE_API
+#ifdef PYTHONXM_FEATURE_API
 rapidjson::Value pythonxm::NetworkState::getConnection(rapidjson::Document &doc, int version) const
 {
     using namespace rapidjson;

@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_BLAKE2BINITIALHASHKERNEL_H
-#define XMRIG_BLAKE2BINITIALHASHKERNEL_H
+#ifndef PYTHONXM_BLAKE2BINITIALHASHKERNEL_H
+#define PYTHONXM_BLAKE2BINITIALHASHKERNEL_H
 
 
 #include "backend/opencl/wrappers/OclKernel.h"
@@ -47,4 +47,4 @@ public:
 } // namespace pythonxm
 
 
-#endif /* XMRIG_BLAKE2BINITIALHASHKERNEL_H */
+#endif /* PYTHONXM_BLAKE2BINITIALHASHKERNEL_H */

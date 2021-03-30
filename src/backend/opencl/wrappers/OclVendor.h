@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_OCLVENDOR_H
-#define XMRIG_OCLVENDOR_H
+#ifndef PYTHONXM_OCLVENDOR_H
+#define PYTHONXM_OCLVENDOR_H
 
 
 namespace pythonxm {
@@ -40,4 +40,4 @@ enum OclVendor : unsigned {
 } // namespace pythonxm
 
 
-#endif /* XMRIG_OCLVENDOR_H */
+#endif /* PYTHONXM_OCLVENDOR_H */

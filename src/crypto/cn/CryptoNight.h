@@ -23,14 +23,14 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_CRYPTONIGHT_H
-#define XMRIG_CRYPTONIGHT_H
+#ifndef PYTHONXM_CRYPTONIGHT_H
+#define PYTHONXM_CRYPTONIGHT_H
 
 
 #include <stddef.h>
 #include <stdint.h>
 
-#if defined _MSC_VER || defined XMRIG_ARM
+#if defined _MSC_VER || defined PYTHONXM_ARM
 #   define ABI_ATTRIBUTE
 #else
 #   define ABI_ATTRIBUTE __attribute__((ms_abi))
@@ -61,4 +61,4 @@ struct cryptonight_ctx {
 };
 
 
-#endif /* XMRIG_CRYPTONIGHT_H */
+#endif /* PYTHONXM_CRYPTONIGHT_H */

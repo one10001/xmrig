@@ -362,7 +362,7 @@ bool pythonxm::CudaLib::open()
         return true;
     }
 
-#   ifdef XMRIG_OS_LINUX
+#   ifdef PYTHONXM_OS_LINUX
     if (m_loader == defaultLoader) {
         m_loader = Process::location(Process::ExeLocation, m_loader);
     }

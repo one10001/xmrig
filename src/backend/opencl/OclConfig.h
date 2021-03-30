@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_OCLCONFIG_H
-#define XMRIG_OCLCONFIG_H
+#ifndef PYTHONXM_OCLCONFIG_H
+#define PYTHONXM_OCLCONFIG_H
 
 
 #include "backend/common/Threads.h"
@@ -51,7 +51,7 @@ public:
     inline const String &loader() const                 { return m_loader; }
     inline const Threads<OclThreads> &threads() const   { return m_threads; }
 
-#   ifdef XMRIG_FEATURE_ADL
+#   ifdef PYTHONXM_FEATURE_ADL
     inline bool isAdlEnabled() const                    { return m_adl; }
 #   endif
 
@@ -66,14 +66,14 @@ private:
     String m_loader;
     Threads<OclThreads> m_threads;
 
-#   ifndef XMRIG_OS_APPLE
+#   ifndef PYTHONXM_OS_APPLE
     void setPlatform(const rapidjson::Value &platform);
 
     String m_platformVendor;
     uint32_t m_platformIndex = 0;
 #   endif
 
-#   ifdef XMRIG_FEATURE_ADL
+#   ifdef PYTHONXM_FEATURE_ADL
     bool m_adl          = true;
 #   endif
 };
@@ -82,4 +82,4 @@ private:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_OCLCONFIG_H */
+#endif /* PYTHONXM_OCLCONFIG_H */

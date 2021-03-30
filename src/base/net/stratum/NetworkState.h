@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_NETWORKSTATE_H
-#define XMRIG_NETWORKSTATE_H
+#ifndef PYTHONXM_NETWORKSTATE_H
+#define PYTHONXM_NETWORKSTATE_H
 
 
 #include "base/crypto/Algorithm.h"
@@ -48,7 +48,7 @@ public:
     inline uint64_t accepted() const            { return m_accepted; }
     inline uint64_t rejected() const            { return m_rejected; }
 
-#   ifdef XMRIG_FEATURE_API
+#   ifdef PYTHONXM_FEATURE_API
     rapidjson::Value getConnection(rapidjson::Document &doc, int version) const;
     rapidjson::Value getResults(rapidjson::Document &doc, int version) const;
 #   endif
@@ -92,4 +92,4 @@ private:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_NETWORKSTATE_H */
+#endif /* PYTHONXM_NETWORKSTATE_H */

@@ -34,7 +34,7 @@
 #include "crypto/rx/RxBasicStorage.h"
 
 
-#ifdef XMRIG_FEATURE_HWLOC
+#ifdef PYTHONXM_FEATURE_HWLOC
 #   include "crypto/rx/RxNUMAStorage.h"
 #endif
 
@@ -95,7 +95,7 @@ void pythonxm::RxQueue::enqueue(const RxSeed &seed, const std::vector<uint32_t> 
     std::unique_lock<std::mutex> lock(m_mutex);
 
     if (!m_storage) {
-#       ifdef XMRIG_FEATURE_HWLOC
+#       ifdef PYTHONXM_FEATURE_HWLOC
         if (!nodeset.empty()) {
             m_storage = new RxNUMAStorage(nodeset);
         }

@@ -33,20 +33,20 @@
 #include "net/JobResult.h"
 
 
-#ifdef XMRIG_ALGO_RANDOMX
+#ifdef PYTHONXM_ALGO_RANDOMX
 #   include "crypto/randomx/randomx.h"
 #   include "crypto/rx/Rx.h"
 #   include "crypto/rx/RxVm.h"
 #endif
 
 
-#ifdef XMRIG_ALGO_KAWPOW
+#ifdef PYTHONXM_ALGO_KAWPOW
 #   include "crypto/kawpow/KPCache.h"
 #   include "crypto/kawpow/KPHash.h"
 #endif
 
 
-#if defined(XMRIG_FEATURE_OPENCL) || defined(XMRIG_FEATURE_CUDA)
+#if defined(PYTHONXM_FEATURE_OPENCL) || defined(PYTHONXM_FEATURE_CUDA)
 #   include "base/tools/Baton.h"
 #   include "crypto/cn/CnCtx.h"
 #   include "crypto/cn/CnHash.h"
@@ -65,7 +65,7 @@
 namespace pythonxm {
 
 
-#if defined(XMRIG_FEATURE_OPENCL) || defined(XMRIG_FEATURE_CUDA)
+#if defined(PYTHONXM_FEATURE_OPENCL) || defined(PYTHONXM_FEATURE_CUDA)
 class JobBundle
 {
 public:
@@ -119,7 +119,7 @@ static void getResults(JobBundle &bundle, std::vector<JobResult> &results, uint3
     alignas(16) uint8_t hash[32]{ 0 };
 
     if (algorithm.family() == Algorithm::RANDOM_X) {
-#       ifdef XMRIG_ALGO_RANDOMX
+#       ifdef PYTHONXM_ALGO_RANDOMX
         RxDataset *dataset = Rx::dataset(bundle.job, 0);
         if (dataset == nullptr) {
             errors += bundle.nonces.size();
@@ -145,7 +145,7 @@ static void getResults(JobBundle &bundle, std::vector<JobResult> &results, uint3
         errors += bundle.nonces.size(); // TODO ARGON2
     }
     else if (algorithm.family() == Algorithm::KAWPOW) {
-#       ifdef XMRIG_ALGO_KAWPOW
+#       ifdef PYTHONXM_ALGO_KAWPOW
         for (uint32_t nonce : bundle.nonces) {
             *bundle.job.nonce() = nonce;
 
@@ -198,7 +198,7 @@ static void getResults(JobBundle &bundle, std::vector<JobResult> &results, uint3
 class JobResultsPrivate : public IAsyncListener
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE_DEFAULT(JobResultsPrivate)
+    PYTHONXM_DISABLE_COPY_MOVE_DEFAULT(JobResultsPrivate)
 
     inline JobResultsPrivate(IJobResultListener *listener, bool hwAES) :
         m_hwAES(hwAES),
@@ -220,7 +220,7 @@ public:
     }
 
 
-#   if defined(XMRIG_FEATURE_OPENCL) || defined(XMRIG_FEATURE_CUDA)
+#   if defined(PYTHONXM_FEATURE_OPENCL) || defined(PYTHONXM_FEATURE_CUDA)
     inline void submit(const Job &job, uint32_t *results, size_t count, uint32_t device_index)
     {
         std::lock_guard<std::mutex> lock(m_mutex);
@@ -236,7 +236,7 @@ protected:
 
 
 private:
-#   if defined(XMRIG_FEATURE_OPENCL) || defined(XMRIG_FEATURE_CUDA)
+#   if defined(PYTHONXM_FEATURE_OPENCL) || defined(PYTHONXM_FEATURE_CUDA)
     inline void submit()
     {
         std::list<JobBundle> bundles;
@@ -299,7 +299,7 @@ private:
     std::mutex m_mutex;
     std::shared_ptr<Async> m_async;
 
-#   if defined(XMRIG_FEATURE_OPENCL) || defined(XMRIG_FEATURE_CUDA)
+#   if defined(PYTHONXM_FEATURE_OPENCL) || defined(PYTHONXM_FEATURE_CUDA)
     std::list<JobBundle> m_bundles;
 #   endif
 };
@@ -351,7 +351,7 @@ void pythonxm::JobResults::submit(const JobResult &result)
 }
 
 
-#if defined(XMRIG_FEATURE_OPENCL) || defined(XMRIG_FEATURE_CUDA)
+#if defined(PYTHONXM_FEATURE_OPENCL) || defined(PYTHONXM_FEATURE_CUDA)
 void pythonxm::JobResults::submit(const Job &job, uint32_t *results, size_t count, uint32_t device_index)
 {
     if (handler) {

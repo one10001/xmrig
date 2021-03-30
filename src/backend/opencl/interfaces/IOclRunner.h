@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_IOCLRUNNER_H
-#define XMRIG_IOCLRUNNER_H
+#ifndef PYTHONXM_IOCLRUNNER_H
+#define PYTHONXM_IOCLRUNNER_H
 
 
 #include "base/tools/Object.h"
@@ -46,7 +46,7 @@ class OclLaunchData;
 class IOclRunner
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE(IOclRunner)
+    PYTHONXM_DISABLE_COPY_MOVE(IOclRunner)
 
     IOclRunner()          = default;
     virtual ~IOclRunner() = default;
@@ -76,4 +76,4 @@ protected:
 } /* namespace pythonxm */
 
 
-#endif // XMRIG_IOCLRUNNER_H
+#endif // PYTHONXM_IOCLRUNNER_H

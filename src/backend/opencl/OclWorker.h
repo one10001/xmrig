@@ -16,8 +16,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_OCLWORKER_H
-#define XMRIG_OCLWORKER_H
+#ifndef PYTHONXM_OCLWORKER_H
+#define PYTHONXM_OCLWORKER_H
 
 
 #include "backend/common/GpuWorker.h"
@@ -37,7 +37,7 @@ class Job;
 class OclWorker : public GpuWorker
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE_DEFAULT(OclWorker)
+    PYTHONXM_DISABLE_COPY_MOVE_DEFAULT(OclWorker)
 
     OclWorker(size_t id, const OclLaunchData &data);
 
@@ -67,4 +67,4 @@ private:
 } // namespace pythonxm
 
 
-#endif /* XMRIG_OCLWORKER_H */
+#endif /* PYTHONXM_OCLWORKER_H */

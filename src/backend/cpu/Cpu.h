@@ -16,8 +16,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_CPU_H
-#define XMRIG_CPU_H
+#ifndef PYTHONXM_CPU_H
+#define PYTHONXM_CPU_H
 
 
 #include "backend/cpu/interfaces/ICpuInfo.h"
@@ -40,4 +40,4 @@ public:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_CPU_H */
+#endif /* PYTHONXM_CPU_H */

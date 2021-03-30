@@ -31,7 +31,7 @@
 #include "base/io/log/Log.h"
 
 
-#ifdef XMRIG_FEATURE_NVML
+#ifdef PYTHONXM_FEATURE_NVML
 #   include "backend/cuda/wrappers/NvmlLib.h"
 #endif
 
@@ -116,7 +116,7 @@ void pythonxm::CudaDevice::generate(const Algorithm &algorithm, CudaThreads &thr
 }
 
 
-#ifdef XMRIG_FEATURE_API
+#ifdef PYTHONXM_FEATURE_API
 void pythonxm::CudaDevice::toJSON(rapidjson::Value &out, rapidjson::Document &doc) const
 {
     using namespace rapidjson;
@@ -130,7 +130,7 @@ void pythonxm::CudaDevice::toJSON(rapidjson::Value &out, rapidjson::Document &do
     out.AddMember("clock",          clock(), allocator);
     out.AddMember("memory_clock",   memoryClock(), allocator);
 
-#   ifdef XMRIG_FEATURE_NVML
+#   ifdef PYTHONXM_FEATURE_NVML
     if (m_nvmlDevice) {
         auto data = NvmlLib::health(m_nvmlDevice);
 

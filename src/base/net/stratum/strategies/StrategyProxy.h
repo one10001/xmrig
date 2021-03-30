@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_STRATEGYPROXY_H
-#define XMRIG_STRATEGYPROXY_H
+#ifndef PYTHONXM_STRATEGYPROXY_H
+#define PYTHONXM_STRATEGYPROXY_H
 
 
 #include "base/kernel/interfaces/IStrategyListener.h"
@@ -76,4 +76,4 @@ private:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_STRATEGYPROXY_H */
+#endif /* PYTHONXM_STRATEGYPROXY_H */

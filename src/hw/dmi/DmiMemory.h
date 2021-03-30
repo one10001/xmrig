@@ -18,8 +18,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_DMIMEMORY_H
-#define XMRIG_DMIMEMORY_H
+#ifndef PYTHONXM_DMIMEMORY_H
+#define PYTHONXM_DMIMEMORY_H
 
 
 #include "base/tools/String.h"
@@ -53,7 +53,7 @@ public:
     const char *formFactor() const;
     const char *type() const;
 
-#   ifdef XMRIG_FEATURE_API
+#   ifdef PYTHONXM_FEATURE_API
     rapidjson::Value toJSON(rapidjson::Document &doc) const;
 #   endif
 
@@ -79,4 +79,4 @@ private:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_DMIMEMORY_H */
+#endif /* PYTHONXM_DMIMEMORY_H */

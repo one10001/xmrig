@@ -23,8 +23,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_ALGORITHM_H
-#define XMRIG_ALGORITHM_H
+#ifndef PYTHONXM_ALGORITHM_H
+#define PYTHONXM_ALGORITHM_H
 
 
 #include <vector>
@@ -130,4 +130,4 @@ using Algorithms = std::vector<Algorithm>;
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_ALGORITHM_H */
+#endif /* PYTHONXM_ALGORITHM_H */

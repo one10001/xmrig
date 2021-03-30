@@ -16,8 +16,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_JSONREQUEST_H
-#define XMRIG_JSONREQUEST_H
+#ifndef PYTHONXM_JSONREQUEST_H
+#define PYTHONXM_JSONREQUEST_H
 
 
 #include "3rdparty/rapidjson/fwd.h"
@@ -60,4 +60,4 @@ public:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_JSONREQUEST_H */
+#endif /* PYTHONXM_JSONREQUEST_H */

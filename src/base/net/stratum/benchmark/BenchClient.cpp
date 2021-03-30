@@ -34,7 +34,7 @@
 #include "base/tools/Cvt.h"
 #include "version.h"
 
-#ifdef XMRIG_FEATURE_DMI
+#ifdef PYTHONXM_FEATURE_DMI
 #   include "hw/dmi/DmiReader.h"
 #endif
 
@@ -58,7 +58,7 @@ pythonxm::BenchClient::BenchClient(const std::shared_ptr<BenchConfig> &benchmark
 
     BenchState::init(this, m_benchmark->size());
 
-#   ifdef XMRIG_FEATURE_HTTP
+#   ifdef PYTHONXM_FEATURE_HTTP
     if (m_benchmark->isSubmit()) {
         m_mode = ONLINE_BENCH;
 
@@ -99,7 +99,7 @@ const char *pythonxm::BenchClient::tag() const
 
 void pythonxm::BenchClient::connect()
 {
-#   ifdef XMRIG_FEATURE_HTTP
+#   ifdef PYTHONXM_FEATURE_HTTP
     if (m_mode == ONLINE_BENCH || m_mode == ONLINE_VERIFY) {
         return resolve();
     }
@@ -121,7 +121,7 @@ void pythonxm::BenchClient::onBenchDone(uint64_t result, uint64_t diff, uint64_t
     m_diff      = diff;
     m_doneTime  = ts;
 
-#   ifdef XMRIG_FEATURE_HTTP
+#   ifdef PYTHONXM_FEATURE_HTTP
     if (!m_token.isEmpty()) {
         send(DONE_BENCH);
     }
@@ -145,7 +145,7 @@ void pythonxm::BenchClient::onBenchReady(uint64_t ts, uint32_t threads, const IB
     m_threads   = threads;
     m_backend   = backend;
 
-#   ifdef XMRIG_FEATURE_HTTP
+#   ifdef PYTHONXM_FEATURE_HTTP
     if (m_mode == ONLINE_BENCH) {
         send(CREATE_BENCH);
     }
@@ -155,7 +155,7 @@ void pythonxm::BenchClient::onBenchReady(uint64_t ts, uint32_t threads, const IB
 
 void pythonxm::BenchClient::onHttpData(const HttpData &data)
 {
-#   ifdef XMRIG_FEATURE_HTTP
+#   ifdef PYTHONXM_FEATURE_HTTP
     rapidjson::Document doc;
 
     try {
@@ -187,7 +187,7 @@ void pythonxm::BenchClient::onHttpData(const HttpData &data)
 
 void pythonxm::BenchClient::onResolved(const Dns &dns, int status)
 {
-#   ifdef XMRIG_FEATURE_HTTP
+#   ifdef PYTHONXM_FEATURE_HTTP
     assert(!m_httpListener);
 
     if (status < 0) {
@@ -267,7 +267,7 @@ void pythonxm::BenchClient::start()
 
 
 
-#ifdef XMRIG_FEATURE_HTTP
+#ifdef PYTHONXM_FEATURE_HTTP
 void pythonxm::BenchClient::onCreateReply(const rapidjson::Value &value)
 {
     m_startTime = Chrono::steadyMSecs();
@@ -340,7 +340,7 @@ void pythonxm::BenchClient::send(Request request)
             doc.AddMember("steady_ready_ts",                m_readyTime, allocator);
             doc.AddMember("cpu",                            Cpu::toJSON(doc), allocator);
 
-#           ifdef XMRIG_FEATURE_DMI
+#           ifdef PYTHONXM_FEATURE_DMI
             if (m_benchmark->isDMI()) {
                 DmiReader reader;
                 if (reader.read()) {

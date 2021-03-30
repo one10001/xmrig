@@ -1,5 +1,5 @@
 if (WITH_HTTP)
-    add_definitions(/DXMRIG_FEATURE_DMI)
+    add_definitions(/DPYTHONXM_FEATURE_DMI)
 
     list(APPEND HEADERS
         src/hw/api/HwApi.h

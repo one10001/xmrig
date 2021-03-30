@@ -16,8 +16,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_CONTROLLER_H
-#define XMRIG_CONTROLLER_H
+#ifndef PYTHONXM_CONTROLLER_H
+#define PYTHONXM_CONTROLLER_H
 
 
 #include "base/kernel/Base.h"
@@ -38,7 +38,7 @@ class Network;
 class Controller : public Base
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE_DEFAULT(Controller)
+    PYTHONXM_DISABLE_COPY_MOVE_DEFAULT(Controller)
 
     Controller(Process *process);
     ~Controller() override;
@@ -55,7 +55,7 @@ private:
     std::shared_ptr<Miner> m_miner;
     std::shared_ptr<Network> m_network;
 
-#   ifdef XMRIG_FEATURE_API
+#   ifdef PYTHONXM_FEATURE_API
     std::shared_ptr<HwApi> m_hwApi;
 #   endif
 };
@@ -64,4 +64,4 @@ private:
 } // namespace pythonxm
 
 
-#endif /* XMRIG_CONTROLLER_H */
+#endif /* PYTHONXM_CONTROLLER_H */

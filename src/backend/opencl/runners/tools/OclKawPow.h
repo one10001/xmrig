@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_OCLKAWPOW_H
-#define XMRIG_OCLKAWPOW_H
+#ifndef PYTHONXM_OCLKAWPOW_H
+#define PYTHONXM_OCLKAWPOW_H
 
 
 #include <cstddef>
@@ -50,4 +50,4 @@ public:
 } // namespace pythonxm
 
 
-#endif /* XMRIG_OCLKAWPOW_H */
+#endif /* PYTHONXM_OCLKAWPOW_H */

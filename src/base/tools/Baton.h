@@ -16,8 +16,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_BATON_H
-#define XMRIG_BATON_H
+#ifndef PYTHONXM_BATON_H
+#define PYTHONXM_BATON_H
 
 
 namespace pythonxm {
@@ -36,4 +36,4 @@ public:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_BATON_H */
+#endif /* PYTHONXM_BATON_H */

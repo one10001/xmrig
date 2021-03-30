@@ -38,7 +38,7 @@ constexpr size_t oneMiB = 1024 * 1024;
 class RxBasicStoragePrivate
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE(RxBasicStoragePrivate)
+    PYTHONXM_DISABLE_COPY_MOVE(RxBasicStoragePrivate)
 
     inline RxBasicStoragePrivate() = default;
     inline ~RxBasicStoragePrivate() { deleteDataset(); }

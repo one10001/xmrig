@@ -16,8 +16,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_JSON_H
-#define XMRIG_JSON_H
+#ifndef PYTHONXM_JSON_H
+#define PYTHONXM_JSON_H
 
 
 #include "base/kernel/interfaces/IJsonReader.h"
@@ -85,4 +85,4 @@ private:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_JSON_H */
+#endif /* PYTHONXM_JSON_H */

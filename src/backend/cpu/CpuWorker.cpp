@@ -38,17 +38,17 @@
 #include "net/JobResults.h"
 
 
-#ifdef XMRIG_ALGO_RANDOMX
+#ifdef PYTHONXM_ALGO_RANDOMX
 #   include "crypto/randomx/randomx.h"
 #endif
 
 
-#ifdef XMRIG_ALGO_ASTROBWT
+#ifdef PYTHONXM_ALGO_ASTROBWT
 #   include "crypto/astrobwt/AstroBWT.h"
 #endif
 
 
-#ifdef XMRIG_FEATURE_BENCHMARK
+#ifdef PYTHONXM_FEATURE_BENCHMARK
 #   include "backend/common/benchmark/BenchState.h"
 #endif
 
@@ -58,7 +58,7 @@ namespace pythonxm {
 static constexpr uint32_t kReserveCount = 32768;
 
 
-#ifdef XMRIG_ALGO_CN_HEAVY
+#ifdef PYTHONXM_ALGO_CN_HEAVY
 static std::mutex cn_heavyZen3MemoryMutex;
 VirtualMemory* cn_heavyZen3Memory = nullptr;
 #endif
@@ -81,7 +81,7 @@ pythonxm::CpuWorker<N>::CpuWorker(size_t id, const CpuLaunchData &data) :
     m_threads(data.threads),
     m_ctx()
 {
-#   ifdef XMRIG_ALGO_CN_HEAVY
+#   ifdef PYTHONXM_ALGO_CN_HEAVY
     // cn-heavy optimization for Zen3 CPUs
     if ((N == 1) && (m_av == CnHash::AV_SINGLE) && (m_algorithm.family() == Algorithm::CN_HEAVY) && (m_assembly != Assembly::NONE) && (Cpu::info()->arch() == ICpuInfo::ARCH_ZEN3)) {
         std::lock_guard<std::mutex> lock(cn_heavyZen3MemoryMutex);
@@ -103,13 +103,13 @@ pythonxm::CpuWorker<N>::CpuWorker(size_t id, const CpuLaunchData &data) :
 template<size_t N>
 pythonxm::CpuWorker<N>::~CpuWorker()
 {
-#   ifdef XMRIG_ALGO_RANDOMX
+#   ifdef PYTHONXM_ALGO_RANDOMX
     RxVm::destroy(m_vm);
 #   endif
 
     CnCtx::release(m_ctx, N);
 
-#   ifdef XMRIG_ALGO_CN_HEAVY
+#   ifdef PYTHONXM_ALGO_CN_HEAVY
     if (m_memory != cn_heavyZen3Memory)
 #   endif
     {
@@ -118,7 +118,7 @@ pythonxm::CpuWorker<N>::~CpuWorker()
 }
 
 
-#ifdef XMRIG_ALGO_RANDOMX
+#ifdef PYTHONXM_ALGO_RANDOMX
 template<size_t N>
 void pythonxm::CpuWorker<N>::allocateRandomX_VM()
 {
@@ -146,7 +146,7 @@ void pythonxm::CpuWorker<N>::allocateRandomX_VM()
 template<size_t N>
 bool pythonxm::CpuWorker<N>::selfTest()
 {
-#   ifdef XMRIG_ALGO_RANDOMX
+#   ifdef PYTHONXM_ALGO_RANDOMX
     if (m_algorithm.family() == Algorithm::RANDOM_X) {
         return N == 1;
     }
@@ -171,14 +171,14 @@ bool pythonxm::CpuWorker<N>::selfTest()
         return rc;
     }
 
-#   ifdef XMRIG_ALGO_CN_LITE
+#   ifdef PYTHONXM_ALGO_CN_LITE
     if (m_algorithm.family() == Algorithm::CN_LITE) {
         return verify(Algorithm::CN_LITE_0,    test_output_v0_lite) &&
                verify(Algorithm::CN_LITE_1,    test_output_v1_lite);
     }
 #   endif
 
-#   ifdef XMRIG_ALGO_CN_HEAVY
+#   ifdef PYTHONXM_ALGO_CN_HEAVY
     if (m_algorithm.family() == Algorithm::CN_HEAVY) {
         return verify(Algorithm::CN_HEAVY_0,    test_output_v0_heavy)  &&
                verify(Algorithm::CN_HEAVY_XHV,  test_output_xhv_heavy) &&
@@ -186,14 +186,14 @@ bool pythonxm::CpuWorker<N>::selfTest()
     }
 #   endif
 
-#   ifdef XMRIG_ALGO_CN_PICO
+#   ifdef PYTHONXM_ALGO_CN_PICO
     if (m_algorithm.family() == Algorithm::CN_PICO) {
         return verify(Algorithm::CN_PICO_0, test_output_pico_trtl) &&
                verify(Algorithm::CN_PICO_TLO, test_output_pico_tlo);
     }
 #   endif
 
-#   ifdef XMRIG_ALGO_ARGON2
+#   ifdef PYTHONXM_ALGO_ARGON2
     if (m_algorithm.family() == Algorithm::ARGON2) {
         return verify(Algorithm::AR2_CHUKWA, argon2_chukwa_test_out) &&
                verify(Algorithm::AR2_CHUKWA_V2, argon2_chukwa_v2_test_out) &&
@@ -201,7 +201,7 @@ bool pythonxm::CpuWorker<N>::selfTest()
     }
 #   endif
 
-#   ifdef XMRIG_ALGO_ASTROBWT
+#   ifdef PYTHONXM_ALGO_ASTROBWT
     if (m_algorithm.family() == Algorithm::ASTROBWT) {
         return verify(Algorithm::ASTROBWT_DERO, astrobwt_dero_test_out);
     }
@@ -236,7 +236,7 @@ void pythonxm::CpuWorker<N>::start()
             consumeJob();
         }
 
-#       ifdef XMRIG_ALGO_RANDOMX
+#       ifdef PYTHONXM_ALGO_RANDOMX
         bool first = true;
         alignas(16) uint64_t tempHash[8] = {};
 #       endif
@@ -253,7 +253,7 @@ void pythonxm::CpuWorker<N>::start()
                 current_job_nonces[i] = *m_job.nonce(i);
             }
 
-#           ifdef XMRIG_FEATURE_BENCHMARK
+#           ifdef PYTHONXM_FEATURE_BENCHMARK
             if (m_benchSize) {
                 if (current_job_nonces[0] >= m_benchSize) {
                     return BenchState::done();
@@ -268,7 +268,7 @@ void pythonxm::CpuWorker<N>::start()
 
             bool valid = true;
 
-#           ifdef XMRIG_ALGO_RANDOMX
+#           ifdef PYTHONXM_ALGO_RANDOMX
             if (job.algorithm().family() == Algorithm::RANDOM_X) {
                 if (first) {
                     first = false;
@@ -284,7 +284,7 @@ void pythonxm::CpuWorker<N>::start()
             else
 #           endif
             {
-#               ifdef XMRIG_ALGO_ASTROBWT
+#               ifdef PYTHONXM_ALGO_ASTROBWT
                 if (job.algorithm().family() == Algorithm::ASTROBWT) {
                     if (!astrobwt::astrobwt_dero(m_job.blob(), job.size(), m_ctx[0]->memory, m_hash, m_astrobwtMaxSize, m_astrobwtAVX2))
                         valid = false;
@@ -304,7 +304,7 @@ void pythonxm::CpuWorker<N>::start()
                 for (size_t i = 0; i < N; ++i) {
                     const uint64_t value = *reinterpret_cast<uint64_t*>(m_hash + (i * 32) + 24);
 
-#                   ifdef XMRIG_FEATURE_BENCHMARK
+#                   ifdef PYTHONXM_FEATURE_BENCHMARK
                     if (m_benchSize) {
                         if (current_job_nonces[i] < m_benchSize) {
                             BenchState::add(value);
@@ -332,7 +332,7 @@ void pythonxm::CpuWorker<N>::start()
 template<size_t N>
 bool pythonxm::CpuWorker<N>::nextRound()
 {
-#   ifdef XMRIG_FEATURE_BENCHMARK
+#   ifdef PYTHONXM_FEATURE_BENCHMARK
     const uint32_t count = m_benchSize ? 1U : kReserveCount;
 #   else
     constexpr uint32_t count = kReserveCount;
@@ -418,7 +418,7 @@ void pythonxm::CpuWorker<N>::allocateCnCtx()
     if (m_ctx[0] == nullptr) {
         int shift = 0;
 
-#       ifdef XMRIG_ALGO_CN_HEAVY
+#       ifdef PYTHONXM_ALGO_CN_HEAVY
         // cn-heavy optimization for Zen3 CPUs
         if (m_memory == cn_heavyZen3Memory) {
             shift = (id() / 8) * m_algorithm.l3() * 8 + (id() % 8) * 64;
@@ -439,7 +439,7 @@ void pythonxm::CpuWorker<N>::consumeJob()
 
     auto job = m_miner->job();
 
-#   ifdef XMRIG_FEATURE_BENCHMARK
+#   ifdef PYTHONXM_FEATURE_BENCHMARK
     m_benchSize          = job.benchSize();
     const uint32_t count = m_benchSize ? 1U : kReserveCount;
 #   else
@@ -448,7 +448,7 @@ void pythonxm::CpuWorker<N>::consumeJob()
 
     m_job.add(job, count, Nonce::CPU);
 
-#   ifdef XMRIG_ALGO_RANDOMX
+#   ifdef PYTHONXM_ALGO_RANDOMX
     if (m_job.currentJob().algorithm().family() == Algorithm::RANDOM_X) {
         allocateRandomX_VM();
     }

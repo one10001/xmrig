@@ -16,8 +16,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_MSRITEM_H
-#define XMRIG_MSRITEM_H
+#ifndef PYTHONXM_MSRITEM_H
+#define PYTHONXM_MSRITEM_H
 
 
 #include "base/tools/String.h"
@@ -67,4 +67,4 @@ using MsrItems = std::vector<MsrItem>;
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_MSRITEM_H */
+#endif /* PYTHONXM_MSRITEM_H */

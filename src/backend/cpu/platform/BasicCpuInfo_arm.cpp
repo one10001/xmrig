@@ -36,13 +36,13 @@
 #include "3rdparty/rapidjson/document.h"
 
 
-#if defined(XMRIG_OS_UNIX)
+#if defined(PYTHONXM_OS_UNIX)
 namespace pythonxm {
 
 extern String cpu_name_arm();
 
 } // namespace pythonxm
-#elif defined(XMRIG_OS_MACOS)
+#elif defined(PYTHONXM_OS_MACOS)
 #   include <sys/sysctl.h>
 #endif
 
@@ -55,7 +55,7 @@ pythonxm::BasicCpuInfo::BasicCpuInfo() :
         m_units[i] = i;
     }
 
-#   ifdef XMRIG_ARMv8
+#   ifdef PYTHONXM_ARMv8
     memcpy(m_brand, "ARMv8", 5);
 #   else
     memcpy(m_brand, "ARMv7", 5);
@@ -69,14 +69,14 @@ pythonxm::BasicCpuInfo::BasicCpuInfo() :
 #   endif
 #   endif
 
-#   if defined(XMRIG_OS_UNIX)
+#   if defined(PYTHONXM_OS_UNIX)
     auto name = cpu_name_arm();
     if (!name.isNull()) {
         strncpy(m_brand, name, sizeof(m_brand) - 1);
     }
 
     m_flags.set(FLAG_PDPE1GB, std::ifstream("/sys/kernel/mm/hugepages/hugepages-1048576kB/nr_hugepages").good());
-#   elif defined(XMRIG_OS_MACOS)
+#   elif defined(PYTHONXM_OS_MACOS)
     size_t buflen = sizeof(m_brand);
     sysctlbyname("machdep.cpu.brand_string", &m_brand, &buflen, nullptr, 0);
 #   endif
@@ -117,7 +117,7 @@ rapidjson::Value pythonxm::BasicCpuInfo::toJSON(rapidjson::Document &doc) const
     out.AddMember("msr",        "none", allocator);
     out.AddMember("assembly",   "none", allocator);
 
-#   ifdef XMRIG_ARMv8
+#   ifdef PYTHONXM_ARMv8
     out.AddMember("arch", "aarch64", allocator);
 #   else
     out.AddMember("arch", "aarch32", allocator);

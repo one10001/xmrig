@@ -29,12 +29,12 @@
 #include "crypto/cn/CnAlgo.h"
 
 
-#ifdef XMRIG_FEATURE_OPENCL
+#ifdef PYTHONXM_FEATURE_OPENCL
 #   include "backend/opencl/OclThreads.h"
 #endif
 
 
-#ifdef XMRIG_FEATURE_CUDA
+#ifdef PYTHONXM_FEATURE_CUDA
 #   include "backend/cuda/CudaThreads.h"
 #endif
 
@@ -168,11 +168,11 @@ namespace pythonxm {
 
 template class Threads<CpuThreads>;
 
-#ifdef XMRIG_FEATURE_OPENCL
+#ifdef PYTHONXM_FEATURE_OPENCL
 template class Threads<OclThreads>;
 #endif
 
-#ifdef XMRIG_FEATURE_CUDA
+#ifdef PYTHONXM_FEATURE_CUDA
 template class Threads<CudaThreads>;
 #endif
 

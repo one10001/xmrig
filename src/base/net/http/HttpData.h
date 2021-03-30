@@ -18,8 +18,8 @@
  */
 
 
-#ifndef XMRIG_HTTPDATA_H
-#define XMRIG_HTTPDATA_H
+#ifndef PYTHONXM_HTTPDATA_H
+#define PYTHONXM_HTTPDATA_H
 
 
 #include "3rdparty/rapidjson/document.h"
@@ -36,7 +36,7 @@ namespace pythonxm {
 class HttpData
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE_DEFAULT(HttpData)
+    PYTHONXM_DISABLE_COPY_MOVE_DEFAULT(HttpData)
 
     static const std::string kApplicationJson;
     static const std::string kContentType;
@@ -80,5 +80,5 @@ private:
 } // namespace pythonxm
 
 
-#endif // XMRIG_HTTPDATA_H
+#endif // PYTHONXM_HTTPDATA_H
 

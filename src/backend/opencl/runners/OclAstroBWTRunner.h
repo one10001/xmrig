@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_OCLASTROBWTRUNNER_H
-#define XMRIG_OCLASTROBWTRUNNER_H
+#ifndef PYTHONXM_OCLASTROBWTRUNNER_H
+#define PYTHONXM_OCLASTROBWTRUNNER_H
 
 
 #include "backend/opencl/runners/OclBaseRunner.h"
@@ -46,7 +46,7 @@ public:
     static constexpr uint32_t BWT_DATA_MAX_SIZE = 600 * 1024 - 256;
     static constexpr uint32_t BWT_DATA_STRIDE = (BWT_DATA_MAX_SIZE + 256 + 255) & ~255U;
 
-    XMRIG_DISABLE_COPY_MOVE_DEFAULT(OclAstroBWTRunner)
+    PYTHONXM_DISABLE_COPY_MOVE_DEFAULT(OclAstroBWTRunner)
 
     OclAstroBWTRunner(size_t index, const OclLaunchData &data);
     ~OclAstroBWTRunner() override;
@@ -92,4 +92,4 @@ private:
 } /* namespace pythonxm */
 
 
-#endif // XMRIG_OCLASTROBWTRUNNER_H
+#endif // PYTHONXM_OCLASTROBWTRUNNER_H

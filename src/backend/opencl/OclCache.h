@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_OCLCACHE_H
-#define XMRIG_OCLCACHE_H
+#ifndef PYTHONXM_OCLCACHE_H
+#define PYTHONXM_OCLCACHE_H
 
 
 #include <string>
@@ -55,4 +55,4 @@ private:
 } // namespace pythonxm
 
 
-#endif /* XMRIG_OCLCACHE_H */
+#endif /* PYTHONXM_OCLCACHE_H */

@@ -16,8 +16,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_GPUWORKER_H
-#define XMRIG_GPUWORKER_H
+#ifndef PYTHONXM_GPUWORKER_H
+#define PYTHONXM_GPUWORKER_H
 
 
 #include <atomic>
@@ -55,4 +55,4 @@ protected:
 } // namespace pythonxm
 
 
-#endif /* XMRIG_GPUWORKER_H */
+#endif /* PYTHONXM_GPUWORKER_H */

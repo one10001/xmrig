@@ -23,8 +23,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_NETWORK_H
-#define XMRIG_NETWORK_H
+#ifndef PYTHONXM_NETWORK_H
+#define PYTHONXM_NETWORK_H
 
 
 #include "3rdparty/rapidjson/fwd.h"
@@ -50,7 +50,7 @@ class NetworkState;
 class Network : public IJobResultListener, public IStrategyListener, public IBaseListener, public ITimerListener, public IApiListener
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE_DEFAULT(Network)
+    PYTHONXM_DISABLE_COPY_MOVE_DEFAULT(Network)
 
     Network(Controller *controller);
     ~Network() override;
@@ -72,7 +72,7 @@ protected:
     void onResultAccepted(IStrategy *strategy, IClient *client, const SubmitResult &result, const char *error) override;
     void onVerifyAlgorithm(IStrategy *strategy, const  IClient *client, const Algorithm &algorithm, bool *ok) override;
 
-#   ifdef XMRIG_FEATURE_API
+#   ifdef PYTHONXM_FEATURE_API
     void onRequest(IApiRequest &request) override;
 #   endif
 
@@ -82,7 +82,7 @@ private:
     void setJob(IClient *client, const Job &job, bool donate);
     void tick();
 
-#   ifdef XMRIG_FEATURE_API
+#   ifdef PYTHONXM_FEATURE_API
     void getConnection(rapidjson::Value &reply, rapidjson::Document &doc, int version) const;
     void getResults(rapidjson::Value &reply, rapidjson::Document &doc, int version) const;
 #   endif
@@ -98,4 +98,4 @@ private:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_NETWORK_H */
+#endif /* PYTHONXM_NETWORK_H */

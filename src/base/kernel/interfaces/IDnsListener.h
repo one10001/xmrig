@@ -16,8 +16,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_IDNSLISTENER_H
-#define XMRIG_IDNSLISTENER_H
+#ifndef PYTHONXM_IDNSLISTENER_H
+#define PYTHONXM_IDNSLISTENER_H
 
 
 #include "base/tools/Object.h"
@@ -32,7 +32,7 @@ class Dns;
 class IDnsListener
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE(IDnsListener)
+    PYTHONXM_DISABLE_COPY_MOVE(IDnsListener)
 
     IDnsListener()          = default;
     virtual ~IDnsListener() = default;
@@ -44,4 +44,4 @@ public:
 } /* namespace pythonxm */
 
 
-#endif // XMRIG_IDNSLISTENER_H
+#endif // PYTHONXM_IDNSLISTENER_H

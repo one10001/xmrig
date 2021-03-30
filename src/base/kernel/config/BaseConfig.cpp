@@ -34,11 +34,11 @@
 #include <uv.h>
 
 
-#ifdef XMRIG_FEATURE_TLS
+#ifdef PYTHONXM_FEATURE_TLS
 #   include <openssl/opensslv.h>
 #endif
 
-#ifdef XMRIG_FEATURE_HWLOC
+#ifdef PYTHONXM_FEATURE_HWLOC
 #   include "backend/cpu/Cpu.h"
 #endif
 
@@ -63,7 +63,7 @@ const char *BaseConfig::kVerbose        = "verbose";
 const char *BaseConfig::kWatch          = "watch";
 
 
-#ifdef XMRIG_FEATURE_TLS
+#ifdef PYTHONXM_FEATURE_TLS
 const char *BaseConfig::kTls            = "tls";
 #endif
 
@@ -89,7 +89,7 @@ bool pythonxm::BaseConfig::read(const IJsonReader &reader, const char *fileName)
     m_printTime         = std::min(reader.getUint(kPrintTime, m_printTime), 3600U);
     m_title             = reader.getValue(kTitle);
 
-#   ifdef XMRIG_FEATURE_TLS
+#   ifdef PYTHONXM_FEATURE_TLS
     m_tls = reader.getValue(kTls);
 #   endif
 
@@ -143,7 +143,7 @@ void pythonxm::BaseConfig::printVersions()
 
     std::string libs;
 
-#   if defined(XMRIG_FEATURE_TLS)
+#   if defined(PYTHONXM_FEATURE_TLS)
     {
 #       if defined(LIBRESSL_VERSION_TEXT)
         snprintf(buf, sizeof buf, "LibreSSL/%s ", LIBRESSL_VERSION_TEXT + 9);
@@ -156,7 +156,7 @@ void pythonxm::BaseConfig::printVersions()
     }
 #   endif
 
-#   if defined(XMRIG_FEATURE_HWLOC)
+#   if defined(PYTHONXM_FEATURE_HWLOC)
     libs += Cpu::info()->backend();
 #   endif
 

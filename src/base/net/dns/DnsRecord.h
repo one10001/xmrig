@@ -16,8 +16,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_DNSRECORD_H
-#define XMRIG_DNSRECORD_H
+#ifndef PYTHONXM_DNSRECORD_H
+#define PYTHONXM_DNSRECORD_H
 
 
 struct addrinfo;
@@ -57,4 +57,4 @@ private:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_DNSRECORD_H */
+#endif /* PYTHONXM_DNSRECORD_H */

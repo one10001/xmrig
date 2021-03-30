@@ -31,7 +31,7 @@
 #include "base/io/log/Log.h"
 
 
-#ifdef XMRIG_FEATURE_ADL
+#ifdef PYTHONXM_FEATURE_ADL
 #   include "backend/opencl/wrappers/AdlLib.h"
 #endif
 
@@ -49,15 +49,15 @@ typedef union
 namespace pythonxm {
 
 
-#ifdef XMRIG_ALGO_RANDOMX
+#ifdef PYTHONXM_ALGO_RANDOMX
 extern bool ocl_generic_rx_generator(const OclDevice &device, const Algorithm &algorithm, OclThreads &threads);
 #endif
 
-#ifdef XMRIG_ALGO_ASTROBWT
+#ifdef PYTHONXM_ALGO_ASTROBWT
 extern bool ocl_generic_astrobwt_generator(const OclDevice& device, const Algorithm& algorithm, OclThreads& threads);
 #endif
 
-#ifdef XMRIG_ALGO_KAWPOW
+#ifdef PYTHONXM_ALGO_KAWPOW
 extern bool ocl_generic_kawpow_generator(const OclDevice& device, const Algorithm& algorithm, OclThreads& threads);
 #endif
 
@@ -66,13 +66,13 @@ extern bool ocl_generic_cn_generator(const OclDevice &device, const Algorithm &a
 
 
 static ocl_gen_config_fun generators[] = {
-#   ifdef XMRIG_ALGO_RANDOMX
+#   ifdef PYTHONXM_ALGO_RANDOMX
     ocl_generic_rx_generator,
 #   endif
-#   ifdef XMRIG_ALGO_ASTROBWT
+#   ifdef PYTHONXM_ALGO_ASTROBWT
     ocl_generic_astrobwt_generator,
 #   endif
-#   ifdef XMRIG_ALGO_KAWPOW
+#   ifdef PYTHONXM_ALGO_KAWPOW
     ocl_generic_kawpow_generator,
 #   endif
     ocl_vega_cn_generator,
@@ -206,7 +206,7 @@ void pythonxm::OclDevice::generate(const Algorithm &algorithm, OclThreads &threa
 }
 
 
-#ifdef XMRIG_FEATURE_API
+#ifdef PYTHONXM_FEATURE_API
 void pythonxm::OclDevice::toJSON(rapidjson::Value &out, rapidjson::Document &doc) const
 {
     using namespace rapidjson;
@@ -218,7 +218,7 @@ void pythonxm::OclDevice::toJSON(rapidjson::Value &out, rapidjson::Document &doc
     out.AddMember("cu",          computeUnits(), allocator);
     out.AddMember("global_mem",  static_cast<uint64_t>(globalMemSize()), allocator);
 
-#   ifdef XMRIG_FEATURE_ADL
+#   ifdef PYTHONXM_FEATURE_ADL
     if (AdlLib::isReady()) {
         auto data = AdlLib::health(*this);
 

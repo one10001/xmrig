@@ -23,8 +23,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_CRYPTONIGHT_X86_H
-#define XMRIG_CRYPTONIGHT_X86_H
+#ifndef PYTHONXM_CRYPTONIGHT_X86_H
+#define PYTHONXM_CRYPTONIGHT_X86_H
 
 
 #ifdef __GNUC__
@@ -606,7 +606,7 @@ inline void cryptonight_single_hash(const uint8_t *__restrict__ input, size_t si
     constexpr size_t MASK        = props.mask();
     constexpr Algorithm::Id BASE = props.base();
 
-#   ifdef XMRIG_ALGO_CN_HEAVY
+#   ifdef PYTHONXM_ALGO_CN_HEAVY
     constexpr bool IS_CN_HEAVY_TUBE = ALGO == Algorithm::CN_HEAVY_TUBE;
 #   else
     constexpr bool IS_CN_HEAVY_TUBE = false;
@@ -623,7 +623,7 @@ inline void cryptonight_single_hash(const uint8_t *__restrict__ input, size_t si
     uint64_t *h0 = reinterpret_cast<uint64_t*>(ctx[0]->state);
     uint8_t *l0   = ctx[0]->memory;
 
-#   ifdef XMRIG_FEATURE_ASM
+#   ifdef PYTHONXM_FEATURE_ASM
     if (SOFT_AES && props.isR()) {
         if (!ctx[0]->generated_code_data.match(ALGO, height)) {
             V4_Instruction code[256];
@@ -736,7 +736,7 @@ inline void cryptonight_single_hash(const uint8_t *__restrict__ input, size_t si
         ah0 ^= ch;
         idx0 = al0;
 
-#       ifdef XMRIG_ALGO_CN_HEAVY
+#       ifdef PYTHONXM_ALGO_CN_HEAVY
         if (props.isHeavy()) {
             int64_t n = ((int64_t*)&l0[interleaved_index<interleave>(idx0 & MASK)])[0];
             int32_t d = ((int32_t*)&l0[interleaved_index<interleave>(idx0 & MASK)])[2];
@@ -759,7 +759,7 @@ inline void cryptonight_single_hash(const uint8_t *__restrict__ input, size_t si
         bx0 = cx;
     }
 
-#   ifdef XMRIG_FEATURE_ASM
+#   ifdef PYTHONXM_FEATURE_ASM
     }
 #   endif
 
@@ -772,7 +772,7 @@ inline void cryptonight_single_hash(const uint8_t *__restrict__ input, size_t si
 } /* namespace pythonxm */
 
 
-#ifdef XMRIG_FEATURE_ASM
+#ifdef PYTHONXM_FEATURE_ASM
 extern "C" void cnv2_mainloop_ivybridge_asm(cryptonight_ctx **ctx);
 extern "C" void cnv2_mainloop_ryzen_asm(cryptonight_ctx **ctx);
 extern "C" void cnv2_mainloop_bulldozer_asm(cryptonight_ctx **ctx);
@@ -875,7 +875,7 @@ inline void cryptonight_single_hash_asm(const uint8_t *__restrict__ input, size_
             cn_half_mainloop_bulldozer_asm(ctx);
         }
     }
-#   ifdef XMRIG_ALGO_CN_PICO
+#   ifdef PYTHONXM_ALGO_CN_PICO
     else if (ALGO == Algorithm::CN_PICO_0) {
         if (ASM == Assembly::INTEL) {
             cn_trtl_mainloop_ivybridge_asm(ctx);
@@ -959,7 +959,7 @@ inline void cryptonight_double_hash_asm(const uint8_t *__restrict__ input, size_
     else if (ALGO == Algorithm::CN_HALF) {
         cn_half_double_mainloop_sandybridge_asm(ctx);
     }
-#   ifdef XMRIG_ALGO_CN_PICO
+#   ifdef PYTHONXM_ALGO_CN_PICO
     else if (ALGO == Algorithm::CN_PICO_0) {
         cn_trtl_double_mainloop_sandybridge_asm(ctx);
     }
@@ -1005,7 +1005,7 @@ inline void cryptonight_double_hash(const uint8_t *__restrict__ input, size_t si
     constexpr size_t MASK        = props.mask();
     constexpr Algorithm::Id BASE = props.base();
 
-#   ifdef XMRIG_ALGO_CN_HEAVY
+#   ifdef PYTHONXM_ALGO_CN_HEAVY
     constexpr bool IS_CN_HEAVY_TUBE = ALGO == Algorithm::CN_HEAVY_TUBE;
 #   else
     constexpr bool IS_CN_HEAVY_TUBE = false;
@@ -1145,7 +1145,7 @@ inline void cryptonight_double_hash(const uint8_t *__restrict__ input, size_t si
         ah0 ^= ch;
         idx0 = al0;
 
-#       ifdef XMRIG_ALGO_CN_HEAVY
+#       ifdef PYTHONXM_ALGO_CN_HEAVY
         if (props.isHeavy()) {
             int64_t n = ((int64_t*)&l0[idx0 & MASK])[0];
             int32_t d = ((int32_t*)&l0[idx0 & MASK])[2];
@@ -1203,7 +1203,7 @@ inline void cryptonight_double_hash(const uint8_t *__restrict__ input, size_t si
         ah1 ^= ch;
         idx1 = al1;
 
-#       ifdef XMRIG_ALGO_CN_HEAVY
+#       ifdef PYTHONXM_ALGO_CN_HEAVY
         if (props.isHeavy()) {
             int64_t n = ((int64_t*)&l1[idx1 & MASK])[0];
             int32_t d = ((int32_t*)&l1[idx1 & MASK])[2];
@@ -1359,7 +1359,7 @@ inline void cryptonight_triple_hash(const uint8_t *__restrict__ input, size_t si
     constexpr size_t MASK        = props.mask();
     constexpr Algorithm::Id BASE = props.base();
 
-#   ifdef XMRIG_ALGO_CN_HEAVY
+#   ifdef PYTHONXM_ALGO_CN_HEAVY
     constexpr bool IS_CN_HEAVY_TUBE = ALGO == Algorithm::CN_HEAVY_TUBE;
     constexpr bool IS_CN_HEAVY_XHV  = ALGO == Algorithm::CN_HEAVY_XHV;
 #   else
@@ -1433,7 +1433,7 @@ inline void cryptonight_quad_hash(const uint8_t *__restrict__ input, size_t size
     constexpr size_t MASK        = props.mask();
     constexpr Algorithm::Id BASE = props.base();
 
-#   ifdef XMRIG_ALGO_CN_HEAVY
+#   ifdef PYTHONXM_ALGO_CN_HEAVY
     constexpr bool IS_CN_HEAVY_TUBE = ALGO == Algorithm::CN_HEAVY_TUBE;
     constexpr bool IS_CN_HEAVY_XHV  = ALGO == Algorithm::CN_HEAVY_XHV;
 #   else
@@ -1515,7 +1515,7 @@ inline void cryptonight_penta_hash(const uint8_t *__restrict__ input, size_t siz
     constexpr size_t MASK        = props.mask();
     constexpr Algorithm::Id BASE = props.base();
 
-#   ifdef XMRIG_ALGO_CN_HEAVY
+#   ifdef PYTHONXM_ALGO_CN_HEAVY
     constexpr bool IS_CN_HEAVY_TUBE = ALGO == Algorithm::CN_HEAVY_TUBE;
     constexpr bool IS_CN_HEAVY_XHV  = ALGO == Algorithm::CN_HEAVY_XHV;
 #   else
@@ -1601,4 +1601,4 @@ inline void cryptonight_penta_hash(const uint8_t *__restrict__ input, size_t siz
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_CRYPTONIGHT_X86_H */
+#endif /* PYTHONXM_CRYPTONIGHT_X86_H */

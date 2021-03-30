@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_ICLIENTLISTENER_H
-#define XMRIG_ICLIENTLISTENER_H
+#ifndef PYTHONXM_ICLIENTLISTENER_H
+#define PYTHONXM_ICLIENTLISTENER_H
 
 
 #include <cstdint>
@@ -58,4 +58,4 @@ public:
 } /* namespace pythonxm */
 
 
-#endif // XMRIG_ICLIENTLISTENER_H
+#endif // PYTHONXM_ICLIENTLISTENER_H

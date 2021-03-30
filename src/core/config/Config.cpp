@@ -31,17 +31,17 @@
 #include "crypto/common/Assembly.h"
 
 
-#ifdef XMRIG_ALGO_RANDOMX
+#ifdef PYTHONXM_ALGO_RANDOMX
 #   include "crypto/rx/RxConfig.h"
 #endif
 
 
-#ifdef XMRIG_FEATURE_OPENCL
+#ifdef PYTHONXM_FEATURE_OPENCL
 #   include "backend/opencl/OclConfig.h"
 #endif
 
 
-#ifdef XMRIG_FEATURE_CUDA
+#ifdef PYTHONXM_FEATURE_CUDA
 #   include "backend/cuda/CudaConfig.h"
 #endif
 
@@ -56,19 +56,19 @@ const char *Config::kPauseOnBattery     = "pause-on-battery";
 const char *Config::kPauseOnActive      = "pause-on-active";
 
 
-#ifdef XMRIG_FEATURE_OPENCL
+#ifdef PYTHONXM_FEATURE_OPENCL
 const char *Config::kOcl                = "opencl";
 #endif
 
-#ifdef XMRIG_FEATURE_CUDA
+#ifdef PYTHONXM_FEATURE_CUDA
 const char *Config::kCuda               = "cuda";
 #endif
 
-#if defined(XMRIG_FEATURE_NVML) || defined (XMRIG_FEATURE_ADL)
+#if defined(PYTHONXM_FEATURE_NVML) || defined (PYTHONXM_FEATURE_ADL)
 const char *Config::kHealthPrintTime    = "health-print-time";
 #endif
 
-#ifdef XMRIG_FEATURE_DMI
+#ifdef PYTHONXM_FEATURE_DMI
 const char *Config::kDMI                = "dmi";
 #endif
 
@@ -80,23 +80,23 @@ public:
     CpuConfig cpu;
     uint32_t idleTime   = 0;
 
-#   ifdef XMRIG_ALGO_RANDOMX
+#   ifdef PYTHONXM_ALGO_RANDOMX
     RxConfig rx;
 #   endif
 
-#   ifdef XMRIG_FEATURE_OPENCL
+#   ifdef PYTHONXM_FEATURE_OPENCL
     OclConfig cl;
 #   endif
 
-#   ifdef XMRIG_FEATURE_CUDA
+#   ifdef PYTHONXM_FEATURE_CUDA
     CudaConfig cuda;
 #   endif
 
-#   if defined(XMRIG_FEATURE_NVML) || defined (XMRIG_FEATURE_ADL)
+#   if defined(PYTHONXM_FEATURE_NVML) || defined (PYTHONXM_FEATURE_ADL)
     uint32_t healthPrintTime = 60U;
 #   endif
 
-#   ifdef XMRIG_FEATURE_DMI
+#   ifdef PYTHONXM_FEATURE_DMI
     bool dmi = true;
 #   endif
 
@@ -144,7 +144,7 @@ uint32_t pythonxm::Config::idleTime() const
 }
 
 
-#ifdef XMRIG_FEATURE_OPENCL
+#ifdef PYTHONXM_FEATURE_OPENCL
 const pythonxm::OclConfig &pythonxm::Config::cl() const
 {
     return d_ptr->cl;
@@ -152,7 +152,7 @@ const pythonxm::OclConfig &pythonxm::Config::cl() const
 #endif
 
 
-#ifdef XMRIG_FEATURE_CUDA
+#ifdef PYTHONXM_FEATURE_CUDA
 const pythonxm::CudaConfig &pythonxm::Config::cuda() const
 {
     return d_ptr->cuda;
@@ -160,7 +160,7 @@ const pythonxm::CudaConfig &pythonxm::Config::cuda() const
 #endif
 
 
-#ifdef XMRIG_ALGO_RANDOMX
+#ifdef PYTHONXM_ALGO_RANDOMX
 const pythonxm::RxConfig &pythonxm::Config::rx() const
 {
     return d_ptr->rx;
@@ -168,7 +168,7 @@ const pythonxm::RxConfig &pythonxm::Config::rx() const
 #endif
 
 
-#if defined(XMRIG_FEATURE_NVML) || defined (XMRIG_FEATURE_ADL)
+#if defined(PYTHONXM_FEATURE_NVML) || defined (PYTHONXM_FEATURE_ADL)
 uint32_t pythonxm::Config::healthPrintTime() const
 {
     return d_ptr->healthPrintTime;
@@ -176,7 +176,7 @@ uint32_t pythonxm::Config::healthPrintTime() const
 #endif
 
 
-#ifdef XMRIG_FEATURE_DMI
+#ifdef PYTHONXM_FEATURE_DMI
 bool pythonxm::Config::isDMI() const
 {
     return d_ptr->dmi;
@@ -190,13 +190,13 @@ bool pythonxm::Config::isShouldSave() const
         return false;
     }
 
-#   ifdef XMRIG_FEATURE_OPENCL
+#   ifdef PYTHONXM_FEATURE_OPENCL
     if (cl().isShouldSave()) {
         return true;
     }
 #   endif
 
-#   ifdef XMRIG_FEATURE_CUDA
+#   ifdef PYTHONXM_FEATURE_CUDA
     if (cuda().isShouldSave()) {
         return true;
     }
@@ -217,25 +217,25 @@ bool pythonxm::Config::read(const IJsonReader &reader, const char *fileName)
 
     d_ptr->cpu.read(reader.getValue(CpuConfig::kField));
 
-#   ifdef XMRIG_ALGO_RANDOMX
+#   ifdef PYTHONXM_ALGO_RANDOMX
     if (!d_ptr->rx.read(reader.getValue(RxConfig::kField))) {
         m_upgrade = true;
     }
 #   endif
 
-#   ifdef XMRIG_FEATURE_OPENCL
+#   ifdef PYTHONXM_FEATURE_OPENCL
     d_ptr->cl.read(reader.getValue(kOcl));
 #   endif
 
-#   ifdef XMRIG_FEATURE_CUDA
+#   ifdef PYTHONXM_FEATURE_CUDA
     d_ptr->cuda.read(reader.getValue(kCuda));
 #   endif
 
-#   if defined(XMRIG_FEATURE_NVML) || defined (XMRIG_FEATURE_ADL)
+#   if defined(PYTHONXM_FEATURE_NVML) || defined (PYTHONXM_FEATURE_ADL)
     d_ptr->healthPrintTime = reader.getUint(kHealthPrintTime, d_ptr->healthPrintTime);
 #   endif
 
-#   ifdef XMRIG_FEATURE_DMI
+#   ifdef PYTHONXM_FEATURE_DMI
     d_ptr->dmi = reader.getBool(kDMI, d_ptr->dmi);
 #   endif
 
@@ -262,17 +262,17 @@ void pythonxm::Config::getJSON(rapidjson::Document &doc) const
     doc.AddMember(StringRef(kColors),                   Log::isColors(), allocator);
     doc.AddMember(StringRef(kTitle),                    title().toJSON(), allocator);
 
-#   ifdef XMRIG_ALGO_RANDOMX
+#   ifdef PYTHONXM_ALGO_RANDOMX
     doc.AddMember(StringRef(RxConfig::kField),          rx().toJSON(doc), allocator);
 #   endif
 
     doc.AddMember(StringRef(CpuConfig::kField),         cpu().toJSON(doc), allocator);
 
-#   ifdef XMRIG_FEATURE_OPENCL
+#   ifdef PYTHONXM_FEATURE_OPENCL
     doc.AddMember(StringRef(kOcl),                      cl().toJSON(doc), allocator);
 #   endif
 
-#   ifdef XMRIG_FEATURE_CUDA
+#   ifdef PYTHONXM_FEATURE_CUDA
     doc.AddMember(StringRef(kCuda),                     cuda().toJSON(doc), allocator);
 #   endif
 
@@ -281,17 +281,17 @@ void pythonxm::Config::getJSON(rapidjson::Document &doc) const
     m_pools.toJSON(doc, doc);
 
     doc.AddMember(StringRef(kPrintTime),                printTime(), allocator);
-#   if defined(XMRIG_FEATURE_NVML) || defined (XMRIG_FEATURE_ADL)
+#   if defined(PYTHONXM_FEATURE_NVML) || defined (PYTHONXM_FEATURE_ADL)
     doc.AddMember(StringRef(kHealthPrintTime),          healthPrintTime(), allocator);
 #   endif
 
-#   ifdef XMRIG_FEATURE_DMI
+#   ifdef PYTHONXM_FEATURE_DMI
     doc.AddMember(StringRef(kDMI),                      isDMI(), allocator);
 #   endif
 
     doc.AddMember(StringRef(kSyslog),                   isSyslog(), allocator);
 
-#   ifdef XMRIG_FEATURE_TLS
+#   ifdef PYTHONXM_FEATURE_TLS
     doc.AddMember(StringRef(kTls),                      m_tls.toJSON(doc), allocator);
 #   endif
 

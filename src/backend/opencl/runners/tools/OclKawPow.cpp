@@ -288,7 +288,7 @@ private:
             }
         }
 
-        std::string kernel = std::regex_replace(std::string(kawpow_cl), std::regex("XMRIG_INCLUDE_PROGPOW_RANDOM_MATH"), ret.str());
+        std::string kernel = std::regex_replace(std::string(kawpow_cl), std::regex("PYTHONXM_INCLUDE_PROGPOW_RANDOM_MATH"), ret.str());
         ret.str(std::string());
 
         ret << merge("mix[0]", "data_dag.s[0]", rnd());
@@ -301,7 +301,7 @@ private:
             ret << merge(dest, "data_dag.s[" + std::to_string(i) + "]", r);
         }
 
-        kernel = std::regex_replace(kernel, std::regex("XMRIG_INCLUDE_PROGPOW_DATA_LOADS"), ret.str());
+        kernel = std::regex_replace(kernel, std::regex("PYTHONXM_INCLUDE_PROGPOW_DATA_LOADS"), ret.str());
         return kernel;
     }
 

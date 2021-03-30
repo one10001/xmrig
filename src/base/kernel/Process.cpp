@@ -28,7 +28,7 @@
 #include "version.h"
 
 
-#ifdef XMRIG_OS_WIN
+#ifdef PYTHONXM_OS_WIN
 #   ifdef _MSC_VER
 #       include <direct.h>
 #       define MKDIR(path) _mkdir(path.c_str());
@@ -81,7 +81,7 @@ static std::string getPath(Process::Location location)
         }
 
         const auto path = std::string(pathBuf, size);
-        const auto pos  = path.rfind(*XMRIG_DIR_SEPARATOR);
+        const auto pos  = path.rfind(*PYTHONXM_DIR_SEPARATOR);
 
         if (pos != std::string::npos) {
             return path.substr(0, pos);
@@ -125,9 +125,9 @@ pythonxm::Process::Process(int argc, char **argv) :
 
     setDataDir(m_arguments.value("--data-dir", "-d"));
 
-#   ifdef XMRIG_SHARED_DATADIR
+#   ifdef PYTHONXM_SHARED_DATADIR
     if (dataDir.empty()) {
-        dataDir = fmt::format("{}" XMRIG_DIR_SEPARATOR ".pythonxm" XMRIG_DIR_SEPARATOR, location(HomeLocation));
+        dataDir = fmt::format("{}" PYTHONXM_DIR_SEPARATOR ".pythonxm" PYTHONXM_DIR_SEPARATOR, location(HomeLocation));
         MKDIR(dataDir);
 
         dataDir += APP_KIND;
@@ -164,5 +164,5 @@ pythonxm::String pythonxm::Process::location(Location location, const char *file
         return path.c_str();
     }
 
-    return fmt::format("{}" XMRIG_DIR_SEPARATOR "{}", path, fileName).c_str();
+    return fmt::format("{}" PYTHONXM_DIR_SEPARATOR "{}", path, fileName).c_str();
 }

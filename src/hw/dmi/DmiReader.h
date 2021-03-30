@@ -18,8 +18,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_DMIREADER_H
-#define XMRIG_DMIREADER_H
+#ifndef PYTHONXM_DMIREADER_H
+#define PYTHONXM_DMIREADER_H
 
 
 #include "hw/dmi/DmiBoard.h"
@@ -45,7 +45,7 @@ public:
 
     bool read();
 
-#   ifdef XMRIG_FEATURE_API
+#   ifdef PYTHONXM_FEATURE_API
     rapidjson::Value toJSON(rapidjson::Document &doc) const;
     void toJSON(rapidjson::Value &out, rapidjson::Document &doc) const;
 #   endif
@@ -67,4 +67,4 @@ private:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_DMIREADER_H */
+#endif /* PYTHONXM_DMIREADER_H */

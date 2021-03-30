@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_CPUBACKEND_H
-#define XMRIG_CPUBACKEND_H
+#ifndef PYTHONXM_CPUBACKEND_H
+#define PYTHONXM_CPUBACKEND_H
 
 
 #include "backend/common/interfaces/IBackend.h"
@@ -44,7 +44,7 @@ class Miner;
 class CpuBackend : public IBackend
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE_DEFAULT(CpuBackend)
+    PYTHONXM_DISABLE_COPY_MOVE_DEFAULT(CpuBackend)
 
     CpuBackend(Controller *controller);
     ~CpuBackend() override;
@@ -65,12 +65,12 @@ protected:
     void start(IWorker *worker, bool ready) override;
     void stop() override;
 
-#   ifdef XMRIG_FEATURE_API
+#   ifdef PYTHONXM_FEATURE_API
     rapidjson::Value toJSON(rapidjson::Document &doc) const override;
     void handleRequest(IApiRequest &request) override;
 #   endif
 
-#   ifdef XMRIG_FEATURE_BENCHMARK
+#   ifdef PYTHONXM_FEATURE_BENCHMARK
     Benchmark *benchmark() const override;
     void printBenchProgress() const override;
 #   endif
@@ -83,4 +83,4 @@ private:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_CPUBACKEND_H */
+#endif /* PYTHONXM_CPUBACKEND_H */

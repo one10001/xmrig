@@ -17,8 +17,8 @@
  */
 
 
-#ifndef XMRIG_FETCH_H
-#define XMRIG_FETCH_H
+#ifndef PYTHONXM_FETCH_H
+#define PYTHONXM_FETCH_H
 
 
 #include "3rdparty/llhttp/llhttp.h"
@@ -68,5 +68,5 @@ void fetch(const char *tag, FetchRequest &&req, const std::weak_ptr<IHttpListene
 } // namespace pythonxm
 
 
-#endif // XMRIG_FETCH_H
+#endif // PYTHONXM_FETCH_H
 

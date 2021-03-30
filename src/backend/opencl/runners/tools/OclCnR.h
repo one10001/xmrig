@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_OCLCNR_H
-#define XMRIG_OCLCNR_H
+#ifndef PYTHONXM_OCLCNR_H
+#define PYTHONXM_OCLCNR_H
 
 
 #include <cstddef>
@@ -53,4 +53,4 @@ public:
 } // namespace pythonxm
 
 
-#endif /* XMRIG_OCLCNR_H */
+#endif /* PYTHONXM_OCLCNR_H */

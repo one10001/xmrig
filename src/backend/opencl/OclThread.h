@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_OCLTHREAD_H
-#define XMRIG_OCLTHREAD_H
+#ifndef PYTHONXM_OCLTHREAD_H
+#define PYTHONXM_OCLTHREAD_H
 
 
 #include "3rdparty/rapidjson/fwd.h"
@@ -51,7 +51,7 @@ public:
         setIntensity(intensity);
     }
 
-#   ifdef XMRIG_ALGO_RANDOMX
+#   ifdef PYTHONXM_ALGO_RANDOMX
     OclThread(uint32_t index, uint32_t intensity, uint32_t worksize, uint32_t threads, bool gcnAsm, bool datasetHost, uint32_t bfactor) :
         m_datasetHost(datasetHost),
         m_gcnAsm(gcnAsm),
@@ -67,7 +67,7 @@ public:
     }
 #   endif
 
-#   ifdef XMRIG_ALGO_ASTROBWT
+#   ifdef PYTHONXM_ALGO_ASTROBWT
     OclThread(uint32_t index, uint32_t intensity, uint32_t threads) :
         m_fields(4),
         m_threads(threads, -1),
@@ -81,7 +81,7 @@ public:
     }
 #   endif
 
-#   ifdef XMRIG_ALGO_KAWPOW
+#   ifdef PYTHONXM_ALGO_KAWPOW
     OclThread(uint32_t index, uint32_t intensity, uint32_t worksize, uint32_t threads) :
         m_fields(8),
         m_threads(threads, -1),
@@ -143,4 +143,4 @@ private:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_OCLTHREAD_H */
+#endif /* PYTHONXM_OCLTHREAD_H */

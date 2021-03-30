@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_ITCPSERVERLISTENER_H
-#define XMRIG_ITCPSERVERLISTENER_H
+#ifndef PYTHONXM_ITCPSERVERLISTENER_H
+#define PYTHONXM_ITCPSERVERLISTENER_H
 
 
 #include <stdint.h>
@@ -50,4 +50,4 @@ public:
 } /* namespace pythonxm */
 
 
-#endif // XMRIG_ITCPSERVERLISTENER_H
+#endif // PYTHONXM_ITCPSERVERLISTENER_H

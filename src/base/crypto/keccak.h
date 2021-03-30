@@ -24,8 +24,8 @@
  */
 
 
-#ifndef XMRIG_KECCAK_H
-#define XMRIG_KECCAK_H
+#ifndef PYTHONXM_KECCAK_H
+#define PYTHONXM_KECCAK_H
 
 #include <cstdint>
 #include <cstring>
@@ -53,4 +53,4 @@ void keccakf(uint64_t st[25], int norounds);
 
 } /* namespace pythonxm */
 
-#endif /* XMRIG_KECCAK_H */
+#endif /* PYTHONXM_KECCAK_H */

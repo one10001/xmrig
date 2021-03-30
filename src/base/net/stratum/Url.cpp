@@ -44,7 +44,7 @@ static const char kStratumTcp[]            = "stratum+tcp://";
 static const char kStratumSsl[]            = "stratum+ssl://";
 static const char kSOCKS5[]                = "socks5://";
 
-#ifdef XMRIG_FEATURE_HTTP
+#ifdef PYTHONXM_FEATURE_HTTP
 static const char kDaemonHttp[]            = "daemon+http://";
 static const char kDaemonHttps[]           = "daemon+https://";
 #endif
@@ -102,7 +102,7 @@ bool pythonxm::Url::parse(const char *url)
             m_scheme = SOCKS5;
             m_tls    = false;
         }
-#       ifdef XMRIG_FEATURE_HTTP
+#       ifdef PYTHONXM_FEATURE_HTTP
         else if (strncasecmp(url, kDaemonHttps, sizeof(kDaemonHttps) - 1) == 0) {
             m_scheme = DAEMON;
             m_tls    = true;

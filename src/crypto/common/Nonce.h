@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_NONCE_H
-#define XMRIG_NONCE_H
+#ifndef PYTHONXM_NONCE_H
+#define PYTHONXM_NONCE_H
 
 
 #include <atomic>
@@ -65,4 +65,4 @@ private:
 } // namespace pythonxm
 
 
-#endif /* XMRIG_NONCE_H */
+#endif /* PYTHONXM_NONCE_H */

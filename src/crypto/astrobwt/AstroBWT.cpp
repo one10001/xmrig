@@ -69,7 +69,7 @@ void SHA3_256_AVX2_ASM(const void* in, size_t inBytes, void* out);
 
 #endif
 
-#ifdef XMRIG_ARM
+#ifdef PYTHONXM_ARM
 extern "C" {
 #include "salsa20_ref/ecrypt-sync.h"
 }

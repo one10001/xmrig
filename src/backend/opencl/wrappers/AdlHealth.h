@@ -17,8 +17,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_ADLHEALTH_H
-#define XMRIG_ADLHEALTH_H
+#ifndef PYTHONXM_ADLHEALTH_H
+#define PYTHONXM_ADLHEALTH_H
 
 
 #include <cstdint>
@@ -35,4 +35,4 @@ struct AdlHealth
 };
 
 
-#endif /* XMRIG_ADLHEALTH_H */
+#endif /* PYTHONXM_ADLHEALTH_H */

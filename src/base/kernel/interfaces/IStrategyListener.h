@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_ISTRATEGYLISTENER_H
-#define XMRIG_ISTRATEGYLISTENER_H
+#ifndef PYTHONXM_ISTRATEGYLISTENER_H
+#define PYTHONXM_ISTRATEGYLISTENER_H
 
 
 #include "3rdparty/rapidjson/fwd.h"
@@ -43,7 +43,7 @@ class SubmitResult;
 class IStrategyListener
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE(IStrategyListener);
+    PYTHONXM_DISABLE_COPY_MOVE(IStrategyListener);
 
     IStrategyListener()             = default;
     virtual ~IStrategyListener()    = default;
@@ -60,4 +60,4 @@ public:
 } /* namespace pythonxm */
 
 
-#endif // XMRIG_ISTRATEGYLISTENER_H
+#endif // PYTHONXM_ISTRATEGYLISTENER_H

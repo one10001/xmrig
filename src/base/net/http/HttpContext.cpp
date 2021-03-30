@@ -40,7 +40,7 @@ static uint64_t SEQUENCE = 0;
 class HttpWriteBaton : public Baton<uv_write_t>
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE_DEFAULT(HttpWriteBaton)
+    PYTHONXM_DISABLE_COPY_MOVE_DEFAULT(HttpWriteBaton)
 
     inline HttpWriteBaton(std::string &&body, HttpContext *ctx) :
         m_ctx(ctx),

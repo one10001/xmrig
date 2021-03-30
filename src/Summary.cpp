@@ -39,12 +39,12 @@
 #include "version.h"
 
 
-#ifdef XMRIG_FEATURE_DMI
+#ifdef PYTHONXM_FEATURE_DMI
 #   include "hw/dmi/DmiReader.h"
 #endif
 
 
-#ifdef XMRIG_ALGO_RANDOMX
+#ifdef PYTHONXM_ALGO_RANDOMX
 #   include "crypto/rx/RxConfig.h"
 #endif
 
@@ -52,14 +52,14 @@
 namespace pythonxm {
 
 
-#ifdef XMRIG_OS_WIN
+#ifdef PYTHONXM_OS_WIN
 static constexpr const char *kHugepagesSupported = GREEN_BOLD("permission granted");
 #else
 static constexpr const char *kHugepagesSupported = GREEN_BOLD("supported");
 #endif
 
 
-#ifdef XMRIG_FEATURE_ASM
+#ifdef PYTHONXM_FEATURE_ASM
 static const char *coloredAsmNames[] = {
     RED_BOLD("none"),
     "auto",
@@ -81,8 +81,8 @@ static void print_pages(const Config *config)
     Log::print(GREEN_BOLD(" * ") WHITE_BOLD("%-13s") "%s",
                "HUGE PAGES", config->cpu().isHugePages() ? (VirtualMemory::isHugepagesAvailable() ? kHugepagesSupported : RED_BOLD("unavailable")) : RED_BOLD("disabled"));
 
-#   ifdef XMRIG_ALGO_RANDOMX
-#   ifdef XMRIG_OS_LINUX
+#   ifdef PYTHONXM_ALGO_RANDOMX
+#   ifdef PYTHONXM_OS_LINUX
     Log::print(GREEN_BOLD(" * ") WHITE_BOLD("%-13s") "%s",
                "1GB PAGES", (VirtualMemory::isOneGbPagesAvailable() ? (config->rx().isOneGbPages() ? kHugepagesSupported : YELLOW_BOLD("disabled")) : YELLOW_BOLD("unavailable")));
 #   else
@@ -104,7 +104,7 @@ static void print_cpu(const Config *)
                info->hasAES()         ? GREEN_BOLD_S : RED_BOLD_S "-",
                info->isVM()           ? RED_BOLD_S " VM" : ""
                );
-#   if defined(XMRIG_FEATURE_HWLOC)
+#   if defined(PYTHONXM_FEATURE_HWLOC)
     Log::print(WHITE_BOLD("   %-13s") BLACK_BOLD("L2:") WHITE_BOLD("%.1f MB") BLACK_BOLD(" L3:") WHITE_BOLD("%.1f MB")
                CYAN_BOLD(" %zu") "C" BLACK_BOLD("/") CYAN_BOLD("%zu") "T"
                BLACK_BOLD(" NUMA:") CYAN_BOLD("%zu"),
@@ -136,7 +136,7 @@ static void print_memory(const Config *config)
                percent
                );
 
-#   ifdef XMRIG_FEATURE_DMI
+#   ifdef PYTHONXM_FEATURE_DMI
     if (!config->isDMI()) {
         return;
     }
@@ -179,7 +179,7 @@ static void print_threads(const Config *config)
                config->pools().donateLevel()
                );
 
-#   ifdef XMRIG_FEATURE_ASM
+#   ifdef PYTHONXM_FEATURE_ASM
     if (config->cpu().assembly() == Assembly::AUTO) {
         const Assembly assembly = Cpu::info()->assembly();
 

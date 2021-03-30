@@ -23,14 +23,14 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_CRYPTONIGHT_MONERO_H
-#define XMRIG_CRYPTONIGHT_MONERO_H
+#ifndef PYTHONXM_CRYPTONIGHT_MONERO_H
+#define PYTHONXM_CRYPTONIGHT_MONERO_H
 
 #include <fenv.h>
 #include <math.h>
 
 // VARIANT ALTERATIONS
-#ifndef XMRIG_ARM
+#ifndef PYTHONXM_ARM
 #   define VARIANT1_INIT(part) \
     uint64_t tweak1_2_##part = 0; \
     if (BASE == Algorithm::CN_1) { \
@@ -60,7 +60,7 @@
     }
 
 
-#ifndef XMRIG_ARM
+#ifndef PYTHONXM_ARM
 #   define VARIANT2_INIT(part) \
     __m128i division_result_xmm_##part = _mm_cvtsi64_si128(static_cast<int64_t>(h##part[12])); \
     __m128i sqrt_result_xmm_##part     = _mm_cvtsi64_si128(static_cast<int64_t>(h##part[13]));
@@ -204,4 +204,4 @@
     v4_random_math(code##part, r##part); \
   }
 
-#endif /* XMRIG_CRYPTONIGHT_MONERO_H */
+#endif /* PYTHONXM_CRYPTONIGHT_MONERO_H */

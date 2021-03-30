@@ -17,8 +17,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_SYSLOG_H
-#define XMRIG_SYSLOG_H
+#ifndef PYTHONXM_SYSLOG_H
+#define PYTHONXM_SYSLOG_H
 
 
 #include "base/kernel/interfaces/ILogBackend.h"
@@ -30,7 +30,7 @@ namespace pythonxm {
 class SysLog : public ILogBackend
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE(SysLog)
+    PYTHONXM_DISABLE_COPY_MOVE(SysLog)
 
     SysLog();
     ~SysLog() override;
@@ -43,4 +43,4 @@ protected:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_SYSLOG_H */
+#endif /* PYTHONXM_SYSLOG_H */

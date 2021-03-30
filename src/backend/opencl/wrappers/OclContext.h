@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_OCLCONTEXT_H
-#define XMRIG_OCLCONTEXT_H
+#ifndef PYTHONXM_OCLCONTEXT_H
+#define PYTHONXM_OCLCONTEXT_H
 
 
 #include "backend/opencl/OclLaunchData.h"
@@ -43,7 +43,7 @@ class Job;
 class OclContext
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE(OclContext)
+    PYTHONXM_DISABLE_COPY_MOVE(OclContext)
 
     OclContext() = default;
     OclContext(const OclDevice &device);
@@ -62,4 +62,4 @@ private:
 } // namespace pythonxm
 
 
-#endif /* XMRIG_OCLCONTEXT_H */
+#endif /* PYTHONXM_OCLCONTEXT_H */

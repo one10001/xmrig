@@ -49,18 +49,18 @@
 #include "core/Controller.h"
 
 
-#ifdef XMRIG_ALGO_KAWPOW
+#ifdef PYTHONXM_ALGO_KAWPOW
 #   include "crypto/kawpow/KPCache.h"
 #   include "crypto/kawpow/KPHash.h"
 #endif
 
 
-#ifdef XMRIG_FEATURE_API
+#ifdef PYTHONXM_FEATURE_API
 #   include "base/api/interfaces/IApiRequest.h"
 #endif
 
 
-#ifdef XMRIG_FEATURE_ADL
+#ifdef PYTHONXM_FEATURE_ADL
 #include "backend/opencl/wrappers/AdlLib.h"
 
 namespace pythonxm { static const char *kAdlLabel = "ADL"; }
@@ -165,7 +165,7 @@ public:
             return printDisabled(kLabel, RED_S " (no devices)");
         }
 
-#       ifdef XMRIG_FEATURE_ADL
+#       ifdef PYTHONXM_FEATURE_ADL
         if (cl.isAdlEnabled()) {
             if (AdlLib::init()) {
                 Log::print(GREEN_BOLD(" * ") WHITE_BOLD("%-13s") "press " MAGENTA_BG(WHITE_BOLD_S "e") " for health report",
@@ -211,7 +211,7 @@ public:
 
         size_t algo_l3 = algo.l3();
 
-#       ifdef XMRIG_ALGO_ASTROBWT
+#       ifdef PYTHONXM_ALGO_ASTROBWT
         if (algo.family() == Algorithm::ASTROBWT) {
             algo_l3 = OclAstroBWTRunner::BWT_DATA_STRIDE * 17 + 324;
         }
@@ -221,7 +221,7 @@ public:
         for (const auto &data : threads) {
             size_t mem_used = data.thread.intensity() * algo_l3 / oneMiB;
 
-#           ifdef XMRIG_ALGO_KAWPOW
+#           ifdef PYTHONXM_ALGO_KAWPOW
             if (algo.family() == Algorithm::KAWPOW) {
                 const uint32_t epoch = job.height() / KPHash::EPOCH_LENGTH;
                 mem_used = (KPCache::cache_size(epoch) + KPCache::dag_size(epoch)) / oneMiB;
@@ -249,7 +249,7 @@ public:
     }
 
 
-#   ifdef XMRIG_FEATURE_ADL
+#   ifdef PYTHONXM_FEATURE_ADL
     void printHealth()
     {
         if (!AdlLib::isReady()) {
@@ -309,7 +309,7 @@ pythonxm::OclBackend::~OclBackend()
 
     OclLib::close();
 
-#   ifdef XMRIG_FEATURE_ADL
+#   ifdef PYTHONXM_FEATURE_ADL
     AdlLib::close();
 #   endif
 }
@@ -406,7 +406,7 @@ void pythonxm::OclBackend::printHashrate(bool details)
 
 void pythonxm::OclBackend::printHealth()
 {
-#   ifdef XMRIG_FEATURE_ADL
+#   ifdef PYTHONXM_FEATURE_ADL
     d_ptr->printHealth();
 #   endif
 }
@@ -491,7 +491,7 @@ bool pythonxm::OclBackend::tick(uint64_t ticks)
 }
 
 
-#ifdef XMRIG_FEATURE_API
+#ifdef PYTHONXM_FEATURE_API
 rapidjson::Value pythonxm::OclBackend::toJSON(rapidjson::Document &doc) const
 {
     using namespace rapidjson;

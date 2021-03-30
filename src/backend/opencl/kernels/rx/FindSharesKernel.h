@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_FINDSHARESKERNEL_H
-#define XMRIG_FINDSHARESKERNEL_H
+#ifndef PYTHONXM_FINDSHARESKERNEL_H
+#define PYTHONXM_FINDSHARESKERNEL_H
 
 
 #include "backend/opencl/wrappers/OclKernel.h"
@@ -47,4 +47,4 @@ public:
 } // namespace pythonxm
 
 
-#endif /* XMRIG_FINDSHARESKERNEL_H */
+#endif /* PYTHONXM_FINDSHARESKERNEL_H */

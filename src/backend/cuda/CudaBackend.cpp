@@ -47,23 +47,23 @@
 #include "core/Controller.h"
 
 
-#ifdef XMRIG_ALGO_ASTROBWT
+#ifdef PYTHONXM_ALGO_ASTROBWT
 #   include "backend/cuda/runners/CudaAstroBWTRunner.h"
 #endif
 
 
-#ifdef XMRIG_ALGO_KAWPOW
+#ifdef PYTHONXM_ALGO_KAWPOW
 #   include "crypto/kawpow/KPCache.h"
 #   include "crypto/kawpow/KPHash.h"
 #endif
 
 
-#ifdef XMRIG_FEATURE_API
+#ifdef PYTHONXM_FEATURE_API
 #   include "base/api/interfaces/IApiRequest.h"
 #endif
 
 
-#ifdef XMRIG_FEATURE_NVML
+#ifdef PYTHONXM_FEATURE_NVML
 #include "backend/cuda/wrappers/NvmlLib.h"
 
 namespace pythonxm { static const char *kNvmlLabel = "NVML"; }
@@ -176,7 +176,7 @@ public:
         Log::print(GREEN_BOLD(" * ") WHITE_BOLD("%-13s") WHITE_BOLD("%s") "/" WHITE_BOLD("%s") BLACK_BOLD("/%s"), kLabel,
                    CudaLib::version(runtimeVersion).c_str(), CudaLib::version(driverVersion).c_str(), CudaLib::pluginVersion());
 
-#       ifdef XMRIG_FEATURE_NVML
+#       ifdef PYTHONXM_FEATURE_NVML
         if (cuda.isNvmlEnabled()) {
             if (NvmlLib::init(cuda.nvmlLoader())) {
                 NvmlLib::assign(devices);
@@ -227,7 +227,7 @@ public:
 
         size_t algo_l3 = algo.l3();
 
-#       ifdef XMRIG_ALGO_ASTROBWT
+#       ifdef PYTHONXM_ALGO_ASTROBWT
         if (algo.family() == Algorithm::ASTROBWT) {
             algo_l3 = CudaAstroBWTRunner::BWT_DATA_STRIDE * 17 + 1024;
         }
@@ -237,7 +237,7 @@ public:
         for (const auto &data : threads) {
             size_t mem_used = (data.thread.threads() * data.thread.blocks()) * algo_l3 / oneMiB;
 
-#           ifdef XMRIG_ALGO_KAWPOW
+#           ifdef PYTHONXM_ALGO_KAWPOW
             if (algo.family() == Algorithm::KAWPOW) {
                 const uint32_t epoch = job.height() / KPHash::EPOCH_LENGTH;
                 mem_used = (KPCache::dag_size(epoch) + oneMiB - 1) / oneMiB;
@@ -266,7 +266,7 @@ public:
     }
 
 
-#   ifdef XMRIG_FEATURE_NVML
+#   ifdef PYTHONXM_FEATURE_NVML
     void printHealth()
     {
         for (const auto &device : devices) {
@@ -333,7 +333,7 @@ pythonxm::CudaBackend::~CudaBackend()
 
     CudaLib::close();
 
-#   ifdef XMRIG_FEATURE_NVML
+#   ifdef PYTHONXM_FEATURE_NVML
     NvmlLib::close();
 #   endif
 }
@@ -430,7 +430,7 @@ void pythonxm::CudaBackend::printHashrate(bool details)
 
 void pythonxm::CudaBackend::printHealth()
 {
-#   ifdef XMRIG_FEATURE_NVML
+#   ifdef PYTHONXM_FEATURE_NVML
     d_ptr->printHealth();
 #   endif
 }
@@ -507,7 +507,7 @@ bool pythonxm::CudaBackend::tick(uint64_t ticks)
 }
 
 
-#ifdef XMRIG_FEATURE_API
+#ifdef PYTHONXM_FEATURE_API
 rapidjson::Value pythonxm::CudaBackend::toJSON(rapidjson::Document &doc) const
 {
     using namespace rapidjson;
@@ -525,7 +525,7 @@ rapidjson::Value pythonxm::CudaBackend::toJSON(rapidjson::Document &doc) const
         versions.AddMember("cuda-driver",    Value(CudaLib::version(d_ptr->driverVersion).c_str(), allocator), allocator);
         versions.AddMember("plugin",         String(CudaLib::pluginVersion()).toJSON(doc), allocator);
 
-#       ifdef XMRIG_FEATURE_NVML
+#       ifdef PYTHONXM_FEATURE_NVML
         if (NvmlLib::isReady()) {
             versions.AddMember("nvml",       StringRef(NvmlLib::version()), allocator);
             versions.AddMember("driver",     StringRef(NvmlLib::driverVersion()), allocator);

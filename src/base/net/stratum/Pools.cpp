@@ -32,7 +32,7 @@
 #include "donate.h"
 
 
-#ifdef XMRIG_FEATURE_BENCHMARK
+#ifdef PYTHONXM_FEATURE_BENCHMARK
 #   include "base/net/stratum/benchmark/BenchConfig.h"
 #endif
 
@@ -53,7 +53,7 @@ const char *Pools::kRetryPause      = "retry-pause";
 pythonxm::Pools::Pools() :
     m_donateLevel(kDefaultDonateLevel)
 {
-#   ifdef XMRIG_PROXY_PROJECT
+#   ifdef PYTHONXM_PROXY_PROJECT
     m_retries    = 2;
     m_retryPause = 1;
 #   endif
@@ -72,7 +72,7 @@ bool pythonxm::Pools::isEqual(const Pools &other) const
 
 int pythonxm::Pools::donateLevel() const
 {
-#   ifdef XMRIG_FEATURE_BENCHMARK
+#   ifdef PYTHONXM_FEATURE_BENCHMARK
     return benchSize() || (m_benchmark && !m_benchmark->id().isEmpty()) ? 0 : m_donateLevel;
 #   else
     return m_donateLevel;
@@ -133,7 +133,7 @@ void pythonxm::Pools::load(const IJsonReader &reader)
 {
     m_data.clear();
 
-#   ifdef XMRIG_FEATURE_BENCHMARK
+#   ifdef PYTHONXM_FEATURE_BENCHMARK
     m_benchmark = std::shared_ptr<BenchConfig>(BenchConfig::create(reader.getObject(BenchConfig::kBenchmark), reader.getBool("dmi", true)));
     if (m_benchmark) {
         m_data.emplace_back(m_benchmark);
@@ -167,7 +167,7 @@ void pythonxm::Pools::load(const IJsonReader &reader)
 
 uint32_t pythonxm::Pools::benchSize() const
 {
-#   ifdef XMRIG_FEATURE_BENCHMARK
+#   ifdef PYTHONXM_FEATURE_BENCHMARK
     return m_benchmark ? m_benchmark->size() : 0;
 #   else
     return 0;
@@ -199,7 +199,7 @@ void pythonxm::Pools::toJSON(rapidjson::Value &out, rapidjson::Document &doc) co
     using namespace rapidjson;
     auto &allocator = doc.GetAllocator();
 
-#   ifdef XMRIG_FEATURE_BENCHMARK
+#   ifdef PYTHONXM_FEATURE_BENCHMARK
     if (m_benchmark) {
         out.AddMember(StringRef(BenchConfig::kBenchmark), m_benchmark->toJSON(doc), allocator);
 

@@ -16,8 +16,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_CONSOLE_H
-#define XMRIG_CONSOLE_H
+#ifndef PYTHONXM_CONSOLE_H
+#define PYTHONXM_CONSOLE_H
 
 
 #include "base/tools/Object.h"
@@ -28,7 +28,7 @@ using uv_handle_t   = struct uv_handle_s;
 using uv_stream_t   = struct uv_stream_s;
 using uv_tty_t      = struct uv_tty_s;
 
-#ifdef XMRIG_OS_WIN
+#ifdef PYTHONXM_OS_WIN
 using ssize_t = intptr_t;
 #else
 #   include <sys/types.h>
@@ -44,7 +44,7 @@ class IConsoleListener;
 class Console
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE_DEFAULT(Console)
+    PYTHONXM_DISABLE_COPY_MOVE_DEFAULT(Console)
 
     Console(IConsoleListener *listener);
     ~Console();
@@ -64,4 +64,4 @@ private:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_CONSOLE_H */
+#endif /* PYTHONXM_CONSOLE_H */

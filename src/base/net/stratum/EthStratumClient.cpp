@@ -44,7 +44,7 @@ pythonxm::EthStratumClient::EthStratumClient(int id, const char *agent, IClientL
 
 int64_t pythonxm::EthStratumClient::submit(const JobResult& result)
 {
-#   ifndef XMRIG_PROXY_PROJECT
+#   ifndef PYTHONXM_PROXY_PROJECT
     if ((m_state != ConnectedState) || !m_authorized) {
         return -1;
     }
@@ -91,7 +91,7 @@ int64_t pythonxm::EthStratumClient::submit(const JobResult& result)
     uint64_t actual_diff = ethash_swap_u64(*((uint64_t*)result.result()));
     actual_diff = actual_diff ? (uint64_t(-1) / actual_diff) : 0;
 
-#   ifdef XMRIG_PROXY_PROJECT
+#   ifdef PYTHONXM_PROXY_PROJECT
     m_results[m_sequence] = SubmitResult(m_sequence, result.diff, actual_diff, result.id, 0);
 #   else
     m_results[m_sequence] = SubmitResult(m_sequence, result.diff, actual_diff, 0, result.backend);

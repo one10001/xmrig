@@ -63,7 +63,7 @@ static const char *colors_map[] = {
 class LogPrivate
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE(LogPrivate)
+    PYTHONXM_DISABLE_COPY_MOVE(LogPrivate)
 
 
     LogPrivate() = default;

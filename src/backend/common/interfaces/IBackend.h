@@ -16,8 +16,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_IBACKEND_H
-#define XMRIG_IBACKEND_H
+#ifndef PYTHONXM_IBACKEND_H
+#define PYTHONXM_IBACKEND_H
 
 
 #include "3rdparty/rapidjson/fwd.h"
@@ -42,7 +42,7 @@ class String;
 class IBackend
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE(IBackend)
+    PYTHONXM_DISABLE_COPY_MOVE(IBackend)
 
     IBackend()          = default;
     virtual ~IBackend() = default;
@@ -61,12 +61,12 @@ public:
     virtual void start(IWorker *worker, bool ready)                     = 0;
     virtual void stop()                                                 = 0;
 
-#   ifdef XMRIG_FEATURE_API
+#   ifdef PYTHONXM_FEATURE_API
     virtual rapidjson::Value toJSON(rapidjson::Document &doc) const     = 0;
     virtual void handleRequest(IApiRequest &request)                    = 0;
 #   endif
 
-#   ifdef XMRIG_FEATURE_BENCHMARK
+#   ifdef PYTHONXM_FEATURE_BENCHMARK
     virtual Benchmark *benchmark() const                                = 0;
     virtual void printBenchProgress() const                             = 0;
 #   endif
@@ -76,4 +76,4 @@ public:
 } // namespace pythonxm
 
 
-#endif // XMRIG_IBACKEND_H
+#endif // PYTHONXM_IBACKEND_H

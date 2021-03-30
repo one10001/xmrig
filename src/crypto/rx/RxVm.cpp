@@ -25,7 +25,7 @@
 #include "crypto/rx/RxVm.h"
 
 
-#if defined(XMRIG_FEATURE_SSE4_1)
+#if defined(PYTHONXM_FEATURE_SSE4_1)
 extern "C" uint32_t rx_blake2b_use_sse41;
 #endif
 
@@ -51,7 +51,7 @@ randomx_vm *pythonxm::RxVm::create(RxDataset *dataset, uint8_t *scratchpad, bool
         flags |= RANDOMX_FLAG_AMD;
     }
 
-#   if defined(XMRIG_FEATURE_SSE4_1)
+#   if defined(PYTHONXM_FEATURE_SSE4_1)
     rx_blake2b_use_sse41 = Cpu::info()->has(ICpuInfo::FLAG_SSE41) ? 1 : 0;
 #   endif
 

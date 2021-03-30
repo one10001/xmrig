@@ -29,16 +29,16 @@
 #include "net/JobResults.h"
 
 
-#ifdef XMRIG_ALGO_RANDOMX
+#ifdef PYTHONXM_ALGO_RANDOMX
 #   include "backend/opencl/runners/OclRxJitRunner.h"
 #   include "backend/opencl/runners/OclRxVmRunner.h"
 #endif
 
-#ifdef XMRIG_ALGO_ASTROBWT
+#ifdef PYTHONXM_ALGO_ASTROBWT
 #   include "backend/opencl/runners/OclAstroBWTRunner.h"
 #endif
 
-#ifdef XMRIG_ALGO_KAWPOW
+#ifdef PYTHONXM_ALGO_KAWPOW
 #   include "backend/opencl/runners/OclKawPowRunner.h"
 #endif
 
@@ -73,7 +73,7 @@ pythonxm::OclWorker::OclWorker(size_t id, const OclLaunchData &data) :
 {
     switch (m_algorithm.family()) {
     case Algorithm::RANDOM_X:
-#       ifdef XMRIG_ALGO_RANDOMX
+#       ifdef PYTHONXM_ALGO_RANDOMX
         if (data.thread.isAsm() && data.device.vendorId() == OCL_VENDOR_AMD) {
             m_runner = new OclRxJitRunner(id, data);
         }
@@ -84,19 +84,19 @@ pythonxm::OclWorker::OclWorker(size_t id, const OclLaunchData &data) :
         break;
 
     case Algorithm::ARGON2:
-#       ifdef XMRIG_ALGO_ARGON2
+#       ifdef PYTHONXM_ALGO_ARGON2
         m_runner = nullptr; // TODO OclArgon2Runner
 #       endif
         break;
 
     case Algorithm::ASTROBWT:
-#       ifdef XMRIG_ALGO_ASTROBWT
+#       ifdef PYTHONXM_ALGO_ASTROBWT
         m_runner = new OclAstroBWTRunner(id, data);
 #       endif
         break;
 
     case Algorithm::KAWPOW:
-#       ifdef XMRIG_ALGO_KAWPOW
+#       ifdef PYTHONXM_ALGO_KAWPOW
         m_runner = new OclKawPowRunner(id, data);
 #       endif
         break;

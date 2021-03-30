@@ -49,7 +49,7 @@
 #endif
 
 
-#ifdef XMRIG_FEATURE_API
+#ifdef PYTHONXM_FEATURE_API
 #   include "base/api/Api.h"
 #   include "base/api/interfaces/IApiRequest.h"
 
@@ -62,7 +62,7 @@ static const char *kConfigPathV2 = "/2/config";
 #endif
 
 
-#ifdef XMRIG_FEATURE_EMBEDDED_CONFIG
+#ifdef PYTHONXM_FEATURE_EMBEDDED_CONFIG
 #   include "core/config/Config_default.h"
 #endif
 
@@ -73,7 +73,7 @@ namespace pythonxm {
 class BasePrivate
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE_DEFAULT(BasePrivate)
+    PYTHONXM_DISABLE_COPY_MOVE_DEFAULT(BasePrivate)
 
 
     inline BasePrivate(Process *process)
@@ -86,7 +86,7 @@ public:
 
     inline ~BasePrivate()
     {
-#       ifdef XMRIG_FEATURE_API
+#       ifdef PYTHONXM_FEATURE_API
         delete api;
 #       endif
 
@@ -147,12 +147,12 @@ private:
             return config.release();
         }
         
-        chain.addFile(Process::location(Process::HomeLocation, ".config" XMRIG_DIR_SEPARATOR APP_ID ".json"));
+        chain.addFile(Process::location(Process::HomeLocation, ".config" PYTHONXM_DIR_SEPARATOR APP_ID ".json"));
         if (read(chain, config)) {
             return config.release();
         }
 
-#       ifdef XMRIG_FEATURE_EMBEDDED_CONFIG
+#       ifdef PYTHONXM_FEATURE_EMBEDDED_CONFIG
         chain.addRaw(default_config);
 
         if (read(chain, config)) {
@@ -189,7 +189,7 @@ bool pythonxm::Base::isReady() const
 
 int pythonxm::Base::init()
 {
-#   ifdef XMRIG_FEATURE_API
+#   ifdef PYTHONXM_FEATURE_API
     d_ptr->api = new Api(this);
     d_ptr->api->addListener(this);
 #   endif
@@ -219,7 +219,7 @@ int pythonxm::Base::init()
 
 void pythonxm::Base::start()
 {
-#   ifdef XMRIG_FEATURE_API
+#   ifdef PYTHONXM_FEATURE_API
     api()->start();
 #   endif
 
@@ -235,7 +235,7 @@ void pythonxm::Base::start()
 
 void pythonxm::Base::stop()
 {
-#   ifdef XMRIG_FEATURE_API
+#   ifdef PYTHONXM_FEATURE_API
     api()->stop();
 #   endif
 
@@ -320,7 +320,7 @@ void pythonxm::Base::onFileChanged(const String &fileName)
 }
 
 
-#ifdef XMRIG_FEATURE_API
+#ifdef PYTHONXM_FEATURE_API
 void pythonxm::Base::onRequest(IApiRequest &request)
 {
     if (request.method() == IApiRequest::METHOD_GET) {

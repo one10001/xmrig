@@ -17,8 +17,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_HTTPRESPONSE_H
-#define XMRIG_HTTPRESPONSE_H
+#ifndef PYTHONXM_HTTPRESPONSE_H
+#define PYTHONXM_HTTPRESPONSE_H
 
 
 #include <map>
@@ -50,5 +50,5 @@ private:
 } // namespace pythonxm
 
 
-#endif // XMRIG_HTTPRESPONSE_H
+#endif // PYTHONXM_HTTPRESPONSE_H
 

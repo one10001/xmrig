@@ -32,24 +32,24 @@ if (WITH_HWLOC)
         set(CPUID_LIB ${HWLOC_LIBRARY})
     endif()
 
-    add_definitions(/DXMRIG_FEATURE_HWLOC)
+    add_definitions(/DPYTHONXM_FEATURE_HWLOC)
 
     if (HWLOC_DEBUG)
-        add_definitions(/DXMRIG_HWLOC_DEBUG)
+        add_definitions(/DPYTHONXM_HWLOC_DEBUG)
     endif()
 
     list(APPEND HEADERS_BACKEND_CPU src/backend/cpu/platform/HwlocCpuInfo.h)
     list(APPEND SOURCES_BACKEND_CPU src/backend/cpu/platform/HwlocCpuInfo.cpp)
 else()
-    remove_definitions(/DXMRIG_FEATURE_HWLOC)
+    remove_definitions(/DPYTHONXM_FEATURE_HWLOC)
 
     set(CPUID_LIB "")
 endif()
 
-if (XMRIG_ARM)
+if (PYTHONXM_ARM)
     list(APPEND SOURCES_BACKEND_CPU src/backend/cpu/platform/BasicCpuInfo_arm.cpp)
 
-    if (XMRIG_OS_UNIX)
+    if (PYTHONXM_OS_UNIX)
         list(APPEND SOURCES_BACKEND_CPU src/backend/cpu/platform/lscpu_arm.cpp)
     endif()
 else()

@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_OCLTHREADS_H
-#define XMRIG_OCLTHREADS_H
+#ifndef PYTHONXM_OCLTHREADS_H
+#define PYTHONXM_OCLTHREADS_H
 
 
 #include <vector>
@@ -63,4 +63,4 @@ private:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_OCLTHREADS_H */
+#endif /* PYTHONXM_OCLTHREADS_H */

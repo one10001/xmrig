@@ -25,7 +25,7 @@
 #include "base/net/http/HttpClient.h"
 
 
-#ifdef XMRIG_FEATURE_TLS
+#ifdef PYTHONXM_FEATURE_TLS
 #   include "base/net/https/HttpsClient.h"
 #endif
 
@@ -107,7 +107,7 @@ void pythonxm::fetch(const char *tag, FetchRequest &&req, const std::weak_ptr<IH
 #   endif
 
     HttpClient *client;
-#   ifdef XMRIG_FEATURE_TLS
+#   ifdef PYTHONXM_FEATURE_TLS
     if (req.tls) {
         client = new HttpsClient(tag, std::move(req), listener);
     }

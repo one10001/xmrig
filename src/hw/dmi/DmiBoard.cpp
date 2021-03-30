@@ -35,7 +35,7 @@ void pythonxm::DmiBoard::decode(dmi_header *h)
 }
 
 
-#ifdef XMRIG_FEATURE_API
+#ifdef PYTHONXM_FEATURE_API
 rapidjson::Value pythonxm::DmiBoard::toJSON(rapidjson::Document &doc) const
 {
     using namespace rapidjson;

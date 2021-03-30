@@ -16,8 +16,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_IHTTPLISTENER_H
-#define XMRIG_IHTTPLISTENER_H
+#ifndef PYTHONXM_IHTTPLISTENER_H
+#define PYTHONXM_IHTTPLISTENER_H
 
 
 #include "base/tools/Object.h"
@@ -33,7 +33,7 @@ class HttpResponse;
 class IHttpListener
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE(IHttpListener)
+    PYTHONXM_DISABLE_COPY_MOVE(IHttpListener)
 
     IHttpListener()             = default;
     virtual ~IHttpListener()    = default;
@@ -45,4 +45,4 @@ public:
 } /* namespace pythonxm */
 
 
-#endif // XMRIG_IHTTPLISTENER_H
+#endif // PYTHONXM_IHTTPLISTENER_H

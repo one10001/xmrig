@@ -23,8 +23,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_OCLLAUNCHDATA_H
-#define XMRIG_OCLLAUNCHDATA_H
+#ifndef PYTHONXM_OCLLAUNCHDATA_H
+#define PYTHONXM_OCLLAUNCHDATA_H
 
 
 #include "backend/opencl/OclThread.h"
@@ -74,4 +74,4 @@ public:
 } // namespace pythonxm
 
 
-#endif /* XMRIG_OCLLAUNCHDATA_H */
+#endif /* PYTHONXM_OCLLAUNCHDATA_H */

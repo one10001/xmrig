@@ -24,8 +24,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_KP_HASH_H
-#define XMRIG_KP_HASH_H
+#ifndef PYTHONXM_KP_HASH_H
+#define PYTHONXM_KP_HASH_H
 
 
 #include <stdint.h>
@@ -55,4 +55,4 @@ public:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_KP_HASH_H */
+#endif /* PYTHONXM_KP_HASH_H */

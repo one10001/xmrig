@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_OCLCNRUNNER_H
-#define XMRIG_OCLCNRUNNER_H
+#ifndef PYTHONXM_OCLCNRUNNER_H
+#define PYTHONXM_OCLCNRUNNER_H
 
 
 #include "backend/opencl/runners/OclBaseRunner.h"
@@ -41,7 +41,7 @@ class CnBranchKernel;
 class OclCnRunner : public OclBaseRunner
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE_DEFAULT(OclCnRunner)
+    PYTHONXM_DISABLE_COPY_MOVE_DEFAULT(OclCnRunner)
 
     OclCnRunner(size_t index, const OclLaunchData &data);
     ~OclCnRunner() override;
@@ -79,4 +79,4 @@ private:
 } /* namespace pythonxm */
 
 
-#endif // XMRIG_OCLCNRUNNER_H
+#endif // PYTHONXM_OCLCNRUNNER_H

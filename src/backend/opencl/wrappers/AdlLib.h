@@ -17,8 +17,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_ADLLIB_H
-#define XMRIG_ADLLIB_H
+#ifndef PYTHONXM_ADLLIB_H
+#define PYTHONXM_ADLLIB_H
 
 
 #include "backend/opencl/wrappers/AdlHealth.h"
@@ -54,4 +54,4 @@ private:
 } // namespace pythonxm
 
 
-#endif /* XMRIG_ADLLIB_H */
+#endif /* PYTHONXM_ADLLIB_H */

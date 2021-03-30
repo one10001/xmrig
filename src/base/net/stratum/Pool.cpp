@@ -32,19 +32,19 @@
 #include "base/kernel/Platform.h"
 #include "base/net/stratum/Client.h"
 
-#ifdef XMRIG_ALGO_KAWPOW
+#ifdef PYTHONXM_ALGO_KAWPOW
 #   include "base/net/stratum/AutoClient.h"
 #   include "base/net/stratum/EthStratumClient.h"
 #endif
 
 
-#ifdef XMRIG_FEATURE_HTTP
+#ifdef PYTHONXM_FEATURE_HTTP
 #   include "base/net/stratum/DaemonClient.h"
 #   include "base/net/stratum/SelfSelectClient.h"
 #endif
 
 
-#ifdef XMRIG_FEATURE_BENCHMARK
+#ifdef PYTHONXM_FEATURE_BENCHMARK
 #   include "base/net/stratum/benchmark/BenchClient.h"
 #   include "base/net/stratum/benchmark/BenchConfig.h"
 #endif
@@ -141,7 +141,7 @@ pythonxm::Pool::Pool(const rapidjson::Value &object) :
 }
 
 
-#ifdef XMRIG_FEATURE_BENCHMARK
+#ifdef PYTHONXM_FEATURE_BENCHMARK
 pythonxm::Pool::Pool(const std::shared_ptr<BenchConfig> &benchmark) :
     m_mode(MODE_BENCHMARK),
     m_flags(1 << FLAG_ENABLED),
@@ -168,19 +168,19 @@ uint32_t pythonxm::Pool::benchSize() const
 
 bool pythonxm::Pool::isEnabled() const
 {
-#   ifndef XMRIG_FEATURE_TLS
+#   ifndef PYTHONXM_FEATURE_TLS
     if (isTLS()) {
         return false;
     }
 #   endif
 
-#   ifndef XMRIG_FEATURE_HTTP
+#   ifndef PYTHONXM_FEATURE_HTTP
     if (m_mode == MODE_DAEMON) {
         return false;
     }
 #   endif
 
-#   ifndef XMRIG_FEATURE_HTTP
+#   ifndef PYTHONXM_FEATURE_HTTP
     if (m_mode == MODE_SELF_SELECT) {
         return false;
     }
@@ -218,7 +218,7 @@ pythonxm::IClient *pythonxm::Pool::createClient(int id, IClientListener *listene
     IClient *client = nullptr;
 
     if (m_mode == MODE_POOL) {
-#       ifdef XMRIG_ALGO_KAWPOW
+#       ifdef PYTHONXM_ALGO_KAWPOW
         if ((m_algorithm.family() == Algorithm::KAWPOW) || (m_coin == Coin::RAVEN)) {
             client = new EthStratumClient(id, Platform::userAgent(), listener);
         }
@@ -228,7 +228,7 @@ pythonxm::IClient *pythonxm::Pool::createClient(int id, IClientListener *listene
             client = new Client(id, Platform::userAgent(), listener);
         }
     }
-#   ifdef XMRIG_FEATURE_HTTP
+#   ifdef PYTHONXM_FEATURE_HTTP
     else if (m_mode == MODE_DAEMON) {
         client = new DaemonClient(id, listener);
     }
@@ -236,12 +236,12 @@ pythonxm::IClient *pythonxm::Pool::createClient(int id, IClientListener *listene
         client = new SelfSelectClient(id, Platform::userAgent(), listener, m_submitToOrigin);
     }
 #   endif
-#   ifdef XMRIG_ALGO_KAWPOW
+#   ifdef PYTHONXM_ALGO_KAWPOW
     else if (m_mode == MODE_AUTO_ETH) {
         client = new AutoClient(id, Platform::userAgent(), listener);
     }
 #   endif
-#   ifdef XMRIG_FEATURE_BENCHMARK
+#   ifdef PYTHONXM_FEATURE_BENCHMARK
     else if (m_mode == MODE_BENCHMARK) {
         client = new BenchClient(m_benchmark, listener);
     }
@@ -274,7 +274,7 @@ rapidjson::Value pythonxm::Pool::toJSON(rapidjson::Document &doc) const
         obj.AddMember(StringRef(kPass),  m_password.toJSON(), allocator);
         obj.AddMember(StringRef(kRigId), m_rigId.toJSON(), allocator);
 
-#       ifndef XMRIG_PROXY_PROJECT
+#       ifndef PYTHONXM_PROXY_PROJECT
         obj.AddMember(StringRef(kNicehash), isNicehash(), allocator);
 #       endif
 

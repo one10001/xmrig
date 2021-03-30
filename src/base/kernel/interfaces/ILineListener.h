@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_ILINELISTENER_H
-#define XMRIG_ILINELISTENER_H
+#ifndef PYTHONXM_ILINELISTENER_H
+#define PYTHONXM_ILINELISTENER_H
 
 
 #include "base/tools/Object.h"
@@ -38,7 +38,7 @@ namespace pythonxm {
 class ILineListener
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE(ILineListener)
+    PYTHONXM_DISABLE_COPY_MOVE(ILineListener)
 
     ILineListener()             = default;
     virtual ~ILineListener()    = default;
@@ -50,4 +50,4 @@ public:
 } /* namespace pythonxm */
 
 
-#endif // XMRIG_ILINELISTENER_H
+#endif // PYTHONXM_ILINELISTENER_H

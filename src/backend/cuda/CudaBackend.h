@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_CUDABACKEND_H
-#define XMRIG_CUDABACKEND_H
+#ifndef PYTHONXM_CUDABACKEND_H
+#define PYTHONXM_CUDABACKEND_H
 
 
 #include <utility>
@@ -44,7 +44,7 @@ class Miner;
 class CudaBackend : public IBackend
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE_DEFAULT(CudaBackend)
+    PYTHONXM_DISABLE_COPY_MOVE_DEFAULT(CudaBackend)
 
     CudaBackend(Controller *controller);
 
@@ -65,12 +65,12 @@ protected:
     void stop() override;
     bool tick(uint64_t ticks) override;
 
-#   ifdef XMRIG_FEATURE_API
+#   ifdef PYTHONXM_FEATURE_API
     rapidjson::Value toJSON(rapidjson::Document &doc) const override;
     void handleRequest(IApiRequest &request) override;
 #   endif
 
-#   ifdef XMRIG_FEATURE_BENCHMARK
+#   ifdef PYTHONXM_FEATURE_BENCHMARK
     inline Benchmark *benchmark() const override        { return nullptr; }
     inline void printBenchProgress() const override     {}
 #   endif
@@ -83,4 +83,4 @@ private:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_CUDABACKEND_H */
+#endif /* PYTHONXM_CUDABACKEND_H */

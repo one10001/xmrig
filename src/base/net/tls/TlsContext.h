@@ -23,8 +23,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_TLSCONTEXT_H
-#define XMRIG_TLSCONTEXT_H
+#ifndef PYTHONXM_TLSCONTEXT_H
+#define PYTHONXM_TLSCONTEXT_H
 
 
 #include "base/tools/Object.h"
@@ -45,7 +45,7 @@ class TlsConfig;
 class TlsContext
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE(TlsContext)
+    PYTHONXM_DISABLE_COPY_MOVE(TlsContext)
 
     ~TlsContext();
 
@@ -68,4 +68,4 @@ private:
 
 } /* namespace pythonxm */
 
-#endif /* XMRIG_TLSCONTEXT_H */
+#endif /* PYTHONXM_TLSCONTEXT_H */

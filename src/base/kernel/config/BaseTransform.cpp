@@ -38,7 +38,7 @@
 #include "core/config/Config_platform.h"
 
 
-#ifdef XMRIG_FEATURE_TLS
+#ifdef PYTHONXM_FEATURE_TLS
 #   include "base/net/tls/TlsConfig.h"
 #endif
 
@@ -157,10 +157,10 @@ void pythonxm::BaseTransform::transform(rapidjson::Document &doc, int key, const
             array.PushBack(rapidjson::kObjectType, doc.GetAllocator());
         }
 
-#       ifdef XMRIG_FEATURE_BENCHMARK
+#       ifdef PYTHONXM_FEATURE_BENCHMARK
         if (key != IConfig::UrlKey) {
             set(doc, array[array.Size() - 1], Pool::kUrl,
-#           ifdef XMRIG_FEATURE_TLS
+#           ifdef PYTHONXM_FEATURE_TLS
                 "stratum+ssl://randomx.pythonxm.com:443"
 #           else
                 "randomx.pythonxm.com:3333"
@@ -215,7 +215,7 @@ void pythonxm::BaseTransform::transform(rapidjson::Document &doc, int key, const
     case IConfig::TitleKey: /* --title */
         return set(doc, BaseConfig::kTitle, arg);
 
-#   ifdef XMRIG_FEATURE_TLS
+#   ifdef PYTHONXM_FEATURE_TLS
     case IConfig::TlsCertKey: /* --tls-cert */
         return set(doc, BaseConfig::kTls, TlsConfig::kCert, arg);
 
@@ -286,12 +286,12 @@ void pythonxm::BaseTransform::transformBoolean(rapidjson::Document &doc, int key
 
     case IConfig::SubmitToOriginKey: /* --submit-to-origin */
         return add(doc, Pools::kPools, Pool::kSubmitToOrigin, enable);
-#   ifdef XMRIG_FEATURE_HTTP
+#   ifdef PYTHONXM_FEATURE_HTTP
     case IConfig::DaemonKey: /* --daemon */
         return add(doc, Pools::kPools, Pool::kDaemon, enable);
 #   endif
 
-#   ifndef XMRIG_PROXY_PROJECT
+#   ifndef PYTHONXM_PROXY_PROJECT
     case IConfig::NicehashKey: /* --nicehash */
         return add<bool>(doc, Pools::kPools, Pool::kNicehash, enable);
 #   endif
@@ -344,7 +344,7 @@ void pythonxm::BaseTransform::transformUint64(rapidjson::Document &doc, int key,
     case IConfig::PrintTimeKey: /* --print-time */
         return set(doc, BaseConfig::kPrintTime, arg);
 
-#   ifdef XMRIG_FEATURE_HTTP
+#   ifdef PYTHONXM_FEATURE_HTTP
     case IConfig::DaemonPollKey:  /* --daemon-poll-interval */
         return add(doc, Pools::kPools, Pool::kDaemonPollInterval, arg);
 #   endif

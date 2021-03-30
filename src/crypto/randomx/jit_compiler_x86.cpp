@@ -43,7 +43,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "crypto/randomx/virtual_memory.hpp"
 #include "crypto/rx/Profiler.h"
 
-#ifdef XMRIG_FIX_RYZEN
+#ifdef PYTHONXM_FIX_RYZEN
 #   include "crypto/rx/RxFix.h"
 #endif
 
@@ -272,7 +272,7 @@ namespace randomx {
 
 		allocatedSize = initDatasetAVX2 ? (CodeSize * 4) : (CodeSize * 2);
 		allocatedCode = static_cast<uint8_t*>(allocExecutableMemory(allocatedSize,
-#			ifdef XMRIG_SECURE_JIT
+#			ifdef PYTHONXM_SECURE_JIT
 			false
 #			else
 			hugePagesJIT && hugePagesEnable
@@ -293,7 +293,7 @@ namespace randomx {
 
 		codePosFirst = prologueSize + (hasXOP ? loopLoadXOPSize : loopLoadSize);
 
-#		ifdef XMRIG_FIX_RYZEN
+#		ifdef PYTHONXM_FIX_RYZEN
 		mainLoopBounds.first = code + prologueSize;
 		mainLoopBounds.second = code + epilogueOffset;
 #		endif
@@ -314,7 +314,7 @@ namespace randomx {
 	void JitCompilerX86::generateProgram(Program& prog, ProgramConfiguration& pcfg, uint32_t flags) {
 		PROFILE_SCOPE(RandomX_JIT_compile);
 
-#		ifdef XMRIG_SECURE_JIT
+#		ifdef PYTHONXM_SECURE_JIT
 		enableWriting();
 #		endif
 
@@ -424,7 +424,7 @@ namespace randomx {
 			*p = (*p & 0xFF000000U) | 0x0077F8C5U;
 		}
 
-#		ifdef XMRIG_FIX_RYZEN
+#		ifdef PYTHONXM_FIX_RYZEN
         pythonxm::RxFix::setMainLoopBounds(mainLoopBounds);
 #		endif
 

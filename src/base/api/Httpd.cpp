@@ -27,7 +27,7 @@
 #include "core/Controller.h"
 
 
-#ifdef XMRIG_FEATURE_TLS
+#ifdef PYTHONXM_FEATURE_TLS
 #   include "base/net/https/HttpsServer.h"
 #else
 #   include "base/net/http/HttpServer.h"
@@ -68,7 +68,7 @@ bool pythonxm::Httpd::start()
 
     bool tls = false;
 
-#   ifdef XMRIG_FEATURE_TLS
+#   ifdef PYTHONXM_FEATURE_TLS
     m_http = new HttpsServer(m_httpListener);
     tls = m_http->setTls(m_base->config()->tls());
 #   else

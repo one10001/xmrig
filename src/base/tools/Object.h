@@ -16,8 +16,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_OBJECT_H
-#define XMRIG_OBJECT_H
+#ifndef PYTHONXM_OBJECT_H
+#define PYTHONXM_OBJECT_H
 
 
 #include <chrono>
@@ -26,14 +26,14 @@
 namespace pythonxm {
 
 
-#define XMRIG_DISABLE_COPY_MOVE(X) \
+#define PYTHONXM_DISABLE_COPY_MOVE(X) \
     X(const X &other)            = delete; \
     X(X &&other)                 = delete; \
     X &operator=(const X &other) = delete; \
     X &operator=(X &&other)      = delete;
 
 
-#define XMRIG_DISABLE_COPY_MOVE_DEFAULT(X) \
+#define PYTHONXM_DISABLE_COPY_MOVE_DEFAULT(X) \
     X()                          = delete; \
     X(const X &other)            = delete; \
     X(X &&other)                 = delete; \
@@ -43,4 +43,4 @@ namespace pythonxm {
 
 } /* namespace pythonxm */
 
-#endif /* XMRIG_OBJECT_H */
+#endif /* PYTHONXM_OBJECT_H */

@@ -16,8 +16,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_IMEMORYPOOL_H
-#define XMRIG_IMEMORYPOOL_H
+#ifndef PYTHONXM_IMEMORYPOOL_H
+#define PYTHONXM_IMEMORYPOOL_H
 
 
 #include "base/tools/Object.h"
@@ -33,7 +33,7 @@ namespace pythonxm {
 class IMemoryPool
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE(IMemoryPool)
+    PYTHONXM_DISABLE_COPY_MOVE(IMemoryPool)
 
     IMemoryPool()           = default;
     virtual ~IMemoryPool()  = default;
@@ -48,4 +48,4 @@ public:
 
 
 
-#endif /* XMRIG_IMEMORYPOOL_H */
+#endif /* PYTHONXM_IMEMORYPOOL_H */

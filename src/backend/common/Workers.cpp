@@ -26,17 +26,17 @@
 #include "base/tools/Chrono.h"
 
 
-#ifdef XMRIG_FEATURE_OPENCL
+#ifdef PYTHONXM_FEATURE_OPENCL
 #   include "backend/opencl/OclWorker.h"
 #endif
 
 
-#ifdef XMRIG_FEATURE_CUDA
+#ifdef PYTHONXM_FEATURE_CUDA
 #   include "backend/cuda/CudaWorker.h"
 #endif
 
 
-#ifdef XMRIG_FEATURE_BENCHMARK
+#ifdef PYTHONXM_FEATURE_BENCHMARK
 #   include "backend/common/benchmark/Benchmark.h"
 #endif
 
@@ -47,7 +47,7 @@ namespace pythonxm {
 class WorkersPrivate
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE(WorkersPrivate)
+    PYTHONXM_DISABLE_COPY_MOVE(WorkersPrivate)
 
     WorkersPrivate()    = default;
     ~WorkersPrivate()   = default;
@@ -107,7 +107,7 @@ bool pythonxm::Workers<T>::tick(uint64_t)
         d_ptr->hashrate->add(totalHashCount, Chrono::steadyMSecs());
     }
 
-#   ifdef XMRIG_FEATURE_BENCHMARK
+#   ifdef PYTHONXM_FEATURE_BENCHMARK
     return !d_ptr->benchmark || !d_ptr->benchmark->finish(totalHashCount);
 #   else
     return true;
@@ -132,7 +132,7 @@ void pythonxm::Workers<T>::setBackend(IBackend *backend)
 template<class T>
 void pythonxm::Workers<T>::stop()
 {
-#   ifdef XMRIG_MINER_PROJECT
+#   ifdef PYTHONXM_MINER_PROJECT
     Nonce::stop(T::backend());
 #   endif
 
@@ -142,7 +142,7 @@ void pythonxm::Workers<T>::stop()
 
     m_workers.clear();
 
-#   ifdef XMRIG_MINER_PROJECT
+#   ifdef PYTHONXM_MINER_PROJECT
     Nonce::touch(T::backend());
 #   endif
 
@@ -150,7 +150,7 @@ void pythonxm::Workers<T>::stop()
 }
 
 
-#ifdef XMRIG_FEATURE_BENCHMARK
+#ifdef PYTHONXM_FEATURE_BENCHMARK
 template<class T>
 void pythonxm::Workers<T>::start(const std::vector<T> &data, const std::shared_ptr<Benchmark> &benchmark)
 {
@@ -208,7 +208,7 @@ void pythonxm::Workers<T>::start(const std::vector<T> &data, bool sleep)
 
     d_ptr->hashrate = std::make_shared<Hashrate>(m_workers.size());
 
-#   ifdef XMRIG_MINER_PROJECT
+#   ifdef PYTHONXM_MINER_PROJECT
     Nonce::touch(T::backend());
 #   endif
 
@@ -224,7 +224,7 @@ namespace pythonxm {
 template<>
 pythonxm::IWorker *pythonxm::Workers<CpuLaunchData>::create(Thread<CpuLaunchData> *handle)
 {
-#   ifdef XMRIG_MINER_PROJECT
+#   ifdef PYTHONXM_MINER_PROJECT
     switch (handle->config().intensity) {
     case 1:
         return new CpuWorker<1>(handle->id(), handle->config());
@@ -254,7 +254,7 @@ pythonxm::IWorker *pythonxm::Workers<CpuLaunchData>::create(Thread<CpuLaunchData
 template class Workers<CpuLaunchData>;
 
 
-#ifdef XMRIG_FEATURE_OPENCL
+#ifdef PYTHONXM_FEATURE_OPENCL
 template<>
 pythonxm::IWorker *pythonxm::Workers<OclLaunchData>::create(Thread<OclLaunchData> *handle)
 {
@@ -266,7 +266,7 @@ template class Workers<OclLaunchData>;
 #endif
 
 
-#ifdef XMRIG_FEATURE_CUDA
+#ifdef PYTHONXM_FEATURE_CUDA
 template<>
 pythonxm::IWorker *pythonxm::Workers<CudaLaunchData>::create(Thread<CudaLaunchData> *handle)
 {

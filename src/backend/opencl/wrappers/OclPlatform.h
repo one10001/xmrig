@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_OCLPLATFORM_H
-#define XMRIG_OCLPLATFORM_H
+#ifndef PYTHONXM_OCLPLATFORM_H
+#define PYTHONXM_OCLPLATFORM_H
 
 
 #include <vector>
@@ -69,4 +69,4 @@ private:
 } // namespace pythonxm
 
 
-#endif /* XMRIG_OCLPLATFORM_H */
+#endif /* PYTHONXM_OCLPLATFORM_H */

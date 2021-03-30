@@ -24,8 +24,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_MEMORYPOOL_H
-#define XMRIG_MEMORYPOOL_H
+#ifndef PYTHONXM_MEMORYPOOL_H
+#define PYTHONXM_MEMORYPOOL_H
 
 
 #include "backend/common/interfaces/IMemoryPool.h"
@@ -41,7 +41,7 @@ class VirtualMemory;
 class MemoryPool : public IMemoryPool
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE_DEFAULT(MemoryPool)
+    PYTHONXM_DISABLE_COPY_MOVE_DEFAULT(MemoryPool)
 
     MemoryPool(size_t size, bool hugePages, uint32_t node = 0);
     ~MemoryPool() override;
@@ -63,4 +63,4 @@ private:
 
 
 
-#endif /* XMRIG_MEMORYPOOL_H */
+#endif /* PYTHONXM_MEMORYPOOL_H */

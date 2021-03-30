@@ -16,8 +16,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_HWLOCCPUINFO_H
-#define XMRIG_HWLOCCPUINFO_H
+#ifndef PYTHONXM_HWLOCCPUINFO_H
+#define PYTHONXM_HWLOCCPUINFO_H
 
 
 #include "backend/cpu/platform/BasicCpuInfo.h"
@@ -35,7 +35,7 @@ namespace pythonxm {
 class HwlocCpuInfo : public BasicCpuInfo
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE(HwlocCpuInfo)
+    PYTHONXM_DISABLE_COPY_MOVE(HwlocCpuInfo)
 
 
     enum Feature : uint32_t {
@@ -83,4 +83,4 @@ private:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_HWLOCCPUINFO_H */
+#endif /* PYTHONXM_HWLOCCPUINFO_H */

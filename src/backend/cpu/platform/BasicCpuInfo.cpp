@@ -57,7 +57,7 @@ static const std::array<const char *, kCpuFlagsSize> flagNames  = { "aes", "avx"
 static_assert(kCpuFlagsSize == ICpuInfo::FLAG_MAX, "kCpuFlagsSize and FLAG_MAX mismatch");
 
 
-#ifdef XMRIG_FEATURE_MSR
+#ifdef PYTHONXM_FEATURE_MSR
 constexpr size_t kMsrArraySize                                  = 5;
 static const std::array<const char *, kMsrArraySize> msrNames   = { MSR_NAMES_LIST };
 static_assert(kMsrArraySize == ICpuInfo::MSR_MOD_MAX, "kMsrArraySize and MSR_MOD_MAX mismatch");
@@ -155,7 +155,7 @@ static inline bool is_vm()          { return has_feature(PROCESSOR_INFO,        
 } // namespace pythonxm
 
 
-#ifdef XMRIG_ALGO_ARGON2
+#ifdef PYTHONXM_ALGO_ARGON2
 extern "C" {
 
 
@@ -195,7 +195,7 @@ pythonxm::BasicCpuInfo::BasicCpuInfo() :
         m_units[i] = i;
     }
 
-#   ifdef XMRIG_FEATURE_ASM
+#   ifdef PYTHONXM_FEATURE_ASM
     if (hasAES()) {
         char vendor[13] = { 0 };
         int32_t data[4] = { 0 };
@@ -309,25 +309,25 @@ pythonxm::CpuThreads pythonxm::BasicCpuInfo::threads(const Algorithm &algorithm,
         return 1;
     }
 
-#   ifdef XMRIG_ALGO_CN_LITE
+#   ifdef PYTHONXM_ALGO_CN_LITE
     if (algorithm.family() == Algorithm::CN_LITE) {
         return CpuThreads(count, 1);
     }
 #   endif
 
-#   ifdef XMRIG_ALGO_CN_PICO
+#   ifdef PYTHONXM_ALGO_CN_PICO
     if (algorithm.family() == Algorithm::CN_PICO) {
         return CpuThreads(count, 2);
     }
 #   endif
 
-#   ifdef XMRIG_ALGO_CN_HEAVY
+#   ifdef PYTHONXM_ALGO_CN_HEAVY
     if (algorithm.family() == Algorithm::CN_HEAVY) {
         return CpuThreads(std::max<size_t>(count / 4, 1), 1);
     }
 #   endif
 
-#   ifdef XMRIG_ALGO_RANDOMX
+#   ifdef PYTHONXM_ALGO_RANDOMX
     if (algorithm.family() == Algorithm::RANDOM_X) {
         if (algorithm == Algorithm::RX_WOW) {
             return count;
@@ -337,13 +337,13 @@ pythonxm::CpuThreads pythonxm::BasicCpuInfo::threads(const Algorithm &algorithm,
     }
 #   endif
 
-#   ifdef XMRIG_ALGO_ARGON2
+#   ifdef PYTHONXM_ALGO_ARGON2
     if (algorithm.family() == Algorithm::ARGON2) {
         return count;
     }
 #   endif
 
-#   ifdef XMRIG_ALGO_ASTROBWT
+#   ifdef PYTHONXM_ALGO_ASTROBWT
     if (algorithm.family() == Algorithm::ASTROBWT) {
         CpuThreads threads;
         for (size_t i = 0; i < count; ++i) {
@@ -381,13 +381,13 @@ rapidjson::Value pythonxm::BasicCpuInfo::toJSON(rapidjson::Document &doc) const
     out.AddMember("nodes",      static_cast<uint64_t>(nodes()), allocator);
     out.AddMember("backend",    StringRef(backend()), allocator);
 
-#   ifdef XMRIG_FEATURE_MSR
+#   ifdef PYTHONXM_FEATURE_MSR
     out.AddMember("msr",        StringRef(msrNames[msrMod()]), allocator);
 #   else
     out.AddMember("msr",        "none", allocator);
 #   endif
 
-#   ifdef XMRIG_FEATURE_ASM
+#   ifdef PYTHONXM_FEATURE_ASM
     out.AddMember("assembly",   StringRef(Assembly(assembly()).toString()), allocator);
 #   else
     out.AddMember("assembly",   "none", allocator);

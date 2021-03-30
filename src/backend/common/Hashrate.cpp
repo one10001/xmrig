@@ -81,7 +81,7 @@ rapidjson::Value pythonxm::Hashrate::normalize(double d)
 }
 
 
-#ifdef XMRIG_FEATURE_API
+#ifdef PYTHONXM_FEATURE_API
 rapidjson::Value pythonxm::Hashrate::toJSON(rapidjson::Document &doc) const
 {
     using namespace rapidjson;

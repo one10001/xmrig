@@ -16,16 +16,16 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_CONSTANTS_H
-#define XMRIG_CONSTANTS_H
+#ifndef PYTHONXM_CONSTANTS_H
+#define PYTHONXM_CONSTANTS_H
 
 
 #include <cstddef>
 #include <cstdint>
 
 
-constexpr size_t      XMRIG_NET_BUFFER_CHUNK_SIZE           = 64 * 1024;
-constexpr size_t      XMRIG_NET_BUFFER_INIT_CHUNKS          = 4;
+constexpr size_t      PYTHONXM_NET_BUFFER_CHUNK_SIZE           = 64 * 1024;
+constexpr size_t      PYTHONXM_NET_BUFFER_INIT_CHUNKS          = 4;
 
 
-#endif /* XMRIG_CONSTANTS_H */
+#endif /* PYTHONXM_CONSTANTS_H */

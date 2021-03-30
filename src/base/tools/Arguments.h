@@ -16,8 +16,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_ARGUMENTS_H
-#define XMRIG_ARGUMENTS_H
+#ifndef PYTHONXM_ARGUMENTS_H
+#define PYTHONXM_ARGUMENTS_H
 
 
 #include <vector>
@@ -53,4 +53,4 @@ private:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_ARGUMENTS_H */
+#endif /* PYTHONXM_ARGUMENTS_H */

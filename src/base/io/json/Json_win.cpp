@@ -122,7 +122,7 @@ bool pythonxm::Json::save(const char *fileName, const rapidjson::Document &doc)
     OStreamWrapper osw(ofs);
     PrettyWriter<OStreamWrapper> writer(osw);
 
-#   ifdef XMRIG_JSON_SINGLE_LINE_ARRAY
+#   ifdef PYTHONXM_JSON_SINGLE_LINE_ARRAY
     writer.SetFormatOptions(kFormatSingleLineArray);
 #   endif
 

@@ -16,8 +16,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_ISIGNALLISTENER_H
-#define XMRIG_ISIGNALLISTENER_H
+#ifndef PYTHONXM_ISIGNALLISTENER_H
+#define PYTHONXM_ISIGNALLISTENER_H
 
 
 #include "base/tools/Object.h"
@@ -32,7 +32,7 @@ class String;
 class ISignalListener
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE(ISignalListener)
+    PYTHONXM_DISABLE_COPY_MOVE(ISignalListener)
 
     ISignalListener()           = default;
     virtual ~ISignalListener()  = default;
@@ -44,4 +44,4 @@ public:
 } /* namespace pythonxm */
 
 
-#endif // XMRIG_ISIGNALLISTENER_H
+#endif // PYTHONXM_ISIGNALLISTENER_H

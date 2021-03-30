@@ -17,8 +17,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_LOG_H
-#define XMRIG_LOG_H
+#ifndef PYTHONXM_LOG_H
+#define PYTHONXM_LOG_H
 
 
 #include <cstddef>
@@ -76,7 +76,7 @@ private:
 #define BRIGHT_BLACK_S      CSI "0;90m" // somewhat MD.GRAY
 #define BLACK_S             CSI "0;30m"
 
-#ifdef XMRIG_OS_APPLE
+#ifdef PYTHONXM_OS_APPLE
 #   define BLACK_BOLD_S     CSI "0;37m"
 #else
 #   define BLACK_BOLD_S     CSI "1;30m" // another name for GRAY
@@ -168,4 +168,4 @@ private:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_LOG_H */
+#endif /* PYTHONXM_LOG_H */

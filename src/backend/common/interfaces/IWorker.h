@@ -16,8 +16,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_IWORKER_H
-#define XMRIG_IWORKER_H
+#ifndef PYTHONXM_IWORKER_H
+#define PYTHONXM_IWORKER_H
 
 
 #include "base/tools/Object.h"
@@ -37,7 +37,7 @@ class VirtualMemory;
 class IWorker
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE(IWorker)
+    PYTHONXM_DISABLE_COPY_MOVE(IWorker)
 
     IWorker()           = default;
     virtual ~IWorker()  = default;
@@ -55,4 +55,4 @@ public:
 } // namespace pythonxm
 
 
-#endif // XMRIG_IWORKER_H
+#endif // PYTHONXM_IWORKER_H

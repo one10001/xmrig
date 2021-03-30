@@ -27,7 +27,7 @@
 #include "crypto/randomx/aes_hash.hpp"
 
 
-#ifdef XMRIG_FEATURE_MSR
+#ifdef PYTHONXM_FEATURE_MSR
 #   include "crypto/rx/RxFix.h"
 #   include "crypto/rx/RxMsr.h"
 #endif
@@ -69,7 +69,7 @@ pythonxm::RxDataset *pythonxm::Rx::dataset(const Job &job, uint32_t nodeId)
 
 void pythonxm::Rx::destroy()
 {
-#   ifdef XMRIG_FEATURE_MSR
+#   ifdef PYTHONXM_FEATURE_MSR
     RxMsr::destroy();
 #   endif
 
@@ -90,24 +90,24 @@ bool pythonxm::Rx::init(const T &seed, const RxConfig &config, const CpuConfig &
 {
     const Algorithm::Family f = seed.algorithm().family();
     if ((f != Algorithm::RANDOM_X)
-#       ifdef XMRIG_ALGO_CN_HEAVY
+#       ifdef PYTHONXM_ALGO_CN_HEAVY
         && (f != Algorithm::CN_HEAVY)
 #       endif
         ) {
-#       ifdef XMRIG_FEATURE_MSR
+#       ifdef PYTHONXM_FEATURE_MSR
         RxMsr::destroy();
 #       endif
 
         return true;
     }
 
-#   ifdef XMRIG_FEATURE_MSR
+#   ifdef PYTHONXM_FEATURE_MSR
     if (!RxMsr::isInitialized()) {
         RxMsr::init(config, cpu.threads().get(seed.algorithm()).data());
     }
 #   endif
 
-#   ifdef XMRIG_ALGO_CN_HEAVY
+#   ifdef PYTHONXM_ALGO_CN_HEAVY
     if (f == Algorithm::CN_HEAVY) {
         return true;
     }
@@ -118,7 +118,7 @@ bool pythonxm::Rx::init(const T &seed, const RxConfig &config, const CpuConfig &
     randomx_set_optimized_dataset_init(config.initDatasetAVX2());
 
     if (!osInitialized) {
-#       ifdef XMRIG_FIX_RYZEN
+#       ifdef PYTHONXM_FIX_RYZEN
         RxFix::setupMainLoopExceptionFrame();
 #       endif
 
@@ -145,7 +145,7 @@ bool pythonxm::Rx::isReady(const T &seed)
 }
 
 
-#ifdef XMRIG_FEATURE_MSR
+#ifdef PYTHONXM_FEATURE_MSR
 bool pythonxm::Rx::isMSR()
 {
     return RxMsr::isEnabled();

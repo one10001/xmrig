@@ -17,8 +17,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_RXFIX_H
-#define XMRIG_RXFIX_H
+#ifndef PYTHONXM_RXFIX_H
+#define PYTHONXM_RXFIX_H
 
 
 #include <utility>
@@ -39,4 +39,4 @@ public:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_RXFIX_H */
+#endif /* PYTHONXM_RXFIX_H */

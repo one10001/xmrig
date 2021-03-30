@@ -16,8 +16,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_IBENCHLISTENER_H
-#define XMRIG_IBENCHLISTENER_H
+#ifndef PYTHONXM_IBENCHLISTENER_H
+#define PYTHONXM_IBENCHLISTENER_H
 
 
 #include "base/tools/Object.h"
@@ -32,7 +32,7 @@ class IBackend;
 class IBenchListener
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE(IBenchListener)
+    PYTHONXM_DISABLE_COPY_MOVE(IBenchListener)
 
     IBenchListener()            = default;
     virtual ~IBenchListener()   = default;
@@ -45,4 +45,4 @@ public:
 } /* namespace pythonxm */
 
 
-#endif // XMRIG_IBENCHLISTENER_H
+#endif // PYTHONXM_IBENCHLISTENER_H

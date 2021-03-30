@@ -74,7 +74,7 @@ bool pythonxm::Job::setBlob(const char *blob)
         m_nicehash = true;
     }
 
-#   ifdef XMRIG_PROXY_PROJECT
+#   ifdef PYTHONXM_PROXY_PROJECT
     memset(m_rawBlob, 0, sizeof(m_rawBlob));
     memcpy(m_rawBlob, blob, m_size * 2);
 #   endif
@@ -89,7 +89,7 @@ bool pythonxm::Job::setSeedHash(const char *hash)
         return false;
     }
 
-#   ifdef XMRIG_PROXY_PROJECT
+#   ifdef PYTHONXM_PROXY_PROJECT
     m_rawSeedHash = hash;
 #   endif
 
@@ -118,7 +118,7 @@ bool pythonxm::Job::setTarget(const char *target)
         return false;
     }
 
-#   ifdef XMRIG_PROXY_PROJECT
+#   ifdef PYTHONXM_PROXY_PROJECT
     assert(sizeof(m_rawTarget) > (size * 2));
 
     memset(m_rawTarget, 0, sizeof(m_rawTarget));
@@ -135,7 +135,7 @@ void pythonxm::Job::setDiff(uint64_t diff)
     m_diff   = diff;
     m_target = toDiff(diff);
 
-#   ifdef XMRIG_PROXY_PROJECT
+#   ifdef PYTHONXM_PROXY_PROJECT
     Cvt::toHex(m_rawTarget, sizeof(m_rawTarget), reinterpret_cast<uint8_t *>(&m_target), sizeof(m_target));
 #   endif
 }
@@ -159,14 +159,14 @@ void pythonxm::Job::copy(const Job &other)
 
     memcpy(m_blob, other.m_blob, sizeof(m_blob));
 
-#   ifdef XMRIG_PROXY_PROJECT
+#   ifdef PYTHONXM_PROXY_PROJECT
     m_rawSeedHash = other.m_rawSeedHash;
 
     memcpy(m_rawBlob, other.m_rawBlob, sizeof(m_rawBlob));
     memcpy(m_rawTarget, other.m_rawTarget, sizeof(m_rawTarget));
 #   endif
 
-#   ifdef XMRIG_FEATURE_BENCHMARK
+#   ifdef PYTHONXM_FEATURE_BENCHMARK
     m_benchSize = other.m_benchSize;
 #   endif
 }
@@ -194,14 +194,14 @@ void pythonxm::Job::move(Job &&other)
     other.m_diff        = 0;
     other.m_algorithm   = Algorithm::INVALID;
 
-#   ifdef XMRIG_PROXY_PROJECT
+#   ifdef PYTHONXM_PROXY_PROJECT
     m_rawSeedHash = std::move(other.m_rawSeedHash);
 
     memcpy(m_rawBlob, other.m_rawBlob, sizeof(m_rawBlob));
     memcpy(m_rawTarget, other.m_rawTarget, sizeof(m_rawTarget));
 #   endif
 
-#   ifdef XMRIG_FEATURE_BENCHMARK
+#   ifdef PYTHONXM_FEATURE_BENCHMARK
     m_benchSize = other.m_benchSize;
 #   endif
 }

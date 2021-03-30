@@ -16,8 +16,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_PCITOPOLOGY_H
-#define XMRIG_PCITOPOLOGY_H
+#ifndef PYTHONXM_PCITOPOLOGY_H
+#define PYTHONXM_PCITOPOLOGY_H
 
 
 #include <cstdio>
@@ -70,4 +70,4 @@ private:
 } // namespace pythonxm
 
 
-#endif /* XMRIG_PCITOPOLOGY_H */
+#endif /* PYTHONXM_PCITOPOLOGY_H */

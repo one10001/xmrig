@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_OCLKERNEL_H
-#define XMRIG_OCLKERNEL_H
+#ifndef PYTHONXM_OCLKERNEL_H
+#define PYTHONXM_OCLKERNEL_H
 
 
 #include "base/tools/Object.h"
@@ -42,7 +42,7 @@ namespace pythonxm {
 class OclKernel
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE_DEFAULT(OclKernel)
+    PYTHONXM_DISABLE_COPY_MOVE_DEFAULT(OclKernel)
 
     OclKernel(cl_program program, const char *name);
     virtual ~OclKernel();
@@ -63,4 +63,4 @@ private:
 } // namespace pythonxm
 
 
-#endif /* XMRIG_OCLKERNEL_H */
+#endif /* PYTHONXM_OCLKERNEL_H */

@@ -16,8 +16,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_STRING_H
-#define XMRIG_STRING_H
+#ifndef PYTHONXM_STRING_H
+#define PYTHONXM_STRING_H
 
 
 #include "3rdparty/rapidjson/fwd.h"
@@ -101,4 +101,4 @@ private:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_STRING_H */
+#endif /* PYTHONXM_STRING_H */

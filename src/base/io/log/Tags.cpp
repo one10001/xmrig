@@ -53,7 +53,7 @@ const char *pythonxm::Tags::signal()
 }
 
 
-#ifdef XMRIG_MINER_PROJECT
+#ifdef PYTHONXM_MINER_PROJECT
 const char *pythonxm::Tags::cpu()
 {
     static const char *tag = CYAN_BG_BOLD(WHITE_BOLD_S " cpu     ");
@@ -70,7 +70,7 @@ const char *pythonxm::Tags::miner()
 }
 
 
-#ifdef XMRIG_ALGO_RANDOMX
+#ifdef PYTHONXM_ALGO_RANDOMX
 const char *pythonxm::Tags::randomx()
 {
     static const char *tag = BLUE_BG(WHITE_BOLD_S " randomx ") " ";
@@ -80,7 +80,7 @@ const char *pythonxm::Tags::randomx()
 #endif
 
 
-#ifdef XMRIG_FEATURE_BENCHMARK
+#ifdef PYTHONXM_FEATURE_BENCHMARK
 const char *pythonxm::Tags::bench()
 {
     static const char *tag = GREEN_BG_BOLD(WHITE_BOLD_S " bench   ");
@@ -91,7 +91,7 @@ const char *pythonxm::Tags::bench()
 #endif
 
 
-#ifdef XMRIG_PROXY_PROJECT
+#ifdef PYTHONXM_PROXY_PROJECT
 const char *pythonxm::Tags::proxy()
 {
     static const char *tag = MAGENTA_BG_BOLD(WHITE_BOLD_S " proxy   ");
@@ -101,7 +101,7 @@ const char *pythonxm::Tags::proxy()
 #endif
 
 
-#ifdef XMRIG_FEATURE_CUDA
+#ifdef PYTHONXM_FEATURE_CUDA
 const char *pythonxm::Tags::nvidia()
 {
     static const char *tag = GREEN_BG_BOLD(WHITE_BOLD_S " nvidia  ");
@@ -111,7 +111,7 @@ const char *pythonxm::Tags::nvidia()
 #endif
 
 
-#ifdef XMRIG_FEATURE_OPENCL
+#ifdef PYTHONXM_FEATURE_OPENCL
 const char *pythonxm::Tags::opencl()
 {
     static const char *tag = MAGENTA_BG_BOLD(WHITE_BOLD_S " opencl  ");
@@ -121,7 +121,7 @@ const char *pythonxm::Tags::opencl()
 #endif
 
 
-#ifdef XMRIG_FEATURE_PROFILING
+#ifdef PYTHONXM_FEATURE_PROFILING
 const char* pythonxm::Tags::profiler()
 {
     static const char* tag = CYAN_BG_BOLD(WHITE_BOLD_S " profile ");

@@ -18,8 +18,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_SELFSELECTCLIENT_H
-#define XMRIG_SELFSELECTCLIENT_H
+#ifndef PYTHONXM_SELFSELECTCLIENT_H
+#define PYTHONXM_SELFSELECTCLIENT_H
 
 
 #include "base/kernel/interfaces/IClient.h"
@@ -38,7 +38,7 @@ namespace pythonxm {
 class SelfSelectClient : public IClient, public IClientListener, public IHttpListener
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE_DEFAULT(SelfSelectClient)
+    PYTHONXM_DISABLE_COPY_MOVE_DEFAULT(SelfSelectClient)
 
     SelfSelectClient(int id, const char *agent, IClientListener *listener, bool submitToOrigin);
     ~SelfSelectClient() override;
@@ -126,4 +126,4 @@ private:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_SELFSELECTCLIENT_H */
+#endif /* PYTHONXM_SELFSELECTCLIENT_H */

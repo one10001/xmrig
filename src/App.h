@@ -23,8 +23,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_APP_H
-#define XMRIG_APP_H
+#ifndef PYTHONXM_APP_H
+#define PYTHONXM_APP_H
 
 
 #include "base/kernel/interfaces/IConsoleListener.h"
@@ -48,7 +48,7 @@ class Signals;
 class App : public IConsoleListener, public ISignalListener
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE_DEFAULT(App)
+    PYTHONXM_DISABLE_COPY_MOVE_DEFAULT(App)
 
     App(Process *process);
     ~App() override;
@@ -72,4 +72,4 @@ private:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_APP_H */
+#endif /* PYTHONXM_APP_H */

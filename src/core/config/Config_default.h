@@ -17,15 +17,15 @@
  */
 
 
-#ifndef XMRIG_CONFIG_DEFAULT_H
-#define XMRIG_CONFIG_DEFAULT_H
+#ifndef PYTHONXM_CONFIG_DEFAULT_H
+#define PYTHONXM_CONFIG_DEFAULT_H
 
 
 namespace pythonxm {
 
 
 // This feature require CMake option: -DWITH_EMBEDDED_CONFIG=ON
-#ifdef XMRIG_FEATURE_EMBEDDED_CONFIG
+#ifdef PYTHONXM_FEATURE_EMBEDDED_CONFIG
 const static char *default_config =
 R"===(
 {
@@ -137,4 +137,4 @@ R"===(
 } // namespace pythonxm
 
 
-#endif /* XMRIG_CONFIG_DEFAULT_H */
+#endif /* PYTHONXM_CONFIG_DEFAULT_H */

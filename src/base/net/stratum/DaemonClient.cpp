@@ -84,7 +84,7 @@ bool pythonxm::DaemonClient::disconnect()
 
 bool pythonxm::DaemonClient::isTLS() const
 {
-#   ifdef XMRIG_FEATURE_TLS
+#   ifdef PYTHONXM_FEATURE_TLS
     return m_pool.isTLS();
 #   else
     return false;
@@ -100,7 +100,7 @@ int64_t pythonxm::DaemonClient::submit(const JobResult &result)
 
     char *data = (m_apiVersion == API_DERO) ? m_blockhashingblob.data() : m_blocktemplate.data();
 
-#   ifdef XMRIG_PROXY_PROJECT
+#   ifdef PYTHONXM_PROXY_PROJECT
     memcpy(data + 78, result.nonce, 8);
 #   else
     Cvt::toHex(data + 78, 8, reinterpret_cast<const uint8_t *>(&result.nonce), 4);
@@ -120,7 +120,7 @@ int64_t pythonxm::DaemonClient::submit(const JobResult &result)
 
     JsonRequest::create(doc, m_sequence, "submitblock", params);
 
-#   ifdef XMRIG_PROXY_PROJECT
+#   ifdef PYTHONXM_PROXY_PROJECT
     m_results[m_sequence] = SubmitResult(m_sequence, result.diff, result.actualDiff(), result.id, 0);
 #   else
     m_results[m_sequence] = SubmitResult(m_sequence, result.diff, result.actualDiff(), 0, result.backend);
@@ -156,7 +156,7 @@ void pythonxm::DaemonClient::onHttpData(const HttpData &data)
 
     m_ip = data.ip().c_str();
 
-#   ifdef XMRIG_FEATURE_TLS
+#   ifdef PYTHONXM_FEATURE_TLS
     m_tlsVersion     = data.tlsVersion();
     m_tlsFingerprint = data.tlsFingerprint();
 #   endif

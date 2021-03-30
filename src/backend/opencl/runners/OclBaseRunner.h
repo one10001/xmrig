@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_OCLBASERUNNER_H
-#define XMRIG_OCLBASERUNNER_H
+#ifndef PYTHONXM_OCLBASERUNNER_H
+#define PYTHONXM_OCLBASERUNNER_H
 
 
 #include <string>
@@ -43,7 +43,7 @@ class OclLaunchData;
 class OclBaseRunner : public IOclRunner
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE_DEFAULT(OclBaseRunner)
+    PYTHONXM_DISABLE_COPY_MOVE_DEFAULT(OclBaseRunner)
 
     OclBaseRunner(size_t id, const OclLaunchData &data);
     ~OclBaseRunner() override;
@@ -94,4 +94,4 @@ protected:
 } /* namespace pythonxm */
 
 
-#endif // XMRIG_OCLBASERUNNER_H
+#endif // PYTHONXM_OCLBASERUNNER_H

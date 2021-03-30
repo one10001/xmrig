@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_CUDADEVICE_H
-#define XMRIG_CUDADEVICE_H
+#ifndef PYTHONXM_CUDADEVICE_H
+#define PYTHONXM_CUDADEVICE_H
 
 
 #include "backend/common/misc/PciTopology.h"
@@ -64,12 +64,12 @@ public:
     inline uint32_t arch() const                    { return (computeCapability(true) * 10) + computeCapability(false); }
     inline uint32_t index() const                   { return m_index; }
 
-#   ifdef XMRIG_FEATURE_NVML
+#   ifdef PYTHONXM_FEATURE_NVML
     inline nvmlDevice_t nvmlDevice() const          { return m_nvmlDevice; }
     inline void setNvmlDevice(nvmlDevice_t device)  { m_nvmlDevice = device; }
 #   endif
 
-#   ifdef XMRIG_FEATURE_API
+#   ifdef PYTHONXM_FEATURE_API
     void toJSON(rapidjson::Value &out, rapidjson::Document &doc) const;
 #   endif
 
@@ -82,7 +82,7 @@ private:
     PciTopology m_topology;
     String m_name;
 
-#   ifdef XMRIG_FEATURE_NVML
+#   ifdef PYTHONXM_FEATURE_NVML
     nvmlDevice_t m_nvmlDevice       = nullptr;
 #   endif
 };
@@ -91,4 +91,4 @@ private:
 } // namespace pythonxm
 
 
-#endif /* XMRIG_CUDADEVICE_H */
+#endif /* PYTHONXM_CUDADEVICE_H */

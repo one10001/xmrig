@@ -16,8 +16,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_CONFIGTRANSFORM_H
-#define XMRIG_CONFIGTRANSFORM_H
+#ifndef PYTHONXM_CONFIGTRANSFORM_H
+#define PYTHONXM_CONFIGTRANSFORM_H
 
 
 #include "base/kernel/config/BaseTransform.h"
@@ -36,7 +36,7 @@ private:
     void transformBoolean(rapidjson::Document &doc, int key, bool enable);
     void transformUint64(rapidjson::Document &doc, int key, uint64_t arg);
 
-#   ifdef XMRIG_FEATURE_BENCHMARK
+#   ifdef PYTHONXM_FEATURE_BENCHMARK
     void transformBenchmark(rapidjson::Document &doc, int key, const char *arg);
 #   endif
 
@@ -50,4 +50,4 @@ private:
 } // namespace pythonxm
 
 
-#endif /* XMRIG_CONFIGTRANSFORM_H */
+#endif /* PYTHONXM_CONFIGTRANSFORM_H */

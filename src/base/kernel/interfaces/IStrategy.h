@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_ISTRATEGY_H
-#define XMRIG_ISTRATEGY_H
+#ifndef PYTHONXM_ISTRATEGY_H
+#define PYTHONXM_ISTRATEGY_H
 
 
 #include <cstdint>
@@ -58,4 +58,4 @@ public:
 } /* namespace pythonxm */
 
 
-#endif // XMRIG_ISTRATEGY_H
+#endif // PYTHONXM_ISTRATEGY_H

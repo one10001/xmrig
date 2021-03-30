@@ -23,8 +23,8 @@
  */
 
 
-#ifndef XMRIG_HTTP_H
-#define XMRIG_HTTP_H
+#ifndef PYTHONXM_HTTP_H
+#define PYTHONXM_HTTP_H
 
 
 #include "base/tools/String.h"
@@ -76,5 +76,5 @@ private:
 } // namespace pythonxm
 
 
-#endif // XMRIG_HTTP_H
+#endif // PYTHONXM_HTTP_H
 

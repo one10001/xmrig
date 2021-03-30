@@ -16,8 +16,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_HTTPLISTENER_H
-#define XMRIG_HTTPLISTENER_H
+#ifndef PYTHONXM_HTTPLISTENER_H
+#define PYTHONXM_HTTPLISTENER_H
 
 
 #include "base/kernel/interfaces/IHttpListener.h"
@@ -50,4 +50,4 @@ private:
 } /* namespace pythonxm */
 
 
-#endif // XMRIG_HTTPLISTENER_H
+#endif // PYTHONXM_HTTPLISTENER_H

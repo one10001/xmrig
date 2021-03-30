@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_CLIENT_TLS_H
-#define XMRIG_CLIENT_TLS_H
+#ifndef PYTHONXM_CLIENT_TLS_H
+#define PYTHONXM_CLIENT_TLS_H
 
 
 using BIO       = struct bio_st;
@@ -42,7 +42,7 @@ namespace pythonxm {
 class Client::Tls
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE_DEFAULT(Tls)
+    PYTHONXM_DISABLE_COPY_MOVE_DEFAULT(Tls)
 
     Tls(Client *client);
     ~Tls();
@@ -71,4 +71,4 @@ private:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_CLIENT_TLS_H */
+#endif /* PYTHONXM_CLIENT_TLS_H */

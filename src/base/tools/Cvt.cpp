@@ -26,7 +26,7 @@
 #include <random>
 
 
-#ifdef XMRIG_SODIUM
+#ifdef PYTHONXM_SODIUM
 #   include <sodium.h>
 #endif
 
@@ -64,7 +64,7 @@ static char *cvt_bin2hex(char *const hex, const size_t hex_maxlen, const unsigne
 }
 
 
-#ifndef XMRIG_SODIUM
+#ifndef PYTHONXM_SODIUM
 static std::random_device randomDevice;
 static std::mt19937 randomEngine(randomDevice());
 
@@ -225,7 +225,7 @@ pythonxm::Buffer pythonxm::Cvt::randomBytes(const size_t size)
 {
     Buffer buf(size);
 
-#   ifndef XMRIG_SODIUM
+#   ifndef PYTHONXM_SODIUM
     std::uniform_int_distribution<> dis(0, 255);
 
     for (size_t i = 0; i < size; ++i) {
@@ -279,7 +279,7 @@ pythonxm::String pythonxm::Cvt::toHex(const uint8_t *in, size_t size)
 
 void pythonxm::Cvt::randomBytes(void *buf, size_t size)
 {
-#   ifndef XMRIG_SODIUM
+#   ifndef PYTHONXM_SODIUM
     std::uniform_int_distribution<> dis(0, 255);
 
     for (size_t i = 0; i < size; ++i) {

@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_BASE_H
-#define XMRIG_BASE_H
+#ifndef PYTHONXM_BASE_H
+#define PYTHONXM_BASE_H
 
 
 #include "3rdparty/rapidjson/fwd.h"
@@ -46,7 +46,7 @@ class Process;
 class Base : public IWatcherListener, public IApiListener
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE_DEFAULT(Base)
+    PYTHONXM_DISABLE_COPY_MOVE_DEFAULT(Base)
 
     Base(Process *process);
     ~Base() override;
@@ -65,7 +65,7 @@ public:
 protected:
     void onFileChanged(const String &fileName) override;
 
-#   ifdef XMRIG_FEATURE_API
+#   ifdef PYTHONXM_FEATURE_API
     void onRequest(IApiRequest &request) override;
 #   endif
 
@@ -77,4 +77,4 @@ private:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_BASE_H */
+#endif /* PYTHONXM_BASE_H */

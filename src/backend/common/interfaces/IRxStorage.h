@@ -17,8 +17,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_IRXSTORAGE_H
-#define XMRIG_IRXSTORAGE_H
+#ifndef PYTHONXM_IRXSTORAGE_H
+#define PYTHONXM_IRXSTORAGE_H
 
 
 #include "base/tools/Object.h"
@@ -41,7 +41,7 @@ class RxSeed;
 class IRxStorage
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE(IRxStorage)
+    PYTHONXM_DISABLE_COPY_MOVE(IRxStorage)
 
     IRxStorage()            = default;
     virtual ~IRxStorage()   = default;
@@ -56,4 +56,4 @@ public:
 } /* namespace pythonxm */
 
 
-#endif // XMRIG_IRXSTORAGE_H
+#endif // PYTHONXM_IRXSTORAGE_H

@@ -16,8 +16,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_BENCHCLIENT_H
-#define XMRIG_BENCHCLIENT_H
+#ifndef PYTHONXM_BENCHCLIENT_H
+#define PYTHONXM_BENCHCLIENT_H
 
 
 #include "backend/common/interfaces/IBenchListener.h"
@@ -32,7 +32,7 @@ namespace pythonxm {
 class BenchClient : public IClient, public IHttpListener, public IBenchListener, public IDnsListener
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE_DEFAULT(BenchClient)
+    PYTHONXM_DISABLE_COPY_MOVE_DEFAULT(BenchClient)
 
     BenchClient(const std::shared_ptr<BenchConfig> &benchmark, IClientListener* listener);
     ~BenchClient() override;
@@ -93,7 +93,7 @@ private:
     void printExit();
     void start();
 
-#   ifdef XMRIG_FEATURE_HTTP
+#   ifdef PYTHONXM_FEATURE_HTTP
     void onCreateReply(const rapidjson::Value &value);
     void onDoneReply(const rapidjson::Value &value);
     void onGetReply(const rapidjson::Value &value);
@@ -127,4 +127,4 @@ private:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_BENCHCLIENT_H */
+#endif /* PYTHONXM_BENCHCLIENT_H */

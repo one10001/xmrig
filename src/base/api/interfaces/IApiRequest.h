@@ -16,8 +16,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_IAPIREQUEST_H
-#define XMRIG_IAPIREQUEST_H
+#ifndef PYTHONXM_IAPIREQUEST_H
+#define PYTHONXM_IAPIREQUEST_H
 
 
 #include "3rdparty/rapidjson/fwd.h"
@@ -33,7 +33,7 @@ class String;
 class IApiRequest
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE(IApiRequest)
+    PYTHONXM_DISABLE_COPY_MOVE(IApiRequest)
 
     enum Method {
         METHOD_DELETE,
@@ -90,4 +90,4 @@ public:
 } /* namespace pythonxm */
 
 
-#endif // XMRIG_IAPIREQUEST_H
+#endif // PYTHONXM_IAPIREQUEST_H

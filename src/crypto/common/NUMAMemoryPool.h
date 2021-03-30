@@ -24,8 +24,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_NUMAMEMORYPOOL_H
-#define XMRIG_NUMAMEMORYPOOL_H
+#ifndef PYTHONXM_NUMAMEMORYPOOL_H
+#define PYTHONXM_NUMAMEMORYPOOL_H
 
 
 #include "backend/common/interfaces/IMemoryPool.h"
@@ -44,7 +44,7 @@ class IMemoryPool;
 class NUMAMemoryPool : public IMemoryPool
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE_DEFAULT(NUMAMemoryPool)
+    PYTHONXM_DISABLE_COPY_MOVE_DEFAULT(NUMAMemoryPool)
 
     NUMAMemoryPool(size_t size, bool hugePages);
     ~NUMAMemoryPool() override;
@@ -69,4 +69,4 @@ private:
 
 
 
-#endif /* XMRIG_NUMAMEMORYPOOL_H */
+#endif /* PYTHONXM_NUMAMEMORYPOOL_H */

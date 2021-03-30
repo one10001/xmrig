@@ -16,17 +16,17 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_PROCESS_H
-#define XMRIG_PROCESS_H
+#ifndef PYTHONXM_PROCESS_H
+#define PYTHONXM_PROCESS_H
 
 
 #include "base/tools/Arguments.h"
 
 
 #ifdef WIN32
-#   define XMRIG_DIR_SEPARATOR "\\"
+#   define PYTHONXM_DIR_SEPARATOR "\\"
 #else
-#   define XMRIG_DIR_SEPARATOR "/"
+#   define PYTHONXM_DIR_SEPARATOR "/"
 #endif
 
 
@@ -61,4 +61,4 @@ private:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_PROCESS_H */
+#endif /* PYTHONXM_PROCESS_H */

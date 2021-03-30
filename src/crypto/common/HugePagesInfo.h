@@ -16,8 +16,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_HUGEPAGESINFO_H
-#define XMRIG_HUGEPAGESINFO_H
+#ifndef PYTHONXM_HUGEPAGESINFO_H
+#define PYTHONXM_HUGEPAGESINFO_H
 
 
 #include <cstdint>
@@ -58,4 +58,4 @@ public:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_HUGEPAGESINFO_H */
+#endif /* PYTHONXM_HUGEPAGESINFO_H */

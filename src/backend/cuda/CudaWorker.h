@@ -16,8 +16,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_CUDAWORKER_H
-#define XMRIG_CUDAWORKER_H
+#ifndef PYTHONXM_CUDAWORKER_H
+#define PYTHONXM_CUDAWORKER_H
 
 
 #include "backend/common/GpuWorker.h"
@@ -36,7 +36,7 @@ class ICudaRunner;
 class CudaWorker : public GpuWorker
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE_DEFAULT(CudaWorker)
+    PYTHONXM_DISABLE_COPY_MOVE_DEFAULT(CudaWorker)
 
     CudaWorker(size_t id, const CudaLaunchData &data);
 
@@ -65,4 +65,4 @@ private:
 } // namespace pythonxm
 
 
-#endif /* XMRIG_CUDAWORKER_H */
+#endif /* PYTHONXM_CUDAWORKER_H */

@@ -16,8 +16,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_CUDALAUNCHDATA_H
-#define XMRIG_CUDALAUNCHDATA_H
+#ifndef PYTHONXM_CUDALAUNCHDATA_H
+#define PYTHONXM_CUDALAUNCHDATA_H
 
 
 #include "backend/cuda/CudaThread.h"
@@ -58,4 +58,4 @@ public:
 } // namespace pythonxm
 
 
-#endif /* XMRIG_OCLLAUNCHDATA_H */
+#endif /* PYTHONXM_OCLLAUNCHDATA_H */

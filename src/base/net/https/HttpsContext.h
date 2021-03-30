@@ -17,8 +17,8 @@
  */
 
 
-#ifndef XMRIG_HTTPSCONTEXT_H
-#define XMRIG_HTTPSCONTEXT_H
+#ifndef PYTHONXM_HTTPSCONTEXT_H
+#define PYTHONXM_HTTPSCONTEXT_H
 
 
 using BIO = struct bio_st;
@@ -38,7 +38,7 @@ class TlsContext;
 class HttpsContext : public HttpContext, public ServerTls
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE_DEFAULT(HttpsContext)
+    PYTHONXM_DISABLE_COPY_MOVE_DEFAULT(HttpsContext)
 
     HttpsContext(TlsContext *tls, const std::weak_ptr<IHttpListener> &listener);
     ~HttpsContext() override;
@@ -69,5 +69,5 @@ private:
 } // namespace pythonxm
 
 
-#endif // XMRIG_HTTPSCONTEXT_H
+#endif // PYTHONXM_HTTPSCONTEXT_H
 

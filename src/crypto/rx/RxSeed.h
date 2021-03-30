@@ -24,8 +24,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_RX_SEED_H
-#define XMRIG_RX_SEED_H
+#ifndef PYTHONXM_RX_SEED_H
+#define PYTHONXM_RX_SEED_H
 
 
 #include "base/net/stratum/Job.h"
@@ -66,4 +66,4 @@ private:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_RX_CACHE_H */
+#endif /* PYTHONXM_RX_CACHE_H */

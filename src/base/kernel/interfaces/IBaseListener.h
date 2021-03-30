@@ -16,8 +16,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_IBASELISTENER_H
-#define XMRIG_IBASELISTENER_H
+#ifndef PYTHONXM_IBASELISTENER_H
+#define PYTHONXM_IBASELISTENER_H
 
 
 #include "base/tools/Object.h"
@@ -32,7 +32,7 @@ class Config;
 class IBaseListener
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE(IBaseListener)
+    PYTHONXM_DISABLE_COPY_MOVE(IBaseListener)
 
     IBaseListener()             = default;
     virtual ~IBaseListener()    = default;
@@ -44,4 +44,4 @@ public:
 } /* namespace pythonxm */
 
 
-#endif // XMRIG_IBASELISTENER_H
+#endif // PYTHONXM_IBASELISTENER_H

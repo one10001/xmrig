@@ -17,8 +17,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_HTTPSERVER_H
-#define XMRIG_HTTPSERVER_H
+#ifndef PYTHONXM_HTTPSERVER_H
+#define PYTHONXM_HTTPSERVER_H
 
 
 #include "base/kernel/interfaces/ITcpServerListener.h"
@@ -37,7 +37,7 @@ class IHttpListener;
 class HttpServer : public ITcpServerListener
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE_DEFAULT(HttpServer)
+    PYTHONXM_DISABLE_COPY_MOVE_DEFAULT(HttpServer)
 
     HttpServer(const std::shared_ptr<IHttpListener> &listener);
     ~HttpServer() override;
@@ -53,5 +53,5 @@ private:
 } // namespace pythonxm
 
 
-#endif // XMRIG_HTTPSERVER_H
+#endif // PYTHONXM_HTTPSERVER_H
 

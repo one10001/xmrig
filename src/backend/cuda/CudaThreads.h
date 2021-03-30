@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_CUDATHREADS_H
-#define XMRIG_CUDATHREADS_H
+#ifndef PYTHONXM_CUDATHREADS_H
+#define PYTHONXM_CUDATHREADS_H
 
 
 #include <vector>
@@ -63,4 +63,4 @@ private:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_CUDATHREADS_H */
+#endif /* PYTHONXM_CUDATHREADS_H */

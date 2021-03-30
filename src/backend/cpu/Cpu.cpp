@@ -24,7 +24,7 @@
 #include "3rdparty/rapidjson/document.h"
 
 
-#if defined(XMRIG_FEATURE_HWLOC)
+#if defined(PYTHONXM_FEATURE_HWLOC)
 #   include "backend/cpu/platform/HwlocCpuInfo.h"
 #else
 #   include "backend/cpu/platform/BasicCpuInfo.h"
@@ -37,7 +37,7 @@ static pythonxm::ICpuInfo *cpuInfo = nullptr;
 pythonxm::ICpuInfo *pythonxm::Cpu::info()
 {
     if (cpuInfo == nullptr) {
-#       if defined(XMRIG_FEATURE_HWLOC)
+#       if defined(PYTHONXM_FEATURE_HWLOC)
         cpuInfo = new HwlocCpuInfo();
 #       else
         cpuInfo = new BasicCpuInfo();

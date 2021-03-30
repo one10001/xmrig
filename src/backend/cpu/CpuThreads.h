@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_CPUTHREADS_H
-#define XMRIG_CPUTHREADS_H
+#ifndef PYTHONXM_CPUTHREADS_H
+#define PYTHONXM_CPUTHREADS_H
 
 
 #include <vector>
@@ -72,4 +72,4 @@ private:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_CPUTHREADS_H */
+#endif /* PYTHONXM_CPUTHREADS_H */

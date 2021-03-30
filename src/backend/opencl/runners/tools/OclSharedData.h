@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_OCLSHAREDDATA_H
-#define XMRIG_OCLSHAREDDATA_H
+#ifndef PYTHONXM_OCLSHAREDDATA_H
+#define PYTHONXM_OCLSHAREDDATA_H
 
 
 #include <memory>
@@ -56,7 +56,7 @@ public:
 
     inline OclSharedData &operator++()  { ++m_threads; return *this; }
 
-#   ifdef XMRIG_ALGO_RANDOMX
+#   ifdef PYTHONXM_ALGO_RANDOMX
     cl_mem dataset() const;
     void createDataset(cl_context ctx, const Job &job, bool host);
 #   endif
@@ -71,7 +71,7 @@ private:
     uint32_t m_resumeCounter  = 0;
     uint64_t m_timestamp      = 0;
 
-#   ifdef XMRIG_ALGO_RANDOMX
+#   ifdef PYTHONXM_ALGO_RANDOMX
     cl_mem m_dataset          = nullptr;
 #   endif
 };
@@ -80,4 +80,4 @@ private:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_OCLSHAREDDATA_H */
+#endif /* PYTHONXM_OCLSHAREDDATA_H */

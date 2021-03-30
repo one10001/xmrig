@@ -16,8 +16,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_BENCHMARK_H
-#define XMRIG_BENCHMARK_H
+#ifndef PYTHONXM_BENCHMARK_H
+#define PYTHONXM_BENCHMARK_H
 
 
 #include "base/tools/Object.h"
@@ -32,7 +32,7 @@ class IBackend;
 class Benchmark
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE_DEFAULT(Benchmark)
+    PYTHONXM_DISABLE_COPY_MOVE_DEFAULT(Benchmark)
 
     Benchmark(size_t workers, const IBackend *backend);
     ~Benchmark() = default;
@@ -52,4 +52,4 @@ private:
 } // namespace pythonxm
 
 
-#endif /* XMRIG_BENCHMARK_H */
+#endif /* PYTHONXM_BENCHMARK_H */

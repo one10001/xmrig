@@ -16,8 +16,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_LINUXMEMORY_H
-#define XMRIG_LINUXMEMORY_H
+#ifndef PYTHONXM_LINUXMEMORY_H
+#define PYTHONXM_LINUXMEMORY_H
 
 
 #include <cstdint>
@@ -40,4 +40,4 @@ public:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_LINUXMEMORY_H */
+#endif /* PYTHONXM_LINUXMEMORY_H */

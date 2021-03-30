@@ -16,8 +16,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_HANDLE_H
-#define XMRIG_HANDLE_H
+#ifndef PYTHONXM_HANDLE_H
+#define PYTHONXM_HANDLE_H
 
 
 #include <uv.h>
@@ -83,4 +83,4 @@ inline void Handle::close(uv_fs_event_t *handle)
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_HANDLE_H */
+#endif /* PYTHONXM_HANDLE_H */

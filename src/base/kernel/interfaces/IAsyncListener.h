@@ -16,8 +16,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_IASYNCLISTENER_H
-#define XMRIG_IASYNCLISTENER_H
+#ifndef PYTHONXM_IASYNCLISTENER_H
+#define PYTHONXM_IASYNCLISTENER_H
 
 
 #include "base/tools/Object.h"
@@ -32,7 +32,7 @@ class Async;
 class IAsyncListener
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE(IAsyncListener)
+    PYTHONXM_DISABLE_COPY_MOVE(IAsyncListener)
 
     IAsyncListener()            = default;
     virtual ~IAsyncListener()   = default;
@@ -44,4 +44,4 @@ public:
 } /* namespace pythonxm */
 
 
-#endif // XMRIG_IASYNCLISTENER_H
+#endif // PYTHONXM_IASYNCLISTENER_H

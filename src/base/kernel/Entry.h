@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_ENTRY_H
-#define XMRIG_ENTRY_H
+#ifndef PYTHONXM_ENTRY_H
+#define PYTHONXM_ENTRY_H
 
 
 namespace pythonxm {
@@ -51,4 +51,4 @@ public:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_ENTRY_H */
+#endif /* PYTHONXM_ENTRY_H */

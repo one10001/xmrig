@@ -16,8 +16,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_CPUWORKER_H
-#define XMRIG_CPUWORKER_H
+#ifndef PYTHONXM_CPUWORKER_H
+#define PYTHONXM_CPUWORKER_H
 
 
 #include "backend/common/Worker.h"
@@ -27,7 +27,7 @@
 #include "net/JobResult.h"
 
 
-#ifdef XMRIG_ALGO_RANDOMX
+#ifdef PYTHONXM_ALGO_RANDOMX
 class randomx_vm;
 #endif
 
@@ -42,7 +42,7 @@ template<size_t N>
 class CpuWorker : public Worker
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE_DEFAULT(CpuWorker)
+    PYTHONXM_DISABLE_COPY_MOVE_DEFAULT(CpuWorker)
 
     CpuWorker(size_t id, const CpuLaunchData &data);
     ~CpuWorker() override;
@@ -59,7 +59,7 @@ protected:
 private:
     inline cn_hash_fun fn(const Algorithm &algorithm) const { return CnHash::fn(algorithm, m_av, m_assembly); }
 
-#   ifdef XMRIG_ALGO_RANDOMX
+#   ifdef PYTHONXM_ALGO_RANDOMX
     void allocateRandomX_VM();
 #   endif
 
@@ -83,11 +83,11 @@ private:
     VirtualMemory *m_memory = nullptr;
     WorkerJob<N> m_job;
 
-#   ifdef XMRIG_ALGO_RANDOMX
+#   ifdef PYTHONXM_ALGO_RANDOMX
     randomx_vm *m_vm        = nullptr;
 #   endif
 
-#   ifdef XMRIG_FEATURE_BENCHMARK
+#   ifdef PYTHONXM_FEATURE_BENCHMARK
     uint32_t m_benchSize    = 0;
 #   endif
 };
@@ -107,4 +107,4 @@ extern template class CpuWorker<5>;
 } // namespace pythonxm
 
 
-#endif /* XMRIG_CPUWORKER_H */
+#endif /* PYTHONXM_CPUWORKER_H */

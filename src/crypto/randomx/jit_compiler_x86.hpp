@@ -59,7 +59,7 @@ namespace randomx {
 		void generateDatasetInitCode();
 
 		inline ProgramFunc *getProgramFunc() const {
-#			ifdef XMRIG_SECURE_JIT
+#			ifdef PYTHONXM_SECURE_JIT
 			enableExecution();
 #			endif
 
@@ -67,7 +67,7 @@ namespace randomx {
 		}
 
 		inline DatasetInitFunc *getDatasetInitFunc() const {
-# 			ifdef XMRIG_SECURE_JIT
+# 			ifdef PYTHONXM_SECURE_JIT
 			enableExecution();
 #			endif
 
@@ -91,7 +91,7 @@ namespace randomx {
 		uint32_t vm_flags = 0;
 		uint32_t prevCFROUND = 0;
 
-#		ifdef XMRIG_FIX_RYZEN
+#		ifdef PYTHONXM_FIX_RYZEN
 		std::pair<const void*, const void*> mainLoopBounds;
 #		endif
 

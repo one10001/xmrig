@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_OCLSOURCE_H
-#define XMRIG_OCLSOURCE_H
+#ifndef PYTHONXM_OCLSOURCE_H
+#define PYTHONXM_OCLSOURCE_H
 
 
 namespace pythonxm {
@@ -43,4 +43,4 @@ public:
 } // namespace pythonxm
 
 
-#endif /* XMRIG_OCLSOURCE_H */
+#endif /* PYTHONXM_OCLSOURCE_H */

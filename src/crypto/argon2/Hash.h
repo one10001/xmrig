@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_ARGON2_HASH_H
-#define XMRIG_ARGON2_HASH_H
+#ifndef PYTHONXM_ARGON2_HASH_H
+#define PYTHONXM_ARGON2_HASH_H
 
 
 #include "3rdparty/argon2.h"
@@ -52,4 +52,4 @@ inline void single_hash(const uint8_t *__restrict__ input, size_t size, uint8_t 
 }} // namespace pythonxm::argon2
 
 
-#endif /* XMRIG_ARGON2_HASH_H */
+#endif /* PYTHONXM_ARGON2_HASH_H */

@@ -45,13 +45,13 @@
 #include "net/strategies/DonateStrategy.h"
 
 
-#ifdef XMRIG_FEATURE_API
+#ifdef PYTHONXM_FEATURE_API
 #   include "base/api/Api.h"
 #   include "base/api/interfaces/IApiRequest.h"
 #endif
 
 
-#ifdef XMRIG_FEATURE_BENCHMARK
+#ifdef PYTHONXM_FEATURE_BENCHMARK
 #   include "backend/common/benchmark/BenchState.h"
 #endif
 
@@ -69,7 +69,7 @@ pythonxm::Network::Network(Controller *controller) :
     JobResults::setListener(this, controller->config()->cpu().isHwAES());
     controller->addListener(this);
 
-#   ifdef XMRIG_FEATURE_API
+#   ifdef PYTHONXM_FEATURE_API
     controller->api()->addListener(this);
 #   endif
 
@@ -131,7 +131,7 @@ void pythonxm::Network::onActive(IStrategy *strategy, IClient *client)
 
     const auto &pool = client->pool();
 
-#   ifdef XMRIG_FEATURE_BENCHMARK
+#   ifdef PYTHONXM_FEATURE_BENCHMARK
     if (pool.mode() == Pool::MODE_BENCHMARK) {
         return;
     }
@@ -250,7 +250,7 @@ void pythonxm::Network::onVerifyAlgorithm(IStrategy *, const IClient *, const Al
 }
 
 
-#ifdef XMRIG_FEATURE_API
+#ifdef PYTHONXM_FEATURE_API
 void pythonxm::Network::onRequest(IApiRequest &request)
 {
     if (request.type() == IApiRequest::REQ_SUMMARY) {
@@ -265,7 +265,7 @@ void pythonxm::Network::onRequest(IApiRequest &request)
 
 void pythonxm::Network::setJob(IClient *client, const Job &job, bool donate)
 {
-#   ifdef XMRIG_FEATURE_BENCHMARK
+#   ifdef PYTHONXM_FEATURE_BENCHMARK
     if (!BenchState::size())
 #   endif
     {
@@ -297,7 +297,7 @@ void pythonxm::Network::tick()
 }
 
 
-#ifdef XMRIG_FEATURE_API
+#ifdef PYTHONXM_FEATURE_API
 void pythonxm::Network::getConnection(rapidjson::Value &reply, rapidjson::Document &doc, int version) const
 {
     using namespace rapidjson;

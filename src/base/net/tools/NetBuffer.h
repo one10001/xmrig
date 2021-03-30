@@ -16,8 +16,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_NETBUFFER_H
-#define XMRIG_NETBUFFER_H
+#ifndef PYTHONXM_NETBUFFER_H
+#define PYTHONXM_NETBUFFER_H
 
 
 struct uv_buf_t;
@@ -44,4 +44,4 @@ public:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_NETBUFFER_H */
+#endif /* PYTHONXM_NETBUFFER_H */

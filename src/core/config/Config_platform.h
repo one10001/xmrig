@@ -16,8 +16,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_CONFIG_PLATFORM_H
-#define XMRIG_CONFIG_PLATFORM_H
+#ifndef PYTHONXM_CONFIG_PLATFORM_H
+#define PYTHONXM_CONFIG_PLATFORM_H
 
 
 #ifdef _MSC_VER
@@ -40,7 +40,7 @@ static const char short_options[] = "a:c:kBp:Px:r:R:s:t:T:o:u:O:v:l:Sx:";
 static const option options[] = {
     { "algo",                  1, nullptr, IConfig::AlgorithmKey          },
     { "coin",                  1, nullptr, IConfig::CoinKey               },
-#   ifdef XMRIG_FEATURE_HTTP
+#   ifdef PYTHONXM_FEATURE_HTTP
     { "api-worker-id",         1, nullptr, IConfig::ApiWorkerIdKey        },
     { "api-id",                1, nullptr, IConfig::ApiIdKey              },
     { "http-enabled",          0, nullptr, IConfig::HttpEnabledKey        },
@@ -94,11 +94,11 @@ static const option options[] = {
     { "no-title",              0, nullptr, IConfig::NoTitleKey            },
     { "pause-on-battery",      0, nullptr, IConfig::PauseOnBatteryKey     },
     { "pause-on-active",       1, nullptr, IConfig::PauseOnActiveKey     },
-#   ifdef XMRIG_FEATURE_BENCHMARK
+#   ifdef PYTHONXM_FEATURE_BENCHMARK
     { "stress",                0, nullptr, IConfig::StressKey             },
     { "bench",                 1, nullptr, IConfig::BenchKey              },
     { "benchmark",             1, nullptr, IConfig::BenchKey              },
-#   ifdef XMRIG_FEATURE_HTTP
+#   ifdef PYTHONXM_FEATURE_HTTP
     { "submit",                0, nullptr, IConfig::BenchSubmitKey        },
     { "verify",                1, nullptr, IConfig::BenchVerifyKey        },
     { "token",                 1, nullptr, IConfig::BenchTokenKey         },
@@ -106,7 +106,7 @@ static const option options[] = {
     { "seed",                  1, nullptr, IConfig::BenchSeedKey          },
     { "hash",                  1, nullptr, IConfig::BenchHashKey          },
 #   endif
-#   ifdef XMRIG_FEATURE_TLS
+#   ifdef PYTHONXM_FEATURE_TLS
     { "tls",                   0, nullptr, IConfig::TlsKey                },
     { "tls-fingerprint",       1, nullptr, IConfig::FingerprintKey        },
     { "tls-cert",              1, nullptr, IConfig::TlsCertKey            },
@@ -117,10 +117,10 @@ static const option options[] = {
     { "tls-ciphersuites",      1, nullptr, IConfig::TlsCipherSuitesKey    },
     { "tls-gen",               1, nullptr, IConfig::TlsGenKey             },
 #   endif
-#   ifdef XMRIG_FEATURE_ASM
+#   ifdef PYTHONXM_FEATURE_ASM
     { "asm",                   1, nullptr, IConfig::AssemblyKey           },
 #   endif
-#   ifdef XMRIG_ALGO_RANDOMX
+#   ifdef PYTHONXM_ALGO_RANDOMX
     { "randomx-init",          1, nullptr, IConfig::RandomXInitKey        },
     { "randomx-no-numa",       0, nullptr, IConfig::RandomXNumaKey        },
     { "randomx-mode",          1, nullptr, IConfig::RandomXModeKey        },
@@ -133,31 +133,31 @@ static const option options[] = {
     { "randomx-cache-qos",     0, nullptr, IConfig::RandomXCacheQoSKey    },
     { "cache-qos",             0, nullptr, IConfig::RandomXCacheQoSKey    },
 #   endif
-    #ifdef XMRIG_ALGO_ASTROBWT
+    #ifdef PYTHONXM_ALGO_ASTROBWT
     { "astrobwt-max-size",     1, nullptr, IConfig::AstroBWTMaxSizeKey    },
     { "astrobwt-avx2",         0, nullptr, IConfig::AstroBWTAVX2Key       },
     #endif
-#   ifdef XMRIG_FEATURE_OPENCL
+#   ifdef PYTHONXM_FEATURE_OPENCL
     { "opencl",                0, nullptr, IConfig::OclKey                },
     { "opencl-devices",        1, nullptr, IConfig::OclDevicesKey         },
     { "opencl-platform",       1, nullptr, IConfig::OclPlatformKey        },
     { "opencl-loader",         1, nullptr, IConfig::OclLoaderKey          },
     { "opencl-no-cache",       0, nullptr, IConfig::OclCacheKey           },
 #   endif
-#   ifdef XMRIG_FEATURE_CUDA
+#   ifdef PYTHONXM_FEATURE_CUDA
     { "cuda",                  0, nullptr, IConfig::CudaKey               },
     { "cuda-loader",           1, nullptr, IConfig::CudaLoaderKey         },
     { "cuda-devices",          1, nullptr, IConfig::CudaDevicesKey        },
     { "cuda-bfactor-hint",     1, nullptr, IConfig::CudaBFactorKey        },
     { "cuda-bsleep-hint",      1, nullptr, IConfig::CudaBSleepKey         },
 #   endif
-#   ifdef XMRIG_FEATURE_NVML
+#   ifdef PYTHONXM_FEATURE_NVML
     { "no-nvml",               0, nullptr, IConfig::NvmlKey               },
 #   endif
-#   if defined(XMRIG_FEATURE_NVML) || defined (XMRIG_FEATURE_ADL)
+#   if defined(PYTHONXM_FEATURE_NVML) || defined (PYTHONXM_FEATURE_ADL)
     { "health-print-time",     1, nullptr, IConfig::HealthPrintTimeKey    },
 #   endif
-#   ifdef XMRIG_FEATURE_DMI
+#   ifdef PYTHONXM_FEATURE_DMI
     { "no-dmi",                0, nullptr, IConfig::DmiKey                },
 #   endif
     { nullptr,                 0, nullptr, 0 }
@@ -167,4 +167,4 @@ static const option options[] = {
 } // namespace pythonxm
 
 
-#endif /* XMRIG_CONFIG_PLATFORM_H */
+#endif /* PYTHONXM_CONFIG_PLATFORM_H */

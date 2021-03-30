@@ -23,8 +23,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_CN_ALGO_H
-#define XMRIG_CN_ALGO_H
+#ifndef PYTHONXM_CN_ALGO_H
+#define PYTHONXM_CN_ALGO_H
 
 
 #include <cstddef>
@@ -70,11 +70,11 @@ public:
 
         case Algorithm::CN_FAST:
         case Algorithm::CN_HALF:
-#       ifdef XMRIG_ALGO_CN_LITE
+#       ifdef PYTHONXM_ALGO_CN_LITE
         case Algorithm::CN_LITE_0:
         case Algorithm::CN_LITE_1:
 #       endif
-#       ifdef XMRIG_ALGO_CN_HEAVY
+#       ifdef PYTHONXM_ALGO_CN_HEAVY
         case Algorithm::CN_HEAVY_0:
         case Algorithm::CN_HEAVY_TUBE:
         case Algorithm::CN_HEAVY_XHV:
@@ -90,7 +90,7 @@ public:
         case Algorithm::CN_DOUBLE:
             return CN_ITER * 2;
 
-#       ifdef XMRIG_ALGO_CN_PICO
+#       ifdef PYTHONXM_ALGO_CN_PICO
         case Algorithm::CN_PICO_0:
         case Algorithm::CN_PICO_TLO:
             return CN_ITER / 8;
@@ -105,7 +105,7 @@ public:
 
     inline static uint32_t mask(Algorithm::Id algo)
     {
-#       ifdef XMRIG_ALGO_CN_PICO
+#       ifdef PYTHONXM_ALGO_CN_PICO
         if (algo == Algorithm::CN_PICO_0) {
             return 0x1FFF0;
         }
@@ -119,10 +119,10 @@ public:
         switch (algo) {
         case Algorithm::CN_0:
         case Algorithm::CN_XAO:
-#       ifdef XMRIG_ALGO_CN_LITE
+#       ifdef PYTHONXM_ALGO_CN_LITE
         case Algorithm::CN_LITE_0:
 #       endif
-#       ifdef XMRIG_ALGO_CN_HEAVY
+#       ifdef PYTHONXM_ALGO_CN_HEAVY
         case Algorithm::CN_HEAVY_0:
         case Algorithm::CN_HEAVY_XHV:
 #       endif
@@ -132,10 +132,10 @@ public:
         case Algorithm::CN_1:
         case Algorithm::CN_FAST:
         case Algorithm::CN_RTO:
-#       ifdef XMRIG_ALGO_CN_LITE
+#       ifdef PYTHONXM_ALGO_CN_LITE
         case Algorithm::CN_LITE_1:
 #       endif
-#       ifdef XMRIG_ALGO_CN_HEAVY
+#       ifdef PYTHONXM_ALGO_CN_HEAVY
         case Algorithm::CN_HEAVY_TUBE:
             return Algorithm::CN_1;
 #       endif
@@ -146,7 +146,7 @@ public:
         case Algorithm::CN_RWZ:
         case Algorithm::CN_ZLS:
         case Algorithm::CN_DOUBLE:
-#       ifdef XMRIG_ALGO_CN_PICO
+#       ifdef PYTHONXM_ALGO_CN_PICO
         case Algorithm::CN_PICO_0:
         case Algorithm::CN_PICO_TLO:
 #       endif
@@ -209,4 +209,4 @@ template<> constexpr inline uint32_t CnAlgo<Algorithm::CN_PICO_0>::mask() const 
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_CN_ALGO_H */
+#endif /* PYTHONXM_CN_ALGO_H */

@@ -43,7 +43,7 @@ const char *BenchConfig::kSubmit    = "submit";
 const char *BenchConfig::kToken     = "token";
 const char *BenchConfig::kVerify    = "verify";
 
-#ifndef XMRIG_DEBUG_BENCHMARK_API
+#ifndef PYTHONXM_DEBUG_BENCHMARK_API
 const char *BenchConfig::kApiHost   = "api.pythonxm.com";
 #else
 const char *BenchConfig::kApiHost   = "127.0.0.1";

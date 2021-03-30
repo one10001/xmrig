@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_CNBRANCHKERNEL_H
-#define XMRIG_CNBRANCHKERNEL_H
+#ifndef PYTHONXM_CNBRANCHKERNEL_H
+#define PYTHONXM_CNBRANCHKERNEL_H
 
 
 #include "backend/opencl/wrappers/OclKernel.h"
@@ -45,4 +45,4 @@ public:
 } // namespace pythonxm
 
 
-#endif /* XMRIG_CNBRANCHKERNEL_H */
+#endif /* PYTHONXM_CNBRANCHKERNEL_H */

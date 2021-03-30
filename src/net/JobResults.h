@@ -23,8 +23,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_JOBRESULTS_H
-#define XMRIG_JOBRESULTS_H
+#ifndef PYTHONXM_JOBRESULTS_H
+#define PYTHONXM_JOBRESULTS_H
 
 
 #include <cstddef>
@@ -48,7 +48,7 @@ public:
     static void submit(const Job &job, uint32_t nonce, const uint8_t *result);
     static void submit(const JobResult &result);
 
-#   if defined(XMRIG_FEATURE_OPENCL) || defined(XMRIG_FEATURE_CUDA)
+#   if defined(PYTHONXM_FEATURE_OPENCL) || defined(PYTHONXM_FEATURE_CUDA)
     static void submit(const Job &job, uint32_t *results, size_t count, uint32_t device_index);
 #   endif
 };
@@ -57,4 +57,4 @@ public:
 } // namespace pythonxm
 
 
-#endif /* XMRIG_JOBRESULTS_H */
+#endif /* PYTHONXM_JOBRESULTS_H */

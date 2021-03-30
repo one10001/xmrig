@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_CUDATHREAD_H
-#define XMRIG_CUDATHREAD_H
+#ifndef PYTHONXM_CUDATHREAD_H
+#define PYTHONXM_CUDATHREAD_H
 
 
 using nvid_ctx = struct nvid_ctx;
@@ -77,4 +77,4 @@ private:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_CUDATHREAD_H */
+#endif /* PYTHONXM_CUDATHREAD_H */

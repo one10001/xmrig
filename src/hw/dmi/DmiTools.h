@@ -18,8 +18,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_DMITOOLS_H
-#define XMRIG_DMITOOLS_H
+#ifndef PYTHONXM_DMITOOLS_H
+#define PYTHONXM_DMITOOLS_H
 
 
 #include <cstddef>
@@ -57,4 +57,4 @@ const char *dmi_string(dmi_header *dm, size_t offset);
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_DMITOOLS_H */
+#endif /* PYTHONXM_DMITOOLS_H */

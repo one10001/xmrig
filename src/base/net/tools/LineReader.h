@@ -17,8 +17,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_LINEREADER_H
-#define XMRIG_LINEREADER_H
+#ifndef PYTHONXM_LINEREADER_H
+#define PYTHONXM_LINEREADER_H
 
 
 #include "base/tools/Object.h"
@@ -36,7 +36,7 @@ class ILineListener;
 class LineReader
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE(LineReader)
+    PYTHONXM_DISABLE_COPY_MOVE(LineReader)
 
     LineReader() = default;
     LineReader(ILineListener *listener) : m_listener(listener) {}
@@ -60,4 +60,4 @@ private:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_NETBUFFER_H */
+#endif /* PYTHONXM_NETBUFFER_H */

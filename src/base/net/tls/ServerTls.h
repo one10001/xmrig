@@ -17,8 +17,8 @@
  */
 
 
-#ifndef XMRIG_SERVERTLS_H
-#define XMRIG_SERVERTLS_H
+#ifndef PYTHONXM_SERVERTLS_H
+#define PYTHONXM_SERVERTLS_H
 
 
 using BIO       = struct bio_st;
@@ -36,7 +36,7 @@ namespace pythonxm {
 class ServerTls
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE_DEFAULT(ServerTls)
+    PYTHONXM_DISABLE_COPY_MOVE_DEFAULT(ServerTls)
 
     ServerTls(SSL_CTX *ctx);
     virtual ~ServerTls();
@@ -66,4 +66,4 @@ private:
 } // namespace pythonxm
 
 
-#endif /* XMRIG_SERVERTLS_H */
+#endif /* PYTHONXM_SERVERTLS_H */

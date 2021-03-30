@@ -23,8 +23,8 @@
  */
 
 
-#ifndef XMRIG_APIREQUEST_H
-#define XMRIG_APIREQUEST_H
+#ifndef PYTHONXM_APIREQUEST_H
+#define PYTHONXM_APIREQUEST_H
 
 
 #include "base/api/interfaces/IApiRequest.h"
@@ -38,7 +38,7 @@ namespace pythonxm {
 class ApiRequest : public IApiRequest
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE_DEFAULT(ApiRequest)
+    PYTHONXM_DISABLE_COPY_MOVE_DEFAULT(ApiRequest)
 
     ApiRequest(Source source, bool restricted);
     ~ApiRequest() override;
@@ -74,5 +74,5 @@ private:
 } // namespace pythonxm
 
 
-#endif // XMRIG_APIREQUEST_H
+#endif // PYTHONXM_APIREQUEST_H
 

@@ -77,7 +77,7 @@ static inline void printDatasetReady(uint32_t nodeId, uint64_t ts)
 class RxNUMAStoragePrivate
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE_DEFAULT(RxNUMAStoragePrivate)
+    PYTHONXM_DISABLE_COPY_MOVE_DEFAULT(RxNUMAStoragePrivate)
 
     inline RxNUMAStoragePrivate(const std::vector<uint32_t> &nodeset) :
         m_nodeset(nodeset)

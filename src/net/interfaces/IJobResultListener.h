@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_IJOBRESULTLISTENER_H
-#define XMRIG_IJOBRESULTLISTENER_H
+#ifndef PYTHONXM_IJOBRESULTLISTENER_H
+#define PYTHONXM_IJOBRESULTLISTENER_H
 
 
 namespace pythonxm {
@@ -45,4 +45,4 @@ public:
 } /* namespace pythonxm */
 
 
-#endif // XMRIG_IJOBRESULTLISTENER_H
+#endif // PYTHONXM_IJOBRESULTLISTENER_H

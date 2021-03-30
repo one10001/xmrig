@@ -17,8 +17,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_BASICCPUINFO_H
-#define XMRIG_BASICCPUINFO_H
+#ifndef PYTHONXM_BASICCPUINFO_H
+#define PYTHONXM_BASICCPUINFO_H
 
 
 #include "backend/cpu/interfaces/ICpuInfo.h"
@@ -72,7 +72,7 @@ protected:
     Vendor m_vendor         = VENDOR_UNKNOWN;
 
 private:
-#   ifndef XMRIG_ARM
+#   ifndef PYTHONXM_ARM
     uint32_t m_procInfo     = 0;
     uint32_t m_family       = 0;
     uint32_t m_model        = 0;
@@ -88,4 +88,4 @@ private:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_BASICCPUINFO_H */
+#endif /* PYTHONXM_BASICCPUINFO_H */

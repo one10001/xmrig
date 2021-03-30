@@ -16,8 +16,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_HTTPD_H
-#define XMRIG_HTTPD_H
+#ifndef PYTHONXM_HTTPD_H
+#define PYTHONXM_HTTPD_H
 
 
 #include "base/kernel/interfaces/IBaseListener.h"
@@ -41,7 +41,7 @@ class TcpServer;
 class Httpd : public IBaseListener, public IHttpListener
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE_DEFAULT(Httpd)
+    PYTHONXM_DISABLE_COPY_MOVE_DEFAULT(Httpd)
 
     Httpd(Base *base);
     ~Httpd() override;
@@ -61,7 +61,7 @@ private:
     TcpServer *m_server     = nullptr;
     uint16_t m_port         = 0;
 
-#   ifdef XMRIG_FEATURE_TLS
+#   ifdef PYTHONXM_FEATURE_TLS
     HttpsServer *m_http     = nullptr;
 #   else
     HttpServer *m_http      = nullptr;
@@ -72,4 +72,4 @@ private:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_HTTPD_H */
+#endif /* PYTHONXM_HTTPD_H */

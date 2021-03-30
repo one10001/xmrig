@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_VERSION_H
-#define XMRIG_VERSION_H
+#ifndef PYTHONXM_VERSION_H
+#define PYTHONXM_VERSION_H
 
 #define APP_ID        "pythonxm"
 #define APP_NAME      "PythonXM"
@@ -56,4 +56,4 @@
 #   endif
 #endif
 
-#endif /* XMRIG_VERSION_H */
+#endif /* PYTHONXM_VERSION_H */

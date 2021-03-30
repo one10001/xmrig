@@ -49,7 +49,7 @@ static const char *kSysTableFile    = "/sys/firmware/dmi/tables/DMI";
 
 static inline void safe_memcpy(void *dest, const void *src, size_t n)
 {
-#   ifdef XMRIG_ARM
+#   ifdef PYTHONXM_ARM
     for (size_t i = 0; i < n; i++) {
         *((uint8_t *)dest + i) = *((const uint8_t *)src + i);
     }

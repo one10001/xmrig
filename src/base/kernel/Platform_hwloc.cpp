@@ -26,7 +26,7 @@
 #include <thread>
 
 
-#ifndef XMRIG_OS_APPLE
+#ifndef PYTHONXM_OS_APPLE
 bool pythonxm::Platform::setThreadAffinity(uint64_t cpu_id)
 {
     auto cpu       = static_cast<HwlocCpuInfo *>(Cpu::info());

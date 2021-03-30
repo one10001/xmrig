@@ -23,8 +23,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_CPULAUNCHDATA_H
-#define XMRIG_CPULAUNCHDATA_H
+#ifndef PYTHONXM_CPULAUNCHDATA_H
+#define PYTHONXM_CPULAUNCHDATA_H
 
 
 #include "base/crypto/Algorithm.h"
@@ -74,4 +74,4 @@ public:
 } // namespace pythonxm
 
 
-#endif /* XMRIG_CPULAUNCHDATA_H */
+#endif /* PYTHONXM_CPULAUNCHDATA_H */

@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_WATCHER_H
-#define XMRIG_WATCHER_H
+#ifndef PYTHONXM_WATCHER_H
+#define PYTHONXM_WATCHER_H
 
 
 #include "base/kernel/interfaces/ITimerListener.h"
@@ -68,4 +68,4 @@ private:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_WATCHER_H */
+#endif /* PYTHONXM_WATCHER_H */

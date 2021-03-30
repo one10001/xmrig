@@ -16,8 +16,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_TITLE_H
-#define XMRIG_TITLE_H
+#ifndef PYTHONXM_TITLE_H
+#define PYTHONXM_TITLE_H
 
 
 #include "3rdparty/rapidjson/fwd.h"
@@ -47,4 +47,4 @@ private:
 } // namespace pythonxm
 
 
-#endif /* XMRIG_TITLE_H */
+#endif /* PYTHONXM_TITLE_H */

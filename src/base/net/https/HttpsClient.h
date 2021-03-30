@@ -18,8 +18,8 @@
  */
 
 
-#ifndef XMRIG_HTTPSCLIENT_H
-#define XMRIG_HTTPSCLIENT_H
+#ifndef PYTHONXM_HTTPSCLIENT_H
+#define PYTHONXM_HTTPSCLIENT_H
 
 
 using BIO       = struct bio_st;
@@ -38,7 +38,7 @@ namespace pythonxm {
 class HttpsClient : public HttpClient
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE_DEFAULT(HttpsClient)
+    PYTHONXM_DISABLE_COPY_MOVE_DEFAULT(HttpsClient)
 
     HttpsClient(const char *tag, FetchRequest &&req, const std::weak_ptr<IHttpListener> &listener);
     ~HttpsClient() override;
@@ -69,4 +69,4 @@ private:
 } // namespace pythonxm
 
 
-#endif // XMRIG_HTTPSCLIENT_H
+#endif // PYTHONXM_HTTPSCLIENT_H

@@ -23,8 +23,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_CN_CTX_H
-#define XMRIG_CN_CTX_H
+#ifndef PYTHONXM_CN_CTX_H
+#define PYTHONXM_CN_CTX_H
 
 
 #include <cstddef>
@@ -49,4 +49,4 @@ public:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_CN_CTX_H */
+#endif /* PYTHONXM_CN_CTX_H */

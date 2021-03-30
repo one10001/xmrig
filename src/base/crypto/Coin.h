@@ -23,8 +23,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_COIN_H
-#define XMRIG_COIN_H
+#ifndef PYTHONXM_COIN_H
+#define PYTHONXM_COIN_H
 
 
 #include "3rdparty/rapidjson/fwd.h"
@@ -77,4 +77,4 @@ private:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_COIN_H */
+#endif /* PYTHONXM_COIN_H */

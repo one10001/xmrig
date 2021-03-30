@@ -17,8 +17,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_RXMSR_H
-#define XMRIG_RXMSR_H
+#ifndef PYTHONXM_RXMSR_H
+#define PYTHONXM_RXMSR_H
 
 
 #include <vector>
@@ -51,4 +51,4 @@ private:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_RXMSR_H */
+#endif /* PYTHONXM_RXMSR_H */

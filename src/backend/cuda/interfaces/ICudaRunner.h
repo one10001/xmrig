@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_ICUDARUNNER_H
-#define XMRIG_ICUDARUNNER_H
+#ifndef PYTHONXM_ICUDARUNNER_H
+#define PYTHONXM_ICUDARUNNER_H
 
 
 #include "base/tools/Object.h"
@@ -41,7 +41,7 @@ class Job;
 class ICudaRunner
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE(ICudaRunner)
+    PYTHONXM_DISABLE_COPY_MOVE(ICudaRunner)
 
     ICudaRunner()          = default;
     virtual ~ICudaRunner() = default;
@@ -59,4 +59,4 @@ public:
 } /* namespace pythonxm */
 
 
-#endif // XMRIG_ICUDARUNNER_H
+#endif // PYTHONXM_ICUDARUNNER_H

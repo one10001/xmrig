@@ -16,8 +16,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_ICONSOLELISTENER_H
-#define XMRIG_ICONSOLELISTENER_H
+#ifndef PYTHONXM_ICONSOLELISTENER_H
+#define PYTHONXM_ICONSOLELISTENER_H
 
 
 #include "base/tools/Object.h"
@@ -29,7 +29,7 @@ namespace pythonxm {
 class IConsoleListener
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE(IConsoleListener)
+    PYTHONXM_DISABLE_COPY_MOVE(IConsoleListener)
 
     IConsoleListener()          = default;
     virtual ~IConsoleListener() = default;
@@ -41,4 +41,4 @@ public:
 } /* namespace pythonxm */
 
 
-#endif // XMRIG_ICONSOLELISTENER_H
+#endif // PYTHONXM_ICONSOLELISTENER_H

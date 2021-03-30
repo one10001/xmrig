@@ -73,7 +73,7 @@ char *pythonxm::Platform::createUserAgent()
 }
 
 
-#ifndef XMRIG_FEATURE_HWLOC
+#ifndef PYTHONXM_FEATURE_HWLOC
 bool pythonxm::Platform::setThreadAffinity(uint64_t cpu_id)
 {
     cpu_set_t mn;

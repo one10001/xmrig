@@ -17,8 +17,8 @@
  */
 
 
-#ifndef XMRIG_HTTPAPIREQUEST_H
-#define XMRIG_HTTPAPIREQUEST_H
+#ifndef PYTHONXM_HTTPAPIREQUEST_H
+#define PYTHONXM_HTTPAPIREQUEST_H
 
 
 #include "base/api/requests/ApiRequest.h"
@@ -64,5 +64,5 @@ private:
 } // namespace pythonxm
 
 
-#endif // XMRIG_HTTPAPIREQUEST_H
+#endif // PYTHONXM_HTTPAPIREQUEST_H
 

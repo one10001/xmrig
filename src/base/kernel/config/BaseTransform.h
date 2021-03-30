@@ -16,8 +16,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_BASETRANSFORM_H
-#define XMRIG_BASETRANSFORM_H
+#ifndef PYTHONXM_BASETRANSFORM_H
+#define PYTHONXM_BASETRANSFORM_H
 
 
 #include "3rdparty/rapidjson/document.h"
@@ -120,4 +120,4 @@ inline void BaseTransform::set(rapidjson::Document &doc, rapidjson::Value &obj, 
 } // namespace pythonxm
 
 
-#endif /* XMRIG_BASETRANSFORM_H */
+#endif /* PYTHONXM_BASETRANSFORM_H */

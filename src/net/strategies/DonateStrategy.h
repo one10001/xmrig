@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_DONATESTRATEGY_H
-#define XMRIG_DONATESTRATEGY_H
+#ifndef PYTHONXM_DONATESTRATEGY_H
+#define PYTHONXM_DONATESTRATEGY_H
 
 
 #include <vector>
@@ -48,7 +48,7 @@ class IStrategyListener;
 class DonateStrategy : public IStrategy, public IStrategyListener, public ITimerListener, public IClientListener
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE_DEFAULT(DonateStrategy)
+    PYTHONXM_DISABLE_COPY_MOVE_DEFAULT(DonateStrategy)
 
     DonateStrategy(Controller *controller, IStrategyListener *listener);
     ~DonateStrategy() override;
@@ -119,4 +119,4 @@ private:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_DONATESTRATEGY_H */
+#endif /* PYTHONXM_DONATESTRATEGY_H */

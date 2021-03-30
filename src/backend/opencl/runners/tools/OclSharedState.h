@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_OCLSHAREDSTATE_H
-#define XMRIG_OCLSHAREDSTATE_H
+#ifndef PYTHONXM_OCLSHAREDSTATE_H
+#define PYTHONXM_OCLSHAREDSTATE_H
 
 
 #include "backend/opencl/OclLaunchData.h"
@@ -44,4 +44,4 @@ public:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_OCLSHAREDSTATE_H */
+#endif /* PYTHONXM_OCLSHAREDSTATE_H */

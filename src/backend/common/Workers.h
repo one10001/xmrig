@@ -16,20 +16,20 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_WORKERS_H
-#define XMRIG_WORKERS_H
+#ifndef PYTHONXM_WORKERS_H
+#define PYTHONXM_WORKERS_H
 
 
 #include "backend/common/Thread.h"
 #include "backend/cpu/CpuLaunchData.h"
 
 
-#ifdef XMRIG_FEATURE_OPENCL
+#ifdef PYTHONXM_FEATURE_OPENCL
 #   include "backend/opencl/OclLaunchData.h"
 #endif
 
 
-#ifdef XMRIG_FEATURE_CUDA
+#ifdef PYTHONXM_FEATURE_CUDA
 #   include "backend/cuda/CudaLaunchData.h"
 #endif
 
@@ -46,7 +46,7 @@ template<class T>
 class Workers
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE(Workers)
+    PYTHONXM_DISABLE_COPY_MOVE(Workers)
 
     Workers();
     ~Workers();
@@ -59,7 +59,7 @@ public:
     void setBackend(IBackend *backend);
     void stop();
 
-#   ifdef XMRIG_FEATURE_BENCHMARK
+#   ifdef PYTHONXM_FEATURE_BENCHMARK
     void start(const std::vector<T> &data, const std::shared_ptr<Benchmark> &benchmark);
 #   endif
 
@@ -90,14 +90,14 @@ IWorker *Workers<CpuLaunchData>::create(Thread<CpuLaunchData> *handle);
 extern template class Workers<CpuLaunchData>;
 
 
-#ifdef XMRIG_FEATURE_OPENCL
+#ifdef PYTHONXM_FEATURE_OPENCL
 template<>
 IWorker *Workers<OclLaunchData>::create(Thread<OclLaunchData> *handle);
 extern template class Workers<OclLaunchData>;
 #endif
 
 
-#ifdef XMRIG_FEATURE_CUDA
+#ifdef PYTHONXM_FEATURE_CUDA
 template<>
 IWorker *Workers<CudaLaunchData>::create(Thread<CudaLaunchData> *handle);
 extern template class Workers<CudaLaunchData>;
@@ -107,4 +107,4 @@ extern template class Workers<CudaLaunchData>;
 } // namespace pythonxm
 
 
-#endif /* XMRIG_WORKERS_H */
+#endif /* PYTHONXM_WORKERS_H */

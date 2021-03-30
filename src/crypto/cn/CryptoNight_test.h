@@ -23,8 +23,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_CRYPTONIGHT_TEST_H
-#define XMRIG_CRYPTONIGHT_TEST_H
+#ifndef PYTHONXM_CRYPTONIGHT_TEST_H
+#define PYTHONXM_CRYPTONIGHT_TEST_H
 
 
 #include <cstdint>
@@ -259,7 +259,7 @@ const static uint8_t test_output_double[160] = {
     0x5E, 0x2E, 0xC1, 0x80, 0x89, 0x39, 0xB3, 0x54, 0x39, 0x52, 0x0E, 0x69, 0x3D, 0xF6, 0xC5, 0x4A
 };
 
-#ifdef XMRIG_ALGO_CN_LITE
+#ifdef PYTHONXM_ALGO_CN_LITE
 // "cn-lite/0"
 const static uint8_t test_output_v0_lite[160] = {
     0x36, 0x95, 0xB4, 0xB5, 0x3B, 0xB0, 0x03, 0x58, 0xB0, 0xAD, 0x38, 0xDC, 0x16, 0x0F, 0xEB, 0x9E,
@@ -291,7 +291,7 @@ const static uint8_t test_output_v1_lite[160] = {
 #endif
 
 
-#ifdef XMRIG_ALGO_CN_HEAVY
+#ifdef PYTHONXM_ALGO_CN_HEAVY
 // "cn-heavy/0"
 const static uint8_t test_output_v0_heavy[160] = {
     0x99, 0x83, 0xF2, 0x1B, 0xDF, 0x20, 0x10, 0xA8, 0xD7, 0x07, 0xBB, 0x2F, 0x14, 0xD7, 0x86, 0x64,
@@ -338,7 +338,7 @@ const static uint8_t test_output_tube_heavy[160] = {
 #endif
 
 
-#ifdef XMRIG_ALGO_CN_PICO
+#ifdef PYTHONXM_ALGO_CN_PICO
 // "cn-pico/trtl"
 const static uint8_t test_output_pico_trtl[160] = {
     0x08, 0xF4, 0x21, 0xD7, 0x83, 0x31, 0x17, 0x30, 0x0E, 0xDA, 0x66, 0xE9, 0x8F, 0x4A, 0x25, 0x69,
@@ -370,7 +370,7 @@ const static uint8_t test_output_pico_tlo[160] = {
 #endif
 
 
-#ifdef XMRIG_ALGO_ARGON2
+#ifdef PYTHONXM_ALGO_ARGON2
 // "argon2/chukwa"
 const static uint8_t argon2_chukwa_test_out[160] = {
     0xC1, 0x58, 0xA1, 0x05, 0xAE, 0x75, 0xC7, 0x56, 0x1C, 0xFD, 0x02, 0x90, 0x83, 0xA4, 0x7A, 0x87,
@@ -415,7 +415,7 @@ const static uint8_t argon2_wrkz_test_out[160] = {
 #endif
 
 
-#ifdef XMRIG_ALGO_ASTROBWT
+#ifdef PYTHONXM_ALGO_ASTROBWT
 // "astrobwt"
 const static uint8_t astrobwt_dero_test_out[160] = {
     0x7E, 0x88, 0x44, 0xF2, 0xD6, 0xB7, 0xA4, 0x34, 0x98, 0xFE, 0x6D, 0x22, 0x65, 0x27, 0x68, 0x90,
@@ -436,4 +436,4 @@ const static uint8_t astrobwt_dero_test_out[160] = {
 } // namespace pythonxm
 
 
-#endif /* XMRIG_CRYPTONIGHT_TEST_H */
+#endif /* PYTHONXM_CRYPTONIGHT_TEST_H */

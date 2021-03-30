@@ -16,8 +16,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_CPUINFO_H
-#define XMRIG_CPUINFO_H
+#ifndef PYTHONXM_CPUINFO_H
+#define PYTHONXM_CPUINFO_H
 
 
 #include "backend/cpu/CpuThreads.h"
@@ -32,7 +32,7 @@ namespace pythonxm {
 class ICpuInfo
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE(ICpuInfo)
+    PYTHONXM_DISABLE_COPY_MOVE(ICpuInfo)
 
     enum Vendor : uint32_t {
         VENDOR_UNKNOWN,
@@ -117,4 +117,4 @@ public:
 } /* namespace pythonxm */
 
 
-#endif // XMRIG_CPUINFO_H
+#endif // PYTHONXM_CPUINFO_H

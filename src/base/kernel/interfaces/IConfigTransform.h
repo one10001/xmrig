@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_ICONFIGTRANSFORM_H
-#define XMRIG_ICONFIGTRANSFORM_H
+#ifndef PYTHONXM_ICONFIGTRANSFORM_H
+#define PYTHONXM_ICONFIGTRANSFORM_H
 
 
 #include "3rdparty/rapidjson/fwd.h"
@@ -49,4 +49,4 @@ public:
 } /* namespace pythonxm */
 
 
-#endif // XMRIG_ICONFIGTRANSFORM_H
+#endif // PYTHONXM_ICONFIGTRANSFORM_H

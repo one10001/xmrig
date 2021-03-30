@@ -16,8 +16,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_PLATFORM_H
-#define XMRIG_PLATFORM_H
+#ifndef PYTHONXM_PLATFORM_H
+#define PYTHONXM_PLATFORM_H
 
 
 #include <cstdint>
@@ -62,4 +62,4 @@ private:
 } // namespace pythonxm
 
 
-#endif /* XMRIG_PLATFORM_H */
+#endif /* PYTHONXM_PLATFORM_H */

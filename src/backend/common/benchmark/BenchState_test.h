@@ -16,8 +16,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_BENCHSTATE_TEST_H
-#define XMRIG_BENCHSTATE_TEST_H
+#ifndef PYTHONXM_BENCHSTATE_TEST_H
+#define PYTHONXM_BENCHSTATE_TEST_H
 
 
 #include "base/crypto/Algorithm.h"
@@ -113,4 +113,4 @@ static const std::map<int, std::map<uint32_t, uint64_t> > hashCheck1T = {
 
 
 
-#endif /* XMRIG_BENCHSTATE_TEST_H */
+#endif /* PYTHONXM_BENCHSTATE_TEST_H */

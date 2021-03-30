@@ -56,7 +56,7 @@ void pythonxm::LineReader::reset()
 
 void pythonxm::LineReader::add(const char *data, size_t size)
 {
-    if (size + m_pos > XMRIG_NET_BUFFER_CHUNK_SIZE) {
+    if (size + m_pos > PYTHONXM_NET_BUFFER_CHUNK_SIZE) {
         // it breaks correctness silently for long lines
         return;
     }

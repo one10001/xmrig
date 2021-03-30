@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_OCLRXJITRUNNER_H
-#define XMRIG_OCLRXJITRUNNER_H
+#ifndef PYTHONXM_OCLRXJITRUNNER_H
+#define PYTHONXM_OCLRXJITRUNNER_H
 
 
 #include "backend/opencl/runners/OclRxBaseRunner.h"
@@ -39,7 +39,7 @@ class RxRunKernel;
 class OclRxJitRunner : public OclRxBaseRunner
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE_DEFAULT(OclRxJitRunner)
+    PYTHONXM_DISABLE_COPY_MOVE_DEFAULT(OclRxJitRunner)
 
     OclRxJitRunner(size_t index, const OclLaunchData &data);
     ~OclRxJitRunner() override;
@@ -65,4 +65,4 @@ private:
 } /* namespace pythonxm */
 
 
-#endif // XMRIG_OCLRXRUNNER_H
+#endif // PYTHONXM_OCLRXRUNNER_H

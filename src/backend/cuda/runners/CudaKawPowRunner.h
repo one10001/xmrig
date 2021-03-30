@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_CUDAKAWPOWRUNNER_H
-#define XMRIG_CUDAKAWPOWRUNNER_H
+#ifndef PYTHONXM_CUDAKAWPOWRUNNER_H
+#define PYTHONXM_CUDAKAWPOWRUNNER_H
 
 
 #include "backend/cuda/runners/CudaBaseRunner.h"
@@ -52,4 +52,4 @@ private:
 } /* namespace pythonxm */
 
 
-#endif // XMRIG_CUDAKAWPOWRUNNER_H
+#endif // PYTHONXM_CUDAKAWPOWRUNNER_H

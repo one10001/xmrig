@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_CUDAASTROBWTRUNNER_H
-#define XMRIG_CUDAASTROBWTRUNNER_H
+#ifndef PYTHONXM_CUDAASTROBWTRUNNER_H
+#define PYTHONXM_CUDAASTROBWTRUNNER_H
 
 
 #include "backend/cuda/runners/CudaBaseRunner.h"
@@ -56,4 +56,4 @@ private:
 } /* namespace pythonxm */
 
 
-#endif // XMRIG_CUDAASTROBWTRUNNER_H
+#endif // PYTHONXM_CUDAASTROBWTRUNNER_H

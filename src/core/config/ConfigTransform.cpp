@@ -25,12 +25,12 @@
 #include "crypto/cn/CnHash.h"
 
 
-#ifdef XMRIG_ALGO_RANDOMX
+#ifdef PYTHONXM_ALGO_RANDOMX
 #   include "crypto/rx/RxConfig.h"
 #endif
 
 
-#ifdef XMRIG_FEATURE_BENCHMARK
+#ifdef PYTHONXM_FEATURE_BENCHMARK
 #   include "base/net/stratum/benchmark/BenchConfig.h"
 #endif
 
@@ -106,7 +106,7 @@ void pythonxm::ConfigTransform::finalize(rapidjson::Document &doc)
         doc[CpuConfig::kField].AddMember(StringRef(kAsterisk), profile, doc.GetAllocator());
     }
 
-#   ifdef XMRIG_FEATURE_OPENCL
+#   ifdef PYTHONXM_FEATURE_OPENCL
     if (m_opencl) {
         set(doc, Config::kOcl, kEnabled, true);
     }
@@ -150,17 +150,17 @@ void pythonxm::ConfigTransform::transform(rapidjson::Document &doc, int key, con
     case IConfig::PauseOnActiveKey: /* --pause-on-active */
         return set(doc, Config::kPauseOnActive, static_cast<uint64_t>(strtol(arg, nullptr, 10)));
 
-#   ifdef XMRIG_ALGO_ARGON2
+#   ifdef PYTHONXM_ALGO_ARGON2
     case IConfig::Argon2ImplKey: /* --argon2-impl */
         return set(doc, CpuConfig::kField, CpuConfig::kArgon2Impl, arg);
 #   endif
 
-#   ifdef XMRIG_FEATURE_ASM
+#   ifdef PYTHONXM_FEATURE_ASM
     case IConfig::AssemblyKey: /* --asm */
         return set(doc, CpuConfig::kField, CpuConfig::kAsm, arg);
 #   endif
 
-#   ifdef XMRIG_ALGO_ASTROBWT
+#   ifdef PYTHONXM_ALGO_ASTROBWT
     case IConfig::AstroBWTMaxSizeKey: /* --astrobwt-max-size */
         return set(doc, CpuConfig::kField, CpuConfig::kAstroBWTMaxSize, static_cast<uint64_t>(strtol(arg, nullptr, 10)));
 
@@ -168,11 +168,11 @@ void pythonxm::ConfigTransform::transform(rapidjson::Document &doc, int key, con
         return set(doc, CpuConfig::kField, CpuConfig::kAstroBWTAVX2, true);
 #   endif
 
-#   ifdef XMRIG_ALGO_RANDOMX
+#   ifdef PYTHONXM_ALGO_RANDOMX
     case IConfig::RandomXInitKey: /* --randomx-init */
         return set(doc, RxConfig::kField, RxConfig::kInit, static_cast<int64_t>(strtol(arg, nullptr, 10)));
 
-#   ifdef XMRIG_FEATURE_HWLOC
+#   ifdef PYTHONXM_FEATURE_HWLOC
     case IConfig::RandomXNumaKey: /* --randomx-no-numa */
         return set(doc, RxConfig::kField, RxConfig::kNUMA, false);
 #   endif
@@ -197,7 +197,7 @@ void pythonxm::ConfigTransform::transform(rapidjson::Document &doc, int key, con
         return set(doc, RxConfig::kField, RxConfig::kCacheQoS, true);
 #   endif
 
-#   ifdef XMRIG_FEATURE_OPENCL
+#   ifdef PYTHONXM_FEATURE_OPENCL
     case IConfig::OclKey: /* --opencl */
         m_opencl = true;
         break;
@@ -220,7 +220,7 @@ void pythonxm::ConfigTransform::transform(rapidjson::Document &doc, int key, con
         return set(doc, Config::kOcl, "platform", arg);
 #   endif
 
-#   ifdef XMRIG_FEATURE_CUDA
+#   ifdef PYTHONXM_FEATURE_CUDA
     case IConfig::CudaKey: /* --cuda */
         return set(doc, Config::kCuda, kEnabled, true);
 
@@ -238,22 +238,22 @@ void pythonxm::ConfigTransform::transform(rapidjson::Document &doc, int key, con
         return set(doc, Config::kCuda, "bsleep-hint", static_cast<uint64_t>(strtol(arg, nullptr, 10)));
 #   endif
 
-#   ifdef XMRIG_FEATURE_NVML
+#   ifdef PYTHONXM_FEATURE_NVML
     case IConfig::NvmlKey: /* --no-nvml */
         return set(doc, Config::kCuda, "nvml", false);
 #   endif
 
-#   if defined(XMRIG_FEATURE_NVML) || defined (XMRIG_FEATURE_ADL)
+#   if defined(PYTHONXM_FEATURE_NVML) || defined (PYTHONXM_FEATURE_ADL)
     case IConfig::HealthPrintTimeKey: /* --health-print-time */
         return set(doc, Config::kHealthPrintTime, static_cast<uint64_t>(strtol(arg, nullptr, 10)));
 #   endif
 
-#   ifdef XMRIG_FEATURE_DMI
+#   ifdef PYTHONXM_FEATURE_DMI
     case IConfig::DmiKey: /* --no-dmi */
         return set(doc, Config::kDMI, false);
 #   endif
 
-#   ifdef XMRIG_FEATURE_BENCHMARK
+#   ifdef PYTHONXM_FEATURE_BENCHMARK
     case IConfig::AlgorithmKey:     /* --algo */
     case IConfig::BenchKey:         /* --bench */
     case IConfig::StressKey:        /* --stress */
@@ -316,7 +316,7 @@ void pythonxm::ConfigTransform::transformUint64(rapidjson::Document &doc, int ke
 }
 
 
-#ifdef XMRIG_FEATURE_BENCHMARK
+#ifdef PYTHONXM_FEATURE_BENCHMARK
 void pythonxm::ConfigTransform::transformBenchmark(rapidjson::Document &doc, int key, const char *arg)
 {
     set(doc, CpuConfig::kField, CpuConfig::kHugePagesJit, true);

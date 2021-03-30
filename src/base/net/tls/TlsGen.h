@@ -16,8 +16,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_TLSGEN_H
-#define XMRIG_TLSGEN_H
+#ifndef PYTHONXM_TLSGEN_H
+#define PYTHONXM_TLSGEN_H
 
 
 #include "base/tools/Object.h"
@@ -34,7 +34,7 @@ namespace pythonxm {
 class TlsGen
 {
 public:
-    XMRIG_DISABLE_COPY_MOVE(TlsGen)
+    PYTHONXM_DISABLE_COPY_MOVE(TlsGen)
 
     TlsGen() : m_cert("cert.pem"), m_certKey("cert_key.pem") {}
     ~TlsGen();
@@ -58,4 +58,4 @@ private:
 } /* namespace pythonxm */
 
 
-#endif /* XMRIG_TLSGEN_H */
+#endif /* PYTHONXM_TLSGEN_H */

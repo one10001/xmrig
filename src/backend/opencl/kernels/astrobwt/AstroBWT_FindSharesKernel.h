@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_ASTROBWTFINDSHARESKERNEL_H
-#define XMRIG_ASTROBWTFINDSHARESKERNEL_H
+#ifndef PYTHONXM_ASTROBWTFINDSHARESKERNEL_H
+#define PYTHONXM_ASTROBWTFINDSHARESKERNEL_H
 
 
 #include "backend/opencl/wrappers/OclKernel.h"
@@ -46,4 +46,4 @@ public:
 } // namespace pythonxm
 
 
-#endif /* XMRIG_ASTROBWTFINDSHARESKERNEL_H */
+#endif /* PYTHONXM_ASTROBWTFINDSHARESKERNEL_H */

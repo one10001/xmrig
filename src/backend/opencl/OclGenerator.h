@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_OCLGENERATOR_H
-#define XMRIG_OCLGENERATOR_H
+#ifndef PYTHONXM_OCLGENERATOR_H
+#define PYTHONXM_OCLGENERATOR_H
 
 
 namespace pythonxm {
@@ -40,4 +40,4 @@ using ocl_gen_config_fun = bool (*)(const OclDevice &device, const Algorithm &al
 } // namespace pythonxm
 
 
-#endif /* XMRIG_OCLGENERATOR_H */
+#endif /* PYTHONXM_OCLGENERATOR_H */

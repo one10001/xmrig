@@ -22,8 +22,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_OCLDEVICE_H
-#define XMRIG_OCLDEVICE_H
+#ifndef PYTHONXM_OCLDEVICE_H
+#define PYTHONXM_OCLDEVICE_H
 
 
 #include "backend/common/misc/PciTopology.h"
@@ -82,7 +82,7 @@ public:
     inline size_t maxMemAllocSize() const       { return m_maxMemoryAlloc; }
     inline uint32_t index() const               { return m_index; }
 
-#   ifdef XMRIG_FEATURE_API
+#   ifdef PYTHONXM_FEATURE_API
     void toJSON(rapidjson::Value &out, rapidjson::Document &doc) const;
 #   endif
 
@@ -105,4 +105,4 @@ private:
 } // namespace pythonxm
 
 
-#endif /* XMRIG_OCLDEVICE_H */
+#endif /* PYTHONXM_OCLDEVICE_H */

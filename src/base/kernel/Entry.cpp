@@ -27,15 +27,15 @@
 #include <uv.h>
 
 
-#ifdef XMRIG_FEATURE_TLS
+#ifdef PYTHONXM_FEATURE_TLS
 #   include <openssl/opensslv.h>
 #endif
 
-#ifdef XMRIG_FEATURE_HWLOC
+#ifdef PYTHONXM_FEATURE_HWLOC
 #   include <hwloc.h>
 #endif
 
-#ifdef XMRIG_FEATURE_OPENCL
+#ifdef PYTHONXM_FEATURE_OPENCL
 #   include "backend/opencl/wrappers/OclLib.h"
 #   include "backend/opencl/wrappers/OclPlatform.h"
 #endif
@@ -79,7 +79,7 @@ static int showVersion()
 
     printf("\nlibuv/%s\n", uv_version_string());
 
-#   if defined(XMRIG_FEATURE_TLS)
+#   if defined(PYTHONXM_FEATURE_TLS)
     {
 #       if defined(LIBRESSL_VERSION_TEXT)
         printf("LibreSSL/%s\n", LIBRESSL_VERSION_TEXT + 9);
@@ -90,7 +90,7 @@ static int showVersion()
     }
 #   endif
 
-#   if defined(XMRIG_FEATURE_HWLOC)
+#   if defined(PYTHONXM_FEATURE_HWLOC)
 #   if defined(HWLOC_VERSION)
     printf("hwloc/%s\n", HWLOC_VERSION);
 #   elif HWLOC_API_VERSION >= 0x20000
@@ -104,7 +104,7 @@ static int showVersion()
 }
 
 
-#ifdef XMRIG_FEATURE_HWLOC
+#ifdef PYTHONXM_FEATURE_HWLOC
 static int exportTopology(const Process &)
 {
     const String path = Process::location(Process::ExeLocation, "topology.xml");
@@ -145,13 +145,13 @@ pythonxm::Entry::Id pythonxm::Entry::get(const Process &process)
          return Version;
     }
 
-#   ifdef XMRIG_FEATURE_HWLOC
+#   ifdef PYTHONXM_FEATURE_HWLOC
     if (args.hasArg("--export-topology")) {
         return Topo;
     }
 #   endif
 
-#   ifdef XMRIG_FEATURE_OPENCL
+#   ifdef PYTHONXM_FEATURE_OPENCL
     if (args.hasArg("--print-platforms")) {
         return Platforms;
     }
@@ -171,12 +171,12 @@ int pythonxm::Entry::exec(const Process &process, Id id)
     case Version:
         return showVersion();
 
-#   ifdef XMRIG_FEATURE_HWLOC
+#   ifdef PYTHONXM_FEATURE_HWLOC
     case Topo:
         return exportTopology(process);
 #   endif
 
-#   ifdef XMRIG_FEATURE_OPENCL
+#   ifdef PYTHONXM_FEATURE_OPENCL
     case Platforms:
         if (OclLib::init()) {
             OclPlatform::print();
